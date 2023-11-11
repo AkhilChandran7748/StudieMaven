@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch  } from "react-router-dom";
+import { RENDER_URL } from "../../Utils/Urls";
 const GuestHeader = (props) => {
-    console.log(props);
+    let path = props.history.location
+    console.log(path, 'path')
     return (<>  <header id="header">
         <div className="container-fluid">
             <div
@@ -9,7 +11,7 @@ const GuestHeader = (props) => {
                 style={{ height: '100%', textAlign: 'center' }}
                 className="pull-left"
             >
-                <a href="index.html"  style={{ height: '100%' }}
+                <a href="index.html" style={{ height: '100%' }}
                 ><img
                         className="logo-img"
                         src="img/StudieMaven-Logo-white.png"
@@ -20,8 +22,12 @@ const GuestHeader = (props) => {
 
             <nav id="nav-menu-container">
                 <ul className="nav-menu">
-                    <li className="menu-active"><a href="./index.html">Home</a></li>
-                    <li><a href="why-studiemaven.html">Why Studiemaven</a></li>
+                    <li  className={`${useMatch('/') ? 'menu-active' : ''}`}><a href="./index.html">Home</a></li>
+                    <li  className={`${useMatch(RENDER_URL.WHY_MAVEN) ? 'menu-active' : ''}`}>
+                        <Link to={
+                            RENDER_URL.WHY_MAVEN
+                        }>
+                            Why Studiemaven</Link></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="courses.html">Courses</a></li>
                     <li><a href="countries.html">COUNTRIES</a></li>

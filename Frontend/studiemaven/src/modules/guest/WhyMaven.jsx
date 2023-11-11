@@ -1,6 +1,6 @@
 import React from "react";
 import WithHeader from "../common/WithHeaderHoc";
-const WhyMaven = () => {
+const WhyMaven = (props) => {
     return (
         <>
             <div >
@@ -14,7 +14,7 @@ const WhyMaven = () => {
                             >
 
                                 <div className="carousel-inner " role="listbox" >
-                                    <div className="carousel-item active" style={{ height: '160 %' }}>
+                                    <div className="carousel-item active" style={{ height: '160%' }}>
                                         <div className="carousel-background " >
                                             <img src="img/banner-inner-2.jpg" alt="" />
                                         </div>

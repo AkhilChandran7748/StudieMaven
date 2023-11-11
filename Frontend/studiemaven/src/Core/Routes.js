@@ -9,6 +9,7 @@ const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
 const RoutesComponent = ({ history }) => {
     return (
         <BrowserRouter>
+          <Suspense fallback={<div className="displayNone"></div>}>
             <Routes>
                 <Route path="/" element={<GuestDashboard history={history} />} />
                 <Route path={RENDER_URL.WHY_MAVEN} element={<WhyMaven history={history} />} />
@@ -22,6 +23,7 @@ const RoutesComponent = ({ history }) => {
                 />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
+            </Suspense>
         </BrowserRouter>
     );
 };
