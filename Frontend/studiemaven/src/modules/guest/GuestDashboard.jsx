@@ -3,7 +3,6 @@ import GuestHeader from "../common/GuestHeaderComponent";
 import Footer from "../common/FooterComponent";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 const GuestDashboard = (props) => {
-    console.log(props.history.location.pathname);
     return (<>
         <GuestHeader history={props.history}/>
         <div id="intro">

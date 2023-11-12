@@ -8,7 +8,9 @@ export const RENDER_URL = {
     REGISTER_URL: "/register",
     CREATE_ARTICLE: "/newarticle",
     ADD_MENU: "/addmenu",
-    WHY_MAVEN: '/why-studiemaven'
+    WHY_MAVEN: '/why-studiemaven',
+    SERVICES: '/services',
+    COURSES:'/courses'
 
 };
 

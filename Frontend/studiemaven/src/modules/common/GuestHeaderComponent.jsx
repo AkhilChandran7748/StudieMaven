@@ -1,9 +1,7 @@
 import React from "react";
-import { Link, useMatch  } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
 const GuestHeader = (props) => {
-    let path = props.history.location
-    console.log(path, 'path')
     return (<>  <header id="header">
         <div className="container-fluid">
             <div
@@ -22,14 +20,22 @@ const GuestHeader = (props) => {
 
             <nav id="nav-menu-container">
                 <ul className="nav-menu">
-                    <li  className={`${useMatch('/') ? 'menu-active' : ''}`}><a href="./index.html">Home</a></li>
-                    <li  className={`${useMatch(RENDER_URL.WHY_MAVEN) ? 'menu-active' : ''}`}>
+                    <li className={`${useMatch('/') ? 'menu-active' : ''}`}><a href="./index.html">Home</a></li>
+                    <li className={`${useMatch(RENDER_URL.WHY_MAVEN) ? 'menu-active' : ''}`}>
                         <Link to={
                             RENDER_URL.WHY_MAVEN
                         }>
                             Why Studiemaven</Link></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="courses.html">Courses</a></li>
+                    <li className={`${useMatch(RENDER_URL.SERVICES) ? 'menu-active' : ''}`}>
+                        <Link to={
+                            RENDER_URL.SERVICES
+                        }>
+                            Services</Link></li>
+                    <li className={`${useMatch(RENDER_URL.COURSES) ? 'menu-active' : ''}`}>
+                        <Link to={
+                            RENDER_URL.COURSES
+                        }>
+                            Courses</Link></li>
                     <li><a href="countries.html">COUNTRIES</a></li>
                     <li><a href="referral-programme.html">Referral programme!</a></li>
                     <li><a href="contact.html">Contact</a></li>

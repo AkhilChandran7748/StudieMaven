@@ -5,14 +5,17 @@ import RootRouteGuard from "./RootRouteGuard"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 const GuestDashboard = lazy(() => import("../modules/guest/GuestDashboard"))
 const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
-
+const Services = lazy(() => import("../modules/guest/Services"))
+const Courses= lazy(() => import("../modules/guest/Courses"))
 const RoutesComponent = ({ history }) => {
     return (
         <BrowserRouter>
           <Suspense fallback={<div className="displayNone"></div>}>
             <Routes>
                 <Route path="/" element={<GuestDashboard history={history} />} />
-                <Route path={RENDER_URL.WHY_MAVEN} element={<WhyMaven history={history} />} />
+                <Route path={RENDER_URL.WHY_MAVEN} element={<WhyMaven />} />
+                <Route path={RENDER_URL.SERVICES} element={<Services />} />
+                <Route path={RENDER_URL.COURSES} element={<Courses />} />
                 <Route
                     path={RENDER_URL.GUEST_DASHBOARD}
                     element={
