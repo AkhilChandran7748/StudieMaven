@@ -10,8 +10,10 @@ export const RENDER_URL = {
     ADD_MENU: "/addmenu",
     WHY_MAVEN: '/why-studiemaven',
     SERVICES: '/services',
-    COURSES:'/courses'
-
+    COURSES: '/courses',
+    COUNTRIES: '/countries',
+    REFERAL: '/refereal',
+    CONTACT:'/contact'
 };
 
 

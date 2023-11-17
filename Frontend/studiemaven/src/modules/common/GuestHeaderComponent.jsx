@@ -36,9 +36,22 @@ const GuestHeader = (props) => {
                             RENDER_URL.COURSES
                         }>
                             Courses</Link></li>
-                    <li><a href="countries.html">COUNTRIES</a></li>
-                    <li><a href="referral-programme.html">Referral programme!</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li className={`${useMatch(RENDER_URL.COUNTRIES) ? 'menu-active' : ''}`}>
+                        <Link to={
+                            RENDER_URL.COUNTRIES
+                        }>
+                            COUNTRIES</Link></li>
+                    <li className={`${useMatch(RENDER_URL.REFERAL) ? 'menu-active' : ''}`}>
+                        <Link to={
+                            RENDER_URL.REFERAL
+                        }>
+                            Referral programme!</Link></li>
+                    <li className={`${useMatch(RENDER_URL.CONTACT) ? 'menu-active' : ''}`}>
+                        <Link to={
+                            RENDER_URL.CONTACT
+                        }>
+                            Contact</Link></li>
+                            
                 </ul>
             </nav>
         </div>
