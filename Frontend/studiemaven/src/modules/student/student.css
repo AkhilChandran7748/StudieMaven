@@ -1,0 +1,8 @@
+.student .p-splitter {
+    border: none;
+}
+.student .p-avatar.p-avatar-xl {
+    width: 8rem;
+    height: 8rem;
+    font-size: 2rem;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useMatch } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
+import LoginButton from "../login/LoginButton";
 const GuestHeader = (props) => {
     return (<>  <header id="header">
         <div className="container-fluid">
@@ -20,8 +21,12 @@ const GuestHeader = (props) => {
 
             <nav id="nav-menu-container">
                 <ul className="nav-menu">
-                    <li className={`${useMatch('/') ? 'menu-active' : ''}`}><a href="./index.html">Home</a></li>
-                    <li className={`${useMatch(RENDER_URL.WHY_MAVEN) ? 'menu-active' : ''}`}>
+                <li className={`${useMatch('/') ? 'menu-active' : ''}`}>
+                        <Link to={
+                            RENDER_URL.HOME_URL
+                        }>
+                            Home</Link>
+                    </li><li className={`${useMatch(RENDER_URL.WHY_MAVEN) ? 'menu-active' : ''}`}>
                         <Link to={
                             RENDER_URL.WHY_MAVEN
                         }>
@@ -51,7 +56,10 @@ const GuestHeader = (props) => {
                             RENDER_URL.CONTACT
                         }>
                             Contact</Link></li>
-                            
+                    <li >
+                        <LoginButton />
+                    </li>
+
                 </ul>
             </nav>
         </div>

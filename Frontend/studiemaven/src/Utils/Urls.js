@@ -13,7 +13,9 @@ export const RENDER_URL = {
     COURSES: '/courses',
     COUNTRIES: '/countries',
     REFERAL: '/refereal',
-    CONTACT:'/contact'
+    CONTACT:'/contact',
+    ADMIN_DASHBOARD:'/admin-dashboard',
+    VIEW_STUDENT:'/student'
 };
 
 

@@ -1,0 +1,75 @@
+.bg-white {
+    color: white;
+}
+
+.margin-t-sm {
+    margin-top: 5px;
+}
+
+.p-button {
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+}
+
+.p-button.p-button-sm {
+    font-size: 0.875rem;
+    padding: 0.65625rem 1.09375rem;
+}
+
+.p-inputtext.p-inputtext-sm {
+    font-size: 0.875rem;
+    padding: 0.65625rem 0.65625rem;
+}
+
+.margin-b-md {
+    margin-bottom: 10px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.padding-r-sm {
+    padding-right: 5px;
+}
+
+.p-inputtext-sm .p-inputtext {
+    font-size: 0.875rem;
+    padding: 0.65625rem 0.65625rem;
+}
+
+.content {
+    padding: 20px;
+}
+
+.margin-r-10 {
+    margin-right: 10px;
+}
+
+.red {
+    color: red;
+}
+
+.grey {
+    color: #555555
+}
+.blue {
+    color: blue
+}
+.header {
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 10px;
+}
+.padding-30p {
+    padding: 30px;
+}
+.padding-t-15p{
+    padding-top: 15px;;
+}
+.padding-l-20p{
+    padding-left: 20px;;
+}

@@ -1,43 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
-    Route,
-    Navigate
+    useNavigate,
+    Outlet
 } from "react-router-dom";
-const RootRouteGuard = ({ children, ...xProps }) => {
-    const loginData = {
-        login: {
-            isLoggedIn: true
-        }
-    };
-    const renderChildren = () => {
-        return React.Children.map(children, (child) => {
-            return React.cloneElement(child, { ...xProps });
-        });
-    };
-    return (
-        <Route
-            {...xProps}
-            render={routeParams => {
-                const pathName = routeParams.match.path;
-                if (loginData.isLoggedIn) {
-                    if (pathName === '/login') {
-                        return <Navigate to="/dashboard" />;
-                    }
-                    return renderChildren();
+import { RENDER_URL } from "../Utils/Urls";
+const RootRouteGuard = () => {
+    const navigate = useNavigate();
 
-                    // return <Component {...routeParams} key={routeParams.match.url} />;
-                }
-                if (
-                    pathName === "/unsubcribe" ||
-                    pathName === "/about-us" ||
-                    pathName === "/contact-us" ||
-                    pathName === "/reset-password") {
-                    return renderChildren();
-                    // return <Component {...routeParams} key={routeParams.match.url} />;
-                }
-                return <Navigate to="/guest-dashboard" />;
-            }}
-        />
-    );
+    useEffect(() => {
+        let loginData = localStorage.getItem('userData');
+        loginData = loginData && JSON.parse(loginData) || {};
+        if (!loginData.isLoggedIn) {
+
+            navigate(RENDER_URL.HOME_URL);
+        }
+    }, [])
+
+    return (<Outlet />);
 };
 export default RootRouteGuard

@@ -1,16 +1,18 @@
 import React from 'react'
 import GuestHeader from './GuestHeaderComponent'
+import AdminHeader from './AdminHeader';
 const WithHeader = (HocComponent) => {
 
     const Wrapper = (props) => {
-        const loginData = { isLoggedIn: false };
+        let loginData = localStorage.getItem('userData');
+        loginData = loginData && JSON.parse(loginData) || {};
         const getHeader = () => {
             if (loginData.isLoggedIn) {
-                // return (loginData.isAdmin ?
-                //     <AdminHeaderComponent
-                //         {...props}
-                //     /> : <> <UserHeaderComponent {...props} />
-                //     </>)
+                return (loginData.isAdmin ?
+                    <AdminHeader
+                        {...props}
+                    /> : <> <AdminHeader {...props} />
+                    </>)
             }
 
             return <GuestHeader {...props} />
