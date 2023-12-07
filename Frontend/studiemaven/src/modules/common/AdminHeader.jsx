@@ -34,6 +34,12 @@ const AdminHeader = (props) => {
                             Student List</Link>
                     </li>
                     <li >
+                        <Link to={
+                            RENDER_URL.ADMIN_DASHBOARD
+                        }>
+                            Staff Manangement</Link>
+                    </li>
+                    <li >
                         <LoginButton />
                     </li>
 

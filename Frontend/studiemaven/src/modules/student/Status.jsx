@@ -5,7 +5,7 @@ const Status = ({ status }) => {
         switch (status) {
             case 'Rejected':
                 return 'danger'
-            case 'Completed':
+            case 'Accepted':
                 return 'success';
             default: return '';
         }

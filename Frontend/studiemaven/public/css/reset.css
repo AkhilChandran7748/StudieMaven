@@ -42,11 +42,14 @@
 }
 
 .content {
-    padding: 20px;
+    padding: 10px;
 }
 
 .margin-r-10 {
     margin-right: 10px;
+}
+.margin-l-10 {
+    margin-left: 10px;
 }
 
 .red {
@@ -64,12 +67,75 @@
     text-decoration: underline;
     padding: 10px;
 }
+.padding-10p {
+    padding: 10px;
+}
+.padding-20p {
+    padding: 20px;
+}
 .padding-30p {
     padding: 30px;
+}
+.padding-t-5p{
+    padding-top: 5px;;
+}
+.padding-t-10p{
+    padding-top: 10px;;
 }
 .padding-t-15p{
     padding-top: 15px;;
 }
+.padding-t-20p{
+    padding-top: 20px;;
+}
+.padding-t-25p{
+    padding-top: 25px;;
+}
+.padding-t-30p{
+    padding-top: 30px;;
+}
 .padding-l-20p{
     padding-left: 20px;;
+}
+.padding-b-10p {
+    padding-bottom: 10px;
+}
+.padding-b-30p {
+    padding-bottom: 30px;
+}
+.p-inputtext {
+    margin: 0;
+}
+.p-component, .p-component * {
+    box-sizing: border-box;
+}
+.p-inputtext {
+    font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings, normal);
+    font-size: 1rem;
+    color: #495057;
+    background: #ffffff;
+    padding: 0.75rem 0.75rem;
+    border: 1px solid #ced4da;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    border-radius: 6px;
+}
+.p-component {
+    font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings, normal);
+    /* font-size: 1rem; */
+    font-weight: normal;
+}
+.small-button {
+    font-size: .8rem!important;
+}
+.margin-l-5p{
+    margin-left: 5px;
+}
+.margin-l-10p{
+    margin-left: 10px;
+}
+.m-width-220p {
+    min-width: 220px;
 }

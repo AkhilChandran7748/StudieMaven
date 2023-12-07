@@ -1,91 +1,138 @@
 export const studentData = [{
     id: '1',
     name: 'Akhil',
-    address:'qwerty',
-    email: 'abc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Document Updated'
-},{
-    id: '2',
-    name: 'Amil',
-    address:'qwerty',
-    email: 'abddc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',    
-    status: 'Payment Pending' 
-},{
-    id: '3',
-    name: 'Amal',
-    address:'qccwerty',
-    email: 'abc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Visa Rejected'  
-},{
-    id: '4',
-    name: 'Balu',
-    address:'qwerty',
-    email: 'addsbc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Appication Pending'  
-},{
-    id: '5',
-    name: 'Raman',
-    address:'qwerty',
-    email: 'asxssbc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',     
+    agentName: 'Hidas',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    status: 'COL',
+    visaStatus: 'Granted'
+}, {
+    id: '1',
+    name: 'Ram',
+    agentName: 'Mustafa',
+    leadOwner: 'Sreejith',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    status: 'UOL',
+    visaStatus: 'Rejected'
+}, {
+    id: '1',
+    name: 'Akhil',
+    agentName: 'Own',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    status: 'Accepted',
+    visaStatus: 'Pending'
+}, {
+    id: '1',
+    name: 'Ron',
+    agentName: 'Hidas',
+    leadOwner: 'Sreejith',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    visaStatus: 'Granted',
     status: 'Rejected'
-},{
-    id: '6',
-    name: 'Kishor',
-    address:'qwerty',
-    email: 'adbc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',    
-    status: 'Inprogress' 
-},{
-    id: '7',
-    name: 'Ramya',
-    address:'qwerty',
-    email: 'abfffc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Waiting for approval'  
-},{
-    id: '8',
-    name: 'Sathya',
-    address:'qwerty',
-    email: 'affbc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Completed'  
-},{
-    id: '9',
-    name: 'Kiran',
-    address:'qwerty',
-    email: 'abffc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Testing'  
-},{
-    id: '10',
-    name: 'Nihal',
-    address:'qwerty',
-    email: 'abffc@gmail.com',
-    phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Testing'  
-}]
+}, {
+    id: '1',
+    name: 'Aji',
+    agentName: 'Own',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    visaStatus: 'Granted',
+    status: 'COL'
+}, {
+    id: '1',
+    name: 'Yzang',
+    agentName: 'Hidas',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    visaStatus: 'Granted',
+    status: 'UOL'
+}, {
+    id: '1',
+    name: 'Tony',
+    agentName: 'Hidas',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    visaStatus: 'Granted',
+    course: 'IBM',
+    intake: 'January',
+    status: 'Accepted'
+}, {
+    id: '1',
+    name: 'Keerthan',
+    agentName: 'Own',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    visaStatus: 'Granted',
+    status: 'Rejected'
+}, {
+    id: '1',
+    name: 'Rijo',
+    agentName: 'Hidas',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    visaStatus: 'Granted',
+    status: 'COL'
+}, {
+    id: '1',
+    name: 'Sam',
+    agentName: 'Mustafa',
+    leadOwner: 'Varda',
+    university: 'EU Education',
+    course: 'IBM',
+    intake: 'January',
+    status: 'COL',
+    visaStatus: 'Granted',
+},]
 
 export const student = {
     id: '1',
     name: 'Allen Mathew',
-    address:'qwerty',
+    address: 'qwerty',
     email: 'abc@gmail.com',
     phone: '8899776655',
-    graduation:'BCA',   
-    status: 'Document Updated'
+    graduation: 'BCA',
+    status: 'Document Updated',
+    documents: [
+        {
+            documentName: 'Degree Certificate',
+            id: '',
+            path: '',
+        },
+        {
+            documentName: 'Degree Certificate',
+            id: '',
+            path: '',
+        }, ,
+        {
+            documentName: 'Degree Certificate',
+            id: '',
+            path: '',
+        }, ,
+        {
+            documentName: 'Degree Certificate',
+            id: '',
+            path: '',
+        }, ,
+        {
+            documentName: 'Degree Certificate',
+            id: '',
+            path: '',
+        },
+    ]
 }

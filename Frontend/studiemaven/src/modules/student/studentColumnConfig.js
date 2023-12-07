@@ -1,7 +1,9 @@
-export const columnConfig =[
-    {field:'name',header: 'Name'},
-    {field:'email',header: 'Email'},
-    {field:'phone',header: 'Phone'},
-    {field:'address',header: 'Address'},
-    {field:'graduation',header: 'Graduation'},
+export const columnConfig = [
+    { field: 'name', header: 'Name' },
+    { field: 'agentName', header: 'Agent Name' },
+    { field: 'leadOwner', header: 'Lead Owner' },
+    { field: 'university', header: 'University' },
+    { field: 'course', header: 'Course' },
+    { field: 'intake', header: 'Intake' },
+    { field: 'visaStatus', header: 'Visa Status' },
 ]
