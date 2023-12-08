@@ -7,6 +7,7 @@ import { columnConfig } from "./studentColumnConfig";
 import TableActions from "./TableActions";
 import Status from "./Status";
 import Search from "./Search";
+import AddStudent from "./AddStudent";
 const StudentList = () => {
     return (<>
         <div className="content">
@@ -14,6 +15,8 @@ const StudentList = () => {
             <div className="card margin-b-md">
             <Search />
             </div>
+            
+            <div  style={{ textAlign:'right' }} > <AddStudent/></div>
             <div className="card">
                 <DataTable value={studentData} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
                     {columnConfig.map((col, i) => <Column key={i} field={col.field} header={col.header} />)}

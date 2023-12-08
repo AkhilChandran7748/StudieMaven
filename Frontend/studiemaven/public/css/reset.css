@@ -23,7 +23,9 @@
     font-size: 0.875rem;
     padding: 0.65625rem 0.65625rem;
 }
-
+button:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+}
 .margin-b-md {
     margin-bottom: 10px;
 }
@@ -48,6 +50,7 @@
 .margin-r-10 {
     margin-right: 10px;
 }
+
 .margin-l-10 {
     margin-left: 10px;
 }
@@ -59,56 +62,81 @@
 .grey {
     color: #555555
 }
+
 .blue {
     color: blue
 }
+
 .header {
     font-weight: 600;
     text-decoration: underline;
     padding: 10px;
 }
+
 .padding-10p {
     padding: 10px;
 }
+
 .padding-20p {
     padding: 20px;
 }
+
 .padding-30p {
     padding: 30px;
 }
-.padding-t-5p{
-    padding-top: 5px;;
+
+.padding-t-5p {
+    padding-top: 5px;
+    ;
 }
-.padding-t-10p{
-    padding-top: 10px;;
+
+.padding-t-10p {
+    padding-top: 10px;
+    ;
 }
-.padding-t-15p{
-    padding-top: 15px;;
+
+.padding-t-15p {
+    padding-top: 15px;
+    ;
 }
-.padding-t-20p{
-    padding-top: 20px;;
+
+.padding-t-20p {
+    padding-top: 20px;
+    ;
 }
-.padding-t-25p{
-    padding-top: 25px;;
+
+.padding-t-25p {
+    padding-top: 25px;
+    ;
 }
-.padding-t-30p{
-    padding-top: 30px;;
+
+.padding-t-30p {
+    padding-top: 30px;
+    ;
 }
-.padding-l-20p{
-    padding-left: 20px;;
+
+.padding-l-20p {
+    padding-left: 20px;
+    ;
 }
+
 .padding-b-10p {
     padding-bottom: 10px;
 }
+
 .padding-b-30p {
     padding-bottom: 30px;
 }
+
 .p-inputtext {
     margin: 0;
 }
-.p-component, .p-component * {
+
+.p-component,
+.p-component * {
     box-sizing: border-box;
 }
+
 .p-inputtext {
     font-family: var(--font-family);
     font-feature-settings: var(--font-feature-settings, normal);
@@ -121,21 +149,47 @@
     appearance: none;
     border-radius: 6px;
 }
+
 .p-component {
     font-family: var(--font-family);
     font-feature-settings: var(--font-feature-settings, normal);
     /* font-size: 1rem; */
     font-weight: normal;
 }
+
 .small-button {
-    font-size: .8rem!important;
+    font-size: .8rem !important;
 }
-.margin-l-5p{
+
+.margin-l-5p {
     margin-left: 5px;
 }
-.margin-l-10p{
+
+.margin-l-10p {
     margin-left: 10px;
 }
+
 .m-width-220p {
     min-width: 220px;
+}
+
+.action-icon {
+    font-size: 1.5rem;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: #3232b7;
+}
+
+.row-content {
+    justify-content: space-between;
+}
+
+.p-dialog .p-dialog-header {
+    padding: 1rem;
+}
+
+.add-student .p-splitter-panel-nested {
+    display: block;
 }

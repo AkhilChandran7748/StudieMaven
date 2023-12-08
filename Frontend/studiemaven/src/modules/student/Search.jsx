@@ -6,12 +6,12 @@ import IntakeDropDown from "../components/IntakeDropDown";
 import VisaStatusDropDown from "../components/VisaStatusDropDown";
 import StatusDropDown from "../components/StatusDropDown";
 import { Accordion, AccordionTab } from 'primereact/accordion';
-
+import StaffDropDown from "../components/StaffDropDown";
 const Search = () => {
     const [value, setValue] = useState('');
     return (<>
         <div className="card padding-b-10p padding-10p">
-            <Accordion activeIndex={0}>
+            <Accordion >
                 <AccordionTab header="Search">
                     <div className="margin-l-10p">
                         <div className="row padding-t-10p">
@@ -21,11 +21,7 @@ const Search = () => {
                             </span>
 
                             <AgentDropDown />
-
-                            <span className="p-float-label margin-l-10">
-                                <InputText className="p-inputtext-sm" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
-                                <label htmlFor="username">Lead Owner</label>
-                            </span>
+                            <StaffDropDown />
                             <IntakeDropDown />
                             <span className="p-float-label margin-l-10">
                                 <InputText className="p-inputtext-sm" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
