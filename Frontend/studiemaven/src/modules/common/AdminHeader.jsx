@@ -27,7 +27,7 @@ const AdminHeader = (props) => {
                         }>
                             Home</Link>
                     </li> */}
-                    <li className={`${useMatch( RENDER_URL.ADMIN_DASHBOARD) ? 'menu-active' : ''}`}>
+                    <li className={`${useMatch(RENDER_URL.ADMIN_DASHBOARD) ? 'menu-active' : ''}`}>
                         <Link to={
                             RENDER_URL.ADMIN_DASHBOARD
                         }>
@@ -45,9 +45,19 @@ const AdminHeader = (props) => {
                         }>
                             Staff Manangement</Link>
                     </li>
+                    <li  className={`${useMatch(RENDER_URL.DATA_MANAGEMENT) ? 'menu-active' : ''}`} >
+                        <Link to={
+                            RENDER_URL.DATA_MANAGEMENT
+                        }>
+                            Data Manangement</Link>
+                    </li>
+                    <li >
+                        {/* <HeaderMenu /> */}
+                    </li>
                     <li >
                         <LoginButton />
                     </li>
+
 
                 </ul>
             </nav>

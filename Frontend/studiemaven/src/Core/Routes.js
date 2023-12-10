@@ -12,7 +12,7 @@ const ReferalProgram = lazy(() => import("../modules/guest/ReferalProgram"))
 const Contact = lazy(() => import("../modules/guest/Contact"))
 const AdminDashboard = lazy(() => import("../modules/admin/Admin"))
 const ViewStudent = lazy(() => import("../modules/student/ViewStudent"))
-
+const DataManager =  lazy(() => import("../modules/dataManagement/DataManager"))
 const RoutesComponent = ({ history }) => {
     return (
         <BrowserRouter>
@@ -29,7 +29,7 @@ const RoutesComponent = ({ history }) => {
                     <Route element={<RootRouteGuard />}>
                         <Route path={RENDER_URL.ADMIN_DASHBOARD} element={<AdminDashboard />} />
                         <Route path={`${RENDER_URL.VIEW_STUDENT}/:id`} element={<ViewStudent />} />
-                        {/* <Route path="/profile" element={<UserProfile />} /> */}
+                        <Route path={RENDER_URL.DATA_MANAGEMENT} element={<DataManager />} />
                         {/* Handle other routes */}
                     </Route>
                     <Route path="*" element={<Navigate to="/" />} />

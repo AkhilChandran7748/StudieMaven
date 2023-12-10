@@ -15,7 +15,8 @@ export const RENDER_URL = {
     REFERAL: '/refereal',
     CONTACT:'/contact',
     ADMIN_DASHBOARD:'/admin-dashboard',
-    VIEW_STUDENT:'/student'
+    VIEW_STUDENT:'/student',
+    DATA_MANAGEMENT:'/data-management'
 };
 
 

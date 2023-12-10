@@ -7,6 +7,7 @@ import VisaStatusDropDown from "../components/VisaStatusDropDown";
 import StatusDropDown from "../components/StatusDropDown";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import StaffDropDown from "../components/StaffDropDown";
+import PaymentStatusDropDown from "../components/PaymentStatus";
 const Search = () => {
     const [value, setValue] = useState('');
     return (<>
@@ -15,23 +16,23 @@ const Search = () => {
                 <AccordionTab header="Search">
                     <div className="margin-l-10p">
                         <div className="row padding-t-10p">
-                            <span className="p-float-label margin-l-10 m-width-220p">
-                                <InputText className="p-inputtext-sm" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
+                            <span className="p-float-label margin-l-10">
+                                <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
                                 <label htmlFor="username">Name</label>
                             </span>
 
                             <AgentDropDown />
                             <StaffDropDown />
-                            <IntakeDropDown />
+                            <VisaStatusDropDown />
                             <span className="p-float-label margin-l-10">
-                                <InputText className="p-inputtext-sm" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
+                                <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
                                 <label htmlFor="username">University</label>
                             </span>
                         </div>
                         <div className="row padding-t-30p">
-                            <VisaStatusDropDown />
                             <StatusDropDown />
-
+                            <IntakeDropDown />
+                            <PaymentStatusDropDown />
                         </div>
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                             <Button label="Search" className="small-button" />

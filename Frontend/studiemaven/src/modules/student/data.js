@@ -136,3 +136,32 @@ export const student = {
         },
     ]
 }
+export const docTypes = [
+    {
+        documentName: '10th',
+        id: '1'
+    }, {
+        documentName: '12th',
+        id: '2'
+    }, {
+        documentName: 's S L C',
+        id: '3'
+    }, {
+        documentName: 'Degree',
+        id: '4'
+    }, 
+
+]
+export const statusOptions = [
+    {
+        status: 'Rejected',
+        color: 'red',
+        id: '1'
+    },
+    {
+        status: 'Approved',
+        color: 'green',
+        id: '1'
+    },
+
+]
