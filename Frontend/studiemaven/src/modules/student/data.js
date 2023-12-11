@@ -152,6 +152,16 @@ export const docTypes = [
     }, 
 
 ]
+export const countries = [
+    {
+        countryName:'Germany',
+        id: '1'
+    }, {
+        countryName: '12th',
+        id: '2'
+    },
+
+]
 export const statusOptions = [
     {
         status: 'Rejected',
@@ -164,4 +174,25 @@ export const statusOptions = [
         id: '1'
     },
 
+]
+export const visaStatusOptions = [
+    {
+        status: 'Rejected',
+        color: 'red',
+        id: '1'
+    },
+    {
+        status: 'Approved',
+        color: 'green',
+        id: '1'
+    },
+
+]
+export const staffs = [
+    {
+        name: 'Sreejith',
+        email: 's@s.com',
+        phone: '8086047283',
+        id: '1'
+    },
 ]

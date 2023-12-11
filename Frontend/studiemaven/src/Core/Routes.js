@@ -13,6 +13,8 @@ const Contact = lazy(() => import("../modules/guest/Contact"))
 const AdminDashboard = lazy(() => import("../modules/admin/Admin"))
 const ViewStudent = lazy(() => import("../modules/student/ViewStudent"))
 const DataManager =  lazy(() => import("../modules/dataManagement/DataManager"))
+const Staffs =  lazy(() => import("../modules/staffs/Staffs"))
+
 const RoutesComponent = ({ history }) => {
     return (
         <BrowserRouter>
@@ -30,6 +32,7 @@ const RoutesComponent = ({ history }) => {
                         <Route path={RENDER_URL.ADMIN_DASHBOARD} element={<AdminDashboard />} />
                         <Route path={`${RENDER_URL.VIEW_STUDENT}/:id`} element={<ViewStudent />} />
                         <Route path={RENDER_URL.DATA_MANAGEMENT} element={<DataManager />} />
+                        <Route path={RENDER_URL.STAFFS} element={<Staffs />} />
                         {/* Handle other routes */}
                     </Route>
                     <Route path="*" element={<Navigate to="/" />} />

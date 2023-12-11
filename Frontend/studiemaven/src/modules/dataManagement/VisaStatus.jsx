@@ -3,11 +3,11 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { statusOptions } from "../student/data";
+import { visaStatusOptions } from "../student/data";
 import { Dropdown } from 'primereact/dropdown';
 import { Badge } from 'primereact/badge';
-const Status = () => {
-    const [data, setData] = useState(statusOptions);
+const VisaStatus = () => {
+    const [data, setData] = useState(visaStatusOptions);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
     const [selectedCity, setSelectedCity] = useState(null);
@@ -70,7 +70,7 @@ const Status = () => {
                         ...value,
                         status: e.target.value
                     })} />
-                    <label htmlFor="username">Status</label>
+                    <label htmlFor="username">Visa Status</label>
                 </span>
                 <span className="p-inputtext-sm p-float-label  margin-l-10 ">
                     <Dropdown inputId="dd-city" value={getColorValue()} onChange={(e) => setValue({
@@ -97,4 +97,4 @@ const Status = () => {
         </div>
     </>)
 }
-export default Status
+export default VisaStatus

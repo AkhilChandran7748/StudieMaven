@@ -3,12 +3,15 @@ import WithHeader from "../common/WithHeaderHoc";
 import { Dropdown } from 'primereact/dropdown';
 import DocumentTypes from "./DocumentTypes";
 import Status from "./Status";
+import VisaStatus from "./VisaStatus";
+import Country from "./Country";
 const DataManager = () => {
     const [datSection, setDatSection] = useState(null);
-    console.log(datSection, 'datSection');
     const cities = [
         { name: 'Document Types', code: 'docTypes' },
         { name: 'Status Types', code: 'status' },
+        { name: 'VisaStatus Types', code: 'visaStatus' },
+        { name: 'Countries', code: 'country' },
     ];
     const getSection = () => {
         switch (datSection?.code) {
@@ -16,6 +19,10 @@ const DataManager = () => {
                 return <DocumentTypes />
             case 'status':
                 return <Status />
+            case 'visaStatus':
+                return <VisaStatus />
+            case 'country':
+                return <Country />
             default:
                 return <></>
         }

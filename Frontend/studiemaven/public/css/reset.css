@@ -23,9 +23,11 @@
     font-size: 0.75rem;
     padding: 0.65625rem 0.65625rem;
 }
+
 button:focus {
     outline: 0px auto -webkit-focus-ring-color;
 }
+
 .margin-b-md {
     margin-bottom: 10px;
 }
@@ -193,15 +195,43 @@ button:focus {
 .add-student .p-splitter-panel-nested {
     display: block;
 }
+
 .margin-t-20p {
     margin-top: 20px;
 }
+
 .margin-t-30p {
     margin-top: 30px;
 }
+
 .data-manager .p-float-label {
     display: inline;
 }
+
 .width-350p {
     width: 350px;
+}
+
+.red-bg {
+    background-color: red;
+}
+
+.green-bg {
+    background-color: green;
+}
+
+.yellow-bg {
+    background-color: yellow;
+}
+
+.blue-bg {
+    background-color: rgb(88, 88, 201);
+}
+
+.purple-bg {
+    background-color: purple;
+}
+
+.h-100 {
+    height: 100%;
 }

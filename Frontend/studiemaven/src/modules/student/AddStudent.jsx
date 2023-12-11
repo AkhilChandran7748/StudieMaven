@@ -107,15 +107,12 @@ const AddStudent = () => {
                                     )}
                                 />
                                 <Controller
-                                    name="address"
+                                    name="intake"
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <span className="p-float-label">
-                                                <InputTextarea rows={2} cols={30} autoResize id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                                <label htmlFor={field.name}>Address</label>
-                                            </span>
+                                            <IntakeDropDown />
                                             {getFormErrorMessage(field.name)}
                                         </div>
                                     )}
@@ -125,23 +122,12 @@ const AddStudent = () => {
                         <SplitterPanel className="flex align-items-center " size={50}>
                             <>
                                 <Controller
-                                    name="intake"
-                                    control={control}
-                                    render={({ field, fieldState }) => (
-                                        <div>
-                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <IntakeDropDown/>
-                                            {getFormErrorMessage(field.name)}
-                                        </div>
-                                    )}
-                                />
-                                <Controller
                                     name="agent"
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <AgentDropDown/>
+                                            <AgentDropDown />
                                             {getFormErrorMessage(field.name)}
                                         </div>
                                     )}
@@ -153,16 +139,30 @@ const AddStudent = () => {
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <StaffDropDown/>
+                                            <StaffDropDown />
+                                            {getFormErrorMessage(field.name)}
+                                        </div>
+                                    )}
+                                />
+                                <Controller
+                                    name="address"
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <div className=" margin-l-10">
+                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                            <span className="p-float-label">
+                                                <InputTextarea rows={2} cols={30} autoResize id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <label htmlFor={field.name}>Address</label>
+                                            </span>
                                             {getFormErrorMessage(field.name)}
                                         </div>
                                     )}
                                 />
                             </>
                         </SplitterPanel>
-                        </Splitter>
-                        {/* </div> */}
-                        <FooterContent />
+                    </Splitter>
+                    {/* </div> */}
+                    <FooterContent />
                 </form>
             </Dialog>
         </>
