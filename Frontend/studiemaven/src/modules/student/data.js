@@ -5,9 +5,11 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake: 'January/2023',
     status: 'COL',
-    visaStatus: 'Granted'
+    visaStatus: 'Appointemnt Scheduled',
+    appointmentDate: '12/11/23',
+    isPostponed : true,
 }, {
     id: '1',
     name: 'Ram',
@@ -15,7 +17,7 @@ export const studentData = [{
     leadOwner: 'Sreejith',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake:'December/2023',
     status: 'UOL',
     visaStatus: 'Rejected'
 }, {
@@ -25,7 +27,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake: 'January/2023',
     status: 'Accepted',
     visaStatus: 'Pending'
 }, {
@@ -35,7 +37,7 @@ export const studentData = [{
     leadOwner: 'Sreejith',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake: 'January/2023',
     visaStatus: 'Granted',
     status: 'Rejected'
 }, {
@@ -45,7 +47,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake: 'January/2023',
     visaStatus: 'Granted',
     status: 'COL'
 }, {
@@ -55,7 +57,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake: 'January/2023',
     visaStatus: 'Granted',
     status: 'UOL'
 }, {
@@ -66,7 +68,7 @@ export const studentData = [{
     university: 'EU Education',
     visaStatus: 'Granted',
     course: 'IBM',
-    intake: 'January',
+    intake: 'January/2023',
     status: 'Accepted'
 }, {
     id: '1',
@@ -75,7 +77,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake: 'January/2023',
     visaStatus: 'Granted',
     status: 'Rejected'
 }, {
@@ -85,7 +87,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake:'January/2023',
     visaStatus: 'Granted',
     status: 'COL'
 }, {
@@ -95,7 +97,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake: 'January',
+    intake:'January/2023',
     status: 'COL',
     visaStatus: 'Granted',
 },]
@@ -179,11 +181,13 @@ export const visaStatusOptions = [
     {
         status: 'Rejected',
         color: 'red',
+        hasDate: false,
         id: '1'
     },
     {
         status: 'Approved',
         color: 'green',
+        hasDate: true,
         id: '1'
     },
 

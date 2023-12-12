@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
 export default function IntakeDropDown() {
     const [date, setDate] = useState(null);

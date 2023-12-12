@@ -6,11 +6,11 @@ import { Column } from 'primereact/column';
 import { visaStatusOptions } from "../student/data";
 import { Dropdown } from 'primereact/dropdown';
 import { Badge } from 'primereact/badge';
+import { Checkbox } from 'primereact/checkbox';
 const VisaStatus = () => {
     const [data, setData] = useState(visaStatusOptions);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
-    const [selectedCity, setSelectedCity] = useState(null);
     const colors = [
         { name: 'Red', code: 'red' },
         { name: 'Green', code: 'green' },
@@ -26,7 +26,8 @@ const VisaStatus = () => {
                         return ({
                             ...item,
                             status: value.status,
-                            color: value.color
+                            color: value.color,
+                            hasDate: value.hasDate
 
                         })
                     }
@@ -36,7 +37,8 @@ const VisaStatus = () => {
                 setData([...data, {
                     id: new Date().getTime(),
                     status: value.status,
-                    color: value.color
+                    color: value.color,
+                    hasDate: value.hasDate
                 }])
             }
             setValue(null);
@@ -61,6 +63,9 @@ const VisaStatus = () => {
     const BadgeComponent = ({ color }) => {
         return <Badge value={color} className={`${color}-bg`} />
     }
+    const EnableDateComponent = ({ hasDate }) => {
+        return hasDate ? <i className="pi pi-check"></i> : <></>
+    }
     console.log(value);
     return (<>
         <div className="content margin-t-30p align-center">
@@ -79,6 +84,14 @@ const VisaStatus = () => {
                     })} options={colors} optionLabel="name" className="m-width-220p" />
                     <label htmlFor="dd-city">Color</label>
                 </span>
+                <div className=" margin-l-10 ">
+                    <div>   Enable date  </div> <Checkbox checked={value?.hasDate} onChange={(e) => {
+                        setValue({
+                            ...value,
+                            hasDate: e.checked
+                        })
+                    }} />
+                </div>
                 <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                     <Button onClick={onSubmit} label="Submit" severity="success" className="small-button" />
                     <Button onClick={() => {
@@ -87,9 +100,10 @@ const VisaStatus = () => {
                     }} label="Cancel" severity="secondary" className="small-button margin-l-5p" />
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
-                    <DataTable value={data} className="width-350p aligin-center" >
+                    <DataTable value={data} className="width-400p aligin-center" >
                         <Column field="status" header="Status"></Column>
                         <Column body={BadgeComponent} header="Badge Color"></Column>
+                        <Column body={EnableDateComponent} header="Enable Date"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>
                 </div>
