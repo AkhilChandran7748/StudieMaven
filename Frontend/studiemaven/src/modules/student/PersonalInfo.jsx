@@ -16,6 +16,10 @@ const PersonalInfo = ({ student }) => {
                             <span className="pi pi-envelope grey  margin-r-10" style={{ float: 'left' }} />
                             <span>  <h5>{student.email}</h5></span>
                         </div>
+                        <div className="red" >
+                            <span className="pi pi-envelope grey  margin-r-10" style={{ float: 'left' }} />
+                            <span>  <h5>{student.secondaryEmail}</h5></span>
+                        </div>
                         <div >
                             <span className="pi pi-phone grey  margin-r-10" style={{ float: 'left' }} />
                             <h5>{student.phone}</h5>

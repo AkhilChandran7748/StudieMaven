@@ -253,3 +253,13 @@ button:focus {
     font-weight: 700;
     margin-bottom: 5px;
 }
+.img-viewer {
+    max-width: 400px;
+    max-width: 400px;
+}
+.img-icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+
+}

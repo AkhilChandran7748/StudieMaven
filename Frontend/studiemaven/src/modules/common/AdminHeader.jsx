@@ -33,9 +33,9 @@ const AdminHeader = (props) => {
                         }>
                             Student List</Link>
                     </li>
-                    <li >
+                    <li className={`${useMatch(RENDER_URL.LEADS) ? 'menu-active' : ''}`}>
                         <Link to={
-                            RENDER_URL.ADMIN_DASHBOARD
+                            RENDER_URL.LEADS
                         }>
                             Leads</Link>
                     </li>

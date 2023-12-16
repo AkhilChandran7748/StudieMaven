@@ -223,3 +223,29 @@ export const documentsData = [
 
     },
 ]
+
+export const leadsData =  [
+    {
+        name: 'Helen',
+        contact: '9966554411',
+        qualification: 'MCA',
+        APS:'Yes',
+        ielts : {
+            reading :7,
+            listning: 8,
+            writing: 9,
+            speaking: 4
+        },
+        leadOwner: 'Varda',
+        country: 'Germany',
+        notes: [
+            {
+                author: 'Sreejith',
+                time: '12/11/23 13:10 PM',
+                content : 'Looking for IBM In Berlin university'
+            }
+        ],
+        reference : 'Social Media',
+
+    }
+]

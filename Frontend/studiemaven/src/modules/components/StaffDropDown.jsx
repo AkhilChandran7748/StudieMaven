@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 
-export default function StaffDropDown({label, showLabel}) {
+export default function StaffDropDown({label, showLabel= true}) {
     const [selectedCity, setSelectedCity] = useState(null);
     const cities = [
         { name: 'Varda', code: 'NY' },
