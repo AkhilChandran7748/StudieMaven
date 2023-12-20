@@ -8,7 +8,7 @@ const LeadOwner = ({ leadOwner }) => {
     return (<>
         {show && <Dialog headerClassName="align-center" header="Change Lead Owner" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >
             <div className=" align-center ">
-                <StaffDropDown/>
+                <StaffDropDown showLabel={false}/>
                 <div className="padding-t-20p">
                     <span className="padding-r-sm">   <Button onClick={() => setShow(false)} label="Update" severity="success" size="small" /></span>
                     <Button onClick={() => setShow(false)} label="Cancel" severity="danger" size="small" />

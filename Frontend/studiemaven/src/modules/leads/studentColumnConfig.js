@@ -4,4 +4,5 @@ export const columnConfig = [
     { field: 'qualification', header: 'Higher Qualification' },
     { field: 'APS', header: 'APS Status' },
     { field: 'reference', header: 'Reference' },
+    { field: 'country', header: 'Country' },
 ]

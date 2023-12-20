@@ -3,7 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { leadsData } from "./data";
 import { columnConfig } from "./studentColumnConfig";
-import TableActions from "./TableActions";
+import LeadsActions from "./LeadsActions";
 import Status from "./Status";
 import Search from "./Search";
 import AddStudent from "./AddStudent";
@@ -11,6 +11,8 @@ import VisaStatus from "./VisaStatus";
 import InTake from "./InTake";
 import LeadOwner from "./LeadOwner";
 import WithHeader from "../common/WithHeaderHoc";
+import IELTS from "./IELTS";
+import NotesComponent from "./NotesComponent";
 const Leads = () => {
     return (<>
         <div className="content">
@@ -23,9 +25,13 @@ const Leads = () => {
             <div className="card">
                 <DataTable value={leadsData} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
                     {columnConfig.map((col, i) => <Column key={i} field={col.field} header={col.header} />)}
+                    <Column body={(item) => <LeadOwner leadOwner={item.leadOwner} showlabel={false} />} header="Lead Owner"></Column>
+                    <Column body={IELTS} header="IELTS"></Column>
+                    <Column body={NotesComponent} header="Notes"></Column>
+                    <Column body={LeadsActions} header="Action"></Column>
 
                     {/* <Column body={LeadOwner} header="Lead Owner"></Column>
-                    <Column body={InTake} header="Intake"></Column>
+                  
                     <Column body={VisaStatus} header="Visa Status"></Column>
                     <Column body={Status} header="Status"></Column>
                     <Column body={TableActions} header="Action"></Column> */}
