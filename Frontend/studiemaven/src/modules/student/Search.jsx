@@ -31,8 +31,12 @@ const Search = () => {
                         </div>
                         <div className="row padding-t-30p">
                             <StatusDropDown />
-                            <IntakeDropDown />
                             <PaymentStatusDropDown />
+                            <span className="p-float-label margin-l-10">
+                                <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
+                                <label htmlFor="username">Course</label>
+                            </span>
+                            <IntakeDropDown className={'margin-l-10'} />
                         </div>
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                             <Button label="Search" className="small-button" />

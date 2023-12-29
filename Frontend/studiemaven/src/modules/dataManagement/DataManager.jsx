@@ -5,6 +5,8 @@ import DocumentTypes from "./DocumentTypes";
 import Status from "./Status";
 import VisaStatus from "./VisaStatus";
 import Country from "./Country";
+import PaymentStatus from "./PaymentStatus";
+import University from "./University";
 const DataManager = () => {
     const [datSection, setDatSection] = useState(null);
     const cities = [
@@ -12,6 +14,8 @@ const DataManager = () => {
         { name: 'Status Types', code: 'status' },
         { name: 'VisaStatus Types', code: 'visaStatus' },
         { name: 'Countries', code: 'country' },
+        { name: 'Payment Status', code: 'payment' },
+        { name: 'University', code: 'university' },
     ];
     const getSection = () => {
         switch (datSection?.code) {
@@ -23,6 +27,10 @@ const DataManager = () => {
                 return <VisaStatus />
             case 'country':
                 return <Country />
+            case 'payment':
+                return <PaymentStatus />
+            case 'university':
+                return <University />
             default:
                 return <></>
         }

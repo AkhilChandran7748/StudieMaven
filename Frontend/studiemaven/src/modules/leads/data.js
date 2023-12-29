@@ -11,7 +11,7 @@ export const studentData = [{
     status: 'COL',
     visaStatus: 'Appointemnt Scheduled',
     appointmentDate: '12/11/23',
-    isPostponed : true,
+    isPostponed: true,
 }, {
     id: '1',
     name: 'Ram',
@@ -19,7 +19,7 @@ export const studentData = [{
     leadOwner: 'Sreejith',
     university: 'EU Education',
     course: 'IBM',
-    intake:'December/2023',
+    intake: 'December/2023',
     status: 'UOL',
     visaStatus: 'Rejected'
 }, {
@@ -89,7 +89,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake:'January/2023',
+    intake: 'January/2023',
     visaStatus: 'Granted',
     status: 'COL'
 }, {
@@ -99,7 +99,7 @@ export const studentData = [{
     leadOwner: 'Varda',
     university: 'EU Education',
     course: 'IBM',
-    intake:'January/2023',
+    intake: 'January/2023',
     status: 'COL',
     visaStatus: 'Granted',
 },]
@@ -154,12 +154,12 @@ export const docTypes = [
     }, {
         documentName: 'Degree',
         id: '4'
-    }, 
+    },
 
 ]
 export const countries = [
     {
-        countryName:'Germany',
+        countryName: 'Germany',
         id: '1'
     }, {
         countryName: '12th',
@@ -205,37 +205,38 @@ export const staffs = [
 ]
 export const documentsData = [
     {
-        documentName : 'SSLC',
-        modifiedDate : 'dd',
+        documentName: 'SSLC',
+        modifiedDate: 'dd',
         documentNotes: 'Obtained 85%'
 
     },
     {
-        documentName : 'Degree',
-        modifiedDate : 'dd',
+        documentName: 'Degree',
+        modifiedDate: 'dd',
         documentNotes: 'BCA Degree from Mg University'
 
     },
     {
-        documentName : 'Work Exp',
-        modifiedDate : 'dd',
+        documentName: 'Work Exp',
+        modifiedDate: 'dd',
         documentNotes: ''
 
     },
 ]
 
-export const leadsData =  [
+export const leadsData = [
     {
         name: 'Helen',
         contact: '9966554411',
         qualification: 'MCA',
-        APS:'Yes',
-        ielts : {
+        APS: 'Yes',
+        ielts: {
             isQualified: true,
-            read :7,
+            read: 7,
             listen: 8,
             write: 9,
-            speak: 4
+            speak: 4,
+            expiryData: '12/12/23'
         },
         leadOwner: 'Varda',
         country: 'Germany',
@@ -243,18 +244,18 @@ export const leadsData =  [
             {
                 author: 'Sreejith',
                 time: '12/11/23 13:10 PM',
-                content : 'Looking for IBM In Berlin university'
+                content: 'Looking for IBM In Berlin university'
             }
         ],
-        reference : 'Social Media',
+        reference: 'Social Media',
 
     },
     {
         name: 'Ron',
         contact: '9966554411',
         qualification: 'MCA',
-        APS:'Yes',
-        ielts : {
+        APS: 'Yes',
+        ielts: {
             isQualified: false,
         },
         leadOwner: 'Varda',
@@ -263,10 +264,10 @@ export const leadsData =  [
             {
                 author: 'Sreejith',
                 time: '12/11/23 13:10 PM',
-                content : 'Looking for IBM In Berlin university'
+                content: 'Looking for IBM In Berlin university'
             }
         ],
-        reference : 'Social Media',
+        reference: 'Social Media',
 
     }
 ]

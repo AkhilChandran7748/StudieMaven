@@ -6,12 +6,12 @@ import { columnConfig } from "./studentColumnConfig";
 import LeadsActions from "./LeadsActions";
 import Status from "./Status";
 import Search from "./Search";
-import AddStudent from "./AddStudent";
+import AddLead from "./AddLead";
 import VisaStatus from "./VisaStatus";
 import InTake from "./InTake";
 import LeadOwner from "./LeadOwner";
 import WithHeader from "../common/WithHeaderHoc";
-import IELTS from "./IELTS";
+import IELTS from "../common/IELTS";
 import NotesComponent from "./NotesComponent";
 const Leads = () => {
     return (<>
@@ -21,7 +21,7 @@ const Leads = () => {
                 <Search />
             </div>
 
-            <div style={{ textAlign: 'right' }} > <AddStudent /></div>
+            <div style={{ textAlign: 'right' }} > <AddLead /></div>
             <div className="card">
                 <DataTable value={leadsData} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
                     {columnConfig.map((col, i) => <Column key={i} field={col.field} header={col.header} />)}

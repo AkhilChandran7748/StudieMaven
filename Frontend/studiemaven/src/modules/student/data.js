@@ -12,6 +12,7 @@ export const studentData = [{
     visaStatus: 'Appointemnt Scheduled',
     appointmentDate: '12/11/23',
     isPostponed : true,
+    paymentStatus : 'Paid'
 }, {
     id: '1',
     name: 'Ram',
@@ -21,7 +22,8 @@ export const studentData = [{
     course: 'IBM',
     intake:'December/2023',
     status: 'UOL',
-    visaStatus: 'Rejected'
+    visaStatus: 'Rejected',
+    paymentStatus : 'Paid'
 }, {
     id: '1',
     name: 'Akhil',
@@ -31,7 +33,8 @@ export const studentData = [{
     course: 'IBM',
     intake: 'January/2023',
     status: 'Accepted',
-    visaStatus: 'Pending'
+    visaStatus: 'Pending',
+    paymentStatus : 'Partially Paid'
 }, {
     id: '1',
     name: 'Ron',
@@ -41,7 +44,8 @@ export const studentData = [{
     course: 'IBM',
     intake: 'January/2023',
     visaStatus: 'Granted',
-    status: 'Rejected'
+    status: 'Rejected',
+    paymentStatus : 'Partially Paid'
 }, {
     id: '1',
     name: 'Aji',
@@ -51,7 +55,8 @@ export const studentData = [{
     course: 'IBM',
     intake: 'January/2023',
     visaStatus: 'Granted',
-    status: 'COL'
+    status: 'COL',
+    paymentStatus : 'Paid'
 }, {
     id: '1',
     name: 'Yzang',
@@ -61,7 +66,8 @@ export const studentData = [{
     course: 'IBM',
     intake: 'January/2023',
     visaStatus: 'Granted',
-    status: 'UOL'
+    status: 'UOL',    
+    paymentStatus : 'Paid'
 }, {
     id: '1',
     name: 'Tony',
@@ -71,7 +77,8 @@ export const studentData = [{
     visaStatus: 'Granted',
     course: 'IBM',
     intake: 'January/2023',
-    status: 'Accepted'
+    status: 'Accepted',    
+    paymentStatus : 'Paid'
 }, {
     id: '1',
     name: 'Keerthan',
@@ -81,7 +88,8 @@ export const studentData = [{
     course: 'IBM',
     intake: 'January/2023',
     visaStatus: 'Granted',
-    status: 'Rejected'
+    status: 'Rejected',    
+    paymentStatus : 'Paid'
 }, {
     id: '1',
     name: 'Rijo',
@@ -91,7 +99,8 @@ export const studentData = [{
     course: 'IBM',
     intake:'January/2023',
     visaStatus: 'Granted',
-    status: 'COL'
+    status: 'COL',    
+    paymentStatus : 'Paid'
 }, {
     id: '1',
     name: 'Sam',
@@ -101,7 +110,8 @@ export const studentData = [{
     course: 'IBM',
     intake:'January/2023',
     status: 'COL',
-    visaStatus: 'Granted',
+    visaStatus: 'Granted',  
+    paymentStatus : 'Paid'
 },]
 
 export const student = {
@@ -157,6 +167,19 @@ export const docTypes = [
     }, 
 
 ]
+export const universityList = [
+    {
+        universityName: 'Berlin',
+        id: '1'
+    }, {
+        universityName: 'AU',
+        id: '2'
+    }, {
+        universityName: 'MG',
+        id: '3'
+    }, 
+
+]
 export const countries = [
     {
         countryName:'Germany',
@@ -164,6 +187,18 @@ export const countries = [
     }, {
         countryName: '12th',
         id: '2'
+    },
+
+]
+export const paymentOptions = [
+    {
+        status:'Pending',
+        color: 'red',
+        id: '1'
+    }, {
+        status:'Paid',
+        color: 'green',
+        id: '1'
     },
 
 ]

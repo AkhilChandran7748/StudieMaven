@@ -30,6 +30,7 @@ const Documents = () => {
                     setEditId(item.id);
                     setValue(item)
                }} className="pi pi-pencil margin-r-10 grey" ></span>
+               <span onClick={() => {}} title="Delete" className="pi pi-download blue margin-r-10" ></span>
                <span onClick={() => onDelete(item.id)} title="Delete" className="pi pi-trash red" ></span>
           </>)
      }

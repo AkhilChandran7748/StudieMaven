@@ -8,6 +8,7 @@ import StatusDropDown from "../components/StatusDropDown";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import StaffDropDown from "../components/StaffDropDown";
 import PaymentStatusDropDown from "../components/PaymentStatus";
+import CountryDropDown from "../components/CountryDropDown";
 const Search = () => {
     const [value, setValue] = useState('');
     return (<>
@@ -21,18 +22,12 @@ const Search = () => {
                                 <label htmlFor="username">Name</label>
                             </span>
 
-                            <AgentDropDown />
                             <StaffDropDown />
-                            <VisaStatusDropDown />
+                            <CountryDropDown/>
                             <span className="p-float-label margin-l-10">
                                 <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
-                                <label htmlFor="username">University</label>
+                                <label htmlFor="username">Cousre</label>
                             </span>
-                        </div>
-                        <div className="row padding-t-30p">
-                            <StatusDropDown />
-                            <IntakeDropDown />
-                            <PaymentStatusDropDown />
                         </div>
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                             <Button label="Search" className="small-button" />

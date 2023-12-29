@@ -10,6 +10,7 @@ import AddStudent from "./AddStudent";
 import VisaStatus from "./VisaStatus";
 import InTake from "./InTake";
 import LeadOwner from "./LeadOwner";
+import PaymentStatus from "./PaymentStatus";
 const StudentList = () => {
     return (<>
         <div className="content">
@@ -25,6 +26,7 @@ const StudentList = () => {
                     
                     <Column body={LeadOwner} header="Lead Owner"></Column>
                     <Column body={InTake} header="Intake"></Column>
+                    <Column body={PaymentStatus} header="Payment Status"></Column>  
                     <Column body={VisaStatus} header="Visa Status"></Column>                    
                     <Column body={Status} header="Status"></Column>
                     <Column body={TableActions} header="Action"></Column>

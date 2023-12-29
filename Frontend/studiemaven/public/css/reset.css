@@ -263,3 +263,7 @@ button:focus {
     margin-right: 5px;
 
 }
+.scoreInput {
+    max-width: 40px;
+    margin-right: 5px;
+}
