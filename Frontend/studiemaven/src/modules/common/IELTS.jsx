@@ -18,13 +18,6 @@ const IELTS = ({ ielts }) => {
         s: '',
         expiryDate: ''
     })
-
-    const statusList = [
-        { name: 'Accepted', code: 'LDN' },
-        { name: 'Rejected', code: 'LDsN' },
-        { name: 'Appointment Scheduled', code: 'LDssN', hasDate: true },
-    ];
-    console.log(ieltsData);
     return (
         <>
             {show && <Dialog headerClassName="align-center" header="Update IELTS" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >

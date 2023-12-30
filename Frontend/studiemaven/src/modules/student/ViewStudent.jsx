@@ -5,7 +5,7 @@ import { student } from "./data";
 import './student.css'
 import PersonalInfo from "./PersonalInfo";
 import { TabView, TabPanel } from 'primereact/tabview';
-import Documents from "./Documents";
+import Documents from "../documents/Documents";
 const ViewStudent = () => {
     const { id } = useParams();
     return (<>

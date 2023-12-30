@@ -3,7 +3,7 @@ import { Splitter, SplitterPanel } from 'primereact/splitter';
 import Document from "./Document";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { documentsData } from "./data";
+import { documentsData } from "../student/data";
 import { Image } from 'primereact/image';
 import UploadDocument from "./UploadDocument";
 import { OverlayPanel } from 'primereact/overlaypanel';

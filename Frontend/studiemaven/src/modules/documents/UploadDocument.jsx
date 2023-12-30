@@ -5,12 +5,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { classNames } from 'primereact/utils';
 import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
-import { Splitter, SplitterPanel } from 'primereact/splitter';
-import IntakeDropDown from "../components/IntakeDropDown";
-import AgentDropDown from "../components/AgentDropDown";
-import StaffDropDown from "../components/StaffDropDown";
 import { InputTextarea } from "primereact/inputtextarea";
-import { FileUpload } from 'primereact/fileupload';
+import DocumentTypes from "./DocumentTypesDropDown";
 const UploadDocument = () => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
@@ -66,10 +62,7 @@ const UploadDocument = () => {
                             render={({ field, fieldState }) => (
                                 <div>
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                    <span className="p-float-label">
-                                        <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                        <label htmlFor={field.name}>Document Name </label>
-                                    </span>
+                                    <DocumentTypes/>
                                     {getFormErrorMessage(field.name)}
                                 </div>
                             )}
