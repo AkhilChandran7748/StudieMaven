@@ -18,7 +18,8 @@ export const RENDER_URL = {
     VIEW_STUDENT:'/student',
     DATA_MANAGEMENT:'/data-management',
     STAFFS:'/staffs',
-    LEADS:'/leads'
+    LEADS:'/leads',
+    ACTIONS:'/actions'
 };
 
 

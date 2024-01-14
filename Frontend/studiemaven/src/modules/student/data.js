@@ -12,7 +12,8 @@ export const studentData = [{
     visaStatus: 'Appointemnt Scheduled',
     appointmentDate: '12/11/23',
     isPostponed : true,
-    paymentStatus : 'Paid'
+    paymentStatus : 'Paid',
+    deleteStatus: 'Pending'
 }, {
     id: '1',
     name: 'Ram',
@@ -45,7 +46,8 @@ export const studentData = [{
     intake: 'January/2023',
     visaStatus: 'Granted',
     status: 'Rejected',
-    paymentStatus : 'Partially Paid'
+    paymentStatus : 'Partially Paid',    
+    deleteStatus: 'Pending'
 }, {
     id: '1',
     name: 'Aji',
@@ -242,13 +244,15 @@ export const documentsData = [
     {
         documentName : 'SSLC',
         modifiedDate : 'dd',
-        documentNotes: 'Obtained 85%'
+        documentNotes: 'Obtained 85%',
+        verifyStatus: 'Pending'
 
     },
     {
         documentName : 'Degree',
         modifiedDate : 'dd',
-        documentNotes: 'BCA Degree from Mg University'
+        documentNotes: 'BCA Degree from Mg University',        
+        verifyStatus: 'Pending'
 
     },
     {

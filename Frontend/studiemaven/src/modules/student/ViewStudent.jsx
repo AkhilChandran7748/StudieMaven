@@ -6,6 +6,7 @@ import './student.css'
 import PersonalInfo from "./PersonalInfo";
 import { TabView, TabPanel } from 'primereact/tabview';
 import Documents from "../documents/Documents";
+import VisaDocuments from "../documents/VisaDocuments";
 const ViewStudent = () => {
     const { id } = useParams();
     return (<>
@@ -23,6 +24,9 @@ const ViewStudent = () => {
                             enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
                             ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
                         </p>
+                    </TabPanel>
+                    <TabPanel header="Visa Documents">
+                       <VisaDocuments documents={student.documents}/>
                     </TabPanel>
                 </TabView>
             </div>

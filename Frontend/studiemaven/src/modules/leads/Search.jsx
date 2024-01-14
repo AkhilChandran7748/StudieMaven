@@ -23,6 +23,7 @@ const Search = () => {
                             </span>
 
                             <StaffDropDown />
+                            <IntakeDropDown className={'margin-l-10'} label={'Date of Admission'} />
                             <CountryDropDown/>
                             <span className="p-float-label margin-l-10">
                                 <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />

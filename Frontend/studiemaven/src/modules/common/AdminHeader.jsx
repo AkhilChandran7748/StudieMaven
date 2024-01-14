@@ -51,6 +51,12 @@ const AdminHeader = (props) => {
                         }>
                             Data Manangement</Link>
                     </li>
+                    <li  className={`${useMatch(RENDER_URL.ACTIONS) ? 'menu-active' : ''}`} >
+                        <Link to={
+                            RENDER_URL.ACTIONS
+                        }>
+                            Actions</Link>
+                    </li>
                     <li >
                         {/* <HeaderMenu /> */}
                     </li>

@@ -229,6 +229,7 @@ export const leadsData = [
         name: 'Helen',
         contact: '9966554411',
         qualification: 'MCA',
+        createdDate: 'Jan/2024',
         APS: 'Yes',
         ielts: {
             isQualified: true,
@@ -255,6 +256,7 @@ export const leadsData = [
         contact: '9966554411',
         qualification: 'MCA',
         APS: 'Yes',
+        createdDate: 'Dec/2023',
         ielts: {
             isQualified: false,
         },

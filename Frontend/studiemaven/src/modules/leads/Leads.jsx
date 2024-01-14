@@ -7,8 +7,6 @@ import LeadsActions from "./LeadsActions";
 import Status from "./Status";
 import Search from "./Search";
 import AddLead from "./AddLead";
-import VisaStatus from "./VisaStatus";
-import InTake from "./InTake";
 import LeadOwner from "./LeadOwner";
 import WithHeader from "../common/WithHeaderHoc";
 import IELTS from "../common/IELTS";
