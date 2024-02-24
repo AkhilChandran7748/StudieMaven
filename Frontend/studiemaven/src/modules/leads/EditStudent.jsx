@@ -26,7 +26,7 @@ const EditStudent = ({ student }) => {
 
     const defaultValues = { ...student };
 
-    console.log(defaultValues, 'student');
+    // console.log(defaultValues, 'student');
     const {
         control,
         formState: { errors },

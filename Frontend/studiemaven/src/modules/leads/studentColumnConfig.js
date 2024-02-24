@@ -1,9 +1,8 @@
 export const columnConfig = [
-    { field: 'name', header: 'Name' },
-    { field: 'contact', header: 'Contact' },
-    { field: 'qualification', header: 'Higher Qualification' },
-    { field: 'APS', header: 'APS Status' },
-    { field: 'reference', header: 'Reference' },
+    { field: 'Name', header: 'Name' },
+    { field: 'MobileNumber', header: 'Contact' },
+    { field: 'HigherQualification', header: 'Higher Qualification' },
+    { field: 'ReferenceFrom', header: 'Reference' },
     { field: 'createdDate', header: 'Date Of Admission' },
-    { field: 'country', header: 'Country' },
+    { field: 'CountryName', header: 'Country' },
 ]

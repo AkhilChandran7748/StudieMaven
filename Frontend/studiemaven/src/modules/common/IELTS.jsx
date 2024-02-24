@@ -5,7 +5,8 @@ import { Calendar } from 'primereact/calendar'
 import { Dialog } from 'primereact/dialog';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from "primereact/inputtext";
-const IELTS = ({ ielts }) => {
+const IELTS = () => {
+    let  ielts = {}
     const { read, write, listen, speak, isQualified, expiryData } = ielts
     const [show, setShow] = useState(false);
     const [date, setDate] = useState(null);

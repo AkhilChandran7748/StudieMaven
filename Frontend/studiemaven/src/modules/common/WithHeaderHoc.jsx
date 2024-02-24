@@ -7,7 +7,7 @@ const WithHeader = (HocComponent) => {
         let loginData = localStorage.getItem('userData');
         loginData = loginData && JSON.parse(loginData) || {};
         const getHeader = () => {
-            if (loginData.isLoggedIn) {
+            if (loginData.isAdmin === 1) {
                 return (loginData.isAdmin ?
                     <AdminHeader
                         {...props}

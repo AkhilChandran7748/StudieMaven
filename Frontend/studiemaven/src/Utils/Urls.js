@@ -13,13 +13,13 @@ export const RENDER_URL = {
     COURSES: '/courses',
     COUNTRIES: '/countries',
     REFERAL: '/refereal',
-    CONTACT:'/contact',
-    ADMIN_DASHBOARD:'/admin-dashboard',
-    VIEW_STUDENT:'/student',
-    DATA_MANAGEMENT:'/data-management',
-    STAFFS:'/staffs',
-    LEADS:'/leads',
-    ACTIONS:'/actions'
+    CONTACT: '/contact',
+    ADMIN_DASHBOARD: '/admin-dashboard',
+    VIEW_STUDENT: '/student',
+    DATA_MANAGEMENT: '/data-management',
+    STAFFS: '/staffs',
+    LEADS: '/leads',
+    ACTIONS: '/actions'
 };
 
 
@@ -27,4 +27,6 @@ export const API_URL = {
     REGISTRATION: "/user/register",
     LOGIN: "/user/login",
     GET_ARTICLES: "/admin/article/getArticlesByStatus",
+    ADD_LEAD: "/student/addLeadInfo",
+    GET_LEADS: '/student/getAllActiveLeads',
 }

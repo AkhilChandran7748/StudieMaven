@@ -4,14 +4,25 @@ import { history } from './Core/Store';
 import Routes from './Core/Routes';
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { setBaseUrl } from "../src/Services/HttpService"
 function App() {
-  const setLoginData = () => {
-    localStorage.setItem('userData',JSON.stringify({ isLoggedIn: true, isAdmin: true }))
-  }
-  useEffect(() => {
-    setLoginData();
-  }, [])
+  React.useEffect(() => {
+    // console.log = console.warn = console.error = () => {};
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    let init = {
+      method: "GET",
+      headers: headers,
+    };
+    fetch("/appConfig.json", init)
+      .then((response) => {
+        return response.json();
+      })
+      .then((obj) => {
+        setBaseUrl(obj.baseUrl);
+      });
+  }, []);
   return (
     <div className="App">
       <PrimeReactProvider>

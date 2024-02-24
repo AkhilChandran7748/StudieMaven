@@ -12,6 +12,7 @@ import StaffDropDown from "../components/StaffDropDown";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
 import CountryDropDown from "../components/CountryDropDown";
+import { addLead } from "./leadServices";
 const AddLead = () => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
@@ -26,9 +27,7 @@ const AddLead = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
     };
 
-    const defaultValues = {
-        value: ''
-    };
+    const defaultValues = {};
 
     const {
         control,
@@ -37,12 +36,15 @@ const AddLead = () => {
         getValues,
         reset,
         register,
+        setValue,
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        data.value && show();
+        addLead(data).then((res) => {
+            console.log(res);
+        })
 
-        reset();
+        // reset();
     };
 
     const getFormErrorMessage = (name) => {
@@ -94,7 +96,7 @@ const AddLead = () => {
                                     )}
                                 />
                                 <Controller
-                                    name="phone"
+                                    name="mobile"
                                     control={control}
                                     rules={{ required: 'Contact is required.' }}
                                     render={({ field, fieldState }) => (
@@ -124,16 +126,18 @@ const AddLead = () => {
                                     )}
                                 />
                                 <Controller
-                                    name="intake"
+                                    name="aps_status"
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <span className="p-inputtext-sm p-float-label   ">
-                                                <Dropdown inputId="dd-city" value={field.value} onChange={(e) => field.onChange(e.value)} options={[
-                                                    { value: 'Yes', code: 'yes' },
-                                                    { value: 'No', code: 'no' },
-                                                ]} optionLabel="value" className="m-width-220p" />
+                                                <Dropdown inputId="dd-city" value={field.value} onChange={(e) => {
+                                                    setValue('aps_status', e.value)
+                                                }} options={[
+                                                    { value: 1, name: 'Yes' },
+                                                    { value: 2, name: 'No' },
+                                                ]} optionLabel="name" className="m-width-220p" />
                                                 <label htmlFor="dd-city">APS Status</label>
                                             </span>
                                             {getFormErrorMessage(field.name)}
@@ -146,7 +150,7 @@ const AddLead = () => {
                             <>
 
                                 <Controller
-                                    name="reference"
+                                    name="reference_from"
                                     control={control}
                                     // rules={{ required: 'Contact is required.' }}
                                     render={({ field, fieldState }) => (
@@ -161,13 +165,16 @@ const AddLead = () => {
                                     )}
                                 />
                                 <Controller
-                                    name="lead"
+                                    name="country_id"
                                     control={control}
                                     // rules={{ required: 'Lead is required.' }}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <CountryDropDown />
+                                            <CountryDropDown
+                                                onChange={(v) => {
+                                                    setValue('country_id', v.code)
+                                                }} />
                                             {getFormErrorMessage(field.name)}
                                         </div>
                                     )}

@@ -4,29 +4,50 @@ import { Button } from "primereact/button";
 import { Password } from 'primereact/password';
 import { useNavigate } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
-const Login = ({onClose}) => {
-    const [loginData, setLoginData]= useState({
-        username:'',
-        password:''
+import { login } from "./LoginServices";
+const Login = ({ onClose }) => {
+    const [loginData, setLoginData] = useState({
+        email: '',
+        password: '',
+        "logintype": "normal"
     })
+    const [loginError, setLoginError] = useState(false)
     const navigate = useNavigate();
-    
-    const onChange=(path, value)=>{
+
+    const onChange = (path, value) => {
         setLoginData({
             ...loginData,
             [path]: value
         })
     }
-    const onLogin = () =>{
-        if(loginData.username==='admin' && loginData.password === 'admin'){
-            localStorage.setItem('userData',JSON.stringify({ isLoggedIn: true, isAdmin: true }))
-            navigate(RENDER_URL.ADMIN_DASHBOARD);
-        }
+    const onLogin = () => {
+        login(loginData).then((res) => {
+            if (res?.data?.success) {
+                console.log(res);
+                setLoginError(false)
+                const { info } = res.data?.data || {};
+                let userData = {
+                    token: res.data.data?.token || '',
+                    ...info
+
+                }
+                localStorage.setItem('userData', JSON.stringify(userData))
+                if (info.isAdmin === 1)
+                    navigate(RENDER_URL.ADMIN_DASHBOARD);
+            } else {
+                setLoginError(true)
+            }
+        }).catch((er) => setLoginError(true))
+        // if(loginData.username==='admin' && loginData.password === 'admin'){
+        //     localStorage.setItem('userData',JSON.stringify({ isLoggedIn: true, isAdmin: true }))
+        //     navigate(RENDER_URL.ADMIN_DASHBOARD);
+        // }
     }
     return (<>
         <div className=" align-center ">
-            <InputText placeholder="Username" value={loginData.username} onChange={(e) => onChange('username', e.target.value)} className="p-inputtext-sm margin-b-md" />
+            <InputText placeholder="Username" value={loginData.email} onChange={(e) => onChange('email', e.target.value)} className="p-inputtext-sm margin-b-md" />
             <Password feedback={false} placeholder="Password" value={loginData.password} onChange={(e) => onChange('password', e.target.value)} className="p-inputtext-sm margin-b-md" />
+            {loginError && <div className="error  margin-b-md">Invalid username/password</div>}
             <div className=" ">
                 <span className="padding-r-sm">   <Button onClick={onLogin} label="Login" severity="success" size="small" /></span>
                 <Button onClick={onClose} label="Cancel" severity="danger" size="small" />

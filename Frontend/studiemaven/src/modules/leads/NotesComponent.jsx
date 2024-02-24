@@ -3,12 +3,13 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { Divider } from 'primereact/divider';
 import { InputTextarea } from "primereact/inputtextarea";
-const NotesComponent = ({ notes }) => {
+const NotesComponent = () => {
+  let notes = {}
   const [visible, setVisible] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
   const [notesData, setNotesData] = useState(notes);
   const [noteText, setNoteText] = useState(null)
-  console.log(noteText,'noteText');
+  // console.log(noteText,'noteText');
   const NotesContent = ({ note }) => {
     return (<>
       <div style={{
