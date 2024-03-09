@@ -29,4 +29,8 @@ export const API_URL = {
     GET_ARTICLES: "/admin/article/getArticlesByStatus",
     ADD_LEAD: "/student/addLeadInfo",
     GET_LEADS: '/student/getAllActiveLeads',
+    GET_NOTES: '/student/getLeadNotes',
+    ADD_NOTES: '/student/updateLeadNotes',
+    UPDATE_IELTS: '/student/updateLeadIELTS',
+    GET_STAFFS: '/user/getAllStaffByID',
 }

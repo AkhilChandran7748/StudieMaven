@@ -3,6 +3,5 @@ export const columnConfig = [
     { field: 'MobileNumber', header: 'Contact' },
     { field: 'HigherQualification', header: 'Higher Qualification' },
     { field: 'ReferenceFrom', header: 'Reference' },
-    { field: 'createdDate', header: 'Date Of Admission' },
     { field: 'CountryName', header: 'Country' },
 ]

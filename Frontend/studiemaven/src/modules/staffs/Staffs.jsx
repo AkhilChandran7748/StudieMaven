@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
@@ -6,20 +6,35 @@ import { Column } from 'primereact/column';
 import { staffs } from "../student/data";
 import { Badge } from 'primereact/badge';
 import WithHeader from "../common/WithHeaderHoc";
+import { getStaffs } from "./staffService";
+import { ManageLocalStorage } from "../../Services/Localstorage";
 const Staffs = () => {
-    const [data, setData] = useState(staffs);
+    const [data, setData] = useState([]);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
+    let userData = ManageLocalStorage.get('userData')
+    userData = JSON.parse(userData);
+    const { SiteID = {} } = userData || {}
+    const getStaffData = () => {
+        getStaffs({ SiteID }).then((res) => {
+           if(res?.data?.data){
+            setData(res?.data?.data)
+           }
+        })
+    }
+    useEffect(() => {
+        getStaffData();
+    }, [])
     const onSubmit = () => {
-        if (value.name) {
+        if (value.FirstName) {
             if (editId) {
                 setData(data.map((item) => {
                     if (item.id === editId) {
                         return ({
                             ...item,
-                            name: value.name,
-                            email: value.email,
-                            phone: value.phone,
+                            FirstName: value.FirstName,
+                            EmailId: value.EmailId,
+                            Mobile: value.Mobile,
 
                         })
                     }
@@ -28,9 +43,9 @@ const Staffs = () => {
             } else {
                 setData([...data, {
                     id: new Date().getTime(),
-                    name: value.name,
-                    email: value.email,
-                    phone: value.phone,
+                    FirstName: value.FirstName,
+                    EmailId: value.EmailId,
+                    Mobile: value.Mobile,
                 }])
             }
             setValue(null);
@@ -51,7 +66,7 @@ const Staffs = () => {
     }
     return (<>
         <div className=" content margin-t-30p h-100">
-           
+
             <div className="header padding-b-30">Staffs</div>
             <div className="content ">
                 <div className="row align-center">
@@ -60,7 +75,14 @@ const Staffs = () => {
                             ...value,
                             name: e.target.value
                         })} />
-                        <label htmlFor="username">Name</label>
+                        <label htmlFor="username">First Name</label>
+                    </span>
+                    <span className="p-float-label margin-l-10">
+                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.name || ''} onChange={(e) => setValue({
+                            ...value,
+                            name: e.target.value
+                        })} />
+                        <label htmlFor="username">Last Name</label>
                     </span>
                     <span className="p-float-label margin-l-10">
                         <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.email || ''} onChange={(e) => setValue({
@@ -86,9 +108,10 @@ const Staffs = () => {
                 </div>
                 <div className="content card" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="aligin-center" >
-                        <Column field="name" header="Name"></Column>
-                        <Column field="email" header="Email"></Column>
-                        <Column field="phone" header="Phone"></Column>
+                        <Column field="FirstName" header="First Name"></Column>
+                        <Column field="Lastname" header="Last Name"></Column>
+                        <Column field="EmailID" header="Email"></Column>
+                        <Column field="Mobile" header="Phone"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>
                 </div>

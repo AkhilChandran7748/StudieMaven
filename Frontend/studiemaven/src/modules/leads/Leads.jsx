@@ -12,18 +12,22 @@ import WithHeader from "../common/WithHeaderHoc";
 import IELTS from "../common/IELTS";
 import NotesComponent from "./NotesComponent";
 import { getLeads } from "./leadServices";
+import moment from "moment";
 const Leads = () => {
     console.log(`render test`);
     const [leadsData, setleadsData] = useState(null)
-    useEffect(()=>{
-        getLeads().then((res)=>{
-           if(res?.data?.data) {
-            setleadsData(res?.data?.data)
-           }
+    const getLeadsData = () => {
+        getLeads().then((res) => {
+            if (res?.data?.data) {
+                setleadsData(res?.data?.data)
+            }
         })
+    }
+    useEffect(() => {
+        getLeadsData();
     }, [])
-    const ApsStatus = (data) =>{
-        return <span>{data.APS_Status? 'Yes': 'No'}</span>
+    const ApsStatus = (data) => {
+        return <span>{data.APS_Status ? 'Yes' : 'No'}</span>
     }
     return (<>
         <div className="content">
@@ -36,8 +40,9 @@ const Leads = () => {
             <div className="card">
                 <DataTable value={leadsData} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
                     {columnConfig.map((col, i) => <Column key={i} field={col.field} header={col.header} />)}
+                    <Column body={(item) => <span>{moment(item.CreatedDate).format(' DD MMM YYYY')}</span>} header="Date Of Admission"></Column>
                     <Column body={(item) => <LeadOwner leadOwner={item.LeadOwner} showlabel={false} />} header="Lead Owner"></Column>
-                    <Column body={IELTS} header="IELTS"></Column>
+                    <Column body={(item) => <IELTS {...item} reload={getLeadsData} showlabel={false} />} header="IELTS"></Column>
                     <Column body={ApsStatus} header="APS Status"></Column>
                     <Column body={NotesComponent} header="Notes"></Column>
                     <Column body={LeadsActions} header="Action"></Column>

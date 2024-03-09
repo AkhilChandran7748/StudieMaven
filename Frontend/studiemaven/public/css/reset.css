@@ -244,10 +244,11 @@ button:focus {
     width: 222px;
 }
 .date-button {
-    background: yellow;
     text-align: center;
+    width: 100%;
+    font-size: 10px;
+    background: yellow;
     color: red;
-    width: 70px;
     /* padding-bottom: 3px; */
     border-radius: 10px;
     font-weight: 700;
@@ -266,4 +267,7 @@ button:focus {
 .scoreInput {
     max-width: 40px;
     margin-right: 5px;
+}
+.f-10p {
+    font-size: 10px!important;
 }

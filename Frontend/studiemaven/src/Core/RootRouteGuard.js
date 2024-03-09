@@ -6,7 +6,6 @@ import {
 import { RENDER_URL } from "../Utils/Urls";
 const RootRouteGuard = (props) => {
     const navigate = useNavigate();
-    console.log(props, 'props in roure');
     useEffect(() => {
         let loginData = localStorage.getItem('userData');
         loginData = loginData && JSON.parse(loginData) || {};

@@ -19,3 +19,30 @@ export const getLeads = params => {
         return response;
     });
 }
+export const getNotes = params => {
+    return httpCall({
+        url: API_URL.GET_NOTES,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+}
+export const addNote = params => {
+    return httpCall({
+        url: API_URL.ADD_NOTES,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+}
+export const updateIELTS = params => {
+    return httpCall({
+        url: API_URL.UPDATE_IELTS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+}
