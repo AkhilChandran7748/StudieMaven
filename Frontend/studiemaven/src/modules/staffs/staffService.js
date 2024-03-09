@@ -10,3 +10,12 @@ export const getStaffs = params => {
         return response;
     });
 };
+export const addStaffs = params => {
+    return httpCall({
+        url: API_URL.ADD_STAFFS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};

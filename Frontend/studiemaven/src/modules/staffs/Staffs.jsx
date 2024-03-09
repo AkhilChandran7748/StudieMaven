@@ -6,7 +6,7 @@ import { Column } from 'primereact/column';
 import { staffs } from "../student/data";
 import { Badge } from 'primereact/badge';
 import WithHeader from "../common/WithHeaderHoc";
-import { getStaffs } from "./staffService";
+import { addStaffs, getStaffs } from "./staffService";
 import { ManageLocalStorage } from "../../Services/Localstorage";
 const Staffs = () => {
     const [data, setData] = useState([]);
@@ -29,7 +29,7 @@ const Staffs = () => {
         if (value.FirstName) {
             if (editId) {
                 setData(data.map((item) => {
-                    if (item.id === editId) {
+                    if (item.IdUser === editId) {
                         return ({
                             ...item,
                             FirstName: value.FirstName,
@@ -41,27 +41,35 @@ const Staffs = () => {
                     return item
                 }))
             } else {
-                setData([...data, {
-                    id: new Date().getTime(),
-                    FirstName: value.FirstName,
-                    EmailId: value.EmailId,
-                    Mobile: value.Mobile,
-                }])
+                let addParams= {
+                    "email":value.EmailId,
+                    "password":"qwerty123",
+                     "mobile":value.Mobile,
+                    "site_id":SiteID,
+                    "FirstName":value.FirstName,
+                    "LastName":value.LastName,
+                     "logintype":"normal"
+                }
+                addStaffs(addParams).then((res)=>{
+                    if(res?.data?.success) {
+                        getStaffData();
+                    }
+                })
             }
             setValue(null);
             setEditId('');
         }
     }
     const onDelete = (id) => {
-        setData(data.filter((item) => item.id !== id))
+        setData(data.filter((item) => item.IdUser !== id))
     }
     const TableActions = (item) => {
         return (<>
             <span title="Edit" onClick={() => {
-                setEditId(item.id);
+                setEditId(item.IdUser);
                 setValue(item)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={() => onDelete(item.id)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => onDelete(item.IdUser)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
     return (<>
@@ -71,30 +79,30 @@ const Staffs = () => {
             <div className="content ">
                 <div className="row align-center">
                     <span className="p-float-label margin-l-10">
-                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.name || ''} onChange={(e) => setValue({
+                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.FirstName || ''} onChange={(e) => setValue({
                             ...value,
-                            name: e.target.value
+                            FirstName: e.target.value
                         })} />
                         <label htmlFor="username">First Name</label>
                     </span>
                     <span className="p-float-label margin-l-10">
-                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.name || ''} onChange={(e) => setValue({
+                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.LastName || ''} onChange={(e) => setValue({
                             ...value,
-                            name: e.target.value
+                            LastName: e.target.value
                         })} />
                         <label htmlFor="username">Last Name</label>
                     </span>
                     <span className="p-float-label margin-l-10">
-                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.email || ''} onChange={(e) => setValue({
+                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.EmailId || ''} onChange={(e) => setValue({
                             ...value,
-                            email: e.target.value
+                            EmailId: e.target.value
                         })} />
                         <label htmlFor="username">Email</label>
                     </span>
                     <span className="p-float-label margin-l-10">
-                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.phone || ''} onChange={(e) => setValue({
+                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.Mobile || ''} onChange={(e) => setValue({
                             ...value,
-                            phone: e.target.value
+                            Mobile: e.target.value
                         })} />
                         <label htmlFor="username">Phone</label>
                     </span>
