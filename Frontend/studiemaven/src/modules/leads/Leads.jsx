@@ -27,7 +27,7 @@ const Leads = () => {
         getLeadsData();
     }, [])
     const ApsStatus = (data) => {
-        return <span>{data.APS_Status ? 'Yes' : 'No'}</span>
+        return <span>{data.APS_Status == 1 ? 'Yes' : 'No'}</span>
     }
     return (<>
         <div className="content">
@@ -36,7 +36,7 @@ const Leads = () => {
                 <Search />
             </div>
 
-            <div style={{ textAlign: 'right' }} > <AddLead /></div>
+            <div style={{ textAlign: 'right' }} > <AddLead reload={getLeadsData} /></div>
             <div className="card">
                 <DataTable value={leadsData} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
                     {columnConfig.map((col, i) => <Column key={i} field={col.field} header={col.header} />)}
@@ -45,7 +45,7 @@ const Leads = () => {
                     <Column body={(item) => <IELTS {...item} reload={getLeadsData} showlabel={false} />} header="IELTS"></Column>
                     <Column body={ApsStatus} header="APS Status"></Column>
                     <Column body={NotesComponent} header="Notes"></Column>
-                    <Column body={LeadsActions} header="Action"></Column>
+                    <Column body={(item) => <LeadsActions data={item} reload={getLeadsData} />} header="Action"></Column>
 
                     {/* <Column body={LeadOwner} header="Lead Owner"></Column>
                   

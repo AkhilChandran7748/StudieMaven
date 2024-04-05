@@ -10,7 +10,11 @@ import IntakeDropDown from "../components/IntakeDropDown";
 import AgentDropDown from "../components/AgentDropDown";
 import StaffDropDown from "../components/StaffDropDown";
 import { InputTextarea } from "primereact/inputtextarea";
-const EditStudent = ({ student }) => {
+import { Dropdown } from "primereact/dropdown";
+import CountryDropDown from "../components/CountryDropDown";
+import { updateLEAD } from "./leadServices";
+const EditStudent = ({ student, reload }) => {
+    // console.log(student, 'student');
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -24,7 +28,14 @@ const EditStudent = ({ student }) => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
     };
 
-    const defaultValues = { ...student };
+    const defaultValues = {
+        name: student.Name,
+        mobile: student.MobileNumber,
+        email: student.Email,
+        qualification: student.HigherQualification,
+        aps_status: student.APS_Status || 2,
+        country_id: student.CountryId,
+    };
 
     // console.log(defaultValues, 'student');
     const {
@@ -34,12 +45,30 @@ const EditStudent = ({ student }) => {
         getValues,
         reset,
         register,
+        setValue,
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        data.value && show();
+        let params = {
+            id: student.LeadId,
+            email: data.email,
+            name: data.name,
+            mobile: data.mobile,
+            aps_status: data.aps_status,
+            qualification: data.qualification,
+            country_id: data.country_id,
+        }
+        updateLEAD(params).then((res) => {
+            if (res?.data?.success) {
+                setVisible(false);
+                reset();
+                reload();
+            }
+        })
+        console.log(data, 'data--------------->');
+        // data.value && show();
 
-        reset();
+        // reset();
     };
 
     const getFormErrorMessage = (name) => {
@@ -91,7 +120,7 @@ const EditStudent = ({ student }) => {
                                     )}
                                 />
                                 <Controller
-                                    name="phone"
+                                    name="mobile"
                                     control={control}
                                     rules={{ required: 'Contact is required.' }}
                                     render={({ field, fieldState }) => (
@@ -106,12 +135,35 @@ const EditStudent = ({ student }) => {
                                     )}
                                 />
                                 <Controller
-                                    name="intake"
+                                    name="qualification"
+                                    control={control}
+                                    // rules={{ required: 'Contact is required.' }}
+                                    render={({ field, fieldState }) => (
+                                        <div>
+                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                            <span className="p-float-label">
+                                                <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <label htmlFor={field.name}>Heighest Qualification</label>
+                                            </span>
+                                            {getFormErrorMessage(field.name)}
+                                        </div>
+                                    )}
+                                />
+                                <Controller
+                                    name="aps_status"
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <IntakeDropDown />
+                                            <span className="p-inputtext-sm p-float-label   ">
+                                                <Dropdown inputId="dd-city" value={field.value} onChange={(e) => {
+                                                    setValue('aps_status', e.value)
+                                                }} options={[
+                                                    { value: 1, name: 'Yes' },
+                                                    { value: 2, name: 'No' },
+                                                ]} optionLabel="name" className="m-width-220p" />
+                                                <label htmlFor="dd-city">APS Status</label>
+                                            </span>
                                             {getFormErrorMessage(field.name)}
                                         </div>
                                     )}
@@ -120,39 +172,18 @@ const EditStudent = ({ student }) => {
                         </SplitterPanel>
                         <SplitterPanel className="flex align-items-center " size={50}>
                             <>
+
                                 <Controller
-                                    name="agent"
+                                    name="country_id"
                                     control={control}
+                                    // rules={{ required: 'Lead is required.' }}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <AgentDropDown />
-                                            {getFormErrorMessage(field.name)}
-                                        </div>
-                                    )}
-                                />
-                                <Controller
-                                    name="lead"
-                                    control={control}
-                                    rules={{ required: 'Lead is required.' }}
-                                    render={({ field, fieldState }) => (
-                                        <div>
-                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <StaffDropDown />
-                                            {getFormErrorMessage(field.name)}
-                                        </div>
-                                    )}
-                                />
-                                <Controller
-                                    name="address"
-                                    control={control}
-                                    render={({ field, fieldState }) => (
-                                        <div className=" margin-l-10">
-                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <span className="p-float-label">
-                                                <InputTextarea rows={2} cols={30} autoResize id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                                <label htmlFor={field.name}>Address</label>
-                                            </span>
+                                            <CountryDropDown
+                                                onChange={(v) => {
+                                                    setValue('country_id', v.code)
+                                                }} />
                                             {getFormErrorMessage(field.name)}
                                         </div>
                                     )}

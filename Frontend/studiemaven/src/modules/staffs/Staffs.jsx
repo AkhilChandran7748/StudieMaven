@@ -46,8 +46,8 @@ const Staffs = () => {
                     "password":"qwerty123",
                      "mobile":value.Mobile,
                     "site_id":SiteID,
-                    "FirstName":value.FirstName,
-                    "LastName":value.LastName,
+                    "firstname":value.FirstName,
+                    "lastname":value.LastName,
                      "logintype":"normal"
                 }
                 addStaffs(addParams).then((res)=>{
@@ -117,7 +117,7 @@ const Staffs = () => {
                 <div className="content card" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="aligin-center" >
                         <Column field="FirstName" header="First Name"></Column>
-                        <Column field="Lastname" header="Last Name"></Column>
+                        <Column field="LastName" header="Last Name"></Column>
                         <Column field="EmailID" header="Email"></Column>
                         <Column field="Mobile" header="Phone"></Column>
                         <Column body={TableActions} header="Action"></Column>

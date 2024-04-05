@@ -13,7 +13,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
 import CountryDropDown from "../components/CountryDropDown";
 import { addLead } from "./leadServices";
-const AddLead = () => {
+const AddLead = ({reload}) => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -41,8 +41,12 @@ const AddLead = () => {
 
     const onSubmit = (data) => {
         addLead(data).then((res) => {
-            console.log(res);
-        })
+            if(res.data.success){
+                reset();
+                reload();
+                setVisible(false)  
+            }
+                    })
 
         // reset();
     };

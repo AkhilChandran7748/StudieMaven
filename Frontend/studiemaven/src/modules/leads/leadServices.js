@@ -46,3 +46,12 @@ export const updateIELTS = params => {
         return response;
     });
 }
+export const updateLEAD = params => {
+    return httpCall({
+        url: API_URL.UPDATE_LEAD,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+}
