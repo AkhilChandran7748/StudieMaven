@@ -14,7 +14,6 @@ import NotesComponent from "./NotesComponent";
 import { getLeads } from "./leadServices";
 import moment from "moment";
 const Leads = () => {
-    console.log(`render test`);
     const [leadsData, setleadsData] = useState(null)
     const getLeadsData = () => {
         getLeads().then((res) => {
@@ -41,7 +40,7 @@ const Leads = () => {
                 <DataTable value={leadsData} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
                     {columnConfig.map((col, i) => <Column key={i} field={col.field} header={col.header} />)}
                     <Column body={(item) => <span>{moment(item.CreatedDate).format(' DD MMM YYYY')}</span>} header="Date Of Admission"></Column>
-                    <Column body={(item) => <LeadOwner leadOwner={item.LeadOwner} showlabel={false} />} header="Lead Owner"></Column>
+                    <Column body={(item) => <LeadOwner data={item}  showlabel={false} />} header="Lead Owner"></Column>
                     <Column body={(item) => <IELTS {...item} reload={getLeadsData} showlabel={false} />} header="IELTS"></Column>
                     <Column body={ApsStatus} header="APS Status"></Column>
                     <Column body={NotesComponent} header="Notes"></Column>

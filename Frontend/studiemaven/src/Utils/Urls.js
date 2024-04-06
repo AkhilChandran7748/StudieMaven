@@ -34,6 +34,9 @@ export const API_URL = {
     UPDATE_IELTS: '/student/updateLeadIELTS',
     GET_STAFFS: '/user/getAllStaffByID',
     ADD_STAFFS: '/user/addStaff',
-    UPDATE_LEAD: '/student/updateLeadInfo'
+    UPDATE_LEAD: '/student/updateLeadInfo',
+    ADD_COUNTRY:'/document/addCountry',
+    GET_COUNTRIES: '/document/getAllCountryList',
+    UPDATE_COUNTRY: '/document/updateCountry',
     
 }

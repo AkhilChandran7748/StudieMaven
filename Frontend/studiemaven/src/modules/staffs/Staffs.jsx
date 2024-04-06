@@ -8,18 +8,20 @@ import { Badge } from 'primereact/badge';
 import WithHeader from "../common/WithHeaderHoc";
 import { addStaffs, getStaffs } from "./staffService";
 import { ManageLocalStorage } from "../../Services/Localstorage";
+import ConfirmModal from "../common/ConfirmModal";
 const Staffs = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
+
     let userData = ManageLocalStorage.get('userData')
     userData = JSON.parse(userData);
     const { SiteID = {} } = userData || {}
     const getStaffData = () => {
         getStaffs({ SiteID }).then((res) => {
-           if(res?.data?.data){
-            setData(res?.data?.data)
-           }
+            if (res?.data?.data) {
+                setData(res?.data?.data)
+            }
         })
     }
     useEffect(() => {
@@ -41,17 +43,17 @@ const Staffs = () => {
                     return item
                 }))
             } else {
-                let addParams= {
-                    "email":value.EmailId,
-                    "password":"qwerty123",
-                     "mobile":value.Mobile,
-                    "site_id":SiteID,
-                    "firstname":value.FirstName,
-                    "lastname":value.LastName,
-                     "logintype":"normal"
+                let addParams = {
+                    "email": value.EmailId,
+                    "password": "qwerty123",
+                    "mobile": value.Mobile,
+                    "site_id": SiteID,
+                    "firstname": value.FirstName,
+                    "lastname": value.LastName,
+                    "logintype": "normal"
                 }
-                addStaffs(addParams).then((res)=>{
-                    if(res?.data?.success) {
+                addStaffs(addParams).then((res) => {
+                    if (res?.data?.success) {
                         getStaffData();
                     }
                 })
@@ -60,19 +62,30 @@ const Staffs = () => {
             setEditId('');
         }
     }
-    const onDelete = (id) => {
-        setData(data.filter((item) => item.IdUser !== id))
-    }
+
     const TableActions = (item) => {
+        const [show, setShow] = useState(false);
+        const onDelete = () => {
+            setShow(false)
+            // setData(data.filter((item) => item.IdUser !== id))
+        }
         return (<>
+            <ConfirmModal
+                visible={show}
+                onClose={() => setShow(false)}
+                content={"Are you sure you want to delete?"}
+                onConfirm={onDelete}
+                header={"Confirm Delete"}
+            />
             <span title="Edit" onClick={() => {
                 setEditId(item.IdUser);
                 setValue(item)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={() => onDelete(item.IdUser)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => setShow(item.IdUser)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
     return (<>
+
         <div className=" content margin-t-30p h-100">
 
             <div className="header padding-b-30">Staffs</div>
@@ -93,7 +106,7 @@ const Staffs = () => {
                         <label htmlFor="username">Last Name</label>
                     </span>
                     <span className="p-float-label margin-l-10">
-                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.EmailId || ''} onChange={(e) => setValue({
+                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.EmailID || ''} onChange={(e) => setValue({
                             ...value,
                             EmailId: e.target.value
                         })} />

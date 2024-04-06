@@ -3,7 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { getStaffs } from "../staffs/staffService";
 import { ManageLocalStorage } from "../../Services/Localstorage";
 
-export default function StaffDropDown({ label, showLabel = true }) {
+export default function StaffDropDown({ label, showLabel = true, onChange, value }) {
     const [data, setData] = useState([]);
     let userData = ManageLocalStorage.get('userData')
     userData = JSON.parse(userData);
@@ -18,8 +18,11 @@ export default function StaffDropDown({ label, showLabel = true }) {
     useEffect(() => {
         getStaffData();
     }, [])
-    const [selectedStaff, setSelectedStaff] = useState(null);
+    const [selectedStaff, setSelectedStaff] = useState(value);
 
+    useEffect(() => {
+        setSelectedStaff(data.find((i) => i.IdUser === value))
+    }, [value])
     return (
         <span className="p-inputtext-sm p-float-label  margin-l-10 ">
             <Dropdown
@@ -30,10 +33,18 @@ export default function StaffDropDown({ label, showLabel = true }) {
                     if (option) return <span>{option.FirstName} {option.LastName}</span>
                     return ''
                 }}
-                onChange={(e) => setSelectedStaff(e.value)}
+                itemTemplate={(option) => {
+                    if (option) return <span>{option.FirstName} {option.LastName}</span>
+                    return ''
+                }}
+                onChange={(e) => {
+                    onChange && onChange(e.value?.IdUser || '')
+                    setSelectedStaff(e.value)
+                }}
                 options={data}
                 optionLabel="FirstName"
-                className="m-width-220p" />
+                // className="w-full md:w-14rem"
+                className="m-width-220p  min-h-40p" />
             {showLabel && <label htmlFor="dd-city">{label ? label : 'Lead Owner'}</label>}
         </span>
     )

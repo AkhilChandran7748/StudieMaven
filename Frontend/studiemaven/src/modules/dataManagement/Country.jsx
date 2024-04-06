@@ -1,46 +1,75 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { countries } from "../student/data";
+import { addCountry, getCountry, updateCountry } from "./dataServices";
 const Country = () => {
-    const [data, setData] = useState(countries);
+    const [data, setData] = useState([]);
     const [value, setValue] = useState('');
     const [editId, setEditId] = useState(null)
+    const loadData = () => {
+        getCountry().then(res => {
+            if (res?.data?.success) {
+                setData(res.data?.data || []);
+            }
+        })
+    }
+    useEffect(() => {
+        loadData();
+    }, [])
     const onSubmit = () => {
         if (value) {
             if (editId) {
-                setData(data.map((item) => {
-                    if (item.id === editId) {
-                        return ({
-                            ...item,
-                            countryName: value
-
-                        })
+                let params = {
+                    id: editId,
+                    "country_name": value,
+                    "country_code": "",
+                    "country_flag": ""
+                }
+                updateCountry(params).then(res => {
+                    if (res.data?.success) {
+                        loadData();
                     }
-                    return item
-                }))
+                })
             } else {
-                setData([...data, {
-                    id: new Date().getTime(),
-                    countryName: value
-                }])
+                let params = {
+                    "country_name": value,
+                    "country_code": "",
+                    "country_flag": ""
+                }
+                addCountry(params).then(res => {
+                    if (res.data?.success) {
+                        loadData();
+                    }
+                })
             }
             setValue('');
             setEditId('');
         }
     }
     const onDelete = (id) => {
-        setData(data.filter((item) => item.id !== id))
+        let params = {
+            id,
+            "country_name": value,
+            "country_code": "",
+            "country_flag": "",
+            delete_status: 1,
+        }
+        updateCountry(params).then(res => {
+            if (res.data?.success) {
+                loadData();
+            }
+        })
     }
-    const TableActions = ({ id, countryName }) => {
+    const TableActions = ({ id, CountryName }) => {
         return (<>
             <span title="Edit" onClick={() => {
                 setEditId(id);
-                setValue(countryName)
+                setValue(CountryName)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={()=>onDelete(id)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => onDelete(id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
     return (<>
@@ -59,7 +88,7 @@ const Country = () => {
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="width-350p aligin-center" >
-                        <Column field="countryName" header="Document Name"></Column>
+                        <Column field="CountryName" header="Document Name"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>
                 </div>

@@ -24,10 +24,12 @@ const AddLead = ({reload}) => {
     const toast = useRef(null);
 
     const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
+        toast.current.show({ severity: 'info', summary: 'Info' });
     };
 
-    const defaultValues = {};
+    const defaultValues = {
+        aps_status: 2
+    };
 
     const {
         control,
@@ -42,6 +44,7 @@ const AddLead = ({reload}) => {
     const onSubmit = (data) => {
         addLead(data).then((res) => {
             if(res.data.success){
+                show();
                 reset();
                 reload();
                 setVisible(false)  
@@ -117,7 +120,7 @@ const AddLead = ({reload}) => {
                                 <Controller
                                     name="qualification"
                                     control={control}
-                                    // rules={{ required: 'Contact is required.' }}
+                                    rules={{ required: 'Qualification is required.' }}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
@@ -156,7 +159,7 @@ const AddLead = ({reload}) => {
                                 <Controller
                                     name="reference_from"
                                     control={control}
-                                    // rules={{ required: 'Contact is required.' }}
+                                    rules={{ required: 'Reference is required.' }}
                                     render={({ field, fieldState }) => (
                                         <div className="margin-l-10">
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
@@ -171,13 +174,13 @@ const AddLead = ({reload}) => {
                                 <Controller
                                     name="country_id"
                                     control={control}
-                                    // rules={{ required: 'Lead is required.' }}
+                                    rules={{ required: 'Country is required.' }}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <CountryDropDown
                                                 onChange={(v) => {
-                                                    setValue('country_id', v.code)
+                                                    setValue('country_id', v.id)
                                                 }} />
                                             {getFormErrorMessage(field.name)}
                                         </div>

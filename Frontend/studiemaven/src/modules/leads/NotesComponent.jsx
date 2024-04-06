@@ -19,10 +19,9 @@ const NotesComponent = ({ LeadId }) => {
       }
     })
   }
-  console.log(notesData, 'notesData');
   useEffect(() => {
-    getNotesData();
-  }, [])
+    visible && getNotesData();
+  }, [visible])
   // console.log(noteText,'noteText');
   const NotesContent = ({ note }) => {
     let author = note.FirstName + ' '
@@ -50,13 +49,6 @@ const NotesComponent = ({ LeadId }) => {
         setShowEditor(false);
       }
     })
-    // noteText && setNotesData([...notesData, {
-    //   author: 'Sreejith',
-    //   time: '12/12/23 12:30 PM',
-    //   content: noteText,
-    // }])
-    // setNoteText(null);
-    // setShowEditor(false);
   }
   const footerContent = () => (
     <div style={{ textAlign: 'left', marginTop: '10px' }}>
@@ -66,7 +58,7 @@ const NotesComponent = ({ LeadId }) => {
     </div>
   );
   return (<>
-    <span title="Notes" onClick={() => setVisible(true)} className={`pi ${notesData.length ? 'pi-comments' : 'pi-comment'}`} ></span>
+    <span title="Notes" onClick={() => setVisible(true)} className={`pi pi-comment`} ></span>
     <Dialog header="Notes" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
       {notesData.length ?
         <>

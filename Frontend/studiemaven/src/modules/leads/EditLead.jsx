@@ -60,9 +60,11 @@ const EditStudent = ({ student, reload }) => {
         }
         updateLEAD(params).then((res) => {
             if (res?.data?.success) {
-                setVisible(false);
+                
                 reset();
+                
                 reload();
+                setVisible(false);
             }
         })
         console.log(data, 'data--------------->');

@@ -35,7 +35,6 @@ const IELTS = ({ HasIelts, IELTS, LeadId, reload }) => {
             }
         })
     }
-    console.log(ieltsData.ExpiryOn,'ieltsData.ExpiryOn');
     return (
         <>
             {show && <Dialog headerClassName="align-center" header="Update IELTS" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >

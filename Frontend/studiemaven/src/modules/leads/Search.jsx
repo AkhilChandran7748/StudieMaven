@@ -10,7 +10,27 @@ import StaffDropDown from "../components/StaffDropDown";
 import PaymentStatusDropDown from "../components/PaymentStatus";
 import CountryDropDown from "../components/CountryDropDown";
 const Search = () => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState({
+        name: '',
+        country_id: '',
+        owner_id: '',
+        course: ''
+    });
+    console.log(value);
+    const onChange = (field, v) => {
+        setValue({
+            ...value,
+            [field]: v
+        })
+    }
+    const reset = () => {
+        setValue({
+            name: '',
+            country_id: '',
+            owner_id: '',
+            course: ''
+        })
+    }
     return (<>
         <div className="card padding-b-10p padding-10p">
             <Accordion >
@@ -18,21 +38,29 @@ const Search = () => {
                     <div className="margin-l-10p">
                         <div className="row padding-t-10p">
                             <span className="p-float-label margin-l-10">
-                                <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
+                                <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value.name} onChange={(e) => onChange('name', e.target.value)} />
                                 <label htmlFor="username">Name</label>
                             </span>
 
-                            <StaffDropDown />
+                            <StaffDropDown
+                                value={value.owner_id}
+                                onChange={(id) => {
+                                    onChange('owner_id', id)
+                                }}
+                            />
                             <IntakeDropDown className={'margin-l-10'} label={'Date of Admission'} />
-                            <CountryDropDown/>
+                            <CountryDropDown value={value.country_id} onChange={(id) => {
+                                onChange('country_id', id)
+
+                            }} />
                             <span className="p-float-label margin-l-10">
-                                <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
+                                <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value.course} onChange={(e) => onChange('course', e.target.value)} />
                                 <label htmlFor="username">Cousre</label>
                             </span>
                         </div>
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                             <Button label="Search" className="small-button" />
-                            <Button label="Reset" severity="secondary" className="small-button margin-l-5p" />
+                            <Button onClick={reset} label="Reset" severity="secondary" className="small-button margin-l-5p" />
                         </div>
                     </div>
                 </AccordionTab>

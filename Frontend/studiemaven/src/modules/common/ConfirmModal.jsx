@@ -4,8 +4,8 @@ import React from "react";
 const ConfirmModal = ({ visible, onClose, content, cancelText = 'Cancel', confirmText = 'Continue', onConfirm, header }) => {
     const footerContent = (
         <div>
-            <Button  label={cancelText} className="margin-r-10"  onClick={onClose} severity="danger" />
-            <Button label={confirmText}  onClick={onConfirm} autoFocus />
+            <Button  label={cancelText} className="margin-r-10"  onClick={onClose}  />
+            <Button label={confirmText}  onClick={onConfirm} autoFocus severity="danger" />
         </div>
     );
     return (<>
