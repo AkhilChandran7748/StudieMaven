@@ -5,7 +5,7 @@ axios.defaults.headers.put["Accept"] = "application/json";
 export const httpCall = async payload => {
   let config = {};
   let userData = ManageLocalStorage.get("userData")
-  userData = JSON.parse(userData);
+  userData = userData ? JSON.parse(userData) : {};
   let token = userData.token
     ? userData.token
     : "";

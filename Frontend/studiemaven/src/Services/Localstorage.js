@@ -3,7 +3,7 @@ export const ManageLocalStorage = {
         if (!key) {
             return;
         }
-        return localStorage.getItem(key);
+        return localStorage.getItem(key) || '';
     },
     set(key, data) {
         if (!key) {
