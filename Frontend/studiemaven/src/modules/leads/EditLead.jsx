@@ -60,14 +60,10 @@ const EditStudent = ({ student, reload }) => {
         }
         updateLEAD(params).then((res) => {
             if (res?.data?.success) {
-                
-                reset();
-                
-                reload();
+                reload('Lead data updated successfully');
                 setVisible(false);
             }
         })
-        console.log(data, 'data--------------->');
         // data.value && show();
 
         // reset();
@@ -80,6 +76,8 @@ const EditStudent = ({ student, reload }) => {
         <>
             <span onClick={() => setVisible(true)} title="Edit" className="pi pi-user-edit margin-r-10 grey" ></span>
             <Dialog header="Update Student" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} >
+
+
                 <form onSubmit={handleSubmit(onSubmit)} className="add-student">
                     <Toast ref={toast} />
                     <Splitter >
@@ -183,12 +181,14 @@ const EditStudent = ({ student, reload }) => {
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <CountryDropDown
+                                                value={field.value}
                                                 onChange={(v) => {
-                                                    setValue('country_id', v.code)
+                                                    setValue('country_id', v)
                                                 }} />
                                             {getFormErrorMessage(field.name)}
                                         </div>
-                                    )}
+                                    )
+                                    }
                                 />
                             </>
                         </SplitterPanel>

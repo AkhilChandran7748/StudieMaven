@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { staffs } from "../student/data";
-import { Badge } from 'primereact/badge';
 import WithHeader from "../common/WithHeaderHoc";
 import { addStaffs, getStaffs } from "./staffService";
 import { ManageLocalStorage } from "../../Services/Localstorage";
 import ConfirmModal from "../common/ConfirmModal";
+import { Toast } from "primereact/toast";
 const Staffs = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState({});
@@ -27,34 +26,41 @@ const Staffs = () => {
     useEffect(() => {
         getStaffData();
     }, [])
+
+    const toast = useRef(null);
+    const showToast = (detail) => {
+        toast.current.show({ severity: 'info', summary: 'Success', detail });
+    };
     const onSubmit = () => {
         if (value.FirstName) {
             if (editId) {
-                setData(data.map((item) => {
-                    if (item.IdUser === editId) {
-                        return ({
-                            ...item,
-                            FirstName: value.FirstName,
-                            EmailId: value.EmailId,
-                            Mobile: value.Mobile,
-
-                        })
+                let editParams = {
+                    id: editId,
+                    "email": value.EmailID || '',
+                    "mobile": value.Mobile || '',
+                    "firstname": value.FirstName,
+                    "lastname": value.LastName || '',
+                }
+                addStaffs(editParams).then((res) => {
+                    if (res?.data?.success) {
+                        getStaffData();
+                        showToast('Staff details updated sucessfully');
                     }
-                    return item
-                }))
+                })
             } else {
                 let addParams = {
-                    "email": value.EmailId,
+                    "email": value.EmailID || '',
                     "password": "qwerty123",
-                    "mobile": value.Mobile,
+                    "mobile": value.Mobile || '',
                     "site_id": SiteID,
                     "firstname": value.FirstName,
-                    "lastname": value.LastName,
+                    "lastname": value.LastName || '',
                     "logintype": "normal"
                 }
                 addStaffs(addParams).then((res) => {
                     if (res?.data?.success) {
                         getStaffData();
+                        showToast('Staff details added sucessfully');
                     }
                 })
             }
@@ -67,9 +73,21 @@ const Staffs = () => {
         const [show, setShow] = useState(false);
         const onDelete = () => {
             setShow(false)
-            // setData(data.filter((item) => item.IdUser !== id))
+
+            let addParams = {
+                id: item.IdUser,
+                delete_status: 1
+                
+            }
+            addStaffs(addParams).then((res) => {
+                if (res?.data?.success) {
+                    getStaffData();
+                    showToast('Staff details deleted sucessfully');
+                }
+            })
         }
         return (<>
+            <Toast ref={toast} />
             <ConfirmModal
                 visible={show}
                 onClose={() => setShow(false)}
@@ -108,7 +126,7 @@ const Staffs = () => {
                     <span className="p-float-label margin-l-10">
                         <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.EmailID || ''} onChange={(e) => setValue({
                             ...value,
-                            EmailId: e.target.value
+                            EmailID: e.target.value
                         })} />
                         <label htmlFor="username">Email</label>
                     </span>

@@ -3,12 +3,8 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { Controller, useForm } from 'react-hook-form';
 import { classNames } from 'primereact/utils';
-import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
-import IntakeDropDown from "../components/IntakeDropDown";
-import AgentDropDown from "../components/AgentDropDown";
-import StaffDropDown from "../components/StaffDropDown";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
 import CountryDropDown from "../components/CountryDropDown";
@@ -21,12 +17,8 @@ const AddLead = ({reload}) => {
             <Button label="Cancel" className="small-button" severity="secondary" onClick={() => setVisible(false)} autoFocus />
         </div>
     );
-    const toast = useRef(null);
 
-    const show = () => {
-        toast.current.show({ severity: 'info', summary: 'Info' });
-    };
-
+  
     const defaultValues = {
         aps_status: 2
     };
@@ -44,9 +36,8 @@ const AddLead = ({reload}) => {
     const onSubmit = (data) => {
         addLead(data).then((res) => {
             if(res.data.success){
-                show();
                 reset();
-                reload();
+                reload('Lead added successfully');
                 setVisible(false)  
             }
                     })
@@ -62,7 +53,7 @@ const AddLead = ({reload}) => {
             <span onClick={() => setVisible(true)} title="Add New Student" className="pi pi-user-plus margin-r-10 grey action-icon " style={{ fontSize: '1.5rem' }} ></span>
             <Dialog header="New Lead" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} >
                 <form onSubmit={handleSubmit(onSubmit)} className="add-student">
-                    <Toast ref={toast} />
+                    
                     <Splitter >
                         <SplitterPanel className="flex align-items-center margin-l-10" size={50}>
                             <>
@@ -180,7 +171,7 @@ const AddLead = ({reload}) => {
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <CountryDropDown
                                                 onChange={(v) => {
-                                                    setValue('country_id', v.id)
+                                                    setValue('country_id', v)
                                                 }} />
                                             {getFormErrorMessage(field.name)}
                                         </div>

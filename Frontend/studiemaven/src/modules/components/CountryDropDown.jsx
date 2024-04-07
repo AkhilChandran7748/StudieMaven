@@ -8,7 +8,7 @@ export default function CountryDropDown({ onChange, value }) {
 
     useEffect(() => {
         setSelectedCountry(data.find((i) => i.id === value))
-    }, [value])
+    }, [value, data])
     const loadData = () => {
         getCountry().then(res => {
             if (res?.data?.success) {

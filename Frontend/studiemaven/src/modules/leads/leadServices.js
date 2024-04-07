@@ -55,3 +55,12 @@ export const updateLEAD = params => {
         return response;
     });
 }
+export const searchLead = params => {
+    return httpCall({
+        url: API_URL.SEARCH_LEADS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+}

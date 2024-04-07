@@ -3,7 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from "primereact/button";
 import StaffDropDown from "../components/StaffDropDown";
 import { updateLEAD } from "./leadServices";
-const LeadOwner = ({ data }) => {
+const LeadOwner = ({ data, reload }) => {
     const [show, setShow] = useState(false);
     const [ownerId, setOwnerId] = useState()
     let { LeadOwner } = data
@@ -16,14 +16,14 @@ const LeadOwner = ({ data }) => {
             aps_status: data.APS_Status,
             qualification: data.HigherQualification,
             country_id: data.CountryId,
-            ownerID: ownerId,
+            owner_id: ownerId,
         }
         ownerId && updateLEAD(params).then((res) => {
             if (res?.data?.success) {
+                reload();
                 setShow(false);;
             }
         })
-        console.log(data, 'data--------------->');
         // data.value && show();
 
         // reset();

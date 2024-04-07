@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import AgentDropDown from "../components/AgentDropDown";
 import IntakeDropDown from "../components/IntakeDropDown";
-import VisaStatusDropDown from "../components/VisaStatusDropDown";
-import StatusDropDown from "../components/StatusDropDown";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import StaffDropDown from "../components/StaffDropDown";
-import PaymentStatusDropDown from "../components/PaymentStatus";
 import CountryDropDown from "../components/CountryDropDown";
-const Search = () => {
+import { searchLead } from "./leadServices";
+const Search = ({ onSearch }) => {
     const [value, setValue] = useState({
         name: '',
         country_id: '',
         owner_id: '',
+        created_date: '',
         course: ''
     });
-    console.log(value);
     const onChange = (field, v) => {
         setValue({
             ...value,
@@ -28,8 +25,13 @@ const Search = () => {
             name: '',
             country_id: '',
             owner_id: '',
-            course: ''
+            course: '',
+            created_date: '',
         })
+        onSearch()
+    }
+    const onSearchLeads = () => {
+        onSearch(value)
     }
     return (<>
         <div className="card padding-b-10p padding-10p">
@@ -48,7 +50,7 @@ const Search = () => {
                                     onChange('owner_id', id)
                                 }}
                             />
-                            <IntakeDropDown className={'margin-l-10'} label={'Date of Admission'} />
+                            <IntakeDropDown onChange={(v) => onChange('created_date', v)} dateValue={value.created_date} className={'margin-l-10'} label={'Date of Admission'} />
                             <CountryDropDown value={value.country_id} onChange={(id) => {
                                 onChange('country_id', id)
 
@@ -59,7 +61,7 @@ const Search = () => {
                             </span>
                         </div>
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
-                            <Button label="Search" className="small-button" />
+                            <Button onClick={onSearchLeads} label="Search" className="small-button" />
                             <Button onClick={reset} label="Reset" severity="secondary" className="small-button margin-l-5p" />
                         </div>
                     </div>

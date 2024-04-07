@@ -17,6 +17,7 @@ const LeadsActions = ({ data, reload }) => {
         OwnerId,
     } = data;
     const [show, setShow] = useState(false)
+    const [showConvert, setShowConvert] = useState(false)
     //sttaus check on delete
     const onDelete = () => {
         let params = {
@@ -26,7 +27,7 @@ const LeadsActions = ({ data, reload }) => {
         updateLEAD(params).then((res) => {
             if (res.data.success) {
                 setShow(false);
-                reload();
+                reload('Lead deleted successfully');
             }
         })
     }
@@ -38,9 +39,16 @@ const LeadsActions = ({ data, reload }) => {
             onConfirm={onDelete}
             header={"Confirm Delete"}
         />
-        <span title="Convert" className="pi pi-sign-in margin-r-10 grey" ></span >
+        <ConfirmModal
+            visible={showConvert}
+            onClose={() => setShowConvert(false)}
+            content={"Selected student data will move to student list, do you want to continue?"}
+            onConfirm={() => setShowConvert(false)}
+            header={"Lead Conversion"}
+        />
+        <span onClick={()=>setShowConvert(true)} title="Convert" className="pi pi-sign-in margin-r-10 grey" ></span >
 
-        <EditStudent student={data} reload={reload} />
+        <EditStudent student={data} key={data.LeadId} reload={reload} />
         <span onClick={() => setShow(true)} title="Delete" className="pi pi-trash red" ></span>
     </>
     )
