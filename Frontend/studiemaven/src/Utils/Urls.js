@@ -39,5 +39,9 @@ export const API_URL = {
     GET_COUNTRIES: '/document/getAllCountryList',
     UPDATE_COUNTRY: '/document/updateCountry',
     SEARCH_LEADS: '/student/searchLead',
+    CONVERT_LEADS: '/student/convertLead',
+    GET_STUDENTS: '/student/getOnGoingApplications',
+    GET_PAYMENT_STATUS: '/document/getAllPaymentStatusType',
+    ADD_PAYMENT_STATUS: '/document/addPaymentStatusType',
 
 }

@@ -46,12 +46,12 @@ const PersonalInfo = ({ student }) => {
                 <SplitterPanel className="flex align-items-center justify-content-center" size={20}>
                     <div>
                         <div>
-                            IELTS    <IELTS ielts={ielts} />
+                            IELTS    <IELTS HasIelts={false} IELTS={{}} LeadId={{}} reload={() => { }} />
                         </div>
                     </div>
                 </SplitterPanel>
                 <SplitterPanel className="flex align-items-center justify-content-center" size={20}>
-                    
+
                     <div className="padding-t-15p padding-l-20p">
                         <div  >
 
@@ -70,7 +70,7 @@ const PersonalInfo = ({ student }) => {
                 </SplitterPanel>
                 <SplitterPanel className="flex align-items-center justify-content-center" size={25}>
                     <div className="margin-l-10">
-                    <EditPersonalInfo/>
+                        <EditPersonalInfo />
                     </div>
                 </SplitterPanel>
             </Splitter>

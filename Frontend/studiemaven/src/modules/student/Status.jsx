@@ -32,7 +32,7 @@ const Status = ({ status }) => {
                 </div>
             </div>
         </Dialog>}
-        <Badge value={status} onClick={() => setShow(true)} severity={getSeverity()} />
+        <Badge value={status||'N/A'} onClick={() => setShow(true)} severity={getSeverity()} />
     </>
     )
 }

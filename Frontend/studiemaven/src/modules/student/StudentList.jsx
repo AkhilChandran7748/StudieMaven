@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { studentData } from "./data";
@@ -11,7 +11,21 @@ import VisaStatus from "./VisaStatus";
 import InTake from "./InTake";
 import LeadOwner from "./LeadOwner";
 import PaymentStatus from "./PaymentStatus";
+import { getStudents } from "./student.services";
 const StudentList = () => {
+    const [data, setData] = useState([])
+    const getStudentData = () => {
+        getStudents().then((res) => {
+            if (res?.data?.success) {
+                setData(res?.data?.data)
+            }
+
+        }).catch((e) => { console.log(e); })
+    }
+    useEffect(() => {
+        getStudentData();
+    }, [])
+    console.log(data);
     return (<>
         <div className="content">
             <div className="header padding-b-30">Student List</div>
@@ -21,13 +35,12 @@ const StudentList = () => {
 
             <div style={{ textAlign: 'right' }} > <AddStudent /></div>
             <div className="card">
-                <DataTable value={studentData} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
-                    {columnConfig.map((col, i) => <Column key={i} field={col.field} header={col.header} />)}
-                    
-                    <Column body={LeadOwner} header="Lead Owner"></Column>
-                    <Column body={InTake} header="Intake"></Column>
-                    <Column body={PaymentStatus} header="Payment Status"></Column>  
-                    <Column body={VisaStatus} header="Visa Status"></Column>                    
+                <DataTable value={data} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
+                    {columnConfig.map((col, i) => <Column key={i} body={(item) => <span>{item[col.field]|| '-'}</span>} field={col.field} header={col.header} />)}
+
+                    <Column body={InTake} header="InTake"></Column>
+                    <Column body={PaymentStatus} header="Payment Status"></Column>
+                    <Column body={VisaStatus} header="Visa Status"></Column>
                     <Column body={Status} header="Status"></Column>
                     <Column body={TableActions} header="Action"></Column>
                 </DataTable>

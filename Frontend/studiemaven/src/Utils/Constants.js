@@ -19,5 +19,14 @@ export const STATUS_CODES = {
     HTTP_501: 501,
 };
 
+export const colors = [
+    { name: 'Red', code: 'red' },
+    { name: 'Green', code: 'green' },
+    { name: 'Yellow', code: 'yellow' },
+    { name: 'Blue', code: 'blue' },
+    { name: 'Purple', code: 'purple' },
+    { name: 'Cyan', code: 'cyan' },
+    { name: 'Brown', code: 'brown' },
+];
 
 

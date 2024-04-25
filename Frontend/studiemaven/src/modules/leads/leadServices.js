@@ -64,3 +64,12 @@ export const searchLead = params => {
         return response;
     });
 }
+export const convertLead = params => {
+    return httpCall({
+        url: API_URL.CONVERT_LEADS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+}

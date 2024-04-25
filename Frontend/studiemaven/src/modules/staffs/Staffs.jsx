@@ -8,6 +8,8 @@ import { addStaffs, getStaffs } from "./staffService";
 import { ManageLocalStorage } from "../../Services/Localstorage";
 import ConfirmModal from "../common/ConfirmModal";
 import { Toast } from "primereact/toast";
+import { InputNumber } from "primereact/inputnumber";
+import { FloatLabel } from 'primereact/floatlabel';
 const Staffs = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState({});
@@ -77,7 +79,7 @@ const Staffs = () => {
             let addParams = {
                 id: item.IdUser,
                 delete_status: 1
-                
+
             }
             addStaffs(addParams).then((res) => {
                 if (res?.data?.success) {
@@ -102,6 +104,7 @@ const Staffs = () => {
             <span onClick={() => setShow(item.IdUser)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
+    console.log(value, 'mob');
     return (<>
 
         <div className=" content margin-t-30p h-100">
@@ -130,13 +133,24 @@ const Staffs = () => {
                         })} />
                         <label htmlFor="username">Email</label>
                     </span>
-                    <span className="p-float-label margin-l-10">
-                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.Mobile || ''} onChange={(e) => setValue({
-                            ...value,
-                            Mobile: e.target.value
-                        })} />
-                        <label htmlFor="username">Phone</label>
+                    <span className=" margin-l-10">
+                        <FloatLabel>
+                            <InputNumber id="number-input"
+                                useGrouping={false} 
+                                className="p-inputtext-sm  m-width-220p"
+                                maxLength={10}
+                                value={value.Mobile}
+                                onChange={(e) => {
+                                    setValue({
+                                        ...value,
+                                        Mobile: e.value
+                                    })
+                                }
+                                } />
+                            <label htmlFor="number-input">Phone</label>
+                        </FloatLabel>
                     </span>
+
                 </div>
                 <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p padding-b-30p">
                     <Button onClick={onSubmit} label="Submit" severity="success" className="small-button" />

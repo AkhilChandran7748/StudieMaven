@@ -19,7 +19,7 @@ const Leads = () => {
     const [leadsData, setleadsData] = useState(null)
     const getLeadsData = (params) => {
         getLeads(params).then((res) => {
-            if (res?.data?.data) {
+            if (res?.data?.success) {
                 setleadsData(res?.data?.data)
             }
         })

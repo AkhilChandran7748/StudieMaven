@@ -16,7 +16,7 @@ const IELTS = ({ HasIelts, IELTS, LeadId, reload }) => {
         Writing,
         Listening,
         Speaking,
-        ExpiryOn : ExpiryOn?new Date(ExpiryOn): '',
+        ExpiryOn: ExpiryOn ? new Date(ExpiryOn) : '',
     })
     const onUpdateIELTS = () => {
         const { Reading, Writing, Listening, Speaking, ExpiryOn } = ieltsData
@@ -46,25 +46,25 @@ const IELTS = ({ HasIelts, IELTS, LeadId, reload }) => {
                         placeholder="Has IELTS" className="m-width-220p" />
                     {ieltsData.HasIelts ? <>
                         <div style={{ marginTop: '15px' }} className="margin-t-10p">
-                            <InputText placeholder="R" className="scoreInput" value={ieltsData.Reading} onChange={(e) => {
+                            R <InputText placeholder="R" className="scoreInput" value={ieltsData.Reading} onChange={(e) => {
                                 setIelts({
                                     ...ieltsData,
                                     Reading: e.target.value
                                 })
                             }} />
-                            <InputText placeholder="W" className="scoreInput" value={ieltsData.Writing} onChange={(e) => {
+                            W <InputText placeholder="W" className="scoreInput" value={ieltsData.Writing} onChange={(e) => {
                                 setIelts({
                                     ...ieltsData,
                                     Writing: e.target.value
                                 })
                             }} />
-                            <InputText placeholder="L" className="scoreInput" value={ieltsData.Listening} onChange={(e) => {
+                            L <InputText placeholder="L" className="scoreInput" value={ieltsData.Listening} onChange={(e) => {
                                 setIelts({
                                     ...ieltsData,
                                     Listening: e.target.value
                                 })
                             }} />
-                            <InputText placeholder="S" className="scoreInput" value={ieltsData.Speaking} onChange={(e) => {
+                            S <InputText placeholder="S" className="scoreInput" value={ieltsData.Speaking} onChange={(e) => {
                                 setIelts({
                                     ...ieltsData,
                                     Speaking: e.target.value

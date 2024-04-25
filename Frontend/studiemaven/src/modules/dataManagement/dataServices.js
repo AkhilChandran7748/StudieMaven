@@ -28,3 +28,23 @@ export const updateCountry = params => {
         return response;
     });
 };
+
+export const getPaymentStatus = params => {
+    return httpCall({
+        url: API_URL.GET_PAYMENT_STATUS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+
+export const addPaymentStatus = params => {
+    return httpCall({
+        url: API_URL.ADD_PAYMENT_STATUS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};

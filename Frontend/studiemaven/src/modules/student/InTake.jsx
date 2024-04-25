@@ -3,7 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from "primereact/button";
 import { Calendar } from 'primereact/calendar';
 import { Badge } from 'primereact/badge';
-const InTake = ({ intake, isPostponed }) => {
+const InTake = ({ inTake, isPostponed }) => {
     const [show, setShow] = useState(false);
     const [date, setDate] = useState(null);
     //psotpone
@@ -17,7 +17,7 @@ const InTake = ({ intake, isPostponed }) => {
                 </div>
             </div>
         </Dialog>}
-        <span style={{marginRight: '5px'}} onClick={() => setShow(true)}>{intake}</span>
+        <span style={{marginRight: '5px'}} onClick={() => setShow(true)}>{inTake|| '-'}</span>
         {isPostponed &&<Badge value="p"  severity="danger"></Badge>}
     </>
     )

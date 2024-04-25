@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import EditStudent from "./EditLead";
 import ConfirmModal from "../common/ConfirmModal";
-import { updateLEAD } from "./leadServices";
+import { updateLEAD, convertLead } from "./leadServices";
 const LeadsActions = ({ data, reload }) => {
     const { LeadId,
         Name,
@@ -31,6 +31,17 @@ const LeadsActions = ({ data, reload }) => {
             }
         })
     }
+    const onConvert = () => {
+        let params = {
+            lead_id: LeadId
+        }
+        convertLead(params).then((res) => {
+            if (res.data.success) {
+                setShowConvert(false);
+                reload('Lead converted successfully');
+            }
+        })
+    }
     return (<>
         <ConfirmModal
             visible={show}
@@ -43,7 +54,7 @@ const LeadsActions = ({ data, reload }) => {
             visible={showConvert}
             onClose={() => setShowConvert(false)}
             content={"Selected student data will move to student list, do you want to continue?"}
-            onConfirm={() => setShowConvert(false)}
+            onConfirm={onConvert}
             header={"Lead Conversion"}
         />
         <span onClick={()=>setShowConvert(true)} title="Convert" className="pi pi-sign-in margin-r-10 grey" ></span >

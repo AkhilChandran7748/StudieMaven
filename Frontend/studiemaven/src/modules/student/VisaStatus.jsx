@@ -37,7 +37,7 @@ const VisaStatus = ({ visaStatus, appointmentDate }) => {
         </Dialog>}
         <div>
             {appointmentDate && <div className="date-button ">{appointmentDate}</div>}
-        <Badge value={visaStatus} onClick={() => setShow(true)} severity={getSeverity()} />
+        <Badge value={visaStatus||'N/A'} onClick={() => setShow(true)} severity={getSeverity()} />
     </div >
        
     </>

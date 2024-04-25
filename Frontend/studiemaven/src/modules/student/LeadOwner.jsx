@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dialog } from 'primereact/dialog';
 import { Button } from "primereact/button";
 import StaffDropDown from "../components/StaffDropDown";
-const LeadOwner = ({ leadOwner }) => {
+const LeadOwner = ({ OwnerName }) => {
     const [show, setShow] = useState(false);
     const [date, setDate] = useState(null);
     return (<>
@@ -15,7 +15,7 @@ const LeadOwner = ({ leadOwner }) => {
                 </div>
             </div>
         </Dialog>}
-        <span  onClick={() => setShow(true)}>{leadOwner}</span>
+        <span  onClick={() => setShow(true)}>{OwnerName}</span>
     </>
     )
 }
