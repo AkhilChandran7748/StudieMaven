@@ -4,13 +4,13 @@ import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { countries } from "../student/data";
-import { addCountry, getCountry, updateCountry } from "./dataServices";
-const Country = () => {
+import { addAgents, getAgents, updateAgent } from "./dataServices";
+const Agents = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState('');
     const [editId, setEditId] = useState(null)
     const loadData = () => {
-        getCountry().then(res => {
+        getAgents().then(res => {
             if (res?.data?.success) {
                 setData(res.data?.data || []);
             }
@@ -24,22 +24,20 @@ const Country = () => {
             if (editId) {
                 let params = {
                     id: editId,
-                    "country_name": value,
-                    "country_code": "",
-                    "country_flag": ""
+                    "agent_name": value,
                 }
-                updateCountry(params).then(res => {
+                updateAgent(params).then(res => {
                     if (res.data?.success) {
                         loadData();
                     }
                 })
             } else {
                 let params = {
-                    "country_name": value,
-                    "country_code": "",
-                    "country_flag": ""
+                    "agent_name": value,
+                    "country_id": "2",
+                    "approve_status": 0
                 }
-                addCountry(params).then(res => {
+                addAgents(params).then(res => {
                     if (res.data?.success) {
                         loadData();
                     }
@@ -57,19 +55,19 @@ const Country = () => {
             "country_flag": "",
             delete_status: 1,
         }
-        updateCountry(params).then(res => {
+        updateAgent(params).then(res => {
             if (res.data?.success) {
                 loadData();
             }
         })
     }
-    const TableActions = ({ id, CountryName }) => {
+    const TableActions = ({ Id, AgentName }) => {
         return (<>
             <span title="Edit" onClick={() => {
-                setEditId(id);
-                setValue(CountryName)
+                setEditId(Id);
+                setValue(AgentName)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={() => onDelete(id)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => onDelete(Id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
     return (<>
@@ -77,7 +75,7 @@ const Country = () => {
             <div>
                 <span className="p-float-label margin-l-10">
                     <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
-                    <label htmlFor="username">Country Name</label>
+                    <label htmlFor="username">Agent Name</label>
                 </span>
                 <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                     <Button onClick={onSubmit} label="Submit" severity="success" className="small-button" />
@@ -88,7 +86,7 @@ const Country = () => {
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="width-350p aligin-center" >
-                        <Column field="CountryName" header="Country Name"></Column>
+                        <Column field="AgentName" header="Agent Name"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>
                 </div>
@@ -96,4 +94,4 @@ const Country = () => {
         </div>
     </>)
 }
-export default Country
+export default Agents

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
@@ -7,17 +7,22 @@ import { visaStatusOptions } from "../student/data";
 import { Dropdown } from 'primereact/dropdown';
 import { Badge } from 'primereact/badge';
 import { Checkbox } from 'primereact/checkbox';
+import ColorsDropdown from "../common/ColorDropDown";
+import { getVisaStatus } from "./dataServices";
 const VisaStatus = () => {
-    const [data, setData] = useState(visaStatusOptions);
+    const [data, setData] = useState([]);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
-    const colors = [
-        { name: 'Red', code: 'red' },
-        { name: 'Green', code: 'green' },
-        { name: 'Yellow', code: 'yellow' },
-        { name: 'Blue', code: 'blue' },
-        { name: 'Purple', code: 'purple' },
-    ];
+    const getStatusData = () => {
+        getVisaStatus().then((res) => {
+            if (res.data.success) {
+                setData(res.data.data)
+            }
+        })
+    }
+    useEffect(() => {
+        getStatusData();
+    }, [])
     const onSubmit = () => {
         if (value.status) {
             if (editId) {
@@ -57,16 +62,15 @@ const VisaStatus = () => {
             <span onClick={() => onDelete(item.id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
-    const getColorValue = () => {
-        return colors.find((i) => i.code === value?.color)
-    }
     const BadgeComponent = ({ color }) => {
         return <Badge value={color} className={`${color}-bg`} />
     }
-    const EnableDateComponent = ({ hasDate }) => {
-        return hasDate ? <i className="pi pi-check"></i> : <></>
+    const EnableDateComponent = ({ VisaDateEnable }) => {
+        return VisaDateEnable ? <i className="pi pi-check"></i> : <></>
     }
-    console.log(value);
+    const ColorComponent = ({ ColorName, ColorCode }) => {
+        return <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{ColorName}</span>
+    }
     return (<>
         <div className="content margin-t-30p align-center">
             <div>
@@ -78,10 +82,10 @@ const VisaStatus = () => {
                     <label htmlFor="username">Visa Status</label>
                 </span>
                 <span className="p-inputtext-sm p-float-label  margin-l-10 ">
-                    <Dropdown inputId="dd-city" value={getColorValue()} onChange={(e) => setValue({
+                    <ColorsDropdown value={value} onChange={(e) => setValue({
                         ...value,
-                        color: e.target.value.code
-                    })} options={colors} optionLabel="name" className="m-width-220p" />
+                        color: e.target.value.Id
+                    })} />
                     <label htmlFor="dd-city">Color</label>
                 </span>
                 <div className=" margin-l-10 ">
@@ -100,9 +104,9 @@ const VisaStatus = () => {
                     }} label="Cancel" severity="secondary" className="small-button margin-l-5p" />
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
-                    <DataTable value={data} className="width-400p aligin-center" >
-                        <Column field="status" header="Status"></Column>
-                        <Column body={BadgeComponent} header="Badge Color"></Column>
+                    <DataTable value={data} className="width-500p aligin-center" >
+                        <Column field="VisaStatusName" header="Status"></Column>
+                        <Column body={ColorComponent} header="Badge Color"></Column>
                         <Column body={EnableDateComponent} header="Enable Date"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>

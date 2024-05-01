@@ -10,7 +10,13 @@ import IntakeDropDown from "../components/IntakeDropDown";
 import AgentDropDown from "../components/AgentDropDown";
 import StaffDropDown from "../components/StaffDropDown";
 import { InputTextarea } from "primereact/inputtextarea";
-const AddStudent = () => {
+import { Dropdown } from "primereact/dropdown";
+import CountryDropDown from "../components/CountryDropDown";
+import UniversityDropdown from "../components/UniversityDropdown";
+
+import { InputNumber } from "primereact/inputnumber";
+import { addStudent } from "./student.services";
+const AddStudent = ({ reload }) => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -25,7 +31,6 @@ const AddStudent = () => {
     };
 
     const defaultValues = {
-        value: ''
     };
 
     const {
@@ -35,12 +40,16 @@ const AddStudent = () => {
         getValues,
         reset,
         register,
+        setValue
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        data.value && show();
-
-        reset();
+        addStudent({ ...data, visa_status: {}, payment_status_id: '', reference_from: 'Direct' }).then((res) => {
+            if (res.data.success) {
+                setVisible(false);
+                reload();
+            }
+        })
     };
 
     const getFormErrorMessage = (name) => {
@@ -92,14 +101,14 @@ const AddStudent = () => {
                                     )}
                                 />
                                 <Controller
-                                    name="phone"
+                                    name="mobile"
                                     control={control}
                                     rules={{ required: 'Contact is required.' }}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <span className="p-float-label">
-                                                <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <InputNumber useGrouping={false} id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.value)} />
                                                 <label htmlFor={field.name}>Contact</label>
                                             </span>
                                             {getFormErrorMessage(field.name)}
@@ -112,7 +121,29 @@ const AddStudent = () => {
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <IntakeDropDown />
+                                            <IntakeDropDown onChange={(e) => {
+                                                debugger;
+                                                setValue('intake', e)
+                                            }} />
+                                            {getFormErrorMessage(field.name)}
+                                        </div>
+                                    )}
+                                />
+                                <Controller
+                                    name="aps_status"
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <div>
+                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                            <span className="p-inputtext-sm p-float-label   ">
+                                                <Dropdown inputId="dd-city" value={field.value} onChange={(e) => {
+                                                    setValue('aps_status', e.value)
+                                                }} options={[
+                                                    { value: 1, name: 'Yes' },
+                                                    { value: 2, name: 'No' },
+                                                ]} optionLabel="name" className="m-width-220p" />
+                                                <label htmlFor="dd-city">APS Status</label>
+                                            </span>
                                             {getFormErrorMessage(field.name)}
                                         </div>
                                     )}
@@ -122,39 +153,74 @@ const AddStudent = () => {
                         <SplitterPanel className="flex align-items-center " size={50}>
                             <>
                                 <Controller
-                                    name="agent"
+                                    name="qualification"
                                     control={control}
+                                    rules={{ required: 'Qualification is required.' }}
                                     render={({ field, fieldState }) => (
-                                        <div>
-                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <AgentDropDown />
-                                            {getFormErrorMessage(field.name)}
-                                        </div>
-                                    )}
-                                />
-                                <Controller
-                                    name="lead"
-                                    control={control}
-                                    rules={{ required: 'Lead is required.' }}
-                                    render={({ field, fieldState }) => (
-                                        <div>
-                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <StaffDropDown />
-                                            {getFormErrorMessage(field.name)}
-                                        </div>
-                                    )}
-                                />
-                                <Controller
-                                    name="address"
-                                    control={control}
-                                    render={({ field, fieldState }) => (
-                                        <div className=" margin-l-10">
+                                        <div className="margin-l-10">
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <span className="p-float-label">
-                                                <InputTextarea rows={2} cols={30} autoResize id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                                <label htmlFor={field.name}>Address</label>
+                                                <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <label htmlFor={field.name}>Heighest Qualification</label>
                                             </span>
                                             {getFormErrorMessage(field.name)}
+                                        </div>
+                                    )}
+                                />
+                                <Controller
+                                    name="country_id"
+                                    control={control}
+                                    rules={{ required: 'Country is required.' }}
+                                    render={({ field, fieldState }) => (
+                                        <div>
+                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                            <CountryDropDown
+                                                onChange={(v) => {
+                                                    setValue('country_id', v)
+                                                }} />
+                                            {getFormErrorMessage(field.name)}
+                                        </div>
+                                    )}
+                                />
+                                <Controller
+                                    name="university_id"
+                                    control={control}
+                                    rules={{ required: 'Country is required.' }}
+                                    render={({ field, fieldState }) => (
+                                        <div>
+                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                            <UniversityDropdown
+                                                onChange={(v) => {
+                                                    setValue('university_id', v)
+                                                }} />
+                                            {getFormErrorMessage(field.name)}
+                                        </div>
+                                    )}
+                                />
+                                <Controller
+                                    name="agent_id"
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <div>
+                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                            <AgentDropDown onChange={(v) => {
+                                                setValue('agent_id', v)
+                                            }} />
+                                            {getFormErrorMessage(field.name)}
+                                        </div>
+                                    )}
+                                />
+                                <Controller
+                                    name="course"
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <div className="margin-l-10">
+                                            <label htmlFor={field.course} className={classNames({ 'p-error': errors.value })}></label>
+                                            <span className="p-float-label">
+                                                <InputText id={field.course} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <label htmlFor={field.course}>Course </label>
+                                            </span>
+                                            {getFormErrorMessage(field.course)}
                                         </div>
                                     )}
                                 />

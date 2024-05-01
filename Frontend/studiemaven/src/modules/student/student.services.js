@@ -10,3 +10,12 @@ export const getStudents = params => {
         return response;
     });
 };
+export const addStudent = params => {
+    return httpCall({
+        url: API_URL.ADD_STUDENT,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};

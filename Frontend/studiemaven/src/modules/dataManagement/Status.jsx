@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
@@ -6,8 +6,9 @@ import { Column } from 'primereact/column';
 import { statusOptions } from "../student/data";
 import { Dropdown } from 'primereact/dropdown';
 import { Badge } from 'primereact/badge';
+import { addStatus, updateStatus, getStatus } from "./dataServices";
 const Status = () => {
-    const [data, setData] = useState(statusOptions);
+    const [data, setData] = useState([]);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
     const [selectedCity, setSelectedCity] = useState(null);
@@ -18,6 +19,17 @@ const Status = () => {
         { name: 'Blue', code: 'blue' },
         { name: 'Purple', code: 'purple' },
     ];
+       
+    const getStatusData = () => {
+        getStatus().then((res) => {
+            if (res.data.success) {
+                setData(res.data.data)
+            }
+        })
+    }
+    useEffect(() => {
+        getStatusData();
+    }, [])
     const onSubmit = () => {
         if (value.status) {
             if (editId) {
@@ -61,7 +73,9 @@ const Status = () => {
     const BadgeComponent = ({ color }) => {
         return <Badge value={color} className={`${color}-bg`} />
     }
-    console.log(value);
+    const ColorComponent = ({ ColorName, ColorCode }) => {
+        return <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{ColorName}</span>
+    }
     return (<>
         <div className="content margin-t-30p align-center">
             <div>
@@ -88,8 +102,8 @@ const Status = () => {
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="width-350p aligin-center" >
-                        <Column field="status" header="Status"></Column>
-                        <Column body={BadgeComponent} header="Badge Color"></Column>
+                        <Column field="StatusName" header="Status"></Column>
+                        <Column body={ColorComponent} header="Color"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>
                 </div>

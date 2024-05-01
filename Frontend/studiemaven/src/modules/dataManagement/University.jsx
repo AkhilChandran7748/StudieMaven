@@ -1,46 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { universityList } from "../student/data";
+import { getUniversities, addUniversity, updateUniversity } from "./dataServices";
 const University = () => {
-    const [data, setData] = useState(universityList);
+    const [data, setData] = useState([]);
     const [value, setValue] = useState('');
     const [editId, setEditId] = useState(null)
+    const loadData = () => {
+        getUniversities().then(res => {
+            if (res?.data?.success) {
+                setData(res.data?.data || []);
+            }
+        })
+    }
+    useEffect(() => {
+        loadData();
+    }, [])
     const onSubmit = () => {
         if (value) {
             if (editId) {
-                setData(data.map((item) => {
-                    if (item.id === editId) {
-                        return ({
-                            ...item,
-                            universityName: value
-
-                        })
+                updateUniversity({ uni_name: value, id: editId }).then((res) => {
+                    if (res.data.success) {
+                        loadData();
                     }
-                    return item
-                }))
+                })
             } else {
-                setData([...data, {
-                    id: new Date().getTime(),
-                    universityName: value
-                }])
+                addUniversity({ uni_name: value }).then((res) => {
+                    if (res.data.success) {
+                        loadData();
+                    }
+                })
             }
             setValue('');
             setEditId('');
         }
     }
     const onDelete = (id) => {
-        setData(data.filter((item) => item.id !== id))
+
+        updateUniversity({ DeleteStatus: 1, id: id }).then((res) => {
+            if (res.data.success) {
+                loadData();
+            }
+        })
     }
-    const TableActions = ({ id, universityName }) => {
+    const TableActions = ({ Id, UniversityName }) => {
         return (<>
             <span title="Edit" onClick={() => {
-                setEditId(id);
-                setValue(universityName)
+                setEditId(Id);
+                setValue(UniversityName)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={()=>onDelete(id)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => onDelete(Id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
     return (<>
@@ -59,7 +70,7 @@ const University = () => {
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="width-350p aligin-center" >
-                        <Column field="universityName" header="Document Name"></Column>
+                        <Column field="UniversityName" header="Ubiversity Name"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>
                 </div>

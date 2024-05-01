@@ -25,7 +25,6 @@ const StudentList = () => {
     useEffect(() => {
         getStudentData();
     }, [])
-    console.log(data);
     return (<>
         <div className="content">
             <div className="header padding-b-30">Student List</div>
@@ -33,16 +32,16 @@ const StudentList = () => {
                 <Search />
             </div>
 
-            <div style={{ textAlign: 'right' }} > <AddStudent /></div>
+            <div style={{ textAlign: 'right' }} > <AddStudent reload={getStudentData} /></div>
             <div className="card">
-                <DataTable value={data} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"10"}>
-                    {columnConfig.map((col, i) => <Column key={i} body={(item) => <span>{item[col.field]|| '-'}</span>} field={col.field} header={col.header} />)}
+                <DataTable value={data} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"25"}>
+                    {columnConfig.map((col, i) => <Column key={i} body={(item) => <span>{item[col.field] || '-'}</span>} field={col.field} header={col.header} />)}
 
                     <Column body={InTake} header="InTake"></Column>
                     <Column body={PaymentStatus} header="Payment Status"></Column>
                     <Column body={VisaStatus} header="Visa Status"></Column>
                     <Column body={Status} header="Status"></Column>
-                    <Column body={TableActions} header="Action"></Column>
+                    <Column  body={TableActions} header="Action"></Column>
                 </DataTable>
             </div>
         </div>

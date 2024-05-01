@@ -224,6 +224,10 @@ button:focus {
     width: 400px;
 }
 
+.width-500p {
+    width: 500px;
+}
+
 .red-bg {
     background-color: red;
 }
@@ -295,4 +299,11 @@ button:focus {
 
 .f-10p {
     font-size: 10px !important;
+}
+
+.color-badge {
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
 }

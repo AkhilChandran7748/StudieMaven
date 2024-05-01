@@ -9,7 +9,7 @@ const TableActions = (data) => {
     const { ApplicationId } = data;
     const navigate = useNavigate();
     //sttaus check on delete
-    return (<>
+    return (<div style={{ minWidth: '100px' }}>
 
         <span title="View" onClick={() => {
             navigate(`${RENDER_URL.VIEW_STUDENT}/${ApplicationId}`);
@@ -17,7 +17,7 @@ const TableActions = (data) => {
 
         <EditStudent student={data} />
         <span title="Delete" className="pi pi-trash red" ></span>
-    </>
+    </div>
     )
 }
 export default TableActions

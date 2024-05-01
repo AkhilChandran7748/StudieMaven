@@ -43,5 +43,21 @@ export const API_URL = {
     GET_STUDENTS: '/student/getOnGoingApplications',
     GET_PAYMENT_STATUS: '/document/getAllPaymentStatusType',
     ADD_PAYMENT_STATUS: '/document/addPaymentStatusType',
+    GET_ALL_COLORS: '/document/getAllColors',
+    ADD_COLOR: 'document/addColor',
+    UPDATE_COLOR: 'document/updateColor',
+    GET_STATUS: '/document/getAllStatusType',
+    ADD_STATUS: '/document/addStatus',
+    GET_VISA_STATUS: '/document/getAllVisaStatusType',
+    ADD_VISA_STATUS: '/document/addVisaStatusType',
+    UPDATE_VISA_STATUS: '/document/getAllVisaStatusType',
+    GET_AGENTS: '/document/getAllAgent',
+    ADD_AGENT: '/document/addAgent',
+    UPDATE_AGENT: '/document/getAllVisaStatusType',
+    GET_UNIVERSITY: '/document/getAllUni',
+    ADD_UNIVERSITY: '/document/addUni',
+    UPDATE_UNIVERSITY: '/document/updateUni',
+    ADD_STUDENT: '/student/addApplication',
+
 
 }

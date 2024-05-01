@@ -28,7 +28,7 @@ const PaymentStatus = ({ paymentStatus }) => {
         }
     }
     return (<>
-        {show && <Dialog headerClassName="align-center" header="Change Visa Status" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >
+        {show && <Dialog headerClassName="align-center" header="Change Payment Status" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >
             <div className=" align-center ">
                 <Dropdown value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} options={data} optionLabel="PaymentStatusName"
                     placeholder="Status" className="m-width-220p" />

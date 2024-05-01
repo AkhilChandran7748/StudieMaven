@@ -3,9 +3,14 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from "primereact/button";
 import { Calendar } from 'primereact/calendar';
 import { Badge } from 'primereact/badge';
-const InTake = ({ inTake, isPostponed }) => {
+import moment from "moment";
+const InTake = ({ InTake, isPostponed }) => {
     const [show, setShow] = useState(false);
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState(InTake);
+    const covertDate = () => {
+        if (InTake)
+            return moment(`${InTake}`).format('MMM YYYY')
+    }
     //psotpone
     return (<>
         {show && <Dialog headerClassName="align-center" header="Change InTake" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >
@@ -17,8 +22,8 @@ const InTake = ({ inTake, isPostponed }) => {
                 </div>
             </div>
         </Dialog>}
-        <span style={{marginRight: '5px'}} onClick={() => setShow(true)}>{inTake|| '-'}</span>
-        {isPostponed &&<Badge value="p"  severity="danger"></Badge>}
+        <span style={{ marginRight: '5px' }} onClick={() => setShow(true)}>{covertDate() || '-'}</span>
+        {isPostponed && <Badge value="p" severity="danger"></Badge>}
     </>
     )
 }
