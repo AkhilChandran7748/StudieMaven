@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-import { Dropdown } from 'primereact/dropdown';
-
-export default function PaymentStatusDropDown() {
-    const [selectedCity, setSelectedCity] = useState(null);
-    const cities = [
-        { name: 'Paid', code: 'NY' },
-        { name: 'Pending', code: 'RM' },
-        { name: 'Not Paid', code: 'LDN' },
-    ];
-
+import React, { useEffect, useState } from "react";
+import { MultiSelect } from 'primereact/multiselect';
+import { getPaymentStatus } from "../dataManagement/dataServices";
+export default function PaymentStatusDropDown({ value, onChange }) {
+    const [data, setData] = useState([]);
+    const getStatusData = () => {
+        getPaymentStatus().then((res) => {
+            if (res.data.success) {
+                setData(res.data.data)
+            }
+        })
+    }
+    useEffect(() => {
+        getStatusData();
+    }, [])
     return (
         <span className="p-inputtext-sm p-float-label  margin-l-10 ">
-        <Dropdown  inputId="dd-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" className="m-width-220p" />
-            <label htmlFor="dd-city">Payment Status</label>
+            <MultiSelect value={value} onChange={(e) => {
+                onChange(e.value)
+            }} options={data} optionLabel="PaymentStatusName"
+                maxSelectedLabels={1} className=" m-width-220p" />
+            <label htmlFor="dd-city">Visa Status</label>
         </span>
     )
 }

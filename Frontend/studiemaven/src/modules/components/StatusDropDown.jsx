@@ -1,21 +1,25 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { MultiSelect } from 'primereact/multiselect';
-
-export default function StatusDropDown() {
-    const [selectedCities, setSelectedCities] = useState(null);
-    const cities = [
-        { name: 'COL', code: 'NY' },
-        { name: 'OUL', code: 'RM' },
-        { name: 'Accepted', code: 'LDN' },
-        { name: 'Rejected', code: 'LDN' },
-    ];
-
+import { getStatus } from "../dataManagement/dataServices";
+export default function StatusDropDown({ value, onChange }) {
+    const [data, setData] = useState([]);
+    const getStatusData = () => {
+        getStatus().then((res) => {
+            if (res.data.success) {
+                setData(res.data.data)
+            }
+        })
+    }
+    useEffect(() => {
+        getStatusData();
+    }, [])
     return (
         <span className="p-inputtext-sm p-float-label  margin-l-10 ">
-          <MultiSelect value={selectedCities} onChange={(e) => setSelectedCities(e.value)} options={cities} optionLabel="name" 
-                 maxSelectedLabels={1} className=" m-width-220p" />
-            <label htmlFor="dd-city">Status</label>
+            <MultiSelect value={value} onChange={(e) => {
+                onChange(e.value)
+            }} options={data} optionLabel="StatusName"
+                maxSelectedLabels={1} className=" m-width-220p" />
+            <label htmlFor="dd-city">Visa Status</label>
         </span>
     )
 }

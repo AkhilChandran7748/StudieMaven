@@ -26,17 +26,16 @@ const PaymentStatus = () => {
     const onSubmit = () => {
         if (value.PaymentStatusName) {
             if (editId) {
-                setData(data.map((item) => {
-                    if (item.id === editId) {
-                        return ({
-                            ...item,
-                            status: value.status,
-                            color: value.color
 
-                        })
+                addPaymentStatus({
+                    pay_status_type_id: editId,
+                    pay_status_type_name: value.PaymentStatusName,
+                    color_id: value.ColorId,
+                }).then((res) => {
+                    if (res.data.success) {
+                        getPaymentsStatusData();
                     }
-                    return item
-                }))
+                })
             } else {
                 addPaymentStatus({
                     pay_status_type_name: value.PaymentStatusName,
@@ -64,7 +63,7 @@ const PaymentStatus = () => {
     const TableActions = (item) => {
         return (<>
             <span title="Edit" onClick={() => {
-                setEditId(item.id);
+                setEditId(item.Id);
                 setValue(item)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
             <span onClick={() => onDelete(item.Id)} title="Delete" className="pi pi-trash red" ></span>
@@ -73,7 +72,6 @@ const PaymentStatus = () => {
     const ColorComponent = ({ ColorName, ColorCode }) => {
         return <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{ColorName}</span>
     }
-    console.log(value);
     return (<>
         <div className="content margin-t-30p align-center">
             <div>
@@ -82,7 +80,7 @@ const PaymentStatus = () => {
                         ...value,
                         PaymentStatusName: e.target.value
                     })} />
-                    <label htmlFor="username">Payment Status</label>
+                    <label htmlFor="username">Payment Status1</label>
                 </span>
                 <span className="p-inputtext-sm p-float-label  margin-l-10 ">
                     <ColorsDropdown value={value?.ColorId} onChange={(e) => {

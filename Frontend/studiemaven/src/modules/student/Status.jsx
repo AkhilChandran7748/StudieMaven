@@ -3,12 +3,16 @@ import { Badge } from 'primereact/badge';
 import { Dialog } from 'primereact/dialog';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from "primereact/button";
-import { addStatus, updateStatus, getStatus } from "../dataManagement/dataServices";
-const Status = ({ status }) => {
+import { addStudent } from "../student/student.services";
+import {  getStatus } from "../dataManagement/dataServices";
+const Status = ({ reload, student }) => {
+    const { Status, ApplicationId } = student
     const [show, setShow] = useState(false);
     const [data, setData] = useState([])
     const [selectedStatus, setSelectedStatus] = useState(null);
-
+    useEffect(() => {
+        setSelectedStatus(data.find((i) => i.Id === Status))
+    }, [data])
     const getStatusData = () => {
         getStatus().then((res) => {
             if (res.data.success) {
@@ -19,14 +23,23 @@ const Status = ({ status }) => {
     useEffect(() => {
         getStatusData();
     }, [])
-    const getSeverity = () => {
-        switch (status) {
-            case 'Rejected':
-                return 'danger'
-            case 'Accepted':
-                return 'success';
-            default: return '';
-        }
+    const onSubmit = () => {
+        addStudent({
+            "application_id": ApplicationId,
+            "status_id": selectedStatus.Id
+        }).then((res) => {
+            if (res.data.success) {
+                setShow(false);
+                reload("Student data updated successfully")
+            }
+        })
+    }
+    const ColorComponent = () => {
+        const { ColorCode, StatusName } = selectedStatus || {}
+        return <span onClick={()=>setShow(true)}>
+            {Status ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{StatusName}</span> :
+                <span className="color-badge" style={{ backgroundColor: `#6366f1` }} >N/A</span>}
+        </span>
     }
     return (<>
         {show && <Dialog headerClassName="align-center" header="Change Status" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >
@@ -34,12 +47,12 @@ const Status = ({ status }) => {
                 <Dropdown value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} options={data} optionLabel="StatusName"
                     placeholder="Status" className="m-width-220p" />
                 <div className="padding-t-20p">
-                    <span className="padding-r-sm">   <Button onClick={() => setShow(false)} label="Update" severity="success" size="small" /></span>
+                    <span className="padding-r-sm">   <Button onClick={onSubmit} label="Update" severity="success" size="small" /></span>
                     <Button onClick={() => setShow(false)} label="Cancel" severity="danger" size="small" />
                 </div>
             </div>
         </Dialog>}
-        <Badge value={status || 'N/A'} onClick={() => setShow(true)} severity={getSeverity()} />
+        <ColorComponent />
     </>
     )
 }

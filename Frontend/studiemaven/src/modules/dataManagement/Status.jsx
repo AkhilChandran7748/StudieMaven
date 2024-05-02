@@ -7,18 +7,13 @@ import { statusOptions } from "../student/data";
 import { Dropdown } from 'primereact/dropdown';
 import { Badge } from 'primereact/badge';
 import { addStatus, updateStatus, getStatus } from "./dataServices";
+import ColorsDropdown from "../common/ColorDropDown";
 const Status = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
     const [selectedCity, setSelectedCity] = useState(null);
-    const colors = [
-        { name: 'Red', code: 'red' },
-        { name: 'Green', code: 'green' },
-        { name: 'Yellow', code: 'yellow' },
-        { name: 'Blue', code: 'blue' },
-        { name: 'Purple', code: 'purple' },
-    ];
+ 
        
     const getStatusData = () => {
         getStatus().then((res) => {
@@ -31,47 +26,42 @@ const Status = () => {
         getStatusData();
     }, [])
     const onSubmit = () => {
-        if (value.status) {
+        if (value.status_name) {
             if (editId) {
-                setData(data.map((item) => {
-                    if (item.id === editId) {
-                        return ({
-                            ...item,
-                            status: value.status,
-                            color: value.color
-
-                        })
+                addStatus({...value, status_id: editId,  status_value:100}).then((res) => {
+                    if (res.data.success) {
+                        getStatusData();
                     }
-                    return item
-                }))
+                })
             } else {
-                setData([...data, {
-                    id: new Date().getTime(),
-                    status: value.status,
-                    color: value.color
-                }])
+                addStatus({...value, status_value:100}).then((res) => {
+                    if (res.data.success) {
+                        getStatusData();
+                    }
+                })
             }
             setValue(null);
             setEditId('');
         }
     }
     const onDelete = (id) => {
-        setData(data.filter((item) => item.id !== id))
+        addStatus({delete_status: 1, status_id: id}).then((res) => {
+            if (res.data.success) {
+                getStatusData();
+            }
+        })
     }
     const TableActions = (item) => {
         return (<>
             <span title="Edit" onClick={() => {
-                setEditId(item.id);
-                setValue(item)
+                setEditId(item.Id);
+                setValue({
+                    status_name: item.StatusName,
+                    color_id: item.Id
+                })
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={() => onDelete(item.id)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => onDelete(item.Id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
-    }
-    const getColorValue = () => {
-        return colors.find((i) => i.code === value?.color)
-    }
-    const BadgeComponent = ({ color }) => {
-        return <Badge value={color} className={`${color}-bg`} />
     }
     const ColorComponent = ({ ColorName, ColorCode }) => {
         return <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{ColorName}</span>
@@ -80,18 +70,17 @@ const Status = () => {
         <div className="content margin-t-30p align-center">
             <div>
                 <span className="p-float-label margin-l-10">
-                    <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.status || ''} onChange={(e) => setValue({
+                    <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.status_name || ''} onChange={(e) => setValue({
                         ...value,
-                        status: e.target.value
+                        status_name: e.target.value
                     })} />
                     <label htmlFor="username">Status</label>
                 </span>
                 <span className="p-inputtext-sm p-float-label  margin-l-10 ">
-                    <Dropdown inputId="dd-city" value={getColorValue()} onChange={(e) => setValue({
+                <ColorsDropdown value={value?.color_id} onChange={(e) => setValue({
                         ...value,
-                        color: e.target.value.code
-                    })} options={colors} optionLabel="name" className="m-width-220p" />
-                    <label htmlFor="dd-city">Color</label>
+                        color_id: e.Id
+                    })} />
                 </span>
                 <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                     <Button onClick={onSubmit} label="Submit" severity="success" className="small-button" />

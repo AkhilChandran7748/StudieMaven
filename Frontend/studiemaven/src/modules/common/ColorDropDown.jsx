@@ -9,6 +9,8 @@ const ColorsDropdown = ({ onChange, value }) => {
         if (value) {
             let item = colors.find((i) => i.Id === value)
             item && setSelected(item)
+        } else {
+            setSelected(null)
         }
     }, [value])
     const getColorData = () => {
@@ -24,7 +26,7 @@ const ColorsDropdown = ({ onChange, value }) => {
     return (<>
         <Dropdown inputId="dd-city" value={selected} onChange={(e) => {
             setSelected(e.value);
-            onChange && onChange (e.value)
+            onChange && onChange(e.value)
         }} options={colors} optionLabel="ColorName" className="m-width-220p" />
         <label htmlFor="dd-city">Color</label>
     </>)

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { getAgents } from '../dataManagement/dataServices'
-export default function AgentDropDown({ onChange }) {
-    const [selectedCity, setSelectedCity] = useState(null);
+export default function AgentDropDown({ onChange, value = null }) {
+    const [selectedCity, setSelectedCity] = useState(value);
     const [data, setData] = useState([]);
+    useEffect(() => {
+        setSelectedCity(data.find((i) => i.Id === value))
+    }, [value, data])
     const loadData = () => {
         getAgents().then(res => {
             if (res?.data?.success) {

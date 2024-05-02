@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { studentData } from "./data";
@@ -12,7 +12,9 @@ import InTake from "./InTake";
 import LeadOwner from "./LeadOwner";
 import PaymentStatus from "./PaymentStatus";
 import { getStudents } from "./student.services";
+import { Toast } from "primereact/toast";
 const StudentList = () => {
+    const toast = useRef(null);
     const [data, setData] = useState([])
     const getStudentData = () => {
         getStudents().then((res) => {
@@ -22,14 +24,18 @@ const StudentList = () => {
 
         }).catch((e) => { console.log(e); })
     }
+    const show = (detail) => {
+        toast.current.show({ severity: 'info', summary: 'Success', detail });
+    };
     useEffect(() => {
         getStudentData();
     }, [])
     return (<>
+        <Toast ref={toast} />
         <div className="content">
             <div className="header padding-b-30">Student List</div>
             <div className="card margin-b-md">
-                <Search />
+                <Search onSearch={getStudentData} />
             </div>
 
             <div style={{ textAlign: 'right' }} > <AddStudent reload={getStudentData} /></div>
@@ -38,13 +44,37 @@ const StudentList = () => {
                     {columnConfig.map((col, i) => <Column key={i} body={(item) => <span>{item[col.field] || '-'}</span>} field={col.field} header={col.header} />)}
 
                     <Column body={InTake} header="InTake"></Column>
-                    <Column body={PaymentStatus} header="Payment Status"></Column>
-                    <Column body={VisaStatus} header="Visa Status"></Column>
-                    <Column body={Status} header="Status"></Column>
-                    <Column  body={TableActions} header="Action"></Column>
+                    <Column body={(item) => {
+                        return <PaymentStatus student={item} reload={(detail) => {
+                            show(detail)
+                            getStudentData();
+                        }} />
+                    }}
+                        header="Payment Status" ></Column>
+                    <Column 
+                    body={(item) => {
+                        return <VisaStatus student={item} reload={(detail) => {
+                            show(detail)
+                            getStudentData();
+                        }} />
+                    }}
+                    header="Visa Status"></Column>
+                    <Column 
+                     body={(item) => {
+                        return <Status student={item} reload={(detail) => {
+                            show(detail)
+                            getStudentData();
+                        }} />
+                    }} header="Status"></Column>
+                    <Column body={(item) => {
+                        return <TableActions data={item} reload={(detail) => {
+                            show(detail)
+                            getStudentData();
+                        }} />
+                    }} header="Action"></Column>
                 </DataTable>
             </div>
-        </div>
+        </div >
     </>)
 }
 export default StudentList

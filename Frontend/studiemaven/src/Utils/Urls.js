@@ -58,6 +58,8 @@ export const API_URL = {
     ADD_UNIVERSITY: '/document/addUni',
     UPDATE_UNIVERSITY: '/document/updateUni',
     ADD_STUDENT: '/student/addApplication',
+    GET_DOCLIST: '/document/getAllUni',
+    ADD_DOCTYPE: '/document/addUni',
 
 
 }

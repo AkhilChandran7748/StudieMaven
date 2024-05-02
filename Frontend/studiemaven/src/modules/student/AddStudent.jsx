@@ -24,13 +24,9 @@ const AddStudent = ({ reload }) => {
             <Button label="Cancel" className="small-button" severity="secondary" onClick={() => setVisible(false)} autoFocus />
         </div>
     );
-    const toast = useRef(null);
-
-    const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
-    };
 
     const defaultValues = {
+        aps_status: 2
     };
 
     const {
@@ -47,7 +43,7 @@ const AddStudent = ({ reload }) => {
         addStudent({ ...data, visa_status: {}, payment_status_id: '', reference_from: 'Direct' }).then((res) => {
             if (res.data.success) {
                 setVisible(false);
-                reload();
+                reload('New Student added successfully');
             }
         })
     };
@@ -60,7 +56,6 @@ const AddStudent = ({ reload }) => {
             <span onClick={() => setVisible(true)} title="Add New Student" className="pi pi-user-plus margin-r-10 grey action-icon " style={{ fontSize: '1.5rem' }} ></span>
             <Dialog header="New Student" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} >
                 <form onSubmit={handleSubmit(onSubmit)} className="add-student">
-                    <Toast ref={toast} />
                     <Splitter >
                         <SplitterPanel className="flex align-items-center margin-l-10" size={50}>
                             <>
@@ -122,7 +117,6 @@ const AddStudent = ({ reload }) => {
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <IntakeDropDown onChange={(e) => {
-                                                debugger;
                                                 setValue('intake', e)
                                             }} />
                                             {getFormErrorMessage(field.name)}
@@ -211,7 +205,7 @@ const AddStudent = ({ reload }) => {
                                     )}
                                 />
                                 <Controller
-                                    name="course"
+                                    name="course_name"
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <div className="margin-l-10">

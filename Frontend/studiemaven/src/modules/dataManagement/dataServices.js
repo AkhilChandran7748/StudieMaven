@@ -187,3 +187,31 @@ export const updateUniversity= params => {
         return response;
     });
 };
+
+export const getDocumentTypes = params => {
+    return httpCall({
+        url: API_URL.GET_UNIVERSITY,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+export const addDocumentType = params => {
+    return httpCall({
+        url: API_URL.ADD_UNIVERSITY,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+export const updateDocumentType= params => {
+    return httpCall({
+        url: API_URL.UPDATE_UNIVERSITY,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};

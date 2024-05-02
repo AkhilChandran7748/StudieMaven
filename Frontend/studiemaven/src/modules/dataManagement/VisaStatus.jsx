@@ -8,7 +8,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { Badge } from 'primereact/badge';
 import { Checkbox } from 'primereact/checkbox';
 import ColorsDropdown from "../common/ColorDropDown";
-import { getVisaStatus } from "./dataServices";
+import { getVisaStatus, addVisaStatus } from "./dataServices";
 const VisaStatus = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState({});
@@ -26,44 +26,49 @@ const VisaStatus = () => {
     const onSubmit = () => {
         if (value.status) {
             if (editId) {
-                setData(data.map((item) => {
-                    if (item.id === editId) {
-                        return ({
-                            ...item,
-                            status: value.status,
-                            color: value.color,
-                            hasDate: value.hasDate
-
-                        })
+                addVisaStatus({
+                    visa_status_type_id: editId,
+                    "visa_status_type_name": value.status,
+                    "visa_enable_date": value.hasDate,
+                    "color_id": value.color,
+                }).then((res) => {
+                    if (res.data.success) {
+                        getStatusData();
                     }
-                    return item
-                }))
+                })
             } else {
-                setData([...data, {
-                    id: new Date().getTime(),
-                    status: value.status,
-                    color: value.color,
-                    hasDate: value.hasDate
-                }])
+                addVisaStatus({
+                    "visa_status_type_name": value.status,
+                    "visa_enable_date": value.hasDate,
+                    "color_id": value.color,
+                }).then((res) => {
+                    if (res.data.success) {
+                        getStatusData();
+                    }
+                })
             }
             setValue(null);
             setEditId('');
         }
     }
     const onDelete = (id) => {
-        setData(data.filter((item) => item.id !== id))
+        addVisaStatus({
+            visa_status_type_id: id,
+            "delete_status": 1,
+        }).then((res) => {
+            if (res.data.success) {
+                getStatusData();
+            }
+        })
     }
     const TableActions = (item) => {
         return (<>
             <span title="Edit" onClick={() => {
-                setEditId(item.id);
-                setValue(item)
+                setEditId(item.Id);
+                setValue({status: item.VisaStatusName,hasDate: item.VisaDateEnable, color: item.ColorId})
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={() => onDelete(item.id)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => onDelete(item.Id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
-    }
-    const BadgeComponent = ({ color }) => {
-        return <Badge value={color} className={`${color}-bg`} />
     }
     const EnableDateComponent = ({ VisaDateEnable }) => {
         return VisaDateEnable ? <i className="pi pi-check"></i> : <></>
@@ -82,14 +87,14 @@ const VisaStatus = () => {
                     <label htmlFor="username">Visa Status</label>
                 </span>
                 <span className="p-inputtext-sm p-float-label  margin-l-10 ">
-                    <ColorsDropdown value={value} onChange={(e) => setValue({
+                    <ColorsDropdown value={value?.color} onChange={(e) => setValue({
                         ...value,
-                        color: e.target.value.Id
+                        color: e.Id
                     })} />
                     <label htmlFor="dd-city">Color</label>
                 </span>
                 <div className=" margin-l-10 ">
-                    <div>   Enable date  </div> <Checkbox checked={value?.hasDate} onChange={(e) => {
+                    <div>   Enable date  </div> <Checkbox checked={value?.hasDate === 1|| value?.hasDate === true} onChange={(e) => {
                         setValue({
                             ...value,
                             hasDate: e.checked
