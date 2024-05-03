@@ -12,11 +12,11 @@ const VisaStatus = ({ reload, student }) => {
     const { VisaStatus, ApplicationId } = student
     let visaData =JSON.parse(VisaStatus);
     const [show, setShow] = useState(false);
-    const [date, setDate] = useState(new Date(visaData.date));
+    const [date, setDate] = useState(visaData?.date?new Date(visaData.date): null);
     const [data, setData] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState(null);
     useEffect(() => {
-        setSelectedStatus(data.find((i) => i.Id === visaData.visa_id))
+        setSelectedStatus(data.find((i) => i.Id === visaData?.visa_id))
         // setDate(new Date(visaData.data))
     }, [data])
     const getStatusData = () => {

@@ -26,7 +26,7 @@ const Status = ({ reload, student }) => {
     const onSubmit = () => {
         addStudent({
             "application_id": ApplicationId,
-            "status_id": selectedStatus.Id
+            "status": selectedStatus.Id
         }).then((res) => {
             if (res.data.success) {
                 setShow(false);

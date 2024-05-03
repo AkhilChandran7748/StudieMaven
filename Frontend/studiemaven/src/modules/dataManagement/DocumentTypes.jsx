@@ -4,13 +4,13 @@ import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { countries } from "../student/data";
-import { addCountry, getCountry, updateCountry } from "./dataServices";
+import { addDocumentType, getDocumentTypes } from "./dataServices";
 const Country = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState('');
     const [editId, setEditId] = useState(null)
     const loadData = () => {
-        getCountry().then(res => {
+        getDocumentTypes().then(res => {
             if (res?.data?.success) {
                 setData(res.data?.data || []);
             }
@@ -23,23 +23,21 @@ const Country = () => {
         if (value) {
             if (editId) {
                 let params = {
-                    id: editId,
-                    "country_name": value,
-                    "country_code": "",
-                    "country_flag": ""
+                    document_id: editId,
+                    "document_name": value,
+                    "document_note": ""
                 }
-                updateCountry(params).then(res => {
+                addDocumentType(params).then(res => {
                     if (res.data?.success) {
                         loadData();
                     }
                 })
             } else {
                 let params = {
-                    "country_name": value,
-                    "country_code": "",
-                    "country_flag": ""
+                    "document_name": value,
+                    "document_note": ""
                 }
-                addCountry(params).then(res => {
+                addDocumentType(params).then(res => {
                     if (res.data?.success) {
                         loadData();
                     }
@@ -51,25 +49,22 @@ const Country = () => {
     }
     const onDelete = (id) => {
         let params = {
-            id,
-            "country_name": value,
-            "country_code": "",
-            "country_flag": "",
+            document_id: id,
             delete_status: 1,
         }
-        updateCountry(params).then(res => {
+        addDocumentType(params).then(res => {
             if (res.data?.success) {
                 loadData();
             }
         })
     }
-    const TableActions = ({ id, CountryName }) => {
+    const TableActions = ({ Id, DocumentName }) => {
         return (<>
             <span title="Edit" onClick={() => {
-                setEditId(id);
-                setValue(CountryName)
+                setEditId(Id);
+                setValue(DocumentName)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={() => onDelete(id)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => onDelete(Id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
     return (<>
@@ -77,7 +72,7 @@ const Country = () => {
             <div>
                 <span className="p-float-label margin-l-10">
                     <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
-                    <label htmlFor="username">Country Name</label>
+                    <label htmlFor="username">Document Name</label>
                 </span>
                 <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                     <Button onClick={onSubmit} label="Submit" severity="success" className="small-button" />
@@ -88,7 +83,7 @@ const Country = () => {
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="width-350p aligin-center" >
-                        <Column field="CountryName" header="Country Name"></Column>
+                        <Column field="DocumentName" header="Country Name"></Column>
                         <Column body={TableActions} header="Action"></Column>
                     </DataTable>
                 </div>

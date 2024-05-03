@@ -190,7 +190,7 @@ export const updateUniversity= params => {
 
 export const getDocumentTypes = params => {
     return httpCall({
-        url: API_URL.GET_UNIVERSITY,
+        url: API_URL.GET_DOCLIST,
         method: "post",
         data: params
     }).then(response => {
@@ -199,7 +199,7 @@ export const getDocumentTypes = params => {
 };
 export const addDocumentType = params => {
     return httpCall({
-        url: API_URL.ADD_UNIVERSITY,
+        url: API_URL.ADD_DOCTYPE,
         method: "post",
         data: params
     }).then(response => {

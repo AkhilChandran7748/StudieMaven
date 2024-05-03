@@ -40,7 +40,7 @@ const AddStudent = ({ reload }) => {
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        addStudent({ ...data, visa_status: {}, payment_status_id: '', reference_from: 'Direct' }).then((res) => {
+        addStudent({ ...data, visa_status: {}, payment_status_id: '', reference_from: 'Direct', status: 0 }).then((res) => {
             if (res.data.success) {
                 setVisible(false);
                 reload('New Student added successfully');

@@ -19,3 +19,12 @@ export const addStudent = params => {
         return response;
     });
 };
+export const searchStudent = params => {
+    return httpCall({
+        url: API_URL.SEARCH_STUDENTS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};

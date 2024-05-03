@@ -35,7 +35,7 @@ const AddStudent = ({ reload, student }) => {
         country_id: student.CountryId,
         university_id: student.UniversityId,
         agent_id: student.AgentId,
-        course: student.course
+        course: student.Course
 
     };
 
@@ -64,7 +64,7 @@ const AddStudent = ({ reload, student }) => {
     return (
         <>
             <span onClick={() => setVisible(true)} title="Edit" className="pi pi-user-edit margin-r-10 grey" ></span>
-            <Dialog header="New Student" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} >
+            <Dialog header="Update Student" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} >
                 <form onSubmit={handleSubmit(onSubmit)} className="add-student">
                     <Splitter >
                         <SplitterPanel className="flex align-items-center margin-l-10" size={50}>
@@ -217,7 +217,7 @@ const AddStudent = ({ reload, student }) => {
                                     )}
                                 />
                                 <Controller
-                                    name="course_name"
+                                    name="course"
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <div className="margin-l-10">

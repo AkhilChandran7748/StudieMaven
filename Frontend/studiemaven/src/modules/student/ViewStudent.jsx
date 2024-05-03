@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import WithHeader from "../common/WithHeaderHoc";
 import { useParams } from "react-router-dom";
 import { student } from "./data";
@@ -7,12 +7,22 @@ import PersonalInfo from "./PersonalInfo";
 import { TabView, TabPanel } from 'primereact/tabview';
 import Documents from "../documents/Documents";
 import VisaDocuments from "../documents/VisaDocuments";
+import { searchStudent } from "./student.services";
 const ViewStudent = () => {
     const { id } = useParams();
+    const [studentData, setStudentData] = useState(null)
+    useEffect(()=>{
+        searchStudent({application_id: id}).then((res) => {
+            if (res?.data?.success) {
+                setStudentData(res?.data?.data[0])
+            }
+
+        }).catch((e) => { console.log(e); })
+    }, [])
     return (<>
         <div className="content student">
             <div className="card">
-                <PersonalInfo student={student} />
+                <PersonalInfo student={studentData} />
                 <TabView className="content">
                     <TabPanel header="Documents">
                        <Documents documents={student.documents}/>

@@ -19,7 +19,7 @@ export default function StatusDropDown({ value, onChange }) {
                 onChange(e.value)
             }} options={data} optionLabel="StatusName"
                 maxSelectedLabels={1} className=" m-width-220p" />
-            <label htmlFor="dd-city">Visa Status</label>
+            <label htmlFor="dd-city">Status</label>
         </span>
     )
 }

@@ -10,26 +10,46 @@ import StaffDropDown from "../components/StaffDropDown";
 import PaymentStatusDropDown from "../components/PaymentStatus";
 import UniversityDropdown from "../components/UniversityDropdown";
 import VisaStatusDropDown from '../components/VisaStatusDropDown'
-const Search = () => {
+const Search = ({ onSearch }) => {
     const [value, setValue] = useState({
         name: '',
         agent_id: '',
         owner_id: '',
-        visa_status: '',
+        visa_status: [],
         university_id: '',
-        status_id: '',
-        payment_status_id: '',
+        status_id: [],
+        payment_status_id: [],
         course_name: '',
         intake: ''
     });
     const onSubmit = () => {
-        console.log(value);
+        let formattedValues = {
+            ...value,
+            status_id: value.status_id.map((i) => i.Id),
+            visa_status: value.visa_status.map((i) => i.Id),
+            payment_status_id: value.payment_status_id.map((i) => i.Id),
+        }
+        onSearch(formattedValues);
     }
     const onChange = (key, val) => {
         setValue({
             ...value,
             [key]: val
         })
+    }
+    const onReset = () => {
+        setValue({
+            name: '',
+            agent_id: '',
+            owner_id: '',
+            visa_status: [],
+            university_id: '',
+            status_id: [],
+            payment_status_id: [],
+            course_name: '',
+            intake: ''
+        })
+        onSearch();
     }
     return (<>
         <div className="card padding-b-10p padding-10p">
@@ -45,22 +65,22 @@ const Search = () => {
                             <AgentDropDown value={value.agent_id} onChange={(e) => onChange('agent_id', e)} />
                             <StaffDropDown value={value.owner_id} onChange={(e) => onChange('owner_id', e)} />
                             <VisaStatusDropDown value={value.visa_status} onChange={(e) => {
-                                onChange('visa_status', e.map((i) => i.Id))
+                                onChange('visa_status', e)
                             }} />
                             <UniversityDropdown value={value.university_id} onChange={(e) => onChange('university_id', e)} />
                         </div>
                         <div className="row padding-t-30p">
-                            <StatusDropDown value={value.status_id} onChange={(e) => onChange('status_id', e.map((i) => i.Id))} />
-                            <PaymentStatusDropDown value={value.payment_status_id} onChange={(e) => onChange('payment_status_id',e.map((i) => i.Id))} />
+                            <StatusDropDown value={value.status_id} onChange={(e) => onChange('status_id', e)} />
+                            <PaymentStatusDropDown value={value.payment_status_id} onChange={(e) => onChange('payment_status_id', e)} />
                             <span className="p-float-label margin-l-10">
                                 <InputText className="p-inputtext-sm  m-width-220p" id="username" onChange={(e) => onChange('course_name', e.target.value)} value={value.course_name} />
                                 <label htmlFor="username">Course</label>
                             </span>
-                            <IntakeDropDown value={value.intake} onChange={(e) => onChange('intake', e)} className={'margin-l-10'} />
+                            <IntakeDropDown dateValue={value.intake} onChange={(e) => onChange('intake', e)} className={'margin-l-10'} />
                         </div>
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                             <Button label="Search" onClick={onSubmit} className="small-button" />
-                            <Button label="Reset" severity="secondary" className="small-button margin-l-5p" />
+                            <Button label="Reset" onClick={onReset} severity="secondary" className="small-button margin-l-5p" />
                         </div>
                     </div>
                 </AccordionTab>
