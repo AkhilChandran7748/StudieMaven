@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WithHeader from "../common/WithHeaderHoc";
 import { useParams } from "react-router-dom";
 import { student } from "./data";
@@ -8,24 +8,36 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import Documents from "../documents/Documents";
 import VisaDocuments from "../documents/VisaDocuments";
 import { searchStudent } from "./student.services";
+import { Toast } from 'primereact/toast';
 const ViewStudent = () => {
     const { id } = useParams();
+    const toast = useRef(null);
     const [studentData, setStudentData] = useState(null)
-    useEffect(()=>{
-        searchStudent({application_id: id}).then((res) => {
+    const show = (detail) => {
+        toast.current.show({ severity: 'info', summary: 'Success', detail });
+    };
+    const getStudentDetails = () => {
+        searchStudent({ application_id: id }).then((res) => {
             if (res?.data?.success) {
                 setStudentData(res?.data?.data[0])
             }
 
         }).catch((e) => { console.log(e); })
+    }
+    useEffect(() => {
+        getStudentDetails();
     }, [])
     return (<>
+        <Toast ref={toast} />
         <div className="content student">
             <div className="card">
-                <PersonalInfo student={studentData} />
+                <PersonalInfo reload={(detail) => {
+                    show(detail);
+                    getStudentDetails();
+                }} student={studentData} />
                 <TabView className="content">
                     <TabPanel header="Documents">
-                       <Documents documents={student.documents}/>
+                        <Documents documents={student.documents} />
                     </TabPanel>
                     <TabPanel header="Payment Info">
                         <p className="m-0">
@@ -36,7 +48,7 @@ const ViewStudent = () => {
                         </p>
                     </TabPanel>
                     <TabPanel header="Visa Documents">
-                       <VisaDocuments documents={student.documents}/>
+                        <VisaDocuments documents={student.documents} />
                     </TabPanel>
                 </TabView>
             </div>

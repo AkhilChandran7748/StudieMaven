@@ -24,11 +24,13 @@ function App() {
       });
   }, []);
   return (
-    <div className="App">
-      <PrimeReactProvider>
-        <Routes history={history} />
-      </PrimeReactProvider>
-    </div>
+    <React.StrictMode>
+      <div className="App">
+        <PrimeReactProvider>
+          <Routes history={history} />
+        </PrimeReactProvider>
+      </div>
+    </React.StrictMode>
   );
 }
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import {
     useNavigate,
-    Outlet
+    Outlet,
+    Link
 } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
 import EditStudent from "./EditStudent";
@@ -26,7 +27,7 @@ const TableActions = ({ data, reload }) => {
     const DeleteButton = () => {
         if (data.DeleteStatus === 0)
             return <span title="Delete" onClick={() => setShow(true)} className="pi pi-trash red" ></span>
-        return <span  title="Pending for admin approval" className="pi pi-trash blue" ></span>
+        return <span title="Pending for admin approval" className="pi pi-trash blue" ></span>
     }
     return (<>
         <ConfirmModal
@@ -37,13 +38,14 @@ const TableActions = ({ data, reload }) => {
             header={"Confirm Delete"}
         />
         <div style={{ minWidth: '100px' }}>
+            <Link to={`${RENDER_URL.VIEW_STUDENT}/${ApplicationId}`} target="_blank">
+                <span title="View"
+                    className="pi pi-external-link margin-r-10 grey" ></span>
 
-            <span title="View" onClick={() => {
-                navigate(`${RENDER_URL.VIEW_STUDENT}/${ApplicationId}`);
-            }} className="pi pi-external-link margin-r-10 grey" ></span>
+            </Link>
 
             <EditStudent student={data} reload={reload} />
-            <DeleteButton/>
+            <DeleteButton />
 
         </div>
     </>

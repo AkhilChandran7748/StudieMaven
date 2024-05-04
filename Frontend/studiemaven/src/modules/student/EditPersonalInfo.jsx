@@ -3,14 +3,15 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { Controller, useForm } from 'react-hook-form';
 import { classNames } from 'primereact/utils';
-import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import IntakeDropDown from "../components/IntakeDropDown";
 import AgentDropDown from "../components/AgentDropDown";
 import StaffDropDown from "../components/StaffDropDown";
 import { InputTextarea } from "primereact/inputtextarea";
-const EditPersonalInfo = () => {
+import { addStudent } from "./student.services";
+import { Dropdown } from "primereact/dropdown";
+const EditPersonalInfo = ({ student = {}, reload }) => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -18,14 +19,20 @@ const EditPersonalInfo = () => {
             <Button label="Cancel" className="small-button" severity="secondary" onClick={() => setVisible(false)} autoFocus />
         </div>
     );
-    const toast = useRef(null);
 
-    const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: getValues('value') });
-    };
+
+
 
     const defaultValues = {
-        value: ''
+        name: student?.Name,
+        email: student?.Email,
+        mobile: student?.MobileNumber,
+        secondary_email: student?.SecondaryEmail,
+        "aps_status": student?.APS_Status,
+        "tas_status":student?.TAS_Status,
+        "cfs_status":student?.CFS_Status,
+
+        
     };
 
     const {
@@ -33,14 +40,18 @@ const EditPersonalInfo = () => {
         formState: { errors },
         handleSubmit,
         getValues,
+        setValue,
         reset,
         register,
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        data.value && show();
-
-        reset();
+        addStudent({ ...data, application_id: student.ApplicationId }).then((res) => {
+            if (res.data.success) {
+                setVisible(false);
+                reload('Student data updated successfully');
+            }
+        })
     };
 
     const getFormErrorMessage = (name) => {
@@ -52,7 +63,7 @@ const EditPersonalInfo = () => {
 
             <Dialog header="Update Personal Info" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} >
                 <form onSubmit={handleSubmit(onSubmit)} className="add-student">
-                    <Toast ref={toast} />
+
                     <Splitter >
                         <SplitterPanel className="flex align-items-center margin-l-10" size={50}>
 
@@ -66,7 +77,7 @@ const EditPersonalInfo = () => {
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <span className="p-float-label">
                                                 <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                                <label htmlFor={field.name}>Name </label>
+                                                <label htmlFor={field.name}>Name {field.value}</label>
                                             </span>
                                             {getFormErrorMessage(field.name)}
                                         </div>
@@ -94,7 +105,7 @@ const EditPersonalInfo = () => {
                                     )}
                                 />
                                 <Controller
-                                    name="email"
+                                    name="secondary_email"
                                     control={control}
                                     rules={{
                                         required: 'Email is required.',
@@ -115,7 +126,7 @@ const EditPersonalInfo = () => {
                                     )}
                                 />
                                 <Controller
-                                    name="phone"
+                                    name="mobile"
                                     control={control}
                                     rules={{ required: 'Contact is required.' }}
                                     render={({ field, fieldState }) => (
@@ -130,9 +141,66 @@ const EditPersonalInfo = () => {
                                     )}
                                 />
 
-                            </>  
-                            </SplitterPanel>
+                            </>
+                        </SplitterPanel>
                         <SplitterPanel className="flex align-items-center " size={50}>
+                            <Controller
+                                name="aps_status"
+                                control={control}
+                                render={({ field, fieldState }) => (
+                                    <div>
+                                        <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                        <span className="p-inputtext-sm p-float-label  margin-l-10  ">
+                                            <Dropdown inputId="dd-city" value={field.value} onChange={(e) => {
+                                                setValue('aps_status', e.value)
+                                            }} options={[
+                                                { value: 1, name: 'Yes' },
+                                                { value: 2, name: 'No' },
+                                            ]} optionLabel="name" className="m-width-220p" />
+                                            <label htmlFor="dd-city">APS Status</label>
+                                        </span>
+                                        {getFormErrorMessage(field.name)}
+                                    </div>
+                                )}
+                            />
+                            <Controller
+                                name="tas_status"
+                                control={control}
+                                render={({ field, fieldState }) => (
+                                    <div>
+                                        <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                        <span className="p-inputtext-sm p-float-label   margin-l-10 ">
+                                            <Dropdown inputId="dd-city" value={field.value} onChange={(e) => {
+                                                setValue('tas_status', e.value)
+                                            }} options={[
+                                                { value: 1, name: 'Yes' },
+                                                { value: 0, name: 'No' },
+                                            ]} optionLabel="name" className="m-width-220p" />
+                                            <label htmlFor="dd-city">TEST AS Status</label>
+                                        </span>
+                                        {getFormErrorMessage(field.name)}
+                                    </div>
+                                )}
+                            />
+                            <Controller
+                                name="cfs_status"
+                                control={control}
+                                render={({ field, fieldState }) => (
+                                    <div>
+                                        <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
+                                        <span className="p-inputtext-sm p-float-label   margin-l-10">
+                                            <Dropdown inputId="dd-city" value={field.value} onChange={(e) => {
+                                                setValue('cfs_status', e.value)
+                                            }} options={[
+                                                { value: 1, name: 'Yes' },
+                                                { value: 0, name: 'No' },
+                                            ]} optionLabel="name" className="m-width-220p" />
+                                            <label htmlFor="dd-city">APS Status</label>
+                                        </span>
+                                        {getFormErrorMessage(field.name)}
+                                    </div>
+                                )}
+                            />
                         </SplitterPanel>
                     </Splitter>
                     {/* </div> */}

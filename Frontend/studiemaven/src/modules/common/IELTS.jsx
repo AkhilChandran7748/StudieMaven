@@ -7,7 +7,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputText } from "primereact/inputtext";
 import { updateIELTS } from "../leads/leadServices";
 import moment from "moment";
-const IELTS = ({ HasIelts, IELTS, LeadId, reload }) => {
+const IELTS = ({ HasIelts, IELTS, LeadId, reload, ApplicationId = null }) => {
     const { Reading, Writing, Listening, Speaking, ExpiryOn } = IELTS
     const [show, setShow] = useState(false);
     const [ieltsData, setIelts] = useState({
@@ -26,7 +26,9 @@ const IELTS = ({ HasIelts, IELTS, LeadId, reload }) => {
             "writing": Writing,
             "listening": Listening,
             "speaking": Speaking,
-            "expiry": ExpiryOn
+            "expiry": ExpiryOn,
+            application_id: ApplicationId,
+            from_application: ApplicationId ? 1 : 0
         }
         updateIELTS(updatePrams).then((res) => {
             if (res?.data?.success) {

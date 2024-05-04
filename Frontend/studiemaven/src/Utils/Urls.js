@@ -61,6 +61,7 @@ export const API_URL = {
     GET_DOCLIST: '/document/getAllDocumentTypes',
     ADD_DOCTYPE: '/document/addDocumentType',
     SEARCH_STUDENTS: '/student/searchApplication',
+    UPLOAD_PROFILE: '/student/uploadprofile,'
 
 
 }

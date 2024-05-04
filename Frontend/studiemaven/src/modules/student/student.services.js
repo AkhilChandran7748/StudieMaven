@@ -1,4 +1,4 @@
-import { httpCall } from "../../Services/HttpService";
+import { httpCall, httpUpload } from "../../Services/HttpService";
 import { API_URL } from "../../Utils/Urls";
 
 export const getStudents = params => {
@@ -28,3 +28,12 @@ export const searchStudent = params => {
         return response;
     });
 };
+
+export const uploadProfile = params => {
+    return httpUpload({
+      url: API_URL.UPLOAD_PROFILE,
+      data: params
+    }).then(response => {
+      return response;
+    });
+  };
