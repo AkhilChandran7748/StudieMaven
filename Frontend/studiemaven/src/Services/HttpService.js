@@ -29,6 +29,7 @@ export const httpCall = async payload => {
 export const httpUpload = (payload) => {
   let config = {};
   let userData = ManageLocalStorage.get("userData")
+  userData = userData ? JSON.parse(userData) : {};
   let token = userData.token
     ? userData.token
     : "";
