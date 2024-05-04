@@ -21,7 +21,7 @@ const PaymentStatus = ({ reload, student }) => {
     }, [PaymentStatusTypeId, data])
     useEffect(() => {
         getPaymentsStatusData();
-    }, [])
+    }, [show])
     const onSubmit = () => {
         addStudent({
             "application_id": ApplicationId,
@@ -35,7 +35,7 @@ const PaymentStatus = ({ reload, student }) => {
     }
     const ColorComponent = () => {
         const { ColorCode, PaymentStatusName } = selectedStatus || {}
-        return <span onClick={()=>setShow(true)}>
+        return <span onClick={() => setShow(true)}>
             {PaymentStatusTypeId ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{PaymentStatusName}</span> :
                 <span className="color-badge" style={{ backgroundColor: `#6366f1` }} >N/A</span>}
         </span>
@@ -43,8 +43,8 @@ const PaymentStatus = ({ reload, student }) => {
     return (<>
         {show && <Dialog headerClassName="align-center" header="Change Payment Status" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >
             <div className=" align-center ">
-                <Dropdown value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} options={data} optionLabel="PaymentStatusName"
-                    placeholder="Status" className="m-width-220p" />
+                {show && <Dropdown value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} options={data} optionLabel="PaymentStatusName"
+                    placeholder="Status" className="m-width-220p" />}
 
                 <div className="padding-t-20p">
                     <span className="padding-r-sm">   <Button onClick={onSubmit} label="Update" severity="success" size="small" /></span>

@@ -10,9 +10,9 @@ import { addStudent } from "../student/student.services";
 import moment from "moment";
 const VisaStatus = ({ reload, student }) => {
     const { VisaStatus, ApplicationId } = student
-    let visaData =JSON.parse(VisaStatus);
+    let visaData = JSON.parse(VisaStatus);
     const [show, setShow] = useState(false);
-    const [date, setDate] = useState(visaData?.date?new Date(visaData.date): null);
+    const [date, setDate] = useState(visaData?.date ? new Date(visaData.date) : null);
     const [data, setData] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState(null);
     useEffect(() => {
@@ -42,7 +42,7 @@ const VisaStatus = ({ reload, student }) => {
     }
     useEffect(() => {
         getStatusData();
-    }, [])
+    }, [show])
     const ColorComponent = () => {
         const { ColorCode, VisaStatusName } = selectedStatus || {}
         return <span onClick={() => setShow(true)}>
@@ -53,8 +53,8 @@ const VisaStatus = ({ reload, student }) => {
     return (<>
         {show && <Dialog headerClassName="align-center" header="Change Visa Status" visible={show} style={{ width: '30vw' }} onHide={() => setShow(false)} closable={false} >
             <div className=" align-center ">
-                <Dropdown value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} options={data} optionLabel="VisaStatusName"
-                    placeholder="Status" className="m-width-220p" />
+                {show && <Dropdown value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} options={data} optionLabel="VisaStatusName"
+                    placeholder="Status" className="m-width-220p" />}
                 {selectedStatus?.VisaDateEnable && <Calendar placeholder="Appoinment Date" value={date} onChange={(e) => setDate(e.value)} className="m-width-220p margin-t-20p calender-w" />}
 
                 <div className="padding-t-20p">
@@ -65,8 +65,8 @@ const VisaStatus = ({ reload, student }) => {
         </Dialog>}
         <div>
             <ColorComponent />
-             {visaData?.date && <div className="date-button ">{moment(visaData?.date).format(' DD MMM YYYY') }</div>}
-           
+            {visaData?.date && <div className="date-button ">{moment(visaData?.date).format(' DD MMM YYYY')}</div>}
+
         </div >
 
     </>
