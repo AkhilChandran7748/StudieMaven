@@ -163,7 +163,7 @@ button:focus {
 .p-component {
     font-family: var(--font-family);
     font-feature-settings: var(--font-feature-settings, normal);
-    font-size: .8rem;
+    font-size: .7rem;
     font-weight: normal;
 }
 

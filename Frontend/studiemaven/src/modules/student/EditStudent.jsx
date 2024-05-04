@@ -16,6 +16,7 @@ import UniversityDropdown from "../components/UniversityDropdown";
 
 import { InputNumber } from "primereact/inputnumber";
 import { addStudent } from "./student.services";
+import moment from "moment";
 const AddStudent = ({ reload, student }) => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
@@ -50,7 +51,8 @@ const AddStudent = ({ reload, student }) => {
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        addStudent({ ...data, application_id: student.ApplicationId }).then((res) => {
+        let isDefered = moment(student.InTake).format(' DD MMM YYYY') !== moment(data.intake).format(' DD MMM YYYY') ? 1 : 0
+        addStudent({ ...data, application_id: student.ApplicationId, isDefered }).then((res) => {
             if (res.data.success) {
                 setVisible(false);
                 reload('Student data updated successfully');
