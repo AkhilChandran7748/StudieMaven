@@ -7,7 +7,8 @@ import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import DocumentTypes from "./DocumentTypesDropDown";
-const UploadDocument = () => {
+import { uploadDocuments } from "./documentServices";
+const UploadDocument = ({ reload, studentId }) => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -22,7 +23,6 @@ const UploadDocument = () => {
     };
 
     const defaultValues = {
-        value: ''
     };
 
     const {
@@ -30,14 +30,29 @@ const UploadDocument = () => {
         formState: { errors },
         handleSubmit,
         getValues,
+        setValue,
         reset,
         register,
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        data.value && show();
+        let formdata = new FormData()
+        formdata.append("document_type_id", data.document_type_id)
+        formdata.append("document_file", data.document_file)
+        formdata.append("document_notes", data.document_notes)
+        formdata.append("application_id",studentId)
+        
 
-        reset();
+        uploadDocuments(formdata).then((res) => {
+            if (res.data.success) {
+                setVisible(false);
+                reload('Profile Picture updated successfully')
+            }
+
+        }).catch(er => {
+
+            console.log(er)
+        })
     };
 
     const getFormErrorMessage = (name) => {
@@ -56,37 +71,39 @@ const UploadDocument = () => {
                     <Toast ref={toast} />
                     <>
                         <Controller
-                            name="documentName"
+                            name="document_type_id"
                             control={control}
                             rules={{ required: 'Document Name is required.' }}
                             render={({ field, fieldState }) => (
                                 <div>
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                    <DocumentTypes/>
+                                    <DocumentTypes value={field.value} onChange={(e) => setValue('document_type_id', e)} />
                                     {getFormErrorMessage(field.name)}
                                 </div>
                             )}
                         />
                         <Controller
-                            name="documentName"
+                            name="document_file"
                             control={control}
-                            rules={{ required: 'Document Name is required.' }}
+                            rules={{ required: 'Document File is required.' }}
                             render={({ field, fieldState }) => (
                                 <div>
-                                   
-                                   <input type="file"/>
-                                   </div>
+
+                                    <input type="file" onChange={(e) => setValue(field.name, e.target.files[0])} />
+                                    {getFormErrorMessage(field.name)}
+                                </div>
                             )}
                         />
 
                         <Controller
-                            name="notes"
+                            name="document_notes"
                             control={control}
                             render={({ field, fieldState }) => (
-                                <div className=" ">
+                                <div style={{ marginTop: '10px' }} className="">
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                     <span className="p-float-label">
-                                        <InputTextarea rows={2} cols={30} autoResize id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                        <InputTextarea rows={2} cols={30} autoResize id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })}
+                                            onChange={(e) => setValue('document_notes', e.target.value)} />
                                         <label htmlFor={field.name}>Document Notes</label>
                                     </span>
                                     {getFormErrorMessage(field.name)}

@@ -9,7 +9,10 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import StaffDropDown from "../components/StaffDropDown";
 import PaymentStatusDropDown from "../components/PaymentStatus";
 import UniversityDropdown from "../components/UniversityDropdown";
-import VisaStatusDropDown from '../components/VisaStatusDropDown'
+import VisaStatusDropDown from '../components/VisaStatusDropDown';
+import { ToggleButton } from 'primereact/togglebutton';
+import { InputSwitch } from "primereact/inputswitch";
+
 const Search = ({ onSearch }) => {
     const [value, setValue] = useState({
         name: '',
@@ -20,7 +23,8 @@ const Search = ({ onSearch }) => {
         status_id: [],
         payment_status_id: [],
         course_name: '',
-        intake: ''
+        intake: '',
+        delete_status: false
     });
     const onSubmit = () => {
         let formattedValues = {
@@ -28,6 +32,7 @@ const Search = ({ onSearch }) => {
             status_id: value.status_id.map((i) => i.Id),
             visa_status: value.visa_status.map((i) => i.Id),
             payment_status_id: value.payment_status_id.map((i) => i.Id),
+            delete_status: value.delete_status ? 1 : 0
         }
         onSearch(formattedValues);
     }
@@ -47,7 +52,8 @@ const Search = ({ onSearch }) => {
             status_id: [],
             payment_status_id: [],
             course_name: '',
-            intake: ''
+            intake: '',
+            delete_status: false,
         })
         onSearch();
     }
@@ -77,6 +83,12 @@ const Search = ({ onSearch }) => {
                                 <label htmlFor="username">Course</label>
                             </span>
                             <IntakeDropDown dateValue={value.intake} onChange={(e) => onChange('intake', e)} className={'margin-l-10'} />
+                            <span className={`margin-l-10 ${value.delete_status ? 'toggle' : ''}`} >
+
+                                <ToggleButton unstyled={true} offLabel="Check to show delete" onLabel="Show Delete" checked={value.delete_status} onChange={(e) => onChange('delete_status', !value.delete_status)}
+                                    className={`w-8rem margin-t-sm ${value.delete_status ? 'red' : ''}`}
+                                />
+                            </span>
                         </div>
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                             <Button label="Search" onClick={onSubmit} className="small-button" />

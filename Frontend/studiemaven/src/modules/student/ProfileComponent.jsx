@@ -9,9 +9,9 @@ import { uploadProfile } from "./student.services";
 const ProfileComponent = ({ profileUrl = null, application_id, reload }) => {
     let fileRef = useRef()
     const [visible, setVisible] = useState(false)
-    const [file, setFile] = useState(false)
+    const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
-    const handleUpload = (files) => {
+    const handleUpload = () => {
         let file = fileRef.current.files[0];
         const objectUrl = URL.createObjectURL(file)
         setPreview(objectUrl)
@@ -41,11 +41,11 @@ const ProfileComponent = ({ profileUrl = null, application_id, reload }) => {
                 <SplitterPanel>
                     <input type="file"
                         accept="image/x-png,image/gif,image/jpeg"
-                        name="dp"
+                        
                         ref={fileRef}
                         onChange={(e) => {
                             handleUpload(e.target)
-                            setFile(e.target.files)
+                            setFile(e.target.files[0])
                         }} />
                 </SplitterPanel>
                 <SplitterPanel>

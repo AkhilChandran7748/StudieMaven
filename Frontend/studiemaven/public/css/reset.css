@@ -308,3 +308,6 @@ button:focus {
     text-align: center;
     border-radius: 5px;
 }
+.toggle input {
+    color: red!important;
+}

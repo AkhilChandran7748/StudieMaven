@@ -6,6 +6,9 @@ import { updateLEAD } from "./leadServices";
 const LeadOwner = ({ data, reload }) => {
     const [show, setShow] = useState(false);
     const [ownerId, setOwnerId] = useState()
+    let loginData = localStorage.getItem('userData');
+    loginData = loginData && JSON.parse(loginData) || {};
+  
     let { LeadOwner } = data
     const onSubmit = () => {
         let params = {
@@ -38,7 +41,7 @@ const LeadOwner = ({ data, reload }) => {
                 </div>
             </div>
         </Dialog>}
-        <span onClick={() => setShow(true)}>{LeadOwner}</span>
+        <span onClick={() => setShow(loginData.isAdmin?true: false)}>{LeadOwner}</span>
     </>
     )
 }

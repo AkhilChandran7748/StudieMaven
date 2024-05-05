@@ -1,21 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { studentData } from "./data";
-import { columnConfig } from "./studentColumnConfig";
-import TableActions from "./TableActions";
-import Status from "./Status";
 import Search from "./Search";
 import AddStudent from "./AddStudent";
-import VisaStatus from "./VisaStatus";
-import InTake from "./InTake";
-import LeadOwner from "./LeadOwner";
-import PaymentStatus from "./PaymentStatus";
 import { getStudents, searchStudent } from "./student.services";
 import { Toast } from "primereact/toast";
+import StudentListComponent from "./StudentListComponent";
+import { TabView, TabPanel } from 'primereact/tabview';
+
+import './student.css'
 const StudentList = () => {
     const toast = useRef(null);
     const [data, setData] = useState([])
+    const [activeIndex, setActiveIndex] = useState(0);
     const getStudentData = (params) => {
         if (params) {
 
@@ -49,45 +44,17 @@ const StudentList = () => {
                 <Search onSearch={getStudentData} />
             </div>
 
-            <div style={{ textAlign: 'right' }} > <AddStudent reload={(detail)=>{
+            <div style={{ textAlign: 'right' }} > <AddStudent reload={(detail) => {
                 getStudentData();
                 show(detail);
             }} /></div>
-            <div className="card">
-                <DataTable value={data} size={'normal'} tableStyle={{ minWidth: '50rem' }} paginator rows={"25"}>
-                    {columnConfig.map((col, i) => <Column key={i} body={(item) => <span>{item[col.field] || '-'}</span>} field={col.field} header={col.header} />)}
+            <StudentListComponent
+                data={data}
+                show={show}
+                getStudentData={getStudentData}
 
-                    <Column body={InTake} header="InTake"></Column>
-                    <Column body={(item) => {
-                        return <PaymentStatus student={item} reload={(detail) => {
-                            show(detail)
-                            getStudentData();
-                        }} />
-                    }}
-                        header="Payment Status" ></Column>
-                    <Column
-                        body={(item) => {
-                            return <VisaStatus student={item} reload={(detail) => {
-                                show(detail)
-                                getStudentData();
-                            }} />
-                        }}
-                        header="Visa Status"></Column>
-                    <Column
-                        body={(item) => {
-                            return <Status student={item} reload={(detail) => {
-                                show(detail)
-                                getStudentData();
-                            }} />
-                        }} header="Status"></Column>
-                    <Column body={(item) => {
-                        return <TableActions data={item} reload={(detail) => {
-                            show(detail)
-                            getStudentData();
-                        }} />
-                    }} header="Action"></Column>
-                </DataTable>
-            </div>
+            />
+            {/* </div> */}
         </div >
     </>)
 }

@@ -51,8 +51,8 @@ const AddStudent = ({ reload, student }) => {
     } = useForm({ defaultValues });
 
     const onSubmit = (data) => {
-        let isDefered = moment(student.InTake).format(' DD MMM YYYY') !== moment(data.intake).format(' DD MMM YYYY') ? 1 : 0
-        addStudent({ ...data, application_id: student.ApplicationId, isDefered }).then((res) => {
+        let is_defered = moment(student.InTake).format(' DD MMM YYYY') !== moment(data.intake).format(' DD MMM YYYY') ? 1 : 0
+        addStudent({ ...data, application_id: student.ApplicationId, is_defered }).then((res) => {
             if (res.data.success) {
                 setVisible(false);
                 reload('Student data updated successfully');
