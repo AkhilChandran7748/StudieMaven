@@ -65,7 +65,7 @@ const EditPersonalInfo = ({ student = {}, reload }) => {
                 <form onSubmit={handleSubmit(onSubmit)} className="add-student">
 
                     <Splitter >
-                        <SplitterPanel className="flex align-items-center margin-l-10" size={50}>
+                        <SplitterPanel className="flex align-items-center margin-l-10 padding-t-10p" size={50}>
 
                             <>
                                 <Controller
@@ -77,7 +77,7 @@ const EditPersonalInfo = ({ student = {}, reload }) => {
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <span className="p-float-label">
                                                 <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                                <label htmlFor={field.name}>Name {field.value}</label>
+                                                <label htmlFor={field.name}>Name </label>
                                             </span>
                                             {getFormErrorMessage(field.name)}
                                         </div>
@@ -108,7 +108,6 @@ const EditPersonalInfo = ({ student = {}, reload }) => {
                                     name="secondary_email"
                                     control={control}
                                     rules={{
-                                        required: 'Email is required.',
                                         pattern: {
                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                             message: "Invalid email address"
@@ -143,7 +142,7 @@ const EditPersonalInfo = ({ student = {}, reload }) => {
 
                             </>
                         </SplitterPanel>
-                        <SplitterPanel className="flex align-items-center " size={50}>
+                        <SplitterPanel className="flex align-items-center  padding-t-10p " size={50}>
                             <Controller
                                 name="aps_status"
                                 control={control}

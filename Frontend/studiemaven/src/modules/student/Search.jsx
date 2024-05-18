@@ -85,7 +85,7 @@ const Search = ({ onSearch }) => {
                             <IntakeDropDown dateValue={value.intake} onChange={(e) => onChange('intake', e)} className={'margin-l-10'} />
                             <span className={`margin-l-10 ${value.delete_status ? 'toggle' : ''}`} >
 
-                                <ToggleButton unstyled={true} offLabel="Check to show delete" onLabel="Show Delete" checked={value.delete_status} onChange={(e) => onChange('delete_status', !value.delete_status)}
+                                <ToggleButton unstyled={true} offLabel="Check to show deleted" onLabel="Show Deleted" checked={value.delete_status} onChange={(e) => onChange('delete_status', !value.delete_status)}
                                     className={`w-8rem margin-t-sm ${value.delete_status ? 'red' : ''}`}
                                 />
                             </span>

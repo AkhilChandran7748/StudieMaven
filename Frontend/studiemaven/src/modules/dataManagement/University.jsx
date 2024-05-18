@@ -19,7 +19,7 @@ const University = () => {
         loadData();
     }, [])
     const onSubmit = () => {
-        if (value) {
+    if (value) {
             if (editId) {
                 updateUniversity({ uni_name: value, uni_id: editId }).then((res) => {
                     if (res.data.success) {

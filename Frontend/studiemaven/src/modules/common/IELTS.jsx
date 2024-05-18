@@ -8,7 +8,7 @@ import { InputText } from "primereact/inputtext";
 import { updateIELTS } from "../leads/leadServices";
 import moment from "moment";
 const IELTS = ({ HasIelts, IELTS, LeadId, reload, ApplicationId = null , from_application}) => {
-    const { Reading, Writing, Listening, Speaking, ExpiryOn } = IELTS
+    const { Reading = '', Writing= '', Listening ='', Speaking= '', ExpiryOn } = IELTS
     const [show, setShow] = useState(false);
     const [ieltsData, setIelts] = useState({
         HasIelts: HasIelts ? true : false,
@@ -94,7 +94,7 @@ const IELTS = ({ HasIelts, IELTS, LeadId, reload, ApplicationId = null , from_ap
                     <Badge className="f-10p" value={'S -' + Speaking} severity="warning"></Badge>
                     <div className="date-button margin-t-sm">{moment(ExpiryOn).format('DD/MM/YY')}</div>
 
-                </> : 'N/A'}
+                </> : <span style={{ fontWeight: 400, fontSize: '13px', alignItems: 'center' }}> N/A</span>}
             </div>
         </>)
 }

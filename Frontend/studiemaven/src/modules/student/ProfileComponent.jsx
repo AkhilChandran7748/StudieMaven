@@ -18,9 +18,8 @@ const ProfileComponent = ({ profileUrl = null, application_id, reload }) => {
 
     }
     const onSubmit = (data) => {
-
         let formdata = new FormData()
-        formdata.append("profile", file[0])
+        formdata.append("profile", file)
         formdata.append("application_id", application_id)
 
         uploadProfile(formdata).then((res) => {
