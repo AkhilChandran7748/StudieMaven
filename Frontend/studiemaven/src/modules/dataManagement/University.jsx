@@ -21,7 +21,7 @@ const University = () => {
     const onSubmit = () => {
         if (value) {
             if (editId) {
-                updateUniversity({ uni_name: value, id: editId }).then((res) => {
+                updateUniversity({ uni_name: value, uni_id: editId }).then((res) => {
                     if (res.data.success) {
                         loadData();
                     }

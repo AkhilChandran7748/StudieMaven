@@ -53,7 +53,7 @@ export const API_URL = {
     UPDATE_VISA_STATUS: '/document/getAllVisaStatusType',
     GET_AGENTS: '/document/getAllAgent',
     ADD_AGENT: '/document/addAgent',
-    UPDATE_AGENT: '/document/getAllVisaStatusType',
+    UPDATE_AGENT: '/document/addAgent',
     GET_UNIVERSITY: '/document/getAllUni',
     ADD_UNIVERSITY: '/document/addUni',
     UPDATE_UNIVERSITY: '/document/updateUni',

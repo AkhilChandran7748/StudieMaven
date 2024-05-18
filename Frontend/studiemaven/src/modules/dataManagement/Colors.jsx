@@ -24,7 +24,7 @@ const Color = () => {
             if (editId) {
                 updateColor({
                     ...value,
-                    "id": editId,
+                    "color_id": editId,
                 }).then((res) => {
                     if (res.data.success) {
                         getColorData();
@@ -43,7 +43,7 @@ const Color = () => {
     }
     const onDelete = (id) => {
         updateColor({
-            "id": id,
+            "color_id": id,
             "delete_status": "1",
         }).then((res) => {
             if (res.data.success) {

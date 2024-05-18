@@ -50,6 +50,7 @@ const PersonalInfo = ({ student, reload }) => {
                                 reload={() => {
                                     reload('IELTS data uplated successfully')
                                 }}
+                                from_application={true}
                                 ApplicationId={student?.ApplicationId} />}
                         </div>
                     </div>
@@ -59,15 +60,15 @@ const PersonalInfo = ({ student, reload }) => {
                     <div className="padding-t-15p padding-l-20p">
                         <div  >
 
-                            <span>  <h6> APS Status: { student?.APS_Status == 1? 'Yes': 'No'}</h6></span>
+                            <span>  <h6> APS Status: {student?.APS_Status == 1 ? 'Yes' : 'No'}</h6></span>
                         </div>
                         <div  >
 
-                            <span>  <h6>TEST AS Status: { student?.TAS_Status? 'Yes': 'No'}</h6></span>
+                            <span>  <h6>TEST AS Status: {student?.TAS_Status ? 'Yes' : 'No'}</h6></span>
                         </div>
                         <div  >
 
-                            <span>  <h6>  Campus France : { student?.CFS_Status? 'Yes': 'No'}</h6></span>
+                            <span>  <h6>  Campus France : {student?.CFS_Status ? 'Yes' : 'No'}</h6></span>
                         </div>
 
                     </div>

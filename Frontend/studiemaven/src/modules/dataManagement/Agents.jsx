@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { countries } from "../student/data";
+import { Toast } from 'primereact/toast';
 import { addAgents, getAgents, updateAgent } from "./dataServices";
 const Agents = () => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState('');
     const [editId, setEditId] = useState(null)
+    const toast = useRef(null);
     const loadData = () => {
         getAgents().then(res => {
             if (res?.data?.success) {
@@ -21,9 +23,13 @@ const Agents = () => {
     }, [])
     const onSubmit = () => {
         if (value) {
+            if (data.find((i) => i.AgentName === value)) {
+                show();
+                return;
+            }
             if (editId) {
                 let params = {
-                    id: editId,
+                    agent_id: editId,
                     "agent_name": value,
                 }
                 updateAgent(params).then(res => {
@@ -49,7 +55,7 @@ const Agents = () => {
     }
     const onDelete = (id) => {
         let params = {
-            id,
+            agent_id: id,
             "country_name": value,
             "country_code": "",
             "country_flag": "",
@@ -61,6 +67,10 @@ const Agents = () => {
             }
         })
     }
+    const show = () => {
+        toast.current.show({ severity: 'info', summary: 'Error', detail: 'Agent name already exist' });
+    };
+
     const TableActions = ({ Id, AgentName }) => {
         return (<>
             <span title="Edit" onClick={() => {
@@ -72,6 +82,7 @@ const Agents = () => {
     }
     return (<>
         <div className="content margin-t-30p align-center">
+            <Toast ref={toast} />
             <div>
                 <span className="p-float-label margin-l-10">
                     <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />

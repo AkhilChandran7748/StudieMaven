@@ -7,7 +7,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputText } from "primereact/inputtext";
 import { updateIELTS } from "../leads/leadServices";
 import moment from "moment";
-const IELTS = ({ HasIelts, IELTS, LeadId, reload, ApplicationId = null }) => {
+const IELTS = ({ HasIelts, IELTS, LeadId, reload, ApplicationId = null , from_application}) => {
     const { Reading, Writing, Listening, Speaking, ExpiryOn } = IELTS
     const [show, setShow] = useState(false);
     const [ieltsData, setIelts] = useState({
