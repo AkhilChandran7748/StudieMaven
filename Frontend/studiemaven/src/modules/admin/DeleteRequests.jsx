@@ -11,7 +11,7 @@ import { addStudent, searchStudent } from "../student/student.services";
 import ConfirmModal from "../common/ConfirmModal";
 import { Toast } from "primereact/toast";
 const DeleteRequests = () => {
-    const [data, setData] = useState(studentData.filter((i) => i.deleteStatus === 'Pending'))
+    const [data, setData] = useState([])
     const [show, setShow] = useState(false)
     const [deleteId, setDeleteId] = useState(null)
     const toast = useRef(null);

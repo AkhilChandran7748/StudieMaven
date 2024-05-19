@@ -18,7 +18,7 @@ const VisaStatus = ({ reload, student }) => {
     useEffect(() => {
         setSelectedStatus(data.find((i) => i.Id === visaData?.visa_id))
         // setDate(new Date(visaData.data))
-    }, [data])
+    }, [data, student])
     const getStatusData = () => {
         getVisaStatus().then((res) => {
             if (res.data.success) {

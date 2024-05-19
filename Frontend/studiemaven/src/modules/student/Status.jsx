@@ -12,7 +12,7 @@ const Status = ({ reload, student }) => {
     const [selectedStatus, setSelectedStatus] = useState(null);
     useEffect(() => {
         setSelectedStatus(data.find((i) => i.Id === Status))
-    }, [data])
+    }, [data, student])
     const getStatusData = () => {
         getStatus().then((res) => {
             if (res.data.success) {

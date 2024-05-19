@@ -7,7 +7,7 @@ import { Image } from 'primereact/image';
 import { getAllDocuments, uploadDocuments } from "../documents/documentServices";
 import { Toast } from 'primereact/toast';
 const VerifyDocuments = () => {
-    const [data, setData] = useState(documentsData.filter((i) => i.verifyStatus === 'Pending'))
+    const [data, setData] = useState()
     let loginData = localStorage.getItem('userData');
     loginData = loginData && JSON.parse(loginData) || {};
     const toast = useRef(null);
@@ -85,7 +85,7 @@ const VerifyDocuments = () => {
         <div className="content" style={{ textAlign: "-webkit-center" }}>
               <Toast ref={toast} />
             <DataTable value={data} className="width-350p aligin-center" >
-                <Column field="DocumentTypeName" header="Student Name"></Column>
+                <Column field="Name" header="Student Name"></Column>
                 <Column field="DocumentTypeName" header="Document Name"></Column>
                 <Column body={TableActions} header="Action"></Column>
             </DataTable>

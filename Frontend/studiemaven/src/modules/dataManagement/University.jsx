@@ -11,7 +11,7 @@ const University = () => {
     const loadData = () => {
         getUniversities().then(res => {
             if (res?.data?.success) {
-                setData(res.data?.data || []);
+                setData(res.data?.data.filter((i) => i.DeleteStatus !== 1) || []);
             }
         })
     }
@@ -19,9 +19,9 @@ const University = () => {
         loadData();
     }, [])
     const onSubmit = () => {
-    if (value) {
+        if (value) {
             if (editId) {
-                updateUniversity({ uni_name: value, id: editId }).then((res) => {
+                addUniversity({ uni_name: value, id: editId }).then((res) => {
                     if (res.data.success) {
                         loadData();
                     }
@@ -39,7 +39,7 @@ const University = () => {
     }
     const onDelete = (id) => {
 
-        updateUniversity({ delete_status: 1, id: id }).then((res) => {
+        addUniversity({ delete_status: 1, id }).then((res) => {
             if (res.data.success) {
                 loadData();
             }
