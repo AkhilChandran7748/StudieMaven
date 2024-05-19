@@ -80,7 +80,7 @@ const PaymentStatus = () => {
                         ...value,
                         PaymentStatusName: e.target.value
                     })} />
-                    <label htmlFor="username">Payment Status1</label>
+                    <label htmlFor="username">Payment Status</label>
                 </span>
                 <span className="p-inputtext-sm p-float-label  margin-l-10 ">
                     <ColorsDropdown value={value?.ColorId} onChange={(e) => {

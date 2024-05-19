@@ -37,7 +37,7 @@ const ViewStudent = () => {
                 }} student={studentData} />
                 <TabView className="content">
                     <TabPanel header="Documents">
-                        <Documents documents={student.documents} studentId={id}  />
+                        <Documents visDocument={false} documents={student.documents} studentId={id}  />
                     </TabPanel>
                     <TabPanel header="Payment Info">
                         <p className="m-0">
@@ -48,7 +48,7 @@ const ViewStudent = () => {
                         </p>
                     </TabPanel>
                     <TabPanel header="Visa Documents">
-                        <VisaDocuments documents={student.documents} />
+                        <VisaDocuments visDocument={true} documents={student.documents} studentId={id} />
                     </TabPanel>
                 </TabView>
             </div>

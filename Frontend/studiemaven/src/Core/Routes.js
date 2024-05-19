@@ -16,6 +16,7 @@ const DataManager =  lazy(() => import("../modules/dataManagement/DataManager"))
 const Staffs =  lazy(() => import("../modules/staffs/Staffs"))
 const Leads = lazy(() => import("../modules/leads/Leads"))
 const AdminActions = lazy(() => import("../modules/admin/AdminActions"))
+const StaffDashBoard =  lazy(() => import("../modules/staffs/StaffDashBoard"))
 const RoutesComponent = ({ history }) => {
     return (
         <BrowserRouter>
@@ -31,6 +32,7 @@ const RoutesComponent = ({ history }) => {
                     <Route path={RENDER_URL.GUEST_DASHBOARD} element={<GuestDashboard />} />
                     <Route element={<RootRouteGuard />}>
                         <Route path={RENDER_URL.ADMIN_DASHBOARD} element={<AdminDashboard />} />
+                        <Route path={RENDER_URL.STAFF_DASHBOARD} element={<StaffDashBoard />} />
                         <Route path={`${RENDER_URL.VIEW_STUDENT}/:id`} element={<ViewStudent />} />
                         <Route path={RENDER_URL.DATA_MANAGEMENT} element={<DataManager />} />
                         <Route path={RENDER_URL.STAFFS} element={<Staffs />} />

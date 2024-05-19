@@ -8,7 +8,7 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import DocumentTypes from "./DocumentTypesDropDown";
 import { uploadDocuments } from "./documentServices";
-const UploadDocument = ({ reload, studentId }) => {
+const UploadDocument = ({ reload, studentId, visDocument }) => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -23,6 +23,7 @@ const UploadDocument = ({ reload, studentId }) => {
     };
 
     const defaultValues = {
+        document_notes: ''
     };
 
     const {
@@ -40,13 +41,15 @@ const UploadDocument = ({ reload, studentId }) => {
         formdata.append("document_type_id", data.document_type_id)
         formdata.append("document_file", data.document_file)
         formdata.append("document_notes", data.document_notes)
-        formdata.append("application_id",studentId)
-        
+        formdata.append("application_id", studentId)
+        formdata.append("is_visa_document", visDocument? 1: 0)
+
 
         uploadDocuments(formdata).then((res) => {
             if (res.data.success) {
                 setVisible(false);
-                reload('Profile Picture updated successfully')
+                reset()
+                reload('Document added successfully')
             }
 
         }).catch(er => {
@@ -77,7 +80,7 @@ const UploadDocument = ({ reload, studentId }) => {
                             render={({ field, fieldState }) => (
                                 <div>
                                     <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                    <DocumentTypes value={field.value} onChange={(e) => setValue('document_type_id', e)} />
+                                    <DocumentTypes visDocument={visDocument} value={field.value} onChange={(e) => setValue('document_type_id', e)} />
                                     {getFormErrorMessage(field.name)}
                                 </div>
                             )}

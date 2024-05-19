@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useMatch } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
 import LoginButton from "../login/LoginButton";
-const AdminHeader = (props) => {
+const StaffHeader = (props) => {
     return (<>  <header id="header">
         <div className="container-fluid">
             <div
@@ -10,7 +10,7 @@ const AdminHeader = (props) => {
                 style={{ height: '100%', textAlign: 'center' }}
                 className="pull-left"
             >
-                <a href={RENDER_URL.ADMIN_DASHBOARD} style={{ height: '100%' }}
+                <a href={RENDER_URL.STAFF_DASHBOARD} style={{ height: '100%' }}
                 ><img
                         className="logo-img"
                         src="/img/StudieMaven-Logo-white.png"
@@ -27,7 +27,7 @@ const AdminHeader = (props) => {
                         }>
                             Home</Link>
                     </li> */}
-                    <li className={`${useMatch(RENDER_URL.ADMIN_DASHBOARD) ? 'menu-active' : ''}`}>
+                    <li className={`${useMatch(RENDER_URL.STAFF_DASHBOARD) ? 'menu-active' : ''}`}>
                         <Link to={
                             RENDER_URL.ADMIN_DASHBOARD
                         }>
@@ -39,23 +39,11 @@ const AdminHeader = (props) => {
                         }>
                             Leads</Link>
                     </li>
-                    <li  className={`${useMatch(RENDER_URL.STAFFS) ? 'menu-active' : ''}`}>
-                        <Link to={
-                            RENDER_URL.STAFFS
-                        }>
-                            Staff Manangement</Link>
-                    </li>
-                    <li  className={`${useMatch(RENDER_URL.DATA_MANAGEMENT) ? 'menu-active' : ''}`} >
+                    <li className={`${useMatch(RENDER_URL.DATA_MANAGEMENT) ? 'menu-active' : ''}`} >
                         <Link to={
                             RENDER_URL.DATA_MANAGEMENT
                         }>
                             Data Manangement</Link>
-                    </li>
-                    <li  className={`${useMatch(RENDER_URL.ACTIONS) ? 'menu-active' : ''}`} >
-                        <Link to={
-                            RENDER_URL.ACTIONS
-                        }>
-                            Actions</Link>
                     </li>
                     <li >
                         {/* <HeaderMenu /> */}
@@ -71,4 +59,4 @@ const AdminHeader = (props) => {
     </header>
     </>)
 }
-export default AdminHeader
+export default StaffHeader

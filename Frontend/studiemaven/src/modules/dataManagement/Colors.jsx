@@ -22,7 +22,7 @@ const Color = () => {
     const onSubmit = () => {
         if (value.color_name) {
             if (editId) {
-                updateColor({
+                addColors({
                     ...value,
                     "color_id": editId,
                 }).then((res) => {
@@ -42,7 +42,7 @@ const Color = () => {
         }
     }
     const onDelete = (id) => {
-        updateColor({
+        addColors({
             "color_id": id,
             "delete_status": "1",
         }).then((res) => {

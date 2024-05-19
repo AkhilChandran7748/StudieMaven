@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import Document from "./Document";
 import { DataTable } from 'primereact/datatable';
@@ -9,11 +9,27 @@ import UploadDocument from "./UploadDocument";
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { Button } from 'primereact/button';
 import SendDocuments from "./SendDocuments";
-const VisaDocuments = () => {
-    const [data, setData] = useState(documentsData);
+import { getAllDocuments } from "./documentServices";
+import { Toast } from 'primereact/toast';
+const VisaDocuments = ({ studentId, visDocument }) => {
+
+    const [data, setData] = useState([]);
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
-    const op = useRef(null);
+    const toast = useRef(null);
+    const show = (detail) => {
+        toast.current.show({ severity: 'info', summary: 'Sucess', detail });
+    };
+    const getDocuments = () => {
+        getAllDocuments({ application_id: studentId }).then((res) => {
+            if (res?.data?.success) {
+                setData(res.data.data.filter((i) => visDocument ? i.IsVisaDocument === 1 : i.IsVisaDocument !== 1))
+            }
+        })
+    }
+    useEffect(() => {
+        getDocuments();
+    }, [])
     const onDelete = (id) => {
         setData(data.filter((item) => item.id !== id))
     }
@@ -43,21 +59,25 @@ const VisaDocuments = () => {
         </>)
     }
     return (<>
+        <Toast ref={toast} />
         <div className="card content">
             <div className="" style={{
                 textAlign: 'right',
                 display: 'flex',
                 direction: 'rtl'
             }}>
-                <UploadDocument />
-                <SendDocuments/>
+                <UploadDocument reload={(r) => {
+                    show(r)
+                    getDocuments();
+                }} studentId={studentId} visDocument={true} />
+                <SendDocuments />
             </div>
 
             <div className="content card" style={{ textAlign: "-webkit-center" }}>
                 <DataTable value={data} className="aligin-center" >
-                    <Column field="documentName" header="Document Name"></Column>
-                    <Column field="modifiedDate" header="Modified Date"></Column>
-                    <Column field="documentNotes" header="Document Notes"></Column>
+                    <Column field="DocumentTypeName" header="Document Name"></Column>
+                    <Column field="DocModifiedDate" header="Modified Date"></Column>
+                    <Column field="DocNote" header="Document Notes"></Column>
                     <Column body={VerifyAction} header="Verify Document"></Column>
                     <Column body={TableActions} header="Action"></Column>
                 </DataTable>

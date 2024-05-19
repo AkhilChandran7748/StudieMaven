@@ -1,6 +1,8 @@
 import React from 'react'
 import GuestHeader from './GuestHeaderComponent'
 import AdminHeader from './AdminHeader';
+import StaffHeader from './StaffHeader';
+
 const WithHeader = (HocComponent) => {
 
     const Wrapper = (props) => {
@@ -8,11 +10,16 @@ const WithHeader = (HocComponent) => {
         loginData = loginData && JSON.parse(loginData) || {};
         const getHeader = () => {
             if (loginData.isAdmin === 1) {
-                return (loginData.isAdmin ?
+                return (
                     <AdminHeader
                         {...props}
-                    /> : <> <AdminHeader {...props} />
-                    </>)
+                    />)
+            }
+            else if (loginData.isAdmin === 0) {
+                return (
+                    <StaffHeader
+                        {...props}
+                    />)
             }
 
             return <GuestHeader {...props} />

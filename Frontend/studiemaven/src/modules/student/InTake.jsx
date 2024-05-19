@@ -5,12 +5,12 @@ const InTake = ({ InTake, IsDefered }) => {
     const covertDate = () => {
         if (InTake)
             return moment(`${InTake}`).format('MMM YY')
+        return '-'
     }
-    //psotpone
     return (
-        <span className={`${IsDefered ? 'red' : ''}`} style={{ marginRight: '5px' }} > 
-        {IsDefered && <Badge title="Postponed" value="p" severity="danger"></Badge>}
-        {covertDate() || '-'}</span>
+        <span className={`${IsDefered ? 'red' : ''}`} style={{ marginRight: '5px' }} >
+            {IsDefered ? <Badge title="Postponed" value="p" severity="danger"></Badge> : ''}
+            {covertDate()}</span>
 
     )
 }

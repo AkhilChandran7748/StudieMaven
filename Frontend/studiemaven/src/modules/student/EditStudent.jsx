@@ -36,7 +36,7 @@ const AddStudent = ({ reload, student }) => {
         country_id: student.CountryId,
         university_id: student.UniversityId,
         agent_id: student.AgentId,
-        course: student.Course
+        course_name: student.Course
 
     };
 
@@ -219,16 +219,16 @@ const AddStudent = ({ reload, student }) => {
                                     )}
                                 />
                                 <Controller
-                                    name="course"
+                                    name="course_name"
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <div className="margin-l-10">
-                                            <label htmlFor={field.course} className={classNames({ 'p-error': errors.value })}></label>
+                                            <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
                                             <span className="p-float-label">
-                                                <InputText id={field.course} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                                <label htmlFor={field.course}>Course </label>
+                                                <InputText id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <label htmlFor={field.name}>Course </label>
                                             </span>
-                                            {getFormErrorMessage(field.course)}
+                                            {getFormErrorMessage(field.name)}
                                         </div>
                                     )}
                                 />

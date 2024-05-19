@@ -34,6 +34,8 @@ const Login = ({ onClose }) => {
                 localStorage.setItem('userData', JSON.stringify(userData))
                 if (info.isAdmin === 1)
                     navigate(RENDER_URL.ADMIN_DASHBOARD);
+                else
+                    navigate(RENDER_URL.STAFF_DASHBOARD);
             } else {
                 setLoginError(true)
             }
@@ -45,7 +47,7 @@ const Login = ({ onClose }) => {
     }
     return (<>
         <div className=" align-center ">
-            <InputText placeholder="Username" value={loginData.email} onChange={(e) => onChange('email', e.target.value)} className="p-inputtext-sm margin-b-md" /><br/>
+            <InputText placeholder="Username" value={loginData.email} onChange={(e) => onChange('email', e.target.value)} className="p-inputtext-sm margin-b-md" /><br />
             <Password feedback={false} placeholder="Password" value={loginData.password} onChange={(e) => onChange('password', e.target.value)} className="p-inputtext-sm margin-b-md" />
             {loginError && <div className="error  margin-b-md">Invalid username/password</div>}
             <div className=" ">
