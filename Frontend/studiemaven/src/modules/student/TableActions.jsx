@@ -27,6 +27,8 @@ const TableActions = ({ data, reload }) => {
     const DeleteButton = () => {
         if (data.DeleteStatus === 0)
             return <span title="Delete" onClick={() => setShow(true)} className="pi pi-trash red" ></span>
+        if (data.DeleteStatus === 1)
+            return <span ></span>
         return <span title="Pending for admin approval" className="pi pi-trash blue" ></span>
     }
     return (<>

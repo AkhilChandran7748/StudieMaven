@@ -7,18 +7,26 @@ import { getAllDocuments, uploadDocuments } from "./documentServices";
 import { getBaseUrl } from "../../Services/HttpService";
 import { Toast } from 'primereact/toast';
 import moment from "moment";
+import { downloadFile } from '../../Utils/Util'
+import ConfirmModal from "../common/ConfirmModal";
+import { Link } from "react-router-dom";
 const Documents = ({ studentId, visDocument }) => {
      const [data, setData] = useState([]);
      const [value, setValue] = useState({});
      const [editId, setEditId] = useState(null)
+     const [show, setShow] = useState(false)
      const toast = useRef(null);
-     const show = (detail) => {
+     const showToast = (detail) => {
           toast.current.show({ severity: 'info', summary: 'Sucess', detail });
      };
-     const onDelete = (id) => {
-          uploadDocuments({ document_id: id, delete_status: 1 }).then((res) => {
+     const onDelete = () => {
+          let formdata = new FormData()
+          formdata.append("document_id", editId)
+          formdata.append("delete_status", 1)
+
+          uploadDocuments(formdata).then((res) => {
                if (res.data.success) {
-                    show('Document deleted successfully')
+                    showToast('Document deleted successfully')
                     getDocuments();
                }
 
@@ -40,27 +48,42 @@ const Documents = ({ studentId, visDocument }) => {
      const TableActions = (item) => {
           const { DocFileName, DocId } = item;
           return (<>
+               <ConfirmModal
+                    visible={show}
+                    onClose={() => setShow(false)}
+                    content={"Are you sure you want to delete?"}
+                    onConfirm={onDelete}
+                    header={"Confirm Delete"}
+               />
                <span title="View Document" >
-                    {/* <Button type="button" icon="pi pi-image" label="Image" /> */}
-                    <Image className="img-icon" src="/img/eye.png" zoomSrc={`${getBaseUrl()}/uploads/${DocFileName}`} alt="Image" width="25" preview />
-                    {/* <OverlayPanel ref={op} >
-                         <img className="img-viewer" src={'/img/cert1.jpg'} alt="Bamboo Watch"></img>
-                    </OverlayPanel> */}
+                    <Image className="img-icon" src="/img/eye.png" zoomSrc={`${getBaseUrl()}/uploads/documents/${DocFileName}`} alt="Image" width="25" preview />
                </span>
                <span title="Edit" onClick={() => {
-                    setEditId(item.id);
+                    setEditId(item.DocId);
                     setValue(item)
                }} className="pi pi-pencil margin-r-10 grey" ></span>
-               <span onClick={() => { }} title="Delete" className="pi pi-download blue margin-r-10" ></span>
-               <span onClick={() => onDelete(item.DocId)} title="Delete" className="pi pi-trash red" ></span>
+               <span
+                    onClick={() => {
+                         downloadFile(`${getBaseUrl()}uploads/documents/${DocFileName}`, DocFileName)
+                    }}
+                    title="Delete" className="pi pi-download blue margin-r-10" />
+               <span onClick={() => { setEditId(DocId); setShow(true) }} title="Delete" className="pi pi-trash red" ></span>
           </>)
      }
      return (<>
           <div className="card content">
                <Toast ref={toast} />
-               <UploadDocument visDocument={visDocument} studentId={studentId} reload={(r) => {
-                    show(r)
+               <UploadDocument
+               clearData={()=>{
+                    setValue(null)
+               }}
+               documentData={value}
+                visDocument={visDocument}
+                 studentId={studentId}
+                  reload={(r) => {
+                    showToast(r)
                     getDocuments();
+                    setValue(null)
                }} />
                <div className="content card" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="aligin-center" >

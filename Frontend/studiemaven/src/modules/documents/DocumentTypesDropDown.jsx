@@ -4,9 +4,15 @@ import React, { useEffect, useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { getDocumentTypes } from "../dataManagement/dataServices";
 
-export default function DocumentTypes({ onChange, visDocument }) {
+export default function DocumentTypes({ onChange, visDocument, value }) {
     const [data, setData] = useState([]);
-    const [selected, setSelected] = useState(null)
+    const [selected, setSelected] = useState()
+    useEffect(() => {
+        if (value) {
+            setSelected(data.find((i)=> i.Id === value))
+        }
+
+    }, [value, data])
     const loadData = () => {
         getDocumentTypes().then(res => {
             if (res?.data?.success) {
@@ -21,7 +27,7 @@ export default function DocumentTypes({ onChange, visDocument }) {
     }, [])
 
     return (
-        <span className="p-inputtext-sm p-float-label  ">
+        <span className="p-inputtext-sm p-float-label  padding-t-10p">
             <Dropdown inputId="dd-city" value={selected} onChange={(e) => {
                 onChange && onChange(e.value.Id)
                 setSelected(e.value)

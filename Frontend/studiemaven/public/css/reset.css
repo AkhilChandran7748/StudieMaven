@@ -64,6 +64,9 @@ button:focus {
 .red {
     color: red;
 }
+.green {
+    color: rgb(78, 219, 23);
+}
 
 .grey {
     color: #555555

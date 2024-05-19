@@ -47,6 +47,7 @@ const PersonalInfo = ({ student, reload }) => {
                             <span style={{ fontWeight: 500, fontSize: '13px' }}>IELTS</span>     {student && <IELTS
                                 HasIelts={student?.HasIelts}
                                 IELTS={student?.IELTS}
+                                LeadId={student.LeadId}
                                 reload={() => {
                                     reload('IELTS data uplated successfully')
                                 }}

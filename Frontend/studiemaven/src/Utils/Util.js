@@ -1,5 +1,6 @@
-import  { useRef, useEffect } from 'react'
-
+import FileSaver from 'file-saver';
+import { useRef, useEffect } from 'react'
+import {saveAs} from 'file-saver'
 export const useIsMount = () => {
     const isMountRef = useRef(true);
     useEffect(() => {
@@ -7,16 +8,21 @@ export const useIsMount = () => {
     }, []);
     return isMountRef.current;
 };
+export const downloadFile = (doclink, name) => {
+    FileSaver.saveAs(
+        doclink,
+        name,
+      );
+}
 
-
-const makeTimer=()=>{ 
+const makeTimer = () => {
     //for add management
-    setInterval(() => { 
+    setInterval(() => {
         const months = ["January", "February", "March", "April", "May", "June", "July"];
 
         const random = Math.floor(Math.random() * months.length);
         console.log(random, months[random]);
 
-    
-    }, 1000) 
-  } 
+
+    }, 1000)
+} 
