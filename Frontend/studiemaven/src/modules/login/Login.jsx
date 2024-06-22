@@ -34,16 +34,18 @@ const Login = ({ onClose }) => {
                 localStorage.setItem('userData', JSON.stringify(userData))
                 if (info.isAdmin === 1)
                     navigate(RENDER_URL.ADMIN_DASHBOARD);
-                else
-                    navigate(RENDER_URL.STAFF_DASHBOARD);
+                else {
+                    if (loginData.password === 'qwerty123') {
+                        navigate(`${RENDER_URL.RESET_PASSWORD}/${info.staffId}`);
+                    } else {
+                        navigate(RENDER_URL.STAFF_DASHBOARD);
+                    }
+                }
+
             } else {
                 setLoginError(true)
             }
         }).catch((er) => setLoginError(true))
-        // if(loginData.username==='admin' && loginData.password === 'admin'){
-        //     localStorage.setItem('userData',JSON.stringify({ isLoggedIn: true, isAdmin: true }))
-        //     navigate(RENDER_URL.ADMIN_DASHBOARD);
-        // }
     }
     return (<>
         <div className=" align-center ">

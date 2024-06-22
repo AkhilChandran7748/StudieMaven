@@ -48,7 +48,7 @@ const Staffs = () => {
                         getStaffData();
                         showToast('Staff details updated sucessfully');
                     } else {
-                        showToast(res?.data?.message +'/ Can not be null' || '', true)
+                        showToast(res?.data?.message + '/ Can not be null' || '', true)
                     }
                 })
             } else {
@@ -77,6 +77,7 @@ const Staffs = () => {
 
     const TableActions = (item) => {
         const [show, setShow] = useState(false);
+        const [showReset, setShowReset] = useState(false);
         const onDelete = () => {
             setShow(false)
 
@@ -92,6 +93,23 @@ const Staffs = () => {
                 }
             })
         }
+        const onResetPassword = () => {
+            let editParams = {
+                id: item.IdUser,
+                "email": item.EmailID || '',
+                "mobile": item.Mobile || '',
+                "firstname": item.FirstName,
+                "lastname": item.LastName || '',
+                "password": 'qwerty123',
+            }
+            addStaffs(editParams).then((res) => {
+                if (res?.data?.success) {
+                    setShowReset(false);
+                    showToast('Password reset sucessfully');
+                } 
+            })
+
+        }
         return (<>
             <Toast ref={toast} />
             <ConfirmModal
@@ -101,11 +119,19 @@ const Staffs = () => {
                 onConfirm={onDelete}
                 header={"Confirm Delete"}
             />
+            <ConfirmModal
+                visible={showReset}
+                onClose={() => setShowReset(false)}
+                content={"Password will be rest to default. You want to continue?"}
+                onConfirm={onResetPassword}
+                header={"Reset Password"}
+            />
             <span title="Edit" onClick={() => {
                 setEditId(item.IdUser);
                 setValue(item)
             }} className="pi pi-pencil margin-r-10 grey" ></span>
-            <span onClick={() => setShow(item.IdUser)} title="Delete" className="pi pi-trash red" ></span>
+            <span onClick={() => setShow(true)} title="Delete" className="pi pi-trash red margin-r-10 " ></span>
+            <span onClick={() => setShowReset(true)} title="Reset Password" className="pi pi-refresh red" ></span>
         </>)
     }
     return (<>

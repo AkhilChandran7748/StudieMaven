@@ -20,7 +20,8 @@ export const RENDER_URL = {
     DATA_MANAGEMENT: '/data-management',
     STAFFS: '/staffs',
     LEADS: '/leads',
-    ACTIONS: '/actions'
+    ACTIONS: '/actions',
+    RESET_PASSWORD: '/reset-password'
 };
 
 
