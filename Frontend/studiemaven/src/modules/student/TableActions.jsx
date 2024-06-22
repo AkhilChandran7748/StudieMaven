@@ -29,7 +29,11 @@ const TableActions = ({ data, reload }) => {
             return <span title="Delete" onClick={() => setShow(true)} className="pi pi-trash red" ></span>
         if (data.DeleteStatus === 1)
             return <span ></span>
-        return <span title="Pending for admin approval" className="pi pi-trash blue" ></span>
+        return <span title="Pending for admin approval" onClick={() => {
+            if (loginData.isAdmin) {
+                setShow(true)
+            }
+        }} className="pi pi-trash blue" ></span>
     }
     return (<>
         <ConfirmModal

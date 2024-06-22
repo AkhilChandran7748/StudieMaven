@@ -50,7 +50,7 @@ const ResetPassword = ({ userData }) => {
                 <Password feedback={false} placeholder="Re enter Password" value={loginData.rePassword} onChange={(e) => onChange('rePassword', e.target.value)} className="p-inputtext-sm margin-b-md" />
                 {loginError && <div className="error  margin-b-md">Passwords should match</div>}
                 <div className=" ">
-                    <span className="padding-r-sm">   <Button onClick={onChangePassword} label="Login" severity="success" size="small" /></span>
+                    <span className="padding-r-sm">   <Button onClick={onChangePassword} label="Reset" severity="success" size="small" /></span>
                     <Button onClick={() => {
                         setShow(false);
                         navigate(RENDER_URL.GUEST_DASHBOARD);

@@ -36,7 +36,7 @@ const Login = ({ onClose }) => {
                     navigate(RENDER_URL.ADMIN_DASHBOARD);
                 else {
                     if (loginData.password === 'qwerty123') {
-                        navigate(`${RENDER_URL.RESET_PASSWORD}/${info.staffId}`);
+                        navigate(`${RENDER_URL.RESET_PASSWORD}/${info.staffid}`);
                     } else {
                         navigate(RENDER_URL.STAFF_DASHBOARD);
                     }
