@@ -45,8 +45,9 @@ const VisaStatus = ({ reload, student }) => {
     }, [show])
     const ColorComponent = () => {
         const { ColorCode, VisaStatusName } = selectedStatus || {}
+        debugger;
         return <span onClick={() => setShow(true)}>
-            {visaData?.visa_id ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{VisaStatusName}</span> :
+            {visaData?.visa_id ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode || '7a7d88'}` }} >{VisaStatusName}</span> :
                 <span className="color-badge" style={{ backgroundColor: `#6366f1` }} >N/A</span>}
         </span>
     }

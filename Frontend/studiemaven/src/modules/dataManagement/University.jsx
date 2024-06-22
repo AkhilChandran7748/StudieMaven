@@ -27,7 +27,7 @@ const University = () => {
                     }
                 })
             } else {
-                addUniversity({ uni_name: value }).then((res) => {
+                addUniversity({ uni_name: value, delete_status : 0 }).then((res) => {
                     if (res.data.success) {
                         loadData();
                     }

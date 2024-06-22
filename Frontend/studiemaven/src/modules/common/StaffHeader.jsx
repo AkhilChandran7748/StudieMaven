@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useMatch } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
-import LoginButton from "../login/LoginButton";
+import LogoutButton from "./LogOutButton";
 const StaffHeader = (props) => {
     return (<>  <header id="header">
         <div className="container-fluid">
@@ -49,7 +49,7 @@ const StaffHeader = (props) => {
                         {/* <HeaderMenu /> */}
                     </li>
                     <li >
-                        <LoginButton />
+                    <LogoutButton />
                     </li>
 
 

@@ -26,7 +26,7 @@ const DeleteRequests = () => {
     }
     const getStudentData = () => {
 
-        searchStudent({ delete_status: 1 }).then((res) => {
+        searchStudent({ delete_status: 2 }).then((res) => {
             if (res?.data?.success) {
                 setData(res?.data?.data)
             }

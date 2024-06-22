@@ -30,11 +30,11 @@ const Staffs = () => {
     }, [])
 
     const toast = useRef(null);
-    const showToast = (detail) => {
-        toast.current.show({ severity: 'info', summary: 'Success', detail });
+    const showToast = (detail, flag) => {
+        toast.current.show({ severity: flag ? 'warn' : 'info', summary: flag ? 'Failed' : 'Success', detail });
     };
     const onSubmit = () => {
-        if (value.FirstName) {
+        if (value?.FirstName) {
             if (editId) {
                 let editParams = {
                     id: editId,
@@ -47,6 +47,8 @@ const Staffs = () => {
                     if (res?.data?.success) {
                         getStaffData();
                         showToast('Staff details updated sucessfully');
+                    } else {
+                        showToast(res?.data?.message +'/ Can not be null' || '', true)
                     }
                 })
             } else {
@@ -63,6 +65,8 @@ const Staffs = () => {
                     if (res?.data?.success) {
                         getStaffData();
                         showToast('Staff details added sucessfully');
+                    } else {
+                        showToast(res?.data?.message + '/ Can not be null' || '', true)
                     }
                 })
             }
@@ -104,7 +108,6 @@ const Staffs = () => {
             <span onClick={() => setShow(item.IdUser)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
-    console.log(value, 'mob');
     return (<>
 
         <div className=" content margin-t-30p h-100">
@@ -136,10 +139,10 @@ const Staffs = () => {
                     <span className=" margin-l-10">
                         <FloatLabel>
                             <InputNumber id="number-input"
-                                useGrouping={false} 
+                                useGrouping={false}
                                 className="p-inputtext-sm  m-width-220p"
                                 maxLength={10}
-                                value={value.Mobile}
+                                value={value?.Mobile}
                                 onChange={(e) => {
                                     setValue({
                                         ...value,

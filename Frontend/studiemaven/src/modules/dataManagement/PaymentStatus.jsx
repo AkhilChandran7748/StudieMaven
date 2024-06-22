@@ -39,7 +39,7 @@ const PaymentStatus = () => {
             } else {
                 addPaymentStatus({
                     pay_status_type_name: value.PaymentStatusName,
-                    color_id: value.ColorId,
+                    color_id: value.ColorId || '#',
                 }).then((res) => {
                     if (res.data.success) {
                         getPaymentsStatusData();

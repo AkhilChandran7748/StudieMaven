@@ -37,7 +37,7 @@ const Status = ({ reload, student }) => {
     const ColorComponent = () => {
         const { ColorCode, StatusName } = selectedStatus || {}
         return <span onClick={() => setShow(true)}>
-            {Status ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{StatusName}</span> :
+            {Status ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode || '7a7d88'}` }} >{StatusName}</span> :
                 <span className="color-badge" style={{ backgroundColor: `#6366f1` }} >N/A</span>}
         </span>
     }

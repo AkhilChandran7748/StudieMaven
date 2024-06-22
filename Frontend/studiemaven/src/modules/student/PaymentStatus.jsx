@@ -36,7 +36,7 @@ const PaymentStatus = ({ reload, student }) => {
     const ColorComponent = () => {
         const { ColorCode, PaymentStatusName } = selectedStatus || {}
         return <span onClick={() => setShow(true)}>
-            {PaymentStatusTypeId ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode}` }} >{PaymentStatusName}</span> :
+            {PaymentStatusTypeId ? <span className="color-badge" style={{ backgroundColor: `#${ColorCode || '7a7d88'}` }} >{PaymentStatusName}</span> :
                 <span className="color-badge" style={{ backgroundColor: `#6366f1` }} >N/A</span>}
         </span>
     }

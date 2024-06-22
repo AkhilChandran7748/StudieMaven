@@ -194,7 +194,7 @@ const EditPersonalInfo = ({ student = {}, reload }) => {
                                                 { value: 1, name: 'Yes' },
                                                 { value: 0, name: 'No' },
                                             ]} optionLabel="name" className="m-width-220p" />
-                                            <label htmlFor="dd-city">APS Status</label>
+                                            <label htmlFor="dd-city">Campus France</label>
                                         </span>
                                         {getFormErrorMessage(field.name)}
                                     </div>

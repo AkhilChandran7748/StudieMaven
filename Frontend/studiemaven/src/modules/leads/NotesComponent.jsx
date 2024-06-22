@@ -16,7 +16,7 @@ const NotesComponent = ({ LeadId }) => {
     setloading(true);
     getNotes({ lead_id: LeadId }).then((res) => {
       setloading(false);
-      if (res?.data?.success?.length) {
+      if (res?.data?.success) {
         setNotesData(res.data.data)
       }
     }).catch(() => setloading(false))
@@ -60,7 +60,7 @@ const NotesComponent = ({ LeadId }) => {
     <div style={{ textAlign: 'left', marginTop: '10px' }}>
       {!showEditor && <Button style={{ marginRight: '5px' }} severity="success" label="Add Note" onClick={() => setShowEditor(true)} />}
       {showEditor && <Button style={{ marginRight: '5px' }} severity="success" label="Update" onClick={onAddNote} />}
-      <Button severity="danger" label="Cancel" onClick={() => setVisible(false)} />
+      {showEditor && <Button severity="danger" label="Cancel" onClick={() => setVisible(false)} />}
     </div>
   );
   const EmptyContainer = () => {
@@ -69,6 +69,7 @@ const NotesComponent = ({ LeadId }) => {
         <>{showEditor ? '' : ' No notes avilable'}</>
     )
   }
+  console.log(notesData, 'notesData');
   return (<>
 
     <span title="Notes" onClick={() => setVisible(true)} className={`pi pi-comment`} ></span>
@@ -79,7 +80,7 @@ const NotesComponent = ({ LeadId }) => {
           <label htmlFor={"note"}>Notes</label>
         </span>
       </div>}
-      {/* <FooterContent/> */}
+      <FooterContent />
       {notesData.length ?
         <>
           <Divider />

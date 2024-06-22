@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useMatch } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
-import LoginButton from "../login/LoginButton";
+import LogoutButton from "./LogOutButton";
 const AdminHeader = (props) => {
     return (<>  <header id="header">
         <div className="container-fluid">
@@ -39,19 +39,19 @@ const AdminHeader = (props) => {
                         }>
                             Leads</Link>
                     </li>
-                    <li  className={`${useMatch(RENDER_URL.STAFFS) ? 'menu-active' : ''}`}>
+                    <li className={`${useMatch(RENDER_URL.STAFFS) ? 'menu-active' : ''}`}>
                         <Link to={
                             RENDER_URL.STAFFS
                         }>
                             Staff Manangement</Link>
                     </li>
-                    <li  className={`${useMatch(RENDER_URL.DATA_MANAGEMENT) ? 'menu-active' : ''}`} >
+                    <li className={`${useMatch(RENDER_URL.DATA_MANAGEMENT) ? 'menu-active' : ''}`} >
                         <Link to={
                             RENDER_URL.DATA_MANAGEMENT
                         }>
                             Data Manangement</Link>
                     </li>
-                    <li  className={`${useMatch(RENDER_URL.ACTIONS) ? 'menu-active' : ''}`} >
+                    <li className={`${useMatch(RENDER_URL.ACTIONS) ? 'menu-active' : ''}`} >
                         <Link to={
                             RENDER_URL.ACTIONS
                         }>
@@ -61,7 +61,7 @@ const AdminHeader = (props) => {
                         {/* <HeaderMenu /> */}
                     </li>
                     <li >
-                        <LoginButton />
+                        <LogoutButton />
                     </li>
 
 

@@ -19,7 +19,7 @@ const VisaStatus = ({ visaStatus, appointmentDate }) => {
                 return 'danger'
             case 'Accepted':
                 return 'success';
-            default: return '';
+            default: return 'warning';
         }
     }
     return (<>
@@ -27,7 +27,7 @@ const VisaStatus = ({ visaStatus, appointmentDate }) => {
             <div className=" align-center ">
                 <Dropdown value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} options={statusList} optionLabel="name"
                     placeholder="Status" className="m-width-220p" />
-                {selectedStatus?.VisaDateEnable? <Calendar placeholder="Appoinment Date" value={date} onChange={(e) => setDate(e.value)} className="m-width-220p margin-t-20p calender-w" />:<></>}
+                {selectedStatus?.VisaDateEnable ? <Calendar placeholder="Appoinment Date" value={date} onChange={(e) => setDate(e.value)} className="m-width-220p margin-t-20p calender-w" /> : <></>}
 
                 <div className="padding-t-20p">
                     <span className="padding-r-sm">   <Button onClick={() => setShow(false)} label="Update" severity="success" size="small" /></span>
@@ -36,10 +36,10 @@ const VisaStatus = ({ visaStatus, appointmentDate }) => {
             </div>
         </Dialog>}
         <div>
-            {appointmentDate && <div className="date-button ">{appointmentDate}</div>}
-        <Badge value={visaStatus} onClick={() => setShow(true)} severity={getSeverity()} />
-    </div >
-       
+            {appointmentDate ? <div className="date-button ">{appointmentDate}</div> : <></>}
+            <Badge value={visaStatus} onClick={() => setShow(true)} severity={getSeverity()} />
+        </div >
+
     </>
     )
 }
