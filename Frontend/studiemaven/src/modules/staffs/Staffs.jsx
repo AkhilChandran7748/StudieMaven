@@ -33,7 +33,18 @@ const Staffs = () => {
     const showToast = (detail, flag) => {
         toast.current.show({ severity: flag ? 'warn' : 'info', summary: flag ? 'Failed' : 'Success', detail });
     };
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
     const onSubmit = () => {
+        if (!value.EmailID || !validateEmail(value.EmailID)) {
+            showToast('Invalid Email Id', true)
+            return;
+        }
         if (value?.FirstName) {
             if (editId) {
                 let editParams = {
@@ -106,7 +117,7 @@ const Staffs = () => {
                 if (res?.data?.success) {
                     setShowReset(false);
                     showToast('Password reset sucessfully');
-                } 
+                }
             })
 
         }

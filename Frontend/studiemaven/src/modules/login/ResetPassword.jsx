@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { InputText } from 'primereact/inputtext';
 import { Button } from "primereact/button";
 import { Password } from 'primereact/password';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
-import { login } from "./LoginServices";
 import { Dialog } from "primereact/dialog";
 import { addStaffs } from "../staffs/staffService";
-const ResetPassword = ({ userData }) => {
+const ResetPassword = () => {
+    const { id } = useParams();
     const [show, setShow] = useState(true);
     const [loginData, setLoginData] = useState({
         password: '',
@@ -25,7 +24,7 @@ const ResetPassword = ({ userData }) => {
     const onChangePassword = () => {
         if (loginData.password === loginData.rePassword) {
             let editParams = {
-                id: 26,
+                id,
                 "password": loginData.password,
             }
             addStaffs(editParams).then((res) => {
