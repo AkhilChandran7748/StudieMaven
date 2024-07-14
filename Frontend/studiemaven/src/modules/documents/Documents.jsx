@@ -9,12 +9,13 @@ import { Toast } from 'primereact/toast';
 import moment from "moment";
 import { downloadFile } from '../../Utils/Util'
 import ConfirmModal from "../common/ConfirmModal";
-import { Link } from "react-router-dom";
+import PdfViewer from "../common/PdfViewer";
 const Documents = ({ studentId, visDocument }) => {
      const [data, setData] = useState([]);
      const [value, setValue] = useState({});
      const [editId, setEditId] = useState(null)
      const [show, setShow] = useState(false)
+     const [showDoc, setShowDoc] = useState({})
      const toast = useRef(null);
      const showToast = (detail) => {
           toast.current.show({ severity: 'info', summary: 'Sucess', detail });
@@ -47,6 +48,10 @@ const Documents = ({ studentId, visDocument }) => {
      }, [])
      const TableActions = (item) => {
           const { DocFileName, DocId } = item;
+          const isPdf = () => {
+               let ar = DocFileName.split('.')
+               return ar[ar.length - 1] === 'pdf'
+          }
           return (<>
                <ConfirmModal
                     visible={show}
@@ -56,9 +61,20 @@ const Documents = ({ studentId, visDocument }) => {
                     header={"Confirm Delete"}
                />
                <span title="View Document" >
-                    <Image className="img-icon" src="/img/eye.png" zoomSrc={`${getBaseUrl()}/uploads/documents/${DocFileName}`} alt="Image" width="25" preview />
+
+                    {isPdf() ?
+                         <>
+                              <span title="View" onClick={() => {
+
+                                   setShowDoc(item)
+                              }} className="pi pi-eye margin-r-10 grey" ></span>
+
+                         </>
+                         :
+                         <Image className="img-icon" src="/img/eye.png" zoomSrc={`${getBaseUrl()}/uploads/documents/${DocFileName}`} alt="Image" width="25" preview />}
                </span>
                <span title="Edit" onClick={() => {
+
                     setEditId(item.DocId);
                     setValue(item)
                }} className="pi pi-pencil margin-r-10 grey" ></span>
@@ -72,19 +88,20 @@ const Documents = ({ studentId, visDocument }) => {
      }
      return (<>
           <div className="card content">
+               {showDoc.DocId && <PdfViewer key={showDoc.DocId} header={showDoc.DocFileName} show={true} path={`${getBaseUrl()}/uploads/documents/${showDoc.DocFileName}`} setShow={() => setShowDoc({})} />}
                <Toast ref={toast} />
                <UploadDocument
-               clearData={()=>{
-                    setValue(null)
-               }}
-               documentData={value}
-                visDocument={visDocument}
-                 studentId={studentId}
-                  reload={(r) => {
-                    showToast(r)
-                    getDocuments();
-                    setValue(null)
-               }} />
+                    clearData={() => {
+                         setValue(null)
+                    }}
+                    documentData={value}
+                    visDocument={visDocument}
+                    studentId={studentId}
+                    reload={(r) => {
+                         showToast(r)
+                         getDocuments();
+                         setValue(null)
+                    }} />
                <div className="content card" style={{ textAlign: "-webkit-center" }}>
                     <DataTable value={data} className="aligin-center" >
                          <Column field="DocumentTypeName" header="Document Name"></Column>

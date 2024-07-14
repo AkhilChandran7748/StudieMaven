@@ -20,7 +20,7 @@ const TableActions = ({ data, reload }) => {
         addStudent({ application_id: data.ApplicationId, delete_status: loginData.isAdmin ? 1 : 2 }).then((res) => {
             if (res.data.success) {
                 setShow(false)
-                reload('Student data deleted successfully');
+                reload(loginData.isAdmin?'Student data deleted successfully': 'Student delete request submit successfully');
             }
         })
     }

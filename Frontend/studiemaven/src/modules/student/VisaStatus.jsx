@@ -65,7 +65,7 @@ const VisaStatus = ({ reload, student }) => {
         </Dialog>}
         <div>
             <ColorComponent />
-            {visaData?.date && <div className="date-button ">{moment(visaData?.date).format(' DD MMM YYYY')}</div>}
+            {selectedStatus?.VisaDateEnable && <div className="date-button ">{moment(visaData?.date).format(' DD MMM YYYY')}</div>}
 
         </div >
 

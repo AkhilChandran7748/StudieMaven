@@ -29,7 +29,7 @@ const StaffHeader = (props) => {
                     </li> */}
                     <li className={`${useMatch(RENDER_URL.STAFF_DASHBOARD) ? 'menu-active' : ''}`}>
                         <Link to={
-                            RENDER_URL.ADMIN_DASHBOARD
+                            RENDER_URL.STAFF_DASHBOARD
                         }>
                             Student List</Link>
                     </li>

@@ -14,6 +14,7 @@ import { Toast } from 'primereact/toast';
 import { getBaseUrl } from "../../Services/HttpService";
 import { downloadFile } from "../../Utils/Util";
 import ConfirmModal from "../common/ConfirmModal";
+import PdfViewer from "../common/PdfViewer";
 const VisaDocuments = ({ studentId, visDocument }) => {
     let loginData = localStorage.getItem('userData');
     loginData = loginData && JSON.parse(loginData) || {};
@@ -22,6 +23,7 @@ const VisaDocuments = ({ studentId, visDocument }) => {
     const [show, setShow] = useState(false)
     const [value, setValue] = useState({});
     const [editId, setEditId] = useState(null)
+    const [showDoc, setShowDoc] = useState({})
     const toast = useRef(null);
     const showToast = (detail) => {
         toast.current.show({ severity: 'info', summary: 'Sucess', detail });
@@ -108,6 +110,10 @@ const VisaDocuments = ({ studentId, visDocument }) => {
     }
     const TableActions = (item) => {
         const { DocFileName, DocId, VerifiedStatus } = item;
+        const isPdf = () => {
+            let ar = DocFileName.split('.')
+            return ar[ar.length - 1] === 'pdf'
+        }
         return (<>
             <ConfirmModal
                 visible={show}
@@ -117,16 +123,23 @@ const VisaDocuments = ({ studentId, visDocument }) => {
                 header={"Confirm Delete"}
             />
             <span title="View Document" >
-                <Image className="img-icon" src="/img/eye.png"
-                    zoomSrc={`${getBaseUrl()}/uploads/documents/${DocFileName}`}
-                    alt="Image" width="25" preview />
 
+                {isPdf() ?
+                    <>
+                        <span title="View" onClick={() => {
+
+                            setShowDoc(item)
+                        }} className="pi pi-eye margin-r-10 grey" ></span>
+
+                    </>
+                    :
+                    <Image className="img-icon" src="/img/eye.png" zoomSrc={`${getBaseUrl()}/uploads/documents/${DocFileName}`} alt="Image" width="25" preview />}
             </span>
             {VerifiedStatus !== 1 || loginData.isAdmin ?
                 <span title="Edit" onClick={() => {
                     setEditId(DocId);
                     setValue(item)
-                }} className="pi pi-pencil margin-r-10 grey" ></span>: <></>}
+                }} className="pi pi-pencil margin-r-10 grey" ></span> : <></>}
 
             <span onClick={() => {
                 downloadFile(`${getBaseUrl()}uploads/documents/${DocFileName}`, DocFileName)
@@ -138,6 +151,7 @@ const VisaDocuments = ({ studentId, visDocument }) => {
         </>)
     }
     return (<>
+        {showDoc.DocId && <PdfViewer key={showDoc.DocId} header={showDoc.DocFileName} show={true} path={`${getBaseUrl()}/uploads/documents/${showDoc.DocFileName}`} setShow={() => setShowDoc({})} />}
         <Toast ref={toast} />
         <div className="card content">
             <div className="" style={{

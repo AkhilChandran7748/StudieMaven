@@ -97,7 +97,7 @@ const Country = () => {
                     }} label="Cancel" severity="secondary" className="small-button margin-l-5p" />
                 </div>
                 <div className="content" style={{ textAlign: "-webkit-center" }}>
-                    <DataTable value={data} className="width-350p aligin-center" >
+                    <DataTable value={data} className="width-500p aligin-center" >
                         <Column field="DocumentTypeName" header="Document Name"></Column>
                         <Column body={EnableDateComponent} header="Is Visa Document"></Column>
                      

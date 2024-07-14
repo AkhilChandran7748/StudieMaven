@@ -6,6 +6,8 @@ import { documentsData } from "../student/data";
 import { Image } from 'primereact/image';
 import { getAllDocuments, uploadDocuments } from "../documents/documentServices";
 import { Toast } from 'primereact/toast';
+import { Link } from "react-router-dom";
+import { RENDER_URL } from "../../Utils/Urls";
 const VerifyDocuments = () => {
     const [data, setData] = useState()
     let loginData = localStorage.getItem('userData');
@@ -81,12 +83,27 @@ const VerifyDocuments = () => {
             ></span>
         </>)
     }
+    const NameColumn = ({ ApplicationId, Name }) => {
+        return (<>
+            <span>
+                {Name}
+                <Link to={`${RENDER_URL.VIEW_STUDENT}/${ApplicationId}`} target="_blank">
+                    <span title="View Student Profile" className="pi pi-external-link margin-r-10 margin-l-10 grey" >
+
+                    </span>
+                </Link>
+
+            </span>
+        </>)
+    }
     return (
         <div className="content" style={{ textAlign: "-webkit-center" }}>
-              <Toast ref={toast} />
-            <DataTable value={data} className="width-350p aligin-center" >
-                <Column field="Name" header="Student Name"></Column>
+            <Toast ref={toast} />
+            <DataTable value={data} className="width-600p aligin-center" >
+                <Column field="Name" body={NameColumn} header="Student Name"></Column>
                 <Column field="DocumentTypeName" header="Document Name"></Column>
+                <Column field="DocNote" header="Document Note"></Column>
+                
                 <Column body={TableActions} header="Action"></Column>
             </DataTable>
         </div>
