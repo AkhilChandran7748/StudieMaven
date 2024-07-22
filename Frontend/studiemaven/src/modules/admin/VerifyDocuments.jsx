@@ -8,8 +8,10 @@ import { getAllDocuments, uploadDocuments } from "../documents/documentServices"
 import { Toast } from 'primereact/toast';
 import { Link } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
+import PdfViewer from "../common/PdfViewer";
 const VerifyDocuments = () => {
     const [data, setData] = useState()
+    const [showDoc, setShowDoc] = useState({})
     let loginData = localStorage.getItem('userData');
     loginData = loginData && JSON.parse(loginData) || {};
     const toast = useRef(null);
@@ -64,11 +66,22 @@ const VerifyDocuments = () => {
         })
     }
     const TableActions = (item) => {
-        const { DocFileName, DocId, VerifiedStatus } = item;
+        const { DocFileName, DocId, VerifiedStatus } = item; const isPdf = () => {
+            let ar = DocFileName.split('.')
+            return ar[ar.length - 1] === 'pdf'
+        }
         return (<>
             <span title="View Document" >
-                <Image className="img-icon" src="/img/eye.png" zoomSrc={`${getBaseUrl()}/uploads/documents/${DocFileName}`} alt="Image" width="25" preview />
+                {isPdf() ?
+                    <>
+                        <span title="View" onClick={() => {
 
+                            setShowDoc(item)
+                        }} className="pi pi-eye margin-r-10 grey" ></span>
+
+                    </>
+                    :
+                    <Image className="img-icon" src="/img/eye.png" zoomSrc={`${getBaseUrl()}/uploads/documents/${DocFileName}`} alt="Image" width="25" preview />}
             </span>
             <span onClick={() => {
                 if (VerifiedStatus == 1) {
@@ -98,12 +111,13 @@ const VerifyDocuments = () => {
     }
     return (
         <div className="content" style={{ textAlign: "-webkit-center" }}>
+            {showDoc.DocId && <PdfViewer key={showDoc.DocId} header={showDoc.DocFileName} show={true} path={`${getBaseUrl()}/uploads/documents/${showDoc.DocFileName}`} setShow={() => setShowDoc({})} />}
             <Toast ref={toast} />
             <DataTable value={data} className="width-600p aligin-center" >
                 <Column field="Name" body={NameColumn} header="Student Name"></Column>
                 <Column field="DocumentTypeName" header="Document Name"></Column>
                 <Column field="DocNote" header="Document Note"></Column>
-                
+
                 <Column body={TableActions} header="Action"></Column>
             </DataTable>
         </div>
