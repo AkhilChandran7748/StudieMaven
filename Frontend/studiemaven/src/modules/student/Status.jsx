@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Badge } from 'primereact/badge';
 import { Dialog } from 'primereact/dialog';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from "primereact/button";
@@ -12,7 +11,7 @@ const Status = ({ reload, student }) => {
     const [selectedStatus, setSelectedStatus] = useState(null);
     useEffect(() => {
         setSelectedStatus(data.find((i) => i.Id === Status))
-    }, [data, student])
+    }, [data, student]) //eslint-disable-line
     const getStatusData = () => {
         getStatus().then((res) => {
             if (res.data.success) {
