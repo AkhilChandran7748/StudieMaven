@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import WithHeader from "../common/WithHeaderHoc";
 import { useParams } from "react-router-dom";
-import { student } from "./data";
 import './student.css'
 import PersonalInfo from "./PersonalInfo";
 import { TabView, TabPanel } from 'primereact/tabview';
@@ -37,7 +36,7 @@ const ViewStudent = () => {
                 }} student={studentData} />
                 <TabView className="content">
                     <TabPanel header="Documents">
-                        <Documents visDocument={false} documents={student.documents} studentId={id}  />
+                        <Documents visDocument={false} studentId={id} />
                     </TabPanel>
                     <TabPanel header="Payment Info">
                         <p className="m-0">
@@ -48,7 +47,7 @@ const ViewStudent = () => {
                         </p>
                     </TabPanel>
                     <TabPanel header="Visa Documents">
-                        <VisaDocuments visDocument={true} documents={student.documents} studentId={id} />
+                        <VisaDocuments visDocument={true} studentId={id} />
                     </TabPanel>
                 </TabView>
             </div>

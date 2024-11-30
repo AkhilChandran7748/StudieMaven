@@ -1,13 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Splitter, SplitterPanel } from 'primereact/splitter';
-import Document from "./Document";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { documentsData } from "../student/data";
 import { Image } from 'primereact/image';
 import UploadDocument from "./UploadDocument";
-import { OverlayPanel } from 'primereact/overlaypanel';
-import { Button } from 'primereact/button';
 import SendDocuments from "./SendDocuments";
 import { getAllDocuments, uploadDocuments } from "./documentServices";
 import { Toast } from 'primereact/toast';

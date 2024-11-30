@@ -1,6 +1,7 @@
 import FileSaver from 'file-saver';
 import { useRef, useEffect } from 'react'
-import {saveAs} from 'file-saver'
+import { saveAs } from 'file-saver'
+import * as XLSX from 'xlsx';
 export const useIsMount = () => {
     const isMountRef = useRef(true);
     useEffect(() => {
@@ -12,7 +13,7 @@ export const downloadFile = (doclink, name) => {
     FileSaver.saveAs(
         doclink,
         name,
-      );
+    );
 }
 
 const makeTimer = () => {
@@ -25,4 +26,14 @@ const makeTimer = () => {
 
 
     }, 1000)
-} 
+}
+
+
+export const downloadToExcel = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+    //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+    XLSX.writeFile(workbook, "StudentList.xlsx");
+}

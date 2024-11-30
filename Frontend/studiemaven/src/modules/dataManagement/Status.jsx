@@ -3,10 +3,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { statusOptions } from "../student/data";
-import { Dropdown } from 'primereact/dropdown';
-import { Badge } from 'primereact/badge';
-import { addStatus, updateStatus, getStatus } from "./dataServices";
+import { addStatus, getStatus } from "./dataServices";
 import ColorsDropdown from "../common/ColorDropDown";
 const Status = () => {
     const [data, setData] = useState([]);

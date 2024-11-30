@@ -1,5 +1,5 @@
 
-import { docTypes } from "../student/data";
+
 import React, { useEffect, useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { getDocumentTypes } from "../dataManagement/dataServices";

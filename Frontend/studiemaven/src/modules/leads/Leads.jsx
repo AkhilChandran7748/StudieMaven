@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { leadsData } from "./data";
 import { columnConfig } from "./studentColumnConfig";
 import LeadsActions from "./LeadsActions";
 import Status from "./Status";

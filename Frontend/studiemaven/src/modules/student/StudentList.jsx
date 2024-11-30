@@ -4,9 +4,9 @@ import AddStudent from "./AddStudent";
 import { getStudents, searchStudent } from "./student.services";
 import { Toast } from "primereact/toast";
 import StudentListComponent from "./StudentListComponent";
-import { TabView, TabPanel } from 'primereact/tabview';
 
 import './student.css'
+import { downloadToExcel } from "../../Utils/Util";
 const StudentList = () => {
     const toast = useRef(null);
     const [data, setData] = useState([])
@@ -41,7 +41,9 @@ const StudentList = () => {
         <div className="content">
             <div className="header padding-b-30">Student List</div>
             <div className="card margin-b-md">
-                <Search onSearch={getStudentData} />
+                <Search onSearch={getStudentData} onExport={() => {
+                    downloadToExcel(data);
+                }} />
             </div>
 
             <div style={{ textAlign: 'right' }} > <AddStudent reload={(detail) => {

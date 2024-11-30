@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { getBaseUrl } from "../../Services/HttpService";
-import { documentsData } from "../student/data";
 import { Image } from 'primereact/image';
 import { getAllDocuments, uploadDocuments } from "../documents/documentServices";
 import { Toast } from 'primereact/toast';

@@ -3,7 +3,6 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { countries } from "../student/data";
 import { addCountry, getCountry, updateCountry } from "./dataServices";
 const Country = () => {
     const [data, setData] = useState([]);

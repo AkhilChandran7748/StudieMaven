@@ -3,10 +3,6 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { paymentOptions } from "../student/data";
-import { Dropdown } from 'primereact/dropdown';
-import { Badge } from 'primereact/badge';
-import { colors } from "../../Utils/Constants";
 import { getPaymentStatus, addPaymentStatus } from "./dataServices";
 import ColorsDropdown from "../common/ColorDropDown";
 const PaymentStatus = () => {

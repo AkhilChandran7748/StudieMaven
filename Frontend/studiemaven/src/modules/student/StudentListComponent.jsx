@@ -4,7 +4,6 @@ import VisaStatus from "./VisaStatus";
 import InTake from "./InTake";
 import LeadOwner from "./LeadOwner";
 import PaymentStatus from "./PaymentStatus";
-import { studentData } from "./data";
 import { columnConfig } from "./studentColumnConfig";
 import TableActions from "./TableActions";
 import Status from "./Status";

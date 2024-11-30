@@ -13,7 +13,7 @@ import VisaStatusDropDown from '../components/VisaStatusDropDown';
 import { ToggleButton } from 'primereact/togglebutton';
 import { InputSwitch } from "primereact/inputswitch";
 
-const Search = ({ onSearch }) => {
+const Search = ({ onSearch, onExport }) => {
     const [value, setValue] = useState({
         name: '',
         agent_id: '',
@@ -93,6 +93,7 @@ const Search = ({ onSearch }) => {
                         <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
                             <Button label="Search" onClick={onSubmit} className="small-button" />
                             <Button label="Reset" onClick={onReset} severity="secondary" className="small-button margin-l-5p" />
+                            <Button label="Export as excel" onClick={onExport} severity="success" className="small-button margin-l-5p" />
                         </div>
                     </div>
                 </AccordionTab>
