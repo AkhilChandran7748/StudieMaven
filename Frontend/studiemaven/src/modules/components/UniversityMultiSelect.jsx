@@ -8,7 +8,7 @@ export default function UniversityMultiSelect({ onChange, value = [] }) {
 
     useEffect(() => {
         if (data.length && value.length) {
-            let d = value.map((i) => data.find((e) => e.Id === i))
+            let d = value.map((i) => data.find((e) => e.Id == i))//eslint-disable-line
             setSelectedCountry(d.filter((i) => i))
         }
 
