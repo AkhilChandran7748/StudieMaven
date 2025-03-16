@@ -4,7 +4,8 @@ import { getPaymentStatus, getStatus, getVisaStatus } from "../dataManagement/da
 
 export const DataContext = createContext();
 export const DataContextProvider = ({ children }) => {
-
+    let loginData = localStorage.getItem('userData');
+    loginData = (loginData && JSON.parse(loginData)) || {};
     const [payemntData, setPaymentData] = useState([]);
     const [visaStatustData, setViasaStatusData] = useState([]);
     const [statustData, setStatusData] = useState([]);
@@ -30,10 +31,12 @@ export const DataContextProvider = ({ children }) => {
         })
     }
     useEffect(() => {
-        getPaymentsStatusData();
-        getViasStatusData()
-        getStatusData();
-    }, [])
+        if (loginData.token) {
+            getPaymentsStatusData();
+            getViasStatusData()
+            getStatusData();
+        }
+    }, [])//eslint-disable-line
 
     return (
         <div>

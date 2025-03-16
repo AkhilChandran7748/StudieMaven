@@ -5,7 +5,7 @@ import { Button } from "primereact/button";
 import { addStudent } from "../student/student.services";
 import { DataContext } from "../common/dataContext";
 const PaymentStatus = ({ reload, student }) => {
-    const { payemntData: data } = useContext(DataContext)
+const { payemntData: data } = useContext(DataContext)
     const { ApplicationId, PaymentStatusTypeId } = student
     const [show, setShow] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState({});

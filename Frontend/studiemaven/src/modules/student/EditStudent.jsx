@@ -32,8 +32,7 @@ const AddStudent = ({ reload, student }) => {
         country_id: student.CountryId,
         university_id: student.UniversityId,
         agent_id: student.AgentId,
-        course_name: student.Course,
-        owner_id: student.OwnerId
+        course_name: student.Course
 
     };
 
@@ -46,7 +45,7 @@ const AddStudent = ({ reload, student }) => {
 
     const onSubmit = (data) => {
         let is_defered = moment(student.InTake).format(' DD MMM YYYY') !== moment(data.intake).format(' DD MMM YYYY') ? 1 : 0
-        addStudent({ ...data, application_id: student.ApplicationId, is_defered, is_converted: student.IsConverted }).then((res) => {
+        addStudent({ ...data, application_id: student.ApplicationId, is_defered, is_converted: student.IsConverted, owner_id: student.OwnerId }).then((res) => {
             if (res.data.success) {
                 setVisible(false);
                 reload('Student data updated successfully');
