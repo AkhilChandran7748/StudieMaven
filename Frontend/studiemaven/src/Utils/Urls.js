@@ -21,7 +21,8 @@ export const RENDER_URL = {
     STAFFS: '/staffs',
     LEADS: '/leads',
     ACTIONS: '/actions',
-    RESET_PASSWORD: '/reset-password'
+    RESET_PASSWORD: '/reset-password',
+    UNIVERSITY: '/university'
 };
 
 

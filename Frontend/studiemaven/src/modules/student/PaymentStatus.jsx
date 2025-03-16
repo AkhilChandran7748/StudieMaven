@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dialog } from 'primereact/dialog';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from "primereact/button";
-import { getPaymentStatus } from "../dataManagement/dataServices";
 import { addStudent } from "../student/student.services";
+import { DataContext } from "../common/dataContext";
 const PaymentStatus = ({ reload, student }) => {
+    const { payemntData: data } = useContext(DataContext)
     const { ApplicationId, PaymentStatusTypeId } = student
     const [show, setShow] = useState(false);
-    const [data, setData] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState({});
-    const getPaymentsStatusData = () => {
-        getPaymentStatus().then((res) => {
-            if (res.data.success) {
-                setData(res.data.data)
-            }
-        })
-    }
+    // const getPaymentsStatusData = () => {
+    //     getPaymentStatus().then((res) => {
+    //         if (res.data.success) {
+    //             setData(res.data.data)
+    //         }
+    //     })
+    // }
     useEffect(() => {
         setSelectedStatus(data.find((i) => i.Id === PaymentStatusTypeId))
     }, [PaymentStatusTypeId, data])
-    useEffect(() => {
-        getPaymentsStatusData();
-    }, [show])
+    // useEffect(() => {
+    //     getPaymentsStatusData();
+    // }, [show])
     const onSubmit = () => {
         addStudent({
             "application_id": ApplicationId,

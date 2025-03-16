@@ -4,9 +4,10 @@ import { history } from './Core/Store';
 import Routes from './Core/Routes';
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { setBaseUrl } from "../src/Services/HttpService"
 function App() {
+  const [loaded, setLoaded] = useState(false)
   React.useEffect(() => {
     // console.log = console.warn = console.error = () => {};
     let headers = new Headers();
@@ -21,13 +22,14 @@ function App() {
       })
       .then((obj) => {
         setBaseUrl(obj.baseUrl);
+        setLoaded(true)
       });
   }, []);
   return (
     <div className="App">
-      <PrimeReactProvider>
+      {loaded && <PrimeReactProvider>
         <Routes history={history} />
-      </PrimeReactProvider>
+      </PrimeReactProvider>}
     </div>
   );
 }

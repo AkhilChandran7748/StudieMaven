@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dialog } from 'primereact/dialog';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from "primereact/button";
 import { Calendar } from 'primereact/calendar';
-import { getVisaStatus } from "../dataManagement/dataServices";
-
 import { addStudent } from "../student/student.services";
 import moment from "moment";
+import { DataContext } from "../common/dataContext";
 const VisaStatus = ({ reload, student }) => {
     const { VisaStatus, ApplicationId } = student
+
+    const { visaStatustData: data } = useContext(DataContext)
     let visaData = JSON.parse(VisaStatus);
     const [show, setShow] = useState(false);
     const [date, setDate] = useState(visaData?.date ? new Date(visaData.date) : null);
-    const [data, setData] = useState([]);
-    const [selectedStatus, setSelectedStatus] = useState(null);
+   const [selectedStatus, setSelectedStatus] = useState(null);
     useEffect(() => {
         setSelectedStatus(data.find((i) => i.Id === visaData?.visa_id))
         // setDate(new Date(visaData.data))
     }, [data, student]) //eslint-disable-line
-    const getStatusData = () => {
-        getVisaStatus().then((res) => {
-            if (res.data.success) {
-                setData(res.data.data)
-            }
-        })
-    }
+
     const onSubmit = () => {
         addStudent({
             "application_id": ApplicationId,
@@ -39,9 +33,6 @@ const VisaStatus = ({ reload, student }) => {
             }
         })
     }
-    useEffect(() => {
-        getStatusData();
-    }, [show])
     const ColorComponent = () => {
         const { ColorCode, VisaStatusName } = selectedStatus || {}
         return <span onClick={() => setShow(true)}>

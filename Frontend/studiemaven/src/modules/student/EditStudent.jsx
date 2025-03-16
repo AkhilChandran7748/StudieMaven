@@ -1,22 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { Controller, useForm } from 'react-hook-form';
 import { classNames } from 'primereact/utils';
-import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import IntakeDropDown from "../components/IntakeDropDown";
 import AgentDropDown from "../components/AgentDropDown";
-import StaffDropDown from "../components/StaffDropDown";
-import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
 import CountryDropDown from "../components/CountryDropDown";
-import UniversityDropdown from "../components/UniversityDropdown";
-
 import { InputNumber } from "primereact/inputnumber";
 import { addStudent } from "./student.services";
 import moment from "moment";
+import UniversityMultiSelect from "../components/UniversityMultiSelect";
 const AddStudent = ({ reload, student }) => {
     const [visible, setVisible] = useState(false);
     const FooterContent = () => (
@@ -36,7 +32,8 @@ const AddStudent = ({ reload, student }) => {
         country_id: student.CountryId,
         university_id: student.UniversityId,
         agent_id: student.AgentId,
-        course_name: student.Course
+        course_name: student.Course,
+        owner_id: student.OwnerId
 
     };
 
@@ -44,9 +41,6 @@ const AddStudent = ({ reload, student }) => {
         control,
         formState: { errors },
         handleSubmit,
-        getValues,
-        reset,
-        register,
         setValue
     } = useForm({ defaultValues });
 
@@ -192,12 +186,12 @@ const AddStudent = ({ reload, student }) => {
                                 <Controller
                                     name="university_id"
                                     control={control}
-                                    rules={{ required: 'Country is required.' }}
+                                    rules={{ required: 'Select atleast 1 university.' }}
                                     render={({ field, fieldState }) => (
                                         <div>
                                             <label htmlFor={field.name} className={classNames({ 'p-error': errors.value })}></label>
-                                            <UniversityDropdown
-                                                value={field.value}
+                                            <UniversityMultiSelect
+                                                value={field?.value ? field.value.split(',') : []}
                                                 onChange={(v) => {
                                                     setValue('university_id', v)
                                                 }} />

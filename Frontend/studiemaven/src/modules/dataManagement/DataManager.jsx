@@ -6,7 +6,6 @@ import Status from "./Status";
 import VisaStatus from "./VisaStatus";
 import Country from "./Country";
 import PaymentStatus from "./PaymentStatus";
-import University from "./University";
 import Color from "./Colors";
 import Agents from "./Agents";
 const DataManager = () => {
@@ -18,7 +17,7 @@ const DataManager = () => {
         { name: 'VisaStatus Types', code: 'visaStatus' },
         { name: 'Countries', code: 'country' },
         { name: 'Payment Status', code: 'payment' },
-        { name: 'University', code: 'university' },
+        // { name: 'University', code: 'university' },
         { name: 'Colors', code: 'colors' },
     ];
     const getSection = () => {
@@ -33,8 +32,8 @@ const DataManager = () => {
                 return <Country />
             case 'payment':
                 return <PaymentStatus />
-            case 'university':
-                return <University />
+            // case 'university':
+            //     return <University />
             case 'colors':
                 return <Color />
             case 'agents':

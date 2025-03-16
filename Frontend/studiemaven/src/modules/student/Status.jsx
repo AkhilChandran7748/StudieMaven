@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dialog } from 'primereact/dialog';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from "primereact/button";
 import { addStudent } from "../student/student.services";
-import { getStatus } from "../dataManagement/dataServices";
+import { DataContext } from "../common/dataContext";
 const Status = ({ reload, student }) => {
     const { Status, ApplicationId } = student
     const [show, setShow] = useState(false);
-    const [data, setData] = useState([])
+    const { statustData: data } = useContext(DataContext)
     const [selectedStatus, setSelectedStatus] = useState(null);
     useEffect(() => {
         setSelectedStatus(data.find((i) => i.Id === Status))
     }, [data, student]) //eslint-disable-line
-    const getStatusData = () => {
-        getStatus().then((res) => {
-            if (res.data.success) {
-                setData(res.data.data)
-            }
-        })
-    }
-    useEffect(() => {
-        getStatusData();
-    }, [show])
+
     const onSubmit = () => {
         addStudent({
             "application_id": ApplicationId,

@@ -39,6 +39,12 @@ const StaffHeader = (props) => {
                         }>
                             Leads</Link>
                     </li>
+                    <li className={`${useMatch(RENDER_URL.UNIVERSITY) ? 'menu-active' : ''}`} >
+                        <Link to={
+                            RENDER_URL.UNIVERSITY
+                        }>
+                            Universities</Link>
+                    </li>
                     <li className={`${useMatch(RENDER_URL.DATA_MANAGEMENT) ? 'menu-active' : ''}`} >
                         <Link to={
                             RENDER_URL.DATA_MANAGEMENT
@@ -49,7 +55,7 @@ const StaffHeader = (props) => {
                         {/* <HeaderMenu /> */}
                     </li>
                     <li >
-                    <LogoutButton />
+                        <LogoutButton />
                     </li>
 
 

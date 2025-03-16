@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GuestHeader from "../common/GuestHeaderComponent";
 import Footer from "../common/FooterComponent";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
+import { useNavigate } from "react-router-dom";
+import { RENDER_URL } from "../../Utils/Urls";
 const GuestDashboard = (props) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        let loginData = localStorage.getItem('userData');
+        loginData = loginData && JSON.parse(loginData) || {};
+        if(loginData && loginData.isAdmin){
+              navigate(RENDER_URL.ADMIN_DASHBOARD);
+        }
+        if(loginData && loginData.isStaff){
+              navigate(RENDER_URL.STAFF_DASHBOARD);
+        }
+        if (!loginData.token) {
+
+            return
+        }
+        
+
+    }, [])
     return (<>
-        <GuestHeader history={props.history}/>
+        <GuestHeader history={props.history} />
         <div id="intro">
             <div className="intro-container">
                 <div id="introCarousel" className="carousel  slide carousel-fade" data-ride="carousel">

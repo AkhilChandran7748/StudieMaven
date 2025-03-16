@@ -3,10 +3,12 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { getUniversities, addUniversity, updateUniversity } from "./dataServices";
+import { getUniversities, addUniversity } from "./dataServices";
+import WithHeader from "../common/WithHeaderHoc";
+import { InputTextarea } from "primereact/inputtextarea";
 const University = () => {
     const [data, setData] = useState([]);
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(null);
     const [editId, setEditId] = useState(null)
     const loadData = () => {
         getUniversities().then(res => {
@@ -19,21 +21,23 @@ const University = () => {
         loadData();
     }, [])
     const onSubmit = () => {
-        if (value) {
+        if (value.uni_name) {
+            const { uni_name, description } = value
             if (editId) {
-                addUniversity({ uni_name: value, id: editId }).then((res) => {
+
+                addUniversity({ uni_name, description, id: editId }).then((res) => {
                     if (res.data.success) {
                         loadData();
                     }
                 })
             } else {
-                addUniversity({ uni_name: value, delete_status : 0 }).then((res) => {
+                addUniversity({ uni_name, description, delete_status: 0 }).then((res) => {
                     if (res.data.success) {
                         loadData();
                     }
                 })
             }
-            setValue('');
+            setValue({ uni_name: '', description: '' });
             setEditId('');
         }
     }
@@ -45,37 +49,52 @@ const University = () => {
             }
         })
     }
-    const TableActions = ({ Id, UniversityName }) => {
+    const TableActions = ({ Id, UniversityName, Description }) => {
         return (<>
             <span title="Edit" onClick={() => {
                 setEditId(Id);
-                setValue(UniversityName)
+                setValue({ uni_name: UniversityName, description: Description })
             }} className="pi pi-pencil margin-r-10 grey" ></span>
             <span onClick={() => onDelete(Id)} title="Delete" className="pi pi-trash red" ></span>
         </>)
     }
     return (<>
-        <div className="content margin-t-30p align-center">
-            <div>
-                <span className="p-float-label margin-l-10">
-                    <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value} onChange={(e) => setValue(e.target.value)} />
-                    <label htmlFor="username">University</label>
-                </span>
-                <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p">
+        <div className=" margin-t-30p">
+            <div className="header padding-b-50p">University</div>
+            <div className="content ">
+                <div className="row align-center">
+                    <span className="p-float-label margin-l-10  margin-r-10">
+                        <InputText className="p-inputtext-sm  m-width-220p" id="username" value={value?.uni_name} onChange={(e) => setValue({
+                            ...value,
+                            uni_name: e.target.value
+                        })} />
+                        <label htmlFor="username">University name</label>
+                    </span>
+                    <span className="p-float-label">
+                        <InputTextarea value={value?.description} id="note" rows={2} cols={30} autoResize onChange={(e) => setValue({
+                            ...value,
+                            description: e.target.value
+                        })} />
+                        <label htmlFor={"note"}>Description</label>
+                    </span>
+                </div>
+                <div className=" flex flex-wrap justify-content-center gap-3 padding-t-10p padding-b-30p">
+
                     <Button onClick={onSubmit} label="Submit" severity="success" className="small-button" />
                     <Button onClick={() => {
-                        setValue('');
+                        setValue({ uni_name: '', description: '' });
                         setEditId('')
                     }} label="Cancel" severity="secondary" className="small-button margin-l-5p" />
                 </div>
-                <div className="content" style={{ textAlign: "-webkit-center" }}>
-                    <DataTable value={data} className="width-350p aligin-center" >
-                        <Column field="UniversityName" header="Ubiversity Name"></Column>
-                        <Column body={TableActions} header="Action"></Column>
-                    </DataTable>
-                </div>
+            </div>
+            <div className="content" style={{ textAlign: "-webkit-center" }}>
+                <DataTable value={data} className=" aligin-center" >
+                    <Column field="UniversityName" header="University Name"></Column>
+                    <Column field="Description" header="Description"></Column>
+                    <Column body={TableActions} header="Action"></Column>
+                </DataTable>
             </div>
         </div>
     </>)
 }
-export default University
+export default WithHeader(University)
