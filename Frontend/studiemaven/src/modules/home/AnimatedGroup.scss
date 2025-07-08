@@ -54,7 +54,7 @@
         margin: 0 !important;
         padding: 0 !important;
         text-transform: uppercase;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Montserrat", sans-serif !important;
         word-break: normal;
         overflow-wrap: break-word;
         white-space: normal;
@@ -102,6 +102,7 @@
   }
   .sliderCaption {
     padding: 14px 10px!important;
+    bottom:40px !important;
   }
   .sliderCaption h1 {
     font-size: 1.1rem;
