@@ -1,11 +1,10 @@
 .footer-main {
-  background: #030000;
+  background: #e6e7e2;
   position: relative;
   color: #fff;
   padding: 100px 0 0 0;
-  overflow: hidden;
   background-image: url('../../assets/bg-maps.png') !important;
-  background-size:cover !important;
+  background-size:100% !important;
   background-repeat: no-repeat !important;
   background-position: center;
 }
@@ -13,26 +12,31 @@
 .footer-bg-circles {
   .footer-bg-circle {
     position: absolute;
-    border-radius: 50%;
     background: transparent;
     opacity: 1;
     z-index: 1;
   }
   .footer-bg-circle--right {
-    width: 600px;
-    height: 600px;
-    top: -300px;
-    right: -250px;
+    width: 190px;
+    height: 360px;
+    top: -100px;
+    right: 0;
     opacity: 1;
-    border: 100px solid #ed2a24;
+    background-image: url('../../assets/footer-bg2.png') !important;
+    background-size:100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center;
   }
   .footer-bg-circle--left {
     width: 280px;
     height: 280px;
-    bottom: -145px;
-    left: -145px;
-    opacity: 0.5;
-    border: 60px solid #fff;
+    bottom:0;
+    left: 0;
+    opacity: 1;
+    background-image: url('../../assets/footer-bg1.png') !important;
+    background-size:100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center;
   }
 }
 
@@ -122,7 +126,7 @@
       margin-bottom: 18px;
       letter-spacing: 0.5px;
       text-align: left;
-      color: #fff;
+      color: #10231b;
     }
     ul {
       list-style: none;
@@ -132,7 +136,7 @@
         font-size: 14px;
         font-weight: 400;
         margin-bottom: 16px;
-        color: #fff;
+        color:#10231b;
         display: flex;
         text-align: left;
         svg {
@@ -142,7 +146,7 @@
           font-size: 20px;
         }
         a {
-          color: #fff;
+          color: #10231b;
           text-decoration: none;
           &:hover {
             text-decoration: underline;
@@ -181,7 +185,7 @@
       svg {
         width: 26px;
         height: 26px;
-        fill: #fff;
+        color: #ed2a24;;
         transition: opacity 0.18s;
       }
       &:hover svg {
@@ -192,7 +196,7 @@
   .footer-info {
     font-size: 13px;
     text-align: center;
-    color: #fff;
+    color: #10231b;
     opacity: 0.9;
     div {
       margin-bottom: 3px;
@@ -219,18 +223,7 @@
   .footer-main {
     padding: 64px 0 0 0;
   }
-  .footer-bg-circles .footer-bg-circle--right {
-    width: 300px;
-    height: 300px;
-    top: -60px;
-    right: -80px;
-  }
-  .footer-bg-circles .footer-bg-circle--left {
-    width: 120px;
-    height: 120px;
-    bottom: -60px;
-    left: -60px;
-  }
+
   .footer-logo .studie-maven-logo .studie,
   .footer-logo .studie-maven-logo .maven-row .maven {
     font-size: 30px;
@@ -265,23 +258,15 @@
     }
   }
 
-    .footer-bg-circles {
-        .footer-bg-circle--right {
-            width: 250px;
-            height: 250px;
-            top: -120px;
-            right: -100px;
-
-            border: 50px solid #ed2a24;
-        }
-        .footer-bg-circle--left {
-            width: 130px;
-            height: 130px;
-            bottom: -75px;
-            left: -75px;
-            border: 30px solid #fff;
-        }
+  .footer-bg-circles {
+    .footer-bg-circle--right {
+      width: 110px;
+      height: 330px;
     }
-
+    .footer-bg-circle--left {
+      width: 80px;
+      height: 80px;
+    }
+  }
 
 }

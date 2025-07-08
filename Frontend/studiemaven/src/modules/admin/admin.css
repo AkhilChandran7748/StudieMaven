@@ -33,3 +33,13 @@
     border-color: #6366F1;
     color: #6366F1;
 }
+
+/* Need to re style this -- only for testing */
+.row>* {
+    flex-shrink: 0;
+    width: auto;
+    max-width: 100%;
+    padding-right: inherit;
+    padding-left: inherit;
+    margin-top: var(--bs-gutter-y);
+}

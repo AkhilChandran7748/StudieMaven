@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import { FaArrowRight } from "react-icons/fa";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom"; 
 
 import peopleOne from '../../assets/people-pic1.jpg';
 import peopleTwo from '../../assets/people-pic2.jpg';
@@ -89,12 +90,12 @@ const AssociateWithUsSection = () => {
           <p className="associate-section-desc">
             We're Networking With Prestigious International Universities With A Mission To Encourage Overseas Education Among Students. With These Collaborations, We Intend To Provide Our Students With An Internationally Accepted Degree. It Is Our Sub-Agent Program To Welcome Those People Who Wish To Partner With Us To Make An Income Through Referrals. Even If You Are A Freelancer Or Sub-Agent You Can Tie Up With Us And Earn By Referring Us.
           </p>
-          <button className="btn-secondary-cta btn-center">
+          <Link to="/contact" className="btn-secondary-cta btn-center">
             Contact Us
             <span className="secondary-btn-arrow">
               <FaArrowRight />
             </span>
-          </button>
+          </Link>
         </div>
       </Container>
     </div>

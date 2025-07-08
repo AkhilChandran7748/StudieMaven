@@ -4,7 +4,7 @@ import { RENDER_URL } from "../Utils/Urls";
 import RootRouteGuard from "./RootRouteGuard"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DataContextProvider from "../modules/common/dataContext";
-// import HomePage from '../modules/home/HomePage';
+import HomePage from '../modules/home/HomePage';
 
 const GuestDashboard = lazy(() => import("../modules/guest/GuestDashboard"))
 const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
@@ -28,7 +28,7 @@ const RoutesComponent = ({ history }) => {
             <BrowserRouter>
                 <Suspense fallback={<div className="displayNone"></div>}>
                     <Routes>
-                        {/* <Route path="/" element= {<HomePage />} /> */}
+                        <Route path="/" element= {<HomePage />} />
                         <Route path="/" element={<GuestDashboard history={history} />} />
                         <Route path={RENDER_URL.WHY_MAVEN} element={<WhyMaven />} />
                         <Route path={RENDER_URL.SERVICES} element={<Services />} />

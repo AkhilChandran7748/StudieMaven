@@ -7,9 +7,9 @@ import iconSet1 from '../../assets/lang-icons1.png';
 import iconSet2 from '../../assets/lang-icons2.png';
 import iconSet3 from '../../assets/lang-icons3.png';
 import iconSet4 from '../../assets/lang-icons4.png';
-
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom"; 
 
 function AnimatedImageWithCircle({ girlSrc, circleClass, girlClass }) {
   const controls = useAnimation();
@@ -176,12 +176,12 @@ const LanguageCoursesSection = () => {
       </div>
 
       <div className="language-courses-footer">
-        <button className="btn-secondary-cta btn-center">
+         <Link to="/contact" className="btn-secondary-cta btn-center">
             Contact Us
             <span className="secondary-btn-arrow">
                 <FaArrowRight />
             </span>
-          </button>
+          </Link>
       </div>
         </Container>
     </div>

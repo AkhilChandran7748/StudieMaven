@@ -1,9 +1,9 @@
 import React from "react";
 import "./Footer.scss";
-import { FaFacebookF, FaInstagram , FaTwitter, FaLinkedinIn, FaWhatsapp, FaPhoneAlt} from "react-icons/fa";
+import { FaFacebookF, FaInstagram , FaTwitter, FaLinkedinIn, FaWhatsapp} from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
-import footerLogo from '../../assets/brand-logo_footer.png';
+import footerLogo from '../../assets/brand-logo.png';
 
 
 const Footer = () => (
@@ -33,14 +33,13 @@ const Footer = () => (
           <ul>
             <li><a href="#">Under Graduate</a></li>
             <li><a href="#">Post Graduage</a></li>
-            <li><a href="#">Lnaguage</a></li>
+            <li><a href="#">Language</a></li>
             <li><a href="#">Professional Courses</a></li>
           </ul>
         </div>
         <div className="footer-col">
           <h4>CONTACT</h4>
           <ul>
-            <li><FaPhoneAlt />  +91 9061379595 </li>
             <li><FaWhatsapp />   +91 9061379595</li>
             <li><MdOutlineMail /> admissions@studiemaven.com</li>
             <li>

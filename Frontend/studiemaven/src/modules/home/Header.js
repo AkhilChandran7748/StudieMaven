@@ -9,41 +9,44 @@ import LoginModal from './LoginModal';
 import brandLogo from '../../assets/brand-logo.png';
 import "./Header.scss";
 import { FiLogIn } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { RENDER_URL } from "../../Utils/Urls";
+
+// Update links to use your real route paths
+const services = [
+  { label: 'Visa Guidance', to: RENDER_URL.SERVICES + "#visa" },
+  { label: 'Counseling', to: RENDER_URL.SERVICES + "#counseling" },
+  { label: 'Accommodation', to: RENDER_URL.SERVICES + "#accommodation" },
+  { label: 'Scholarships', to: RENDER_URL.SERVICES + "#scholarships" },
+];
+
+const courses = [
+  { label: 'Undergraduate', to: RENDER_URL.COURSES + "#ug" },
+  { label: 'Postgraduate', to: RENDER_URL.COURSES + "#pg" },
+  { label: 'Language Courses', to: RENDER_URL.COURSES + "#language" },
+  { label: 'Professional Courses', to: RENDER_URL.COURSES + "#professional" },
+];
+
+const countries = [
+  { label: 'Germany', to: RENDER_URL.COUNTRIES + "#germany" },
+  { label: 'Canada', to: RENDER_URL.COUNTRIES + "#canada" },
+  { label: 'Australia', to: RENDER_URL.COUNTRIES + "#australia" },
+  { label: 'UK', to: RENDER_URL.COUNTRIES + "#uk" },
+  { label: 'USA', to: RENDER_URL.COUNTRIES + "#usa" },
+];
+
+const navLinks = [
+  { label: 'HOME', to: "/" },
+  { label: 'WHY STUDIEMAVEN', to: RENDER_URL.WHY_MAVEN },
+  { label: 'REFERRAL PROGRAM', to: RENDER_URL.REFERAL },
+  { label: 'CONTACT US', to: RENDER_URL.CONTACT },
+];
 
 const dropdownMenuVariants = {
   hidden: { opacity: 0, y: 16, scale: 0.98, pointerEvents: 'none' },
   visible: { opacity: 1, y: 0, scale: 1, pointerEvents: 'auto', transition: { type: 'spring', stiffness: 320, damping: 22, duration: 0.38 } },
   exit: { opacity: 0, y: 10, scale: 0.98, pointerEvents: 'none', transition: { duration: 0.15 } }
 };
-
-const services = [
-  { label: 'Visa Guidance', href: '#visa' },
-  { label: 'Counseling', href: '#counseling' },
-  { label: 'Accommodation', href: '#accommodation' },
-  { label: 'Scholarships', href: '#scholarships' },
-];
-
-const courses = [
-  { label: 'Undergraduate', href: '#ug' },
-  { label: 'Postgraduate', href: '#pg' },
-  { label: 'Language Courses', href: '#language' },
-  { label: 'Professional Courses', href: '#professional' },
-];
-
-const countries = [
-  { label: 'Germany', href: '#germany' },
-  { label: 'Canada', href: '#canada' },
-  { label: 'Australia', href: '#australia' },
-  { label: 'UK', href: '#uk' },
-  { label: 'USA', href: '#usa' },
-];
-
-const navLinks = [
-  { label: 'HOME', href: '#home' },
-  { label: 'WHY STUDIEMAVEN', href: '#about' },
-  { label: 'REFERRAL PROGRAM', href: '#contact' },
-  { label: 'CONTACT US', href: '#contact' },
-];
 
 const DropMenu = ({ title, items }) => (
   <Menu as="div" className="nav-dropdown">
@@ -74,12 +77,12 @@ const DropMenu = ({ title, items }) => (
                 <Menu.Item key={idx} as={Fragment}>
                   {({ active }) => (
                     <li>
-                      <a
+                      <Link
                         className={`dropdown-item-futuristic${active ? ' active' : ''}`}
-                        href={item.href}
+                        to={item.to}
                       >
                         {item.label}
-                      </a>
+                      </Link>
                     </li>
                   )}
                 </Menu.Item>
@@ -121,9 +124,9 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
       </div>
       <nav className="drawer-nav">
         {navLinks.slice(0, 2).map((nav) =>
-          <a key={nav.label} href={nav.href} className="drawer-link" onClick={onClose}>
+          <Link key={nav.label} to={nav.to} className="drawer-link" onClick={onClose}>
             {nav.label}
-          </a>
+          </Link>
         )}
         <div className="drawer-dropdown">
           <button className={`drawer-link ${expanded['SERVICES'] ? 'active' : ''}`}
@@ -141,9 +144,9 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
               >
                 {services.map((item) => (
                   <li key={item.label}>
-                    <a href={item.href} className="drawer-dropdown-item" onClick={onClose}>
+                    <Link to={item.to} className="drawer-dropdown-item" onClick={onClose}>
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </motion.ul>
@@ -166,9 +169,9 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
               >
                 {courses.map((item) => (
                   <li key={item.label}>
-                    <a href={item.href} className="drawer-dropdown-item" onClick={onClose}>
+                    <Link to={item.to} className="drawer-dropdown-item" onClick={onClose}>
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </motion.ul>
@@ -191,9 +194,9 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
               >
                 {countries.map((item) => (
                   <li key={item.label}>
-                    <a href={item.href} className="drawer-dropdown-item" onClick={onClose}>
+                    <Link to={item.to} className="drawer-dropdown-item" onClick={onClose}>
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </motion.ul>
@@ -202,11 +205,10 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
         </div>
         
         {navLinks.slice(2).map((nav) =>
-          <a key={nav.label} href={nav.href} className="drawer-link" onClick={onClose}>
+          <Link key={nav.label} to={nav.to} className="drawer-link" onClick={onClose}>
             {nav.label}
-          </a>
+          </Link>
         )}
-      
       </nav>
     </Drawer>
   );
@@ -221,17 +223,17 @@ const Header = () => {
       {/* Desktop Navbar */}
       <Navbar expand="lg" bg="" fixed="" className="headerTop d-none d-lg-block">
         <Container className="d-flex justify-content-between">
-          <Navbar.Brand href="#"><img src={brandLogo} alt="" /></Navbar.Brand>
+          <Navbar.Brand as={Link} to="/"><img src={brandLogo} alt="" /></Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar" />
           <Navbar.Collapse id="main-navbar">
             <Nav className="ms-auto align-items-center">
-              <Nav.Link href="#home">HOME</Nav.Link>
-              <Nav.Link href="#about">WHY STUDIEMAVEN</Nav.Link>
+              <Nav.Link as={Link} to="/">HOME</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.WHY_MAVEN}>WHY STUDIEMAVEN</Nav.Link>
               <DropMenu title="SERVICES" items={services} />
               <DropMenu title="COURSES" items={courses} />
               <DropMenu title="COUNTRIES" items={countries} />
-              <Nav.Link href="#contact">REFERRAL PROGRAM</Nav.Link>
-              <Nav.Link href="#contact">CONTACT US</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.REFERAL}>REFERRAL PROGRAM</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.CONTACT}>CONTACT US</Nav.Link>
               <Button variant="" className="ms-3 btn-primary-cta" onClick={() => setShowLogin(true)}>Login <FiLogIn /></Button>
             </Nav>
           </Navbar.Collapse>
@@ -243,7 +245,7 @@ const Header = () => {
           <Button className="sidebar-menu-btn" onClick={() => setDrawerOpen(true)}>
             <FaBars size={22} />
           </Button>
-          <Navbar.Brand className="mx-auto"><img src={brandLogo} alt="" /></Navbar.Brand>
+          <Navbar.Brand className="mx-auto" as={Link} to="/"><img src={brandLogo} alt="" /></Navbar.Brand>
           <Button
             variant=""
             className="btn-primary-cta"
