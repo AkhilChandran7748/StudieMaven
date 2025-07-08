@@ -114,3 +114,9 @@
 .modal-header .btn-close:hover {
   background: #ffe6d1 !important;
 }
+
+@media (max-width: 576px) {
+.loginPopup .modal-content {
+    padding: 0px 20px 165px 20px;
+}
+}

@@ -34,7 +34,7 @@
   list-style: none;
   margin: 0;
   overflow: hidden;
-  border-top: 2px solid #df4936;
+  border-top: 2px solid #ed2b28;
   transition: border-color 0.22s cubic-bezier(.39,1.64,.68,1.01), box-shadow 0.22s cubic-bezier(.39,1.64,.68,1.01);
 
   .dropdown-item-futuristic {
@@ -118,7 +118,7 @@
   .sidebar-menu-btn {
     background: none;
     border: none;
-    color: #df4936;
+    color: #ed2b28;
     margin-right: 12px;
     padding: 4px 8px;
     font-size: 22px;
@@ -128,7 +128,7 @@
   
   }
   .btn-primary-cta {
-    background: #df4936;
+    background: #ed2b28;
     border: none;
     border-radius: 22px;
     color: #fff;
@@ -136,7 +136,7 @@
     font-size: 14px;
     margin-left: 0;
     margin-right: 0;
-    padding: 4px 18px;
+    padding: 6px 22px;
     letter-spacing: 0.03em;
   }
 }
@@ -171,7 +171,8 @@
     .drawer-link {
       color: #181818;
       text-decoration: none;
-      font-size: 1.07rem;
+      font-size: 14px;
+        font-family: "Montserrat", sans-serif;
       font-weight: 600;
       letter-spacing: 0.02em;
       padding: 13px 24px 13px 18px;

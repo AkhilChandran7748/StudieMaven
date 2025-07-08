@@ -249,10 +249,8 @@ const Header = () => {
           <Button
             variant=""
             className="btn-primary-cta"
-            style={{ fontSize: 14, padding: "2px 16px" }}
-            onClick={() => setShowLogin(true)}
-          >
-            Login
+            onClick={() => setShowLogin(true)} >
+            Login <FiLogIn />
           </Button>
         </Container>
       </Navbar>
