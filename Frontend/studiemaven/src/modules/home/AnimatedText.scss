@@ -1,0 +1,10 @@
+.animated-text-wrapper {
+  display: inline-block;
+  font-weight: bold;
+  .letter {
+    display: inline-block;
+      font-weight: 800;
+    will-change: opacity, letter-spacing;
+    transition: letter-spacing 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+}

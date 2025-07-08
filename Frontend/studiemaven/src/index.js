@@ -4,6 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'primeicons/primeicons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './styles.scss';
+
+
+// React Modern Drawer
+import 'react-modern-drawer/dist/index.css';
+
+// Slick Carousel
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+// Swiper
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <App />

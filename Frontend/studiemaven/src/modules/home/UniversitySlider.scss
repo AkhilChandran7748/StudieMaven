@@ -1,0 +1,284 @@
+.universities-section {
+  background: #f7fbff;
+  padding: 70px 0 80px 0;
+  overflow: hidden;
+  position: relative;
+  .bg-vectorOne{
+      background-image: url('../../assets/bg-vector_02.png');
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 100%;
+      z-index: -0;
+  }
+
+  .university-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    min-width: 265px;
+    max-width: 320px;
+    margin-right: 0;
+    box-shadow: 0 4px 16px rgba(28,60,86,0.07);
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.25s, transform 0.25s;
+    will-change: transform, box-shadow;
+    img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+      transition: filter 0.3s;
+    }
+    .card-title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 20px;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 400;
+      padding: 0 20px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      span {
+        font-weight: 700;
+      }
+    }
+    .hover-gradient {
+      pointer-events: none;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s;
+      background: linear-gradient(120deg, rgba(255, 85, 124, 0.23) 0%, rgba(78, 197, 247, 0.23) 100%);
+      border-radius: 18px;
+      mix-blend-mode: screen;
+    }
+    &:hover .hover-gradient {
+      opacity: 1;
+      animation: gradientMove 1.5s linear forwards;
+    }
+    &:hover img {
+      filter: brightness(0.93) saturate(1.2);
+    }
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+
+
+  .universities-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #061c1c;
+      margin-bottom: 30px;
+      line-height: 35px;
+      span {
+        font-weight: 400;
+        font-size: 1.3rem;
+        color: #061c1c;
+      }
+    }
+    .universities-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      .prev-label,
+      .next-label {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: #e9514f;
+        cursor: pointer;
+        transition: color 0.13s;
+        &.disabled {
+          color: #e5bdbd;
+          cursor: default;
+        }
+      }
+      .uni-progress-bar {
+        display: inline-block;
+        width: 32px;
+        height: 5px;
+        border-radius: 4px;
+        background: #f1c7c5;
+        margin: 0 4px;
+        vertical-align: middle;
+        overflow: hidden;
+        .uni-progress {
+          display: block;
+          height: 100%;
+          background: #e9514f;
+          border-radius: 4px;
+          transition: width 0.2s;
+        }
+      }
+      .view-all-link {
+        color: #e9514f;
+        font-size: 14px;
+        font-weight: 700;
+        margin-left: 18px;
+        text-decoration: none;
+        white-space: nowrap;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .universities-slider-overflow {
+    position: relative;
+    margin-right: -110px;
+    padding-right: 120px;
+    margin-left: -36px;
+
+    .slick-slider {
+      overflow: visible;
+    }
+
+    .slick-list {
+      overflow: visible;
+    }
+    .slick-track {
+      display: flex;
+      gap: 36px;
+    }
+
+    .university-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      min-width: 265px;
+      max-width: 320px;
+      margin-right: 0;
+      box-shadow: 0 4px 16px rgba(28,60,86,0.07);
+      position: relative;
+      cursor: pointer;
+      transition: box-shadow 0.15s;
+      &:hover {
+        box-shadow: 0 8px 24px rgba(28,60,86,0.14);
+      }
+      img {
+        width: 100%;
+        height: 340px;
+        object-fit: cover;
+        display: block;
+      }
+      .card-title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 20px;
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 400;
+        padding: 0 20px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+
+    // Custom arrows
+    .uni-arrow {
+      display: none;
+      &:hover:not(.disabled) {
+        background: #e9514f;
+        span {
+          border-color: #fff;
+        }
+      }
+      &.disabled {
+        opacity: 0.44;
+        pointer-events: none;
+      }
+      span {
+        display: block;
+        border: solid #e9514f;
+        border-width: 0 4px 4px 0;
+        padding: 6px;
+        width: 16px;
+        height: 16px;
+        margin-left: 2px;
+        margin-right: 2px;
+        background: transparent;
+      }
+    }
+    .uni-arrow-prev {
+      left: -18px;
+      span {
+        transform: rotate(135deg);
+      }
+    }
+    .uni-arrow-next {
+      right: 8px;
+      span {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  // Responsive
+  @media (max-width: 1200px) {
+    .universities-slider-overflow {
+      margin-right: -50px;
+      padding-right: 56px;
+    }
+  }
+  @media (max-width: 900px) {
+    .container { padding: 0 8px; }
+    .universities-slider-overflow {
+      margin-right: -18px;
+      padding-right: 24px;
+    }
+    .university-card img { height: 180px; }
+  }
+  @media (max-width: 600px) {
+    .section-title { font-size: 1.35rem; }
+    .universities-slider-overflow {
+      margin-right: -8px;
+      padding-right: 8px;
+    }
+    .university-card img { height: 120px; }
+  }
+}
+
+  @media (max-width:767px) {
+    .universities-section .bg-vectorOne {
+        width: 70px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+    .universities-section {
+        padding: 48px 30px;
+    }
+  }
+  @media (max-width: 600px) {
+    .universities-section .universities-header .section-title {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .universities-section .universities-header {
+      align-items: flex-start;
+      margin-bottom: 20px;
+      flex-flow: column wrap;
+    }
+    .universities-section .universities-header .section-title span{
+      font-size: 13px;
+    }
+  }

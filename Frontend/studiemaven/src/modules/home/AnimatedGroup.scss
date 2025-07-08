@@ -1,0 +1,111 @@
+.animated-group-root {
+  position: relative;
+  width: 820px;
+  height: 100%;
+  margin: 0 auto;
+  background: #e8e8e9;
+  overflow: visible;
+  img{
+    width: 100%;
+  }
+}
+
+/* --- Background Vectors --- */
+.bg-shape {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.09));
+}
+
+.bg-yellow { z-index: 2; }
+.bg-red { z-index: 3; }
+.bg-blue { z-index: 1; }
+.bg-gray { z-index: 1; }
+.bg-line1 { z-index: 4; opacity: 0.8; }
+.bg-line2 { z-index: 4; opacity: 0.8; }
+
+/* --- People Images --- */
+.person-img {
+  position: absolute;
+  z-index: 10;
+  will-change: transform;
+  cursor: pointer;
+  transition: box-shadow 0.25s;
+}
+.person-left { bottom: 0px; }
+.person-middle { bottom: 0px; }
+.person-right { bottom: 0px; }
+
+.sliderCaption{
+    position: absolute;
+    left: 0 !important; 
+    right: 0 !important;
+    bottom: 95px !important;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+    padding: 10px 0!important;
+    h1{
+        color: #eb3e0d;
+        font-weight: 900;
+        letter-spacing: 4px;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-transform: uppercase;
+        font-family: "Montserrat", sans-serif;
+        word-break: normal;
+        overflow-wrap: break-word;
+        white-space: normal;
+        text-align: center;
+        font-size: clamp(1.15rem, 6vw, 2.5rem);
+        line-height: 1.18;
+    }
+    h1 span {
+        display: inline;
+        white-space: pre;
+    }
+}
+
+@media (max-width: 991px) {
+  .animated-group-root{
+        width: 700px;
+        height: 550px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-350px);
+  }
+  .sliderCaption h1{
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sliderCaption h1{
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+  }
+  .heroSlider .vh-100 {
+    height: 70vh !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .animated-group-root{
+    width: 420px;
+    height: 340px;
+    bottom: 100px;
+    transform: translateX(-210px);
+  }
+  .sliderCaption {
+    padding: 14px 10px!important;
+  }
+  .sliderCaption h1 {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    padding: 0 0.5em;
+  }
+}

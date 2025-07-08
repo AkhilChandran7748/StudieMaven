@@ -1,0 +1,391 @@
+.language-courses-section {
+  background: #fff;
+  padding: 90px 0 60px 0;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+
+}
+.language-courses-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.language-courses-achieve {
+  color: #222;
+  font-size: 18px;
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+.language-courses-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #151d1f;
+  margin-bottom: 0;
+  letter-spacing: 0.5px;
+}
+.language-courses-content-wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 44px;
+  margin-top: 32px;
+  margin-bottom: 28px;
+}
+.language-courses-col {
+  flex: 1;
+  min-width: 265px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  align-items: flex-start;
+}
+.language-courses-left {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  gap: 25px;
+}
+.language-courses-right {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  gap: 34px;
+}
+.language-courses-ielts-heading {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+}
+.language-courses-ielts-best {
+  background-image: url('../../assets/best-text.png');
+  background-repeat: no-repeat;
+  background-size: 70px;
+  width: 125px;
+  height: 28px;
+}
+.language-courses-ielts-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #f94c10;
+  margin-bottom: 0;
+  letter-spacing: 1px;
+  line-height: 1.0;
+  align-self: flex-end;
+}
+.language-courses-ielts-main {
+  font-size: 42px;
+  font-weight: 900;
+  color: #f94c10;
+  letter-spacing: 1px;
+}
+.language-courses-ielts-courses {
+  font-size: 15px;
+  font-weight: 400;
+  color: #222;
+  letter-spacing: 2.5px;
+  margin-top: -6px;
+  margin-left: 12px;
+  font-style: italic;
+}
+.language-courses-feature {
+  gap: 14px;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  color: #222;
+  line-height: 1.35;
+  text-align: left;
+}
+.language-courses-feature-icon {
+  width: 50px;
+  height: 110px;
+  margin: 0 15px 0 0;
+  float: left;
+  display: block;
+ 
+  img{
+    width: 100%;
+  }
+}
+.language-courses-col{
+ h6{
+    color: #f94c10;
+    font-weight: 600;
+  }
+}
+.language-courses-image {
+  flex: 0 1 270px;
+  align-items: center;
+  justify-content: center;
+}
+.language-courses-img-wrap {
+  position: relative;
+  width: 290px;
+  height: 375px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.language-courses-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+  position: relative;
+  z-index: 2;
+}
+.language-courses-img-circle {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 260px;
+  background-image: url('../../assets/circle-bg.png');
+  background-size: contain;
+}
+.language-courses-german-heading {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+}
+.language-courses-german-learn  {
+  background-image: url('../../assets/learn-text.png');
+  background-repeat: no-repeat;
+  background-size: 70px;
+  width: 125px;
+  height: 28px;
+}
+.language-courses-german-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #f94c10;
+  margin-bottom: 0;
+  letter-spacing: 1px;
+  line-height: 1.0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.language-courses-german-main {
+  font-size: 42px;
+  font-weight: 900;
+  color: #f94c10;
+  letter-spacing: 1px;
+}
+.language-courses-german-lang {
+  font-size: 15px;
+  font-weight: 400;
+  color: #222;
+  letter-spacing: 2.5px;
+  margin-top: -12px;
+  margin-left: 3px;
+  font-style: italic;
+}
+.language-courses-german-levels {
+  font-size: 26px;
+  font-weight: 800;
+  color: #f94c10;
+  margin-top: 0px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+}
+.language-courses-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.language-courses-contact-btn {
+  background: #79c22d;
+  color: #fff;
+  padding: 14px 44px;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+  transition: background 0.15s;
+}
+.language-courses-contact-btn:hover {
+  background: #5ba31d;
+}
+.language-courses-contact-btn-arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+.bg-vectorThree{
+  background-image: url('../../assets/bg-vector_04.png');
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width:100px;
+  height: 100%;
+  z-index: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.bg-vectorFour{
+  background-image: url('../../assets/bg-vector_05.png');
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width:140px;
+  height: 100%;
+  z-index: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.modal-content {
+  border-radius: 18px !important;
+  border: none;
+  box-shadow: 0 8px 32px #eaa03d1f, 0 2px 8px #df49361a;
+  background: linear-gradient(120deg, #fff 80%, #ffe6d1 100%);
+  padding: 0;
+}
+
+.modal-header {
+  border: none;
+  background: transparent;
+  padding: 2.3rem 2rem 0.7rem 2rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-title {
+  font-weight: 900;
+  color: #df4936;
+  text-align: center;
+  font-size: 2.1rem;
+  letter-spacing: 2px;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+}
+.modal-body {
+  padding: 1.2rem 2rem 2.2rem 2rem !important;
+  background: transparent;
+}
+.modal-header .btn-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: #fff5e9 !important;
+  border-radius: 50%;
+  opacity: 1 !important;
+  font-size: 1.4rem;
+  padding: 6px !important;
+  color: #df4936 !important;
+  box-shadow: 0 1.5px 8px #df49361c;
+  transition: background 0.14s;
+}
+
+   
+.modal-header .btn-close:hover {
+  background: #ffe6d1 !important;
+}
+
+
+
+
+@media (max-width: 900px) {
+  .language-courses-content-wrap {
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+  }
+  .language-courses-left,
+  .language-courses-right {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  .language-courses-col {
+    align-items: center;
+    text-align: left;
+    max-width: 100%;
+    width: 100%;
+  }
+
+}
+@media (max-width: 767px) {
+  .bg-vectorFour {
+    width: 80px;
+  }
+  .bg-vectorThree{
+    width: 50px;    
+  }
+  .language-courses-section {
+    padding: 30px 30px;
+  }
+
+  .language-courses-img-wrap {
+    width:300px; height: 300px;
+  }
+  .language-courses-img {
+    width: 250px; height: 260px;
+  }
+  .language-courses-img-circle {
+    width: 300px; height: 300px; border-width: 6px; top: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+ 
+  .language-courses-title {
+    font-size: 24px;
+  }
+  .language-courses-content-wrap {
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .language-courses-german-main,
+  .language-courses-ielts-main {
+    font-size: 26px;
+  }
+  .language-courses-german-levels {
+    font-size: 18px;
+  }
+  .language-courses-contact-btn {
+    font-size: 16px;
+    padding: 10px 22px;
+  }
+}
+
+
+@media (max-width: 575px) {
+  .modal-content {
+    border-radius: 11px !important;
+    padding: 0;
+  }
+  .modal-header, .modal-body {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .modal-title {
+    font-size: 1.4rem;
+  }
+  .form-control {
+    font-size: 0.98rem;
+    padding: 0.65rem 0.8rem;
+  }
+  .btn-primary {
+    font-size: 1rem;
+    padding: 0.7rem 0;
+  }
+}

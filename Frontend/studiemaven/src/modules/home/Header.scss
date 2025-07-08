@@ -1,0 +1,258 @@
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+  .dropdown-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 8px 18px;
+    transition: color 0.18s;
+    outline: none;
+    &:hover,
+    &.active,
+    &:focus-visible { color: #df4936; }
+  }
+}
+ .dropdown-toggle::after{
+    display: none !important;
+}
+.dropdown-menu-futuristic {
+  min-width: 210px;
+  background: rgba(255,255,255,0.97);
+  border-radius: 8px;
+  box-shadow: 0 10px 32px #46a8fd23, 0 1.5px 7px #79c22d13;
+  padding: 13px 0 13px 0;
+  position: absolute;
+  left: 50%;
+  top: 38px;
+  transform: translateX(-50%) !important;
+  z-index: 100;
+  border: 2px solid #fff;
+  outline: none;
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  border-top: 2px solid #df4936;
+  transition: border-color 0.22s cubic-bezier(.39,1.64,.68,1.01), box-shadow 0.22s cubic-bezier(.39,1.64,.68,1.01);
+
+  .dropdown-item-futuristic {
+    display: block;
+    width: 100%;
+    padding: 8px 15px 8px 8px;
+    color: #181818;
+    font-size: 13px;
+    font-weight: 600 !important;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 0 20px 20px 0;
+    text-decoration: none;
+    transition:
+      background 0.16s,
+      color 0.16s,
+      border-color 0.26s cubic-bezier(.39,1.64,.68,1.01),
+      padding-left 0.18s;
+    &:hover,
+    &.active {
+      color: #fff;
+      background: linear-gradient(90deg, #df4936 0%, #eaa03d 110%);
+      border-left: 2px solid #eaa03d;
+      padding-left: 16px;
+      box-shadow: 0 2px 8px #46a8fd22;
+    }
+    &:focus {
+      outline: none;
+      background: linear-gradient(90deg, #eaa03d 0%, #df4936  110%);
+      color: #fff;
+    }
+  }
+}
+.headerTop{
+    position: absolute;
+    left: 0;
+    right:0;
+    top: 0;
+    z-index: 999;
+    padding: 20px 0;
+    background-color: #fff;
+    font-family: "Montserrat", sans-serif;
+    .nav-link{
+      font-weight: 600;
+      color:#000 !important; 
+      font-size: 12px !important;
+      padding-left:10px !important;
+      padding-right: 8px !important;
+      font-family: "Montserrat", sans-serif;
+    }
+}
+@media (max-width: 991px) {
+  .dropdown-menu-futuristic {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    border-radius: 0 0 12px 12px;
+    min-width: 100%;
+    margin-bottom: 10px;
+    left: 0;
+    top: auto;
+  }
+  .nav-dropdown .dropdown-toggle {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 12px 0 12px 18px;
+  }
+}
+
+.headerTop.mobile-navbar {
+  display: flex !important;
+  align-items: center;
+  background: #fff;
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 0;
+  .sidebar-menu-btn {
+    background: none;
+    border: none;
+    color: #df4936;
+    margin-right: 12px;
+    padding: 4px 8px;
+    font-size: 22px;
+  }
+  .navbar-brand {
+    margin: 0 auto;
+    img {
+      max-height: 38px;
+    }
+  }
+  .btn-primary-cta {
+    background: #df4936;
+    border: none;
+    border-radius: 22px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 4px 18px;
+    letter-spacing: 0.03em;
+  }
+}
+
+/* Modern Drawer styles */
+.mobile-modern-drawer {
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 14px 10px 18px;
+    .drawer-logo {
+      max-height: 40px;
+    }
+    .drawer-close-btn {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #df4936;
+      line-height: 1;
+      padding: 0 2px;
+      border-radius: 50%;
+      transition: background 0.13s;
+      &:hover { background: #f8e4e0; }
+    }
+  }
+  .drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px 0 0 0;
+    .drawer-link {
+      color: #181818;
+      text-decoration: none;
+      font-size: 1.07rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 13px 24px 13px 18px;
+      border: none;
+      background: none;
+      text-align: left;
+      border-radius: 0px;
+      transition: color 0.14s, background 0.17s, padding 0.18s cubic-bezier(.39,1.64,.68,1.01);
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:hover, &.active {
+        background: linear-gradient(90deg, #df4936 0%, #eaa03d 120%);
+        color: #fff;
+        padding-left: 28px;
+      }
+    }
+    .drawer-login-btn {
+      margin: 24px 18px 0 18px;
+      font-size: 1.07rem;
+      padding: 12px 0;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #df4936 0%, #eaa03d 100%);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      box-shadow: 0 3px 18px #eaa03d33;
+      transition: background 0.17s, box-shadow 0.17s;
+      width: calc(100% - 36px);
+      &:hover { background: #eaa03d; box-shadow: 0 6px 24px #eaa03d33; }
+    }
+    .drawer-dropdown {
+      width: 100%;
+      .drawer-dropdown-list {
+        background: #fff;
+        padding: 0 0 0 4px;
+        margin: 0;
+        overflow: hidden;
+        border-radius: 0 0 12px 12px;
+        li {
+          list-style: none;
+        }
+        .drawer-dropdown-item {
+          display: block;
+          width: 100%;
+          padding: 11px 16px 11px 32px;
+          color: #555;
+          font-size: 1rem;
+          background: none;
+          border: none;
+          border-radius: 0 14px 14px 0;
+          text-decoration: none;
+          font-weight: 500;
+          transition: background 0.16s, color 0.16s, padding-left 0.18s;
+          &:hover {
+            color: #fff;
+            background: linear-gradient(90deg, #df4936 0%, #eaa03d 110%);
+            padding-left: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Hide desktop navbar for mobile, show mobile navbar */
+@media (min-width: 1201px) {
+  .headerTop.mobile-navbar,
+  .mobile-modern-drawer {
+    display: none !important;
+  }
+}
+@media (max-width: 1200px) {
+  .headerTop.d-none.d-lg-block {
+    display: none !important;
+  }
+  .mobile-modern-drawer {
+    display: block !important;
+  }
+}

@@ -1,0 +1,345 @@
+.eligibility-section-bg {
+  background: #e6e7e2;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 130px;
+  > .row{
+     min-height: 320px;
+  }
+}
+.eligibility-section-container {
+  background: #e7eae7;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.eligibility-section-text {
+  flex: 1;
+  min-width: 300px;
+}
+.eligibility-section-subtitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: #1a2428;
+  margin-bottom: 6px;
+  line-height: 28px;
+}
+.eligibility-section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #10231b;
+  margin-bottom: 24px;
+}
+.eligibility-section-check-btn {
+  background: #79c22d;
+  color: #fff;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+  transition: background 0.15s;
+}
+.eligibility-section-check-btn:hover {
+  background: #66ad1e;
+}
+.check-btn-arrow{
+  border-left: 1px solid #6aa52d;
+  padding-left: 12px;
+  margin-left: 6px;
+}
+.check-btn-arrow2{
+  border-left: 1px solid #6aa52d;
+  padding-left: 12px;
+  margin-left: 6px;
+}
+.eligibility-section-image {
+  flex: 1;
+  min-width: 340px;
+  text-align: right;
+}
+.eligibility-section-img {
+  width: 355px;
+  height: 215px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.eligibility-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.32); /* or your overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.eligibility-modal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 500px !important;
+  width: 100%;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+  position: relative;
+  padding: 32px;
+  top: 3%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 84vh;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.eligibility-modal-close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: #0000008f;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+.eligibility-modal-form-bg {
+  border-radius: 16px;
+  padding-bottom: 24px;
+}
+.eligibility-modal-form-header {
+  background: url('../../assets/popup-headerbg.jpg') bottom center/cover no-repeat;
+  height: 120px;
+  border-radius: 14px 14px 0 0;
+  margin: -32px -32px 24px -32px;
+}
+.eligibility-modal-form-content {
+  padding: 0 8px;
+}
+.eligibility-modal-form-title {
+  font-weight: 700;
+  font-size: 26px;
+  margin: 0 0 40px 0;
+}
+.eligibility-modal-form-title-underline {
+  border-bottom: 2px solid #66d5fc;
+}
+.eligibility-modal-form-list {
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  list-style-type: none;
+}
+.eligibility-modal-form-listitem {
+  margin-bottom: 30px;
+}
+.eligibility-modal-form-label {
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 6px;
+}
+.eligibility-modal-form-radio {
+  margin-right: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 0;
+}
+.eligibility-modal-form-radio input[type="radio"] {
+  accent-color: #66d5fc;
+  margin-right: 5px;
+}
+.eligibility-modal-form-input {
+  margin-top: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #bfc8cd;
+  font-size: 14px;
+  width: 100%;
+}
+.eligibility-country-select__control {
+  min-height: 46px !important;
+  font-size: 14px !important;
+  border-radius: 8px !important;
+}
+.eligibility-country-select__container {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+.eligibility-modal-form-submitbtn {
+  margin-top: 24px;
+  background: linear-gradient(90deg,#66d5fc 60%,#46a8fd 100%);
+  color: #fff;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(70,168,253,0.10);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 2s ease-in;
+}
+.eligibility-modal-form-submitbtn:hover {
+  background: linear-gradient(90deg,#46a8fd 60%,#66d5fc 100%);
+}
+.eligibility-modal-success,
+.eligibility-modal-fail {
+  text-align: center;
+  padding: 16px;
+  position: relative;
+}
+.eligibility-modal-success-icon{
+  margin-bottom: 12px;
+  img{
+    width: 100px;
+    display: block;
+    margin:0 auto 20px;
+    filter: drop-shadow(0 8px 32px #66d5fc74);
+  }
+}
+
+/* Confetti burst for success animation */
+.success-confetti-burst {
+  pointer-events: none;
+  position: absolute;
+  left: 0; right: 0;
+  top: 24px;
+  height: 110px;
+  z-index: 3;
+}
+.confetti-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  opacity: 0.95;
+  filter: blur(0.5px);
+  box-shadow: 0 2px 8px #0002;
+  animation: confetti-spin 1.5s infinite linear alternate;
+}
+@keyframes confetti-spin {
+  from { transform: rotate(0deg);}
+  to   { transform: rotate(12deg);}
+}
+
+.eligibility-modal-fail-icon{
+  img{
+    width: 80px;
+    display: block;
+    margin:0 auto 20px;
+  }
+}
+.eligibility-modal-success-title {
+  font-weight: 700;
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+.eligibility-modal-success-desc {
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 28px;
+}
+.eligibility-modal-success-btn {
+  background: linear-gradient(90deg,#66d5fc 60%,#46a8fd 100%);
+  color: #fff;
+  padding: 10px 36px;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 3px 18px #46a8fd2e;
+  outline: none;
+  margin-top: 12px;
+}
+.eligibility-modal-success-btn:hover {
+  background: linear-gradient(90deg,#46a8fd 60%,#66d5fc 100%);
+}
+.eligibility-modal-fail-title {
+  font-weight: 700;
+  font-size: 26px;
+  margin: 0 0 10px;
+}
+.eligibility-modal-fail-desc {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 15px;
+}
+.eligibility-modal-fail-btn {
+  background: linear-gradient(90deg,#010202 60%,#0d1216 100%);
+  color: #fff;
+  padding: 10px 34px;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.eligibility-modal-fail-btn:hover {
+  background: linear-gradient(90deg,#222427 60%,#222c30 100%);
+}
+
+.groupImage{
+  position: relative;
+  min-height: 320px;
+  margin-top: -316px;
+  margin-right: -58px;
+  img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 1200px) {
+  .groupImage {
+    margin-top: -156px;
+  }
+}
+
+@media (max-width: 991px) {
+  .groupImage {
+    margin-top: 0;
+    margin-bottom: -230px;
+  }
+}
+@media (max-width: 767px) {
+  .groupImage {
+    position: relative;
+    min-height: 320px;
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: -30px;
+  }
+  .groupImage img {
+    bottom: 0 !important;
+    top: inherit;
+  }
+  .eligibility-section-bg {
+    margin: 0px 15px 40px 15px;
+  }
+
+  .eligibility-modal {
+    width: calc(100% - 30px);
+  }
+}
+
+@media (max-width: 576px) {
+  .groupImage {
+    min-height: 240px;
+  }
+  .eligibility-section-title {
+    line-height: 44px;
+    margin-top: 20px;
+  }
+}

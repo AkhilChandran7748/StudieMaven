@@ -1,0 +1,76 @@
+.loginPopup .modal-content{
+    background-image: url('../../assets/login-bg.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    padding: 0px 55px 165px 55px;
+    border-radius: 8px;
+    box-shadow: 0 4px 50px rgba(40,63,83,0.5);
+    .form-label,.form-control{
+        font-size: 14px;
+    }
+    .btn-primary:hover {
+    background: #eaa03d !important;
+  }
+
+  .btn-primary,
+  .btn-primary:active,
+  .btn-primary:focus,
+  .btn-primary:visited {
+    background: linear-gradient(90deg, #df4936 0%, #eaa03d 100%);
+    border: none;
+    border-radius:8px;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    padding: 10px 0;
+    margin-top: 0.7rem;
+    box-shadow: 0 0.5px 8px #eaa03d26;
+    transition: background 0.18s, box-shadow 0.18s;
+  }
+}
+.btn-login-cta{
+    outline: none !important;
+    border: 0px !important;
+}
+.modal-header .btn-close2 {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    width: 28px;
+    background: #1d1710 !important;
+    border-radius: 50%;
+    padding:0px !important;
+    color: #ffffff !important;
+    box-shadow: 0 1.5px 8px rgba(223, 73, 54, 0.1098039216);
+    transition: background 0.14s;
+}
+.modal-body{
+    padding: 20px 50px;
+}
+.form-label {
+  font-weight: 600;
+  color: #df4936;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  margin-bottom: 0.4rem;
+}
+
+.form-control {
+  border-radius: 12px;
+  border: 1.5px solid #ffd6b8;
+  background: #fff7f2;
+  font-size:14px;
+  padding: 0.89rem 1.1rem;
+  margin-bottom: 1.05rem;
+  transition: border-color 0.18s;
+  &:focus {
+    border-color: #df4936;
+    outline: none;
+    box-shadow: 0 0 0 2px #ffe6d1a1;
+  }
+}
