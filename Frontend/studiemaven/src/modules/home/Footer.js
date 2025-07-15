@@ -3,7 +3,7 @@ import "./Footer.scss";
 import { FaFacebookF, FaInstagram , FaTwitter, FaLinkedinIn, FaWhatsapp} from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
-import footerLogo from '../../assets/brand-logo.png';
+import footerLogo from '../../assets/brand-logoFooter.png';
 
 
 const Footer = () => (

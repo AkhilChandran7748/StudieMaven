@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useMatch } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
 import LoginButton from "../login/LoginButton";
+import brandLogo from '../../assets/brand-logo.png';
 const GuestHeader = (props) => {
     return (<>  <header id="header">
         <div className="container-fluid">
@@ -13,7 +14,7 @@ const GuestHeader = (props) => {
                 <a href="index.html" style={{ height: '100%' }}
                 ><img
                         className="logo-img"
-                        src="img/StudieMaven-Logo-white.png"
+                        src={brandLogo}
                         alt=""
                         title=""
                     /></a>

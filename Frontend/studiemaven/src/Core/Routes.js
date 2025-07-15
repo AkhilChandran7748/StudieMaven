@@ -10,7 +10,7 @@ const GuestDashboard = lazy(() => import("../modules/guest/GuestDashboard"))
 const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
 const Services = lazy(() => import("../modules/guest/Services"))
 const Courses = lazy(() => import("../modules/guest/Courses"))
-const Countries = lazy(() => import("../modules/guest/Countries"))
+const Countries = lazy(() => import("../modules/guest/CountryTabsPage"))
 const ReferalProgram = lazy(() => import("../modules/guest/ReferalProgram"))
 const Contact = lazy(() => import("../modules/guest/Contact"))
 const AdminDashboard = lazy(() => import("../modules/admin/Admin"))
@@ -22,6 +22,7 @@ const AdminActions = lazy(() => import("../modules/admin/AdminActions"))
 const StaffDashBoard = lazy(() => import("../modules/staffs/StaffDashBoard"))
 const ResetPassword = lazy(() => import("../modules/login/ResetPassword"))
 const University = lazy(() => import("../modules/dataManagement/University"))
+
 const RoutesComponent = ({ history }) => {
     return (
         <DataContextProvider>

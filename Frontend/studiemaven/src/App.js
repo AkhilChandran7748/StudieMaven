@@ -6,27 +6,23 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import React, { useState } from 'react';
 import { setBaseUrl } from "../src/Services/HttpService";
 
-// Add your loader CSS here or in your main CSS file
+
+
+
 const loaderStyle = `
 .loader {
-  width: fit-content;
-  font-size: 30px;
-  line-height: 1.5;
-  font-family: system-ui,sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #0000;
-  -webkit-text-stroke: 1px #ed2a24;
-  background:
-    radial-gradient(1.13em at 50% 1.6em,#ed2a24 99%,#0000 101%) calc(50% - 1.6em) 0/3.2em 100% text,
-    radial-gradient(1.13em at 50% -0.8em,#ed2a24 99%,#0000 101%) 50% .8em/3.2em 100% repeat-x  text;
-  animation: l9 2s linear infinite;
+  color: #ed2a24;
+  width: 3px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
+  transform: translateX(-38px);
+  animation: l21 .5s infinite alternate linear;
 }
-.loader:before {
-  content: "Loading";
-}
-@keyframes l9 {
-  to {background-position: calc(50% + 1.6em) 0,calc(50% + 3.2em) .8em}
+
+@keyframes l21 {
+  50%  {box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px}
+  100% {box-shadow: 19px 0 0 0  , 38px 0 0 3px, 57px 0 0 7px}
 }
 `;
 

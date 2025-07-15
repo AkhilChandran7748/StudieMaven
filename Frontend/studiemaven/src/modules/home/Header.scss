@@ -76,7 +76,6 @@
     top: 0;
     z-index: 999;
     padding: 20px 0;
-    background-color: #fff;
     font-family: "Montserrat", sans-serif;
     .nav-link{
       font-weight: 600;
@@ -85,6 +84,10 @@
       padding-left:10px !important;
       padding-right: 8px !important;
       font-family: "Montserrat", sans-serif;
+      transition: .2s all ease-in-out;
+      &:hover{
+        color:#ed2a24 !important; 
+      }
     }
 }
 @media (max-width: 991px) {
@@ -108,7 +111,6 @@
 .headerTop.mobile-navbar {
   display: flex !important;
   align-items: center;
-  background: #fff;
   position: fixed;
   z-index: 1050;
   top: 0;

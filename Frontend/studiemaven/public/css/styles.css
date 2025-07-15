@@ -158,7 +158,6 @@ body {
   }
   
   #header {
-      background: #FF1A00;
       padding: 20px 0;
       height: 75px;
       margin-top: 0;
@@ -188,7 +187,7 @@ body {
     width: 150px;
     margin-top: -5px;
   }
-  
+   
   #header #logo h1 a,
   #header #logo h1 a:hover {
     color: #fff;
@@ -483,20 +482,22 @@ body {
   /* Nav Meu Styling */
   
   .nav-menu a {
-    padding: 0 8px 10px 15px;
     text-decoration: none;
-    display: inline-block;
-    color: #FFF;
+    font-weight: 600;
+    color: #000 !important;
+    font-size: 12px !important;
+    padding-left: 10px !important;
+    padding-right: 8px !important;
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 13px;
+    transition: 0.2s all ease-in-out;
     text-transform: uppercase;
     outline: none;
   }
   
   .nav-menu li:hover > a,
   .nav-menu > .menu-active > a {
-    color: #555555;
+      color:#ed2a24 !important; 
+
   }
   
   .nav-menu > li {
@@ -1765,9 +1766,7 @@ body {
       font-size: 28px;
     }
   
-    #header #logo img {
-      max-height: 40px;
-    }
+ 
   
     #intro h2 {
       font-size: 28px;

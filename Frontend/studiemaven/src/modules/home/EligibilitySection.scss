@@ -332,6 +332,9 @@
   .eligibility-modal {
     width: calc(100% - 30px);
   }
+  .eligibility-modal-overlay{
+    z-index: 9999 !important;
+  }
 }
 
 @media (max-width: 576px) {
@@ -341,5 +344,11 @@
   .eligibility-section-title {
     line-height: 44px;
     margin-top: 20px;
+  }
+  .eligibility-modal {
+    max-width: inherit !important;
+    width: calc(100% - 30px);
+    min-width: 86% !important;
+    top: 5%;
   }
 }
