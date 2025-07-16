@@ -4,6 +4,7 @@ body{
 .courses-page-root {
   min-height: 100vh;
   padding: 48px 0;
+  position: relative;
 }
 
 .courses-page-header {
@@ -214,5 +215,10 @@ body{
    .bg-vectorTen{
     width:60px;
    }
+   .courses-tab {
+    font-size: 14px;
+    padding: 8px 12px;
+   }
+
  
 }

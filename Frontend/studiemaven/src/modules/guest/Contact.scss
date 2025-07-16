@@ -236,7 +236,12 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
-
+@media (max-width: 1200px) {
+   .contactus-main-section{
+     padding: 100px 0 0 0;
+   }
+}
+ 
 @media (max-width: 900px) {
     .contactus-img {
         width: 100%;

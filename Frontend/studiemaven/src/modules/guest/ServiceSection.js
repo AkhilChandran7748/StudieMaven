@@ -12,6 +12,7 @@ import serviceIconFive from "../../assets/service-icon5.png";
 import serviceIconSix from "../../assets/service-icon6.png";
 import serviceIconSeven from "../../assets/service-icon7.png";
 
+import { FaBars, FaTimes } from "react-icons/fa";
 import "./ServiceSection.scss";
 
 const tabs = [
@@ -128,6 +129,7 @@ const tabs = [
 
 export default function ServiceSection() {
   const [activeTab, setActiveTab] = useState("visa");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
        <>
@@ -136,58 +138,85 @@ export default function ServiceSection() {
          <div className="bg-vectorEight"></div>
     <Container>
     <div className="service-section-root">
-      <div className="service-sidebar">
-        <h2 className="sidebar-title">Our Services</h2>
-        <ul className="sidebar-tabs">
-          {tabs.map(tab => (
-            <li key={tab.key}>
-              <motion.button
-                type="button"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.99 }}
-                className={`sidebar-tab-btn${activeTab === tab.key ? " active" : ""}`}
-                onClick={() => setActiveTab(tab.key)}
-                aria-selected={activeTab === tab.key}
-              >
-               <motion.span
-                className="sidebar-icon"
-                initial={false}
-                animate={activeTab === tab.key
-                  ? { scale: 1.13 }
-                  : { scale: 1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 18 }}
-              >
-                <img
-                  src={tab.icon}
-                  alt={`${tab.label} icon`}
-                  style={{
-                    width: 30,
-                    height:30,
-                    marginRight: 0,
-                    objectFit: "contain",
-                    display: "inline-block",
-                    verticalAlign: "middle"
-                  }}
-                />
-              </motion.span>
-                <span className="sidebar-label">{tab.label}</span>
-                {activeTab === tab.key && (
-                  <motion.div
-                    className="sidebar-active-bar"
-                    layoutId="activeBar"
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30
-                    }}
-                  />
-                )}
-              </motion.button>
-            </li>
-          ))}
-        </ul>
+      {/* Mobile Sidebar Toggle */}
+      <div className="service-sidebar-mobile-header">
+        <span className="sidebar-title">Our Services</span>
+        <button
+          className="sidebar-toggle-btn"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          aria-label={sidebarOpen ? "Close Menu" : "Open Menu"}
+        >
+          {sidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
       </div>
-
+      {/* Sidebar */}
+      <AnimatePresence>
+        
+        {(sidebarOpen || window.innerWidth > 900) && (
+          
+          <motion.div
+            className="service-sidebar"
+            initial={{ height: 0, opacity: 0, y: -20 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -20 }}
+            transition={{ duration: 0.34 }}
+          >
+             <h2 className="sidebar-title d-None-Xs">Our Services</h2>
+            <ul className="sidebar-tabs">
+              {tabs.map(tab => (
+                <li key={tab.key}>
+                  <motion.button
+                    type="button"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.99 }}
+                    className={`sidebar-tab-btn${activeTab === tab.key ? " active" : ""}`}
+                    onClick={() => {
+                      setActiveTab(tab.key);
+                      setSidebarOpen(false); // Close menu after selection on mobile
+                    }}
+                    aria-selected={activeTab === tab.key}
+                  >
+                   <motion.span
+                    className="sidebar-icon"
+                    initial={false}
+                    animate={activeTab === tab.key
+                      ? { scale: 1.13 }
+                      : { scale: 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                  >
+                    <img
+                      src={tab.icon}
+                      alt={`${tab.label} icon`}
+                      style={{
+                        width: 30,
+                        height:30,
+                        marginRight: 0,
+                        objectFit: "contain",
+                        display: "inline-block",
+                        verticalAlign: "middle"
+                      }}
+                    />
+                  </motion.span>
+                    <span className="sidebar-label">{tab.label}</span>
+                    {activeTab === tab.key && (
+                      <motion.div
+                        className="sidebar-active-bar"
+                        layoutId="activeBar"
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30
+                        }}
+                      />
+                    )}
+                  </motion.button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Service Content */}
       <div className="service-content">
         <AnimatePresence mode="wait">
           <motion.div

@@ -111,12 +111,14 @@
 .headerTop.mobile-navbar {
   display: flex !important;
   align-items: center;
-  position: fixed;
+  position: absolute;
   z-index: 1050;
   top: 0;
   left: 0;
   right: 0;
   padding: 12px 18px;
+  width: 100%;
+  box-sizing: border-box; 
   .sidebar-menu-btn {
     background: none;
     border: none;
