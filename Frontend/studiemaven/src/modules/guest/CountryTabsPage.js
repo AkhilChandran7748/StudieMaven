@@ -308,8 +308,8 @@ const CountryTabsPage = () => {
   const accordionItems = accordionDataByCountry[activeCountryCode] || [];
 
   return (
-        <>
-        <Header />
+    <>
+    <Header />
     <div className="wrapperBg">
         <div className="bg-map"></div>
          <div className="bg-vectorThreee"></div>

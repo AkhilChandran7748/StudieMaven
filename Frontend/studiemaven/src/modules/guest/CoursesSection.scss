@@ -1,0 +1,218 @@
+body{
+    background-color: #f4f7fb;
+}
+.courses-page-root {
+  min-height: 100vh;
+  padding: 48px 0;
+}
+
+.courses-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d3cccc;
+}
+
+.courses-tabs {
+  display: flex;
+  gap: 8px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px 8px;
+  box-shadow: 0 2px 14px rgba(103,103,144,0.06);
+}
+
+.courses-tab {
+  border: none;
+  background: transparent;
+  font-size: 1.13rem;
+  font-weight: 600;
+  color: #bdbdbd;
+  padding: 8px 20px;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.18s, background 0.18s;
+}
+
+.courses-tab.active {
+  background: #232323;
+  color: #fff;
+  box-shadow: 0 1px 6px rgba(44,44,88,0.09);
+}
+
+.tab-active-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.courses-searchbar {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 14px rgba(103,103,144,0.05);
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  height: 52px;
+  svg{
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.courses-searchbar input {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  width:265px;
+  outline: none;
+  padding: 0 4px;
+}
+
+.courses-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 34px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.course-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 6px 28px rgba(82,82,132,0.09);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s, transform 0.18s;
+  min-height: 330px;
+  position: relative;
+}
+
+.course-card:hover {
+  box-shadow: 0 10px 32px rgba(82,82,132,0.15);
+  transform: translateY(-6px) scale(1.02);
+}
+
+.course-img img {
+  width: 100%;
+  height: 165px;
+  object-fit: cover;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  display: block;
+}
+
+.course-info {
+    padding: 20px 20px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin-top: -20px;
+    background: #fff;
+}
+
+.course-title {
+  font-size: 1.14rem;
+  line-height:1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #232323;
+}
+
+.course-desc {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 18px;
+    color: #000000;
+}
+
+.course-enroll {
+  margin-top: auto;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px 20px !important;
+  font-size: 15px !important;
+}
+
+.no-courses {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 32px 0;
+  font-size: 1.2rem;
+  color: #bdbdbd;
+}
+.bg-vectorNine{
+    background-image: url('../../assets/bg-vector_02.png');
+    position: absolute;
+    top: 20%;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+   .bg-vectorTen{
+    background-image: url('../../assets/bg-vector_04.png');
+    position: absolute;
+    top:65%;
+    left: 0;
+    width:110px;
+    height: 100%;
+    z-index: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+@media (max-width: 1200px) {
+  .courses-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+   .courses-page-root {
+    padding: 120px 0 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .courses-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .courses-page-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .courses-tabs {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .courses-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .bg-vectorNine{
+    width: 60px;
+  }
+   .bg-vectorTen{
+    width:60px;
+   }
+ 
+}

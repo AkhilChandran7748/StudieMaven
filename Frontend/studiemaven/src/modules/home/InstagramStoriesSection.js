@@ -7,10 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsSend } from "react-icons/bs";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
-import insta1 from "../../assets/service-bg6.jpg";
-import insta2 from "../../assets/service-bg6.jpg";
-import insta3 from "../../assets/service-bg9.jpg";
-import insta4 from "../../assets/service-bg2.jpg";
+import insta1 from "../../assets/instaStories1.jpg";
+import insta2 from "../../assets/instaStories2.jpg";
+import insta3 from "../../assets/instaStories3.jpg";
+import insta4 from "../../assets/instaStories2.jpg";
 
 const instagramStories = [
   {
@@ -100,10 +100,7 @@ const InstagramStoriesSection = () => {
       <Slider {...settings} className="insta-cards-slider">
         {instagramStories.map((story, idx) => (
           <div key={story.id} className="insta-card">
-            <div className="insta-card-header">
-              <span className="insta-card-user">{story.user}</span>
-              <span className="insta-card-dots">•••</span>
-            </div>
+      
             <div className="insta-card-imgwrap">
               <img src={story.image} alt="Story" className="insta-card-img" />
             </div>

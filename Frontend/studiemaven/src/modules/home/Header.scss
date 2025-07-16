@@ -255,5 +255,6 @@
   }
   .mobile-modern-drawer {
     display: block !important;
+    z-index: 99999 !important;
   }
 }

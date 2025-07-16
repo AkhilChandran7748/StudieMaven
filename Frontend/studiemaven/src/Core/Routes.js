@@ -8,8 +8,8 @@ import HomePage from '../modules/home/HomePage';
 
 const GuestDashboard = lazy(() => import("../modules/guest/GuestDashboard"))
 const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
-const Services = lazy(() => import("../modules/guest/Services"))
-const Courses = lazy(() => import("../modules/guest/Courses"))
+const Services = lazy(() => import("../modules/guest/ServiceSection"))
+const Courses = lazy(() => import("../modules/guest/CoursesSection"))
 const Countries = lazy(() => import("../modules/guest/CountryTabsPage"))
 const ReferalProgram = lazy(() => import("../modules/guest/ReferalProgram"))
 const Contact = lazy(() => import("../modules/guest/Contact"))
