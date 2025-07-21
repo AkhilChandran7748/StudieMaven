@@ -1,4 +1,3 @@
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -46,5 +45,24 @@
   align-items: center;
   justify-content: center;
 }
+.loader-wrapper img {
+  width: 350px;
+  opacity: 0;
+  transform: scale(0.85);
+  animation: fadeZoomIn 1.1s cubic-bezier(.18,1.08,.53,1.01) forwards;
+}
 
-
+@keyframes fadeZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
