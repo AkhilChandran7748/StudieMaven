@@ -5,6 +5,11 @@ import { FaArrowRight } from "react-icons/fa";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom"; 
+import CountUp from "react-countup";
+
+import CustomersIcon from "../../assets/customerIcons.png";
+import UniversitiesIcon from "../../assets/universityIcons.png";
+import CountriesIcon from "../../assets/countriesIcon.png";
 
 import peopleOne from '../../assets/people-pic1.jpg';
 import peopleTwo from '../../assets/people-pic2.jpg';
@@ -17,6 +22,12 @@ import peopleEight from '../../assets/people-pic8.jpg';
 import peopleNine from '../../assets/people-pic9.jpg';
 import peopleTen from '../../assets/people-pic10.jpg';
 import peopleEleven from '../../assets/people-pic11.jpg';
+
+const stats = [
+  { icon: CustomersIcon, value: 7500, label: "Happy Customers" },
+  { icon: UniversitiesIcon, value: 75, label: "Universities" },
+  { icon: CountriesIcon, value: 15, label: "Countries" }
+];
 
 const peopleImages = [
   { src: peopleOne, className: "top-level1" },
@@ -34,7 +45,23 @@ const peopleImages = [
   { src: peopleFive, className: "item-13" },
 ];
 
-// Animation variants for a futuristic floating in effect
+const StatBox = ({ icon, value, label, inView }) => (
+  <motion.div
+    className="stat-box"
+    initial={{ opacity: 0, y: 40 }}
+    animate={inView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+  >
+    <div className="stat-icon">
+      <img src={icon} alt="" />
+    </div>
+    <div className="stat-value">
+      <CountUp end={inView ? value : 0} duration={2} />
+    </div>
+    <div className="stat-label">{label}</div>
+  </motion.div>
+);
+
 const gridItemVariants = {
   initial: (custom) => ({
     opacity: 0,
@@ -58,19 +85,29 @@ const gridItemVariants = {
 };
 
 const AssociateWithUsSection = () => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ threshold: 0.18, triggerOnce: false });
+  // For images grid animation
+  const gridControls = useAnimation();
+  const [gridRef, gridInView] = useInView({ threshold: 0.18, triggerOnce: true });
+
+  // For stats counter animation (starts after grid animation is finished)
+  const [statsStart, setStatsStart] = React.useState(false);
 
   React.useEffect(() => {
-    if (inView) {
-      controls.start((i) => "animate");
+    if (gridInView) {
+      gridControls.start((i) => "animate");
+      // After last grid item's animation is expected to finish, start stats animation
+      // Last item's delay: 0.13 + (peopleImages.length - 1) * 0.06
+      // Last item's duration: 0.82
+      // So total time: delay + duration
+      const totalGridAnimTime = 0.13 + (peopleImages.length - 1) * 0.06 + 0.82;
+      setTimeout(() => setStatsStart(true), totalGridAnimTime * 1000);
     }
-  }, [inView, controls]);
+  }, [gridInView, gridControls]);
 
   return (
     <div className="containerWrapper">
       <Container className="associate-section">
-        <div className="grid-container-two" ref={ref}>
+        <div className="grid-container-two" ref={gridRef}>
           {peopleImages.map((img, idx) => (
             <motion.div
               className={`grid-item ${img.className}`}
@@ -78,7 +115,7 @@ const AssociateWithUsSection = () => {
               custom={idx}
               variants={gridItemVariants}
               initial="initial"
-              animate={controls}
+              animate={gridControls}
             >
               <img src={img.src} alt="" />
             </motion.div>
@@ -90,6 +127,11 @@ const AssociateWithUsSection = () => {
           <p className="associate-section-desc">
             We're Networking With Prestigious International Universities With A Mission To Encourage Overseas Education Among Students. With These Collaborations, We Intend To Provide Our Students With An Internationally Accepted Degree. It Is Our Sub-Agent Program To Welcome Those People Who Wish To Partner With Us To Make An Income Through Referrals. Even If You Are A Freelancer Or Sub-Agent You Can Tie Up With Us And Earn By Referring Us.
           </p>
+          <section className="stats-counter-section">
+            {stats.map((stat, idx) => (
+              <StatBox key={idx} {...stat} inView={statsStart} />
+            ))}
+          </section>
           <Link to="/contact" className="btn-secondary-cta btn-center">
             Contact Us
             <span className="secondary-btn-arrow">

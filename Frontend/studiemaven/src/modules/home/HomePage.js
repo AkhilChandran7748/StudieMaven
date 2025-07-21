@@ -7,11 +7,14 @@ import ServicesGrid from './ServicesGrid';
 import EligibilitySection from './EligibilitySection';
 import LanguageCoursesSection from './LanguageCoursesSection';
 import EventsSection from './EventsSection';
-import StudentTestimonialsSection from './StudentTestimonialsSection';
+import GoogleReviewSection from './GoogleReviewSection';
 import AssociateWithUsSection from './AssociateWithUsSection';
 import NewsSection from './NewsSection';
-import InstagramStoriesSection from './InstagramStoriesSection';
 import Footer from './Footer';
+import YoutubeShowcaseSection from './YoutubeShowCaseSection';
+import InstaOne from './InstaOne';
+import StudentsWithVisa from './StudentsWithVisa';
+
 
 const HomePage = () => {
   return (
@@ -23,9 +26,11 @@ const HomePage = () => {
       <EligibilitySection />
       <LanguageCoursesSection />
       <EventsSection />
-      <StudentTestimonialsSection />
-      <InstagramStoriesSection />
+      <StudentsWithVisa />
+      <GoogleReviewSection />
       <AssociateWithUsSection />
+      <YoutubeShowcaseSection />
+      <InstaOne />
       <NewsSection />
       <Footer />
     </>

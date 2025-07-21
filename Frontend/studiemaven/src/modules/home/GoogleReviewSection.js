@@ -5,12 +5,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import "./StudentTestimonialsSection.scss";
-import studentVisa1 from '../../assets/studentVisa1.jpg';
-import studentVisa2 from '../../assets/studentVisa2.jpg';
-import studentVisa3 from '../../assets/studentVisa3.jpg';
-import studentVisa4 from '../../assets/studentVisa4.jpg';
-import studentVisa5 from '../../assets/studentVisa5.jpg';
+import "./GoogleReviewSection.scss";
+
 import studentWithBaggage from '../../assets/studentsPic1.png';
 import peopleFour from '../../assets/people-pic4.jpg';
 import peopleFive from '../../assets/people-pic5.jpg';
@@ -20,14 +16,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { motion, useInView } from "framer-motion";
 
-const students = [
-  { name: "Julia Sarah", country: "UK", image: studentVisa1 },
-  { name: "John Mathew", country: "Canada", image: studentVisa3 },
-  { name: "Divya S", country: "Germany", image: studentVisa2 },
-  { name: "Amar Singh", country: "Australia", image: studentVisa4 },
-  { name: "Meena Das", country: "France", image: studentVisa5 },
-  { name: "Rahul Roy", country: "Sweden", image: studentVisa3 },
-];
 
 const testimonial = {
   name: "Liya Sarah",
@@ -56,46 +44,11 @@ const StudentTestimonialsSection = () => {
   const isInView = useInView(imgRef, { once: true, margin: "-100px" });
 
   return (
-    <div className="studentsWrap">
-      <Container className="student-testimonials-section">
-        {/* Left: 3D Slider */}
-        <div className="student-slider-wrap">
-          <div className="student-slider-title">
-            <div>Our</div>
-            <div><b>Proud <br />Students</b></div>
-            <div className="student-slider-subtitle">with their visa</div>
-          </div>
-          <Swiper
-            effect={"coverflow"}
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={3}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 120,
-              modifier: 2.5,
-              slideShadows: false,
-            }}
-            pagination={{ clickable: true }}
-            modules={[EffectCoverflow, Pagination]}
-            className="student-swiper"
-          >
-            {students.map((student, idx) => (
-              <SwiperSlide key={idx} className="student-slide">
-                <img src={student.image} alt={student.name} className="student-slide-img" />
-                <div className="student-slide-caption">
-                  <div className="student-slide-name">{student.name}</div>
-                  <div className="student-slide-country">{student.country}</div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-        {/* Right: Testimonial */}
-        <div className="testimonial-right-wrap">
+    <div className="sectionBg">
+      <Container>
+        <div className="reviews-section">
           <div className="testimonial-window-img-wrap">
-            {/* Animate this image on scroll */}
+  
             <motion.img
               ref={imgRef}
               src={studentWithBaggage}
@@ -147,9 +100,11 @@ const StudentTestimonialsSection = () => {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+     
       </Container>
-    </div>
+      </div>
+
   );
 };
 
