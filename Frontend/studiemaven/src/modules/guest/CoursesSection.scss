@@ -3,20 +3,19 @@ body{
 }
 .courses-page-root {
   min-height: 100vh;
-  padding: 48px 0;
+  padding: 110px 0 40px;
   position: relative;
 }
 
 .courses-page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #d3cccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d3cccc;
 }
 
 .courses-tabs {
@@ -83,7 +82,7 @@ body{
 
 .courses-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 34px;
   max-width: 1200px;
   margin: 0 auto;
@@ -116,14 +115,14 @@ body{
 }
 
 .course-info {
-    padding: 20px 20px 16px 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    margin-top: -20px;
-    background: #fff;
+  padding: 20px 20px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  margin-top: -20px;
+  background: #fff;
 }
 
 .course-title {
@@ -135,10 +134,10 @@ body{
 }
 
 .course-desc {
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 18px;
-    color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 18px;
+  color: #000000;
 }
 
 .course-enroll {
@@ -147,6 +146,8 @@ body{
   cursor: pointer;
   padding: 10px 20px !important;
   font-size: 15px !important;
+  border-radius:8px !important;
+  width: 100%;
 }
 
 .no-courses {
@@ -179,6 +180,148 @@ body{
     background-repeat: no-repeat;
   }
 
+  $card-bg: #232323;
+$card-radius: 24px;
+$card-padding: 24px;
+$card-shadow: 0 2px 32px rgba(0,0,0,0.18);
+$label-bg: #224f37;
+$label-color: #87e7b7;
+$label-font: 14px;
+$title-color: #fff;
+$title-font: 22px;
+$meta-color: #e6f3e9;
+$meta-font: 16px;
+$desc-color: #b3d9c4;
+$desc-font: 15px;
+$button-bg: #69ff68;
+$button-bg-hover: #49d849;
+$button-color: #185a1b;
+$button-radius: 20px;
+$button-font: 17px;
+
+.course-card-list {
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 48px 0;
+}
+
+.course-card {
+  background: $card-bg;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+  width: 100%;
+  padding: 18px 18px 70px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  transition: box-shadow 0.2s;
+  border: 2px solid rgba(122,255,184,0.05);
+
+  &:hover {
+    box-shadow: 0 4px 42px rgba(68,255,129,0.12);
+  }
+
+  .course-card-img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    background: #222;
+    display: block;
+  }
+
+  .course-card-label {
+    background: #484848;
+    color: #e9f6f0;
+    font-size: $label-font;
+    padding: 6px 18px;
+    border-radius: 16px;
+    font-weight: 600;
+    margin-bottom: 11px;
+    display: inline-block;
+    letter-spacing: 0.01em;
+  }
+
+  .course-card-title {
+    color: $title-color;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 13px;
+  }
+
+  .course-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: $meta-font;
+    color: $meta-color;
+    margin-bottom: 12px;
+
+    .star {
+      color: #ffd600;
+      font-size: 1.2em;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+
+    .dot {
+      width: 4px;
+      height: 4px;
+      background: #a7f28c;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 7px;
+      vertical-align: middle;
+    }
+  }
+
+  .course-card-desc {
+    color: $desc-color;
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.54;
+    white-space: pre-line;
+    min-height: 40px;
+    max-height: 60px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .course-card-action {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    .enroll-btn {
+      background: $button-bg;
+      color: $button-color;
+      font-weight: 700;
+      font-size: $button-font;
+      border-radius: $button-radius;
+      border: none;
+      padding: 13px 0;
+      width: 100%;
+      transition: background 0.18s;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(68,255,129,0.08);
+      outline: none;
+
+      &:hover {
+        background: $button-bg-hover;
+      }
+    }
+  }
+}
 @media (max-width: 1200px) {
   .courses-list {
     grid-template-columns: repeat(3, 1fr);

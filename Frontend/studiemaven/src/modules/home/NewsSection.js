@@ -56,7 +56,8 @@ const recentNews = [
 
 const NewsSection = () => {
   return (
-    <Container className="news-section">
+    <div className="news-section">
+    <Container>
       <div className="news-section-badge">News</div>
       <h2 className="news-section-title">Latest news and resources</h2>
       <div className="news-section-content">
@@ -103,6 +104,7 @@ const NewsSection = () => {
       </div>
       
     </Container>
+    </div>
   );
 };
 export default NewsSection;

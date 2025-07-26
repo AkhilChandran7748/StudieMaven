@@ -2,7 +2,7 @@
   display: flex;
   gap: 44px;
   min-height: 100vh;
-  padding: 50px 0 0 0;
+  padding: 110px 0 0 0;
   position: relative;
 }
 
@@ -114,6 +114,7 @@
   padding: 0 0 0 0;
   margin-bottom: 50px;
   width: 100%;
+  min-height: 520px;
 }
 
 .service-title {
@@ -219,7 +220,6 @@
     box-shadow: none;
     position: relative;
     z-index: 9;
-    /* Hide by default, show with JS */
     display: none;
   }
   .service-sidebar-mobile-header {
@@ -246,7 +246,7 @@
   .sidebar-toggle-btn {
     display: block;
   }
-  /* When sidebar is open, display it */
+
   .service-sidebar[style*="height: auto"] {
     display: flex !important;
   }

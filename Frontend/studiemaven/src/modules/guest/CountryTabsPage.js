@@ -18,7 +18,6 @@ import ukFlag from "../../assets/flag-UK.png";
 import australiaFlag from "../../assets/flag-Australia.png";
 import swedenFlag from "../../assets/flag-Sweden.png";
 
-// --- Accordion Data for each country ---
 const accordionDataByCountry = {
   DE: [
     {
@@ -112,12 +111,16 @@ const accordionDataByCountry = {
   ]
 };
 
-// --- Accordion Component ---
+const triggerScrollUpdate = () => {
+  window.dispatchEvent(new Event('pingme-scroll-update'));
+};
+
 const CustomAccordion = ({ items }) => {
   const [openIdx, setOpenIdx] = useState(null);
 
   const handleToggle = (idx) => {
     setOpenIdx(openIdx === idx ? null : idx);
+    setTimeout(triggerScrollUpdate, 350);
   };
 
   return (
@@ -284,6 +287,7 @@ const CountryTabsPage = () => {
 
   const tabListRef = useRef(null);
   const tabRefs = useRef([]);
+  const pageRef = useRef(null);
 
   const prevIdx = (activeIdx - 1 + countries.length) % countries.length;
   const nextIdx = (activeIdx + 1) % countries.length;
@@ -292,9 +296,6 @@ const CountryTabsPage = () => {
     const tabList = tabListRef.current;
     const activeTab = tabRefs.current[activeIdx];
     if (tabList && activeTab) {
-      const tabListRect = tabList.getBoundingClientRect();
-      const activeTabRect = activeTab.getBoundingClientRect();
-      // Calculate offset needed to center active tab
       const scrollLeft = 
         activeTab.offsetLeft - tabList.offsetLeft
         - tabList.clientWidth / 2
@@ -303,9 +304,31 @@ const CountryTabsPage = () => {
     }
   }, [activeIdx]);
 
-  // Get accordion content for active country
   const activeCountryCode = countries[activeIdx].code;
   const accordionItems = accordionDataByCountry[activeCountryCode] || [];
+
+  const handleTabChange = (idx) => {
+    setActiveIdx(idx);
+    setTimeout(triggerScrollUpdate, 350); 
+  };
+
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setTimeout(triggerScrollUpdate, 100);
+    });
+    if (pageRef.current) {
+      observer.observe(pageRef.current, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true,
+      });
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
@@ -316,9 +339,9 @@ const CountryTabsPage = () => {
           <div className="bg-vectorTwoo"></div>
          <div className="bg-vectorFourr"></div>
       <Container>
-        <div className="country-tabs-page">
+        <div className="country-tabs-page" ref={pageRef}>
           <div className="country-tabs-bar">
-            <button className="tab-arrow arrowLeft" onClick={() => setActiveIdx(prevIdx)}>
+            <button className="tab-arrow arrowLeft" onClick={() => handleTabChange(prevIdx)}>
               <IoIosArrowBack />
             </button>
             <div
@@ -334,7 +357,7 @@ const CountryTabsPage = () => {
                 <button
                   key={c.code + idx}
                   className={`country-tab-btn${idx === activeIdx ? " active" : ""}`}
-                  onClick={() => setActiveIdx(idx)}
+                  onClick={() => handleTabChange(idx)}
                   aria-label={c.name}
                   ref={el => tabRefs.current[idx] = el}
                 >
@@ -343,7 +366,7 @@ const CountryTabsPage = () => {
                 </button>
               ))}
             </div>
-            <button className="tab-arrow arrowRight" onClick={() => setActiveIdx(nextIdx)}>
+            <button className="tab-arrow arrowRight" onClick={() => handleTabChange(nextIdx)}>
               <IoIosArrowForward />
             </button>
           </div>
@@ -361,7 +384,12 @@ const CountryTabsPage = () => {
                   <Row>
                     <Col xs={12} md={10} className="mx-auto">
                       <div className="country-main-img-wrap">
-                        <img src={countries[activeIdx].image} alt={countries[activeIdx].name} className="country-main-img" />
+                        <img
+                          src={countries[activeIdx].image}
+                          alt={countries[activeIdx].name}
+                          className="country-main-img"
+                          onLoad={triggerScrollUpdate}
+                        />
                         <div className="country-main-img-overlay">
                           <div className="country-main-img-title">
                             Study in <br /> <span>{countries[activeIdx].name.toUpperCase()}</span>

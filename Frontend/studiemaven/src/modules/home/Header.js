@@ -19,7 +19,16 @@ import flagAustralia from '../../assets/flag-Australia.png';
 import flagUK from '../../assets/flag-UK.png';
 import flagSweden from '../../assets/flag-Sweden.png';
 
-// --- Large screen menus (keep in sync with mobile) ---
+
+const aboutUs = [
+  { label: 'Our Profile', to: RENDER_URL.ABOUTUS  },
+  { label: 'Why StudieMaven', to: RENDER_URL.WHY_US  },
+  { label: 'Awards and Achievements' },
+  { label: 'Our Team' },
+  { label: 'Events'  },
+  { label: 'Gallery' },
+];
+
 const services = [
   { label: 'Visa Guidance', to: RENDER_URL.SERVICES + "#visa" },
   { label: 'Counseling', to: RENDER_URL.SERVICES + "#counseling" },
@@ -46,7 +55,7 @@ const navLinks = [
   { label: 'HOME', to: "/" },
   { label: 'ABOUT US', to: RENDER_URL.ABOUT }, // Updated
   { label: 'CONTACT US', to: RENDER_URL.CONTACT },
-  { label: 'ASSOCIATE WITH US', to: RENDER_URL.CONTACT }, // You can update the path if needed
+  { label: 'ASSOCIATE WITH US', to: RENDER_URL.ASSOCIATE_WITH_US }, // You can update the path if needed
   { label: 'FAQs', to: RENDER_URL.FAQS }, // Added
 ];
 
@@ -136,9 +145,9 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
       <nav className="drawer-nav">
         {/* Main links */}
         <Link to="/" className="drawer-link" onClick={onClose}>HOME</Link>
-        <Link to={RENDER_URL.ABOUT} className="drawer-link" onClick={onClose}>ABOUT US</Link>
+        <Link to={RENDER_URL.ABOUTUS} className="drawer-link" onClick={onClose}>ABOUT US</Link>
         <Link to={RENDER_URL.CONTACT} className="drawer-link" onClick={onClose}>CONTACT US</Link>
-        <Link to={RENDER_URL.CONTACT} className="drawer-link" onClick={onClose}>ASSOCIATE WITH US</Link>
+        <Link to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" onClick={onClose}>ASSOCIATE WITH US</Link>
         <Link to={RENDER_URL.FAQS} className="drawer-link" onClick={onClose}>FAQs</Link>
         {/* Dropdowns */}
         <div className="drawer-dropdown">
@@ -238,12 +247,12 @@ const Header = () => {
           <Navbar.Collapse id="main-navbar">
             <Nav className="ms-auto align-items-center">
               <Nav.Link as={Link} to="/">HOME</Nav.Link>
-              <Nav.Link as={Link} to={RENDER_URL.ABOUT}>ABOUT US</Nav.Link>
+              <DropMenu title="ABOUT US" items={aboutUs} />
               <DropMenu title="WHAT WE OFFER" items={services} />
               <DropMenu title="COUNTRIES" items={countries} isCountryMenu />
               <DropMenu title="COURSES" items={courses} />
               <Nav.Link as={Link} to={RENDER_URL.CONTACT}>CONTACT US</Nav.Link>
-              <Nav.Link as={Link} to={RENDER_URL.CONTACT}>ASSOCIATE WITH US</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" >ASSOCIATE WITH US</Nav.Link>
               <Nav.Link as={Link} to={RENDER_URL.FAQS}>FAQs</Nav.Link>
               <Button variant="" className="ms-3 btn-primary-cta" onClick={() => setShowLogin(true)}>Login <FiLogIn /></Button>
             </Nav>

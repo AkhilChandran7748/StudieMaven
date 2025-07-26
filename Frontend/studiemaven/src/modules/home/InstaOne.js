@@ -83,10 +83,14 @@ export default function InstagramReelsShowcaseSection() {
         <Container fluid>
         <Swiper
           spaceBetween={32}
-          slidesPerView={3}
+          slidesPerView={4}
           breakpoints={{
-            1200: { slidesPerView: 3 },
-            800: { slidesPerView: 2 },
+            1750: { slidesPerView: 8 },
+            1500: { slidesPerView: 7 },
+            1400: { slidesPerView:6 },
+            1200: { slidesPerView:5 },
+            700: { slidesPerView:3 },
+            500: { slidesPerView: 2 },
             0: { slidesPerView: 1 }
           }}
           modules={[Navigation, Autoplay]}
@@ -95,7 +99,7 @@ export default function InstagramReelsShowcaseSection() {
             prevEl: ".insta-reel-prev"
           }}
           autoplay={{
-            delay: 2000,
+            delay: 250000,
             disableOnInteraction: false
           }}
           className="insta-reel-swiper"

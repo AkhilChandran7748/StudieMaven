@@ -14,7 +14,6 @@ import notEligibleIcon from "../../assets/not-eligible-icon.png";
 import AnimatedPersonImage from "./AnimatedPersonImage";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Confetti Popper Implementation (CSS-Tricks style)
 function ConfettiPopper({ active }) {
   const canvasRef = useRef(null);
   const animationRef = useRef();
@@ -321,7 +320,7 @@ const EligibilitySection = () => {
         </div>
       </Container>
 
-      {/* Modal: Eligibility Form */}
+ 
       <Modal
         open={modalStep === 1}
         onClose={handleClose}
@@ -432,7 +431,7 @@ const EligibilitySection = () => {
         </div>
       </Modal>
 
-      {/* Modal: Eligible or Not Eligible */}
+
       <Modal
         open={modalStep === 2}
         onClose={handleClose}

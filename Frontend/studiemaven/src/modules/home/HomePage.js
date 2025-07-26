@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
 import HeroCarousel from './HeroCarousel';
 import UniversitySlider from './UniversitySlider';
@@ -17,6 +16,7 @@ import StudentsWithVisa from './StudentsWithVisa';
 
 
 const HomePage = () => {
+  
   return (
     <>
       <Header />

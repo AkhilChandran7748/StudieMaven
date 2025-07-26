@@ -84,7 +84,7 @@ const gridItemVariants = {
   }),
 };
 
-const AssociateWithUsSection = () => {
+const AssociateWithUsSection = ({ id }) => {
   // For images grid animation
   const gridControls = useAnimation();
   const [gridRef, gridInView] = useInView({ threshold: 0.18, triggerOnce: true });
@@ -95,17 +95,13 @@ const AssociateWithUsSection = () => {
   React.useEffect(() => {
     if (gridInView) {
       gridControls.start((i) => "animate");
-      // After last grid item's animation is expected to finish, start stats animation
-      // Last item's delay: 0.13 + (peopleImages.length - 1) * 0.06
-      // Last item's duration: 0.82
-      // So total time: delay + duration
       const totalGridAnimTime = 0.13 + (peopleImages.length - 1) * 0.06 + 0.82;
       setTimeout(() => setStatsStart(true), totalGridAnimTime * 1000);
     }
   }, [gridInView, gridControls]);
 
   return (
-    <div className="containerWrapper">
+    <div className="containerWrapper" id={id}>
       <Container className="associate-section">
         <div className="grid-container-two" ref={gridRef}>
           {peopleImages.map((img, idx) => (

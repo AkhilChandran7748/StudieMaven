@@ -2,8 +2,10 @@
   background: #f6f7fa;
   padding: 40px 0 80px 0;
 }
-iframe{
-    border: 0 !important;
+.insta-reel-section iframe{
+  border: 0 !important;
+  width: 100% !important;
+  min-width: auto !important;
 }
 .insta-reel-header {
   display: flex;
@@ -39,10 +41,11 @@ iframe{
 
 .insta-reel-card {
   background: #fff;
+  padding: 0px;;
   border-radius:12px;
   box-shadow: 0 4px 16px rgba(28,60,86,0.07);
-  min-width: 265px;
-  max-width: 340px;
+  width: 250px !important;
+  height: 422px !important;
   margin: 0 auto;
   position: relative;
   transition: box-shadow 0.25s, transform 0.25s;
@@ -97,8 +100,8 @@ iframe{
 
 .insta-reel-embed {
   margin-top: 46px;
-  padding: 0 0 74px;
-  min-height: 420px;
+  padding: 0 0 142px;
+  height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;

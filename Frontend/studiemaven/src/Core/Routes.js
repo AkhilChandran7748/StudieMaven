@@ -2,7 +2,7 @@
 import React, { lazy, Suspense, } from "react";
 import { RENDER_URL } from "../Utils/Urls";
 import RootRouteGuard from "./RootRouteGuard"
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import DataContextProvider from "../modules/common/dataContext";
 import HomePage from '../modules/home/HomePage';
 
@@ -22,19 +22,27 @@ const AdminActions = lazy(() => import("../modules/admin/AdminActions"))
 const StaffDashBoard = lazy(() => import("../modules/staffs/StaffDashBoard"))
 const ResetPassword = lazy(() => import("../modules/login/ResetPassword"))
 const University = lazy(() => import("../modules/dataManagement/University"))
-
+const AboutUsPage = lazy(() => import("../modules/guest/AboutUsPage"))
+const WhyUs = lazy(() => import("../modules/guest/WhyUs"))
+const AwardsPage = lazy(() => import("../modules/guest/AwardsPage"))
+const OurTeam = lazy(() => import("../modules/guest/OurTeam"))
+const AssociateWithUsPage = lazy(() => import("../modules/home/AssociateWithUsPage"));
 const RoutesComponent = ({ history }) => {
     return (
         <DataContextProvider>
-            <BrowserRouter>
+      
                 <Suspense fallback={<div className="displayNone"></div>}>
                     <Routes>
                         <Route path="/" element= {<HomePage />} />
                         <Route path="/" element={<GuestDashboard history={history} />} />
-                        <Route path={RENDER_URL.WHY_MAVEN} element={<WhyMaven />} />
+                        <Route path={RENDER_URL.ABOUTUS} element={<AboutUsPage />} />
+                        <Route path={RENDER_URL.WHY_US} element={<WhyUs />} />
+                        <Route path={RENDER_URL.AWARDSPAGE} element={<AwardsPage />} />
+                        <Route path={RENDER_URL.OURTEAM} element={<OurTeam />} />
                         <Route path={RENDER_URL.SERVICES} element={<Services />} />
                         <Route path={RENDER_URL.COURSES} element={<Courses />} />
                         <Route path={RENDER_URL.COUNTRIES} element={<Countries />} />
+                        <Route path={RENDER_URL.ASSOCIATE_WITH_US} element={<AssociateWithUsPage />} />
                         <Route path={RENDER_URL.REFERAL} element={<ReferalProgram />} />
                         <Route path={RENDER_URL.CONTACT} element={<Contact />} />
                         <Route path={RENDER_URL.GUEST_DASHBOARD} element={<GuestDashboard />} />
@@ -53,7 +61,7 @@ const RoutesComponent = ({ history }) => {
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
                 </Suspense>
-            </BrowserRouter>
+    
         </DataContextProvider>
     );
 };

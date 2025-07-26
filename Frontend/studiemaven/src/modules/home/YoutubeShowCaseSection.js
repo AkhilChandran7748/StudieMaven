@@ -43,9 +43,9 @@ export default function YoutubeWhyChooseSkymark() {
         </div>
         <Swiper
           spaceBetween={32}
-          slidesPerView={4}
+          slidesPerView={5}
           breakpoints={{
-            1200: { slidesPerView: 4 },
+            1200: { slidesPerView: 5 },
             800: { slidesPerView: 2 },
             0: { slidesPerView: 1 }
           }}

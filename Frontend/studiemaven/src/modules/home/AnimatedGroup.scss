@@ -1,6 +1,6 @@
 .animated-group-root {
   position: relative;
-  width: 820px;
+  width: 750px;
   height: 100%;
   margin: 0 auto;
   background: #e8e8e9;
@@ -13,7 +13,7 @@
 /* --- Background Vectors --- */
 .bg-shape {
   position: absolute;
-  bottom: 150px;
+  bottom: 90px;
   pointer-events: none;
   user-select: none;
   z-index: 1;
@@ -43,7 +43,7 @@
     position: absolute;
     left: 0 !important; 
     right: 0 !important;
-    bottom: 95px !important;
+    bottom: 44px !important;
     background-color: #fff;
     z-index: 99;
     text-align: center;
@@ -104,10 +104,10 @@
 
 @media (max-width: 576px) {
   .animated-group-root{
-    width: 760px;
+    width: 560px;
     height: 420px;
     bottom:0px;
-    transform: translateX(-380px);
+    transform: translateX(-280px);
   }
   .sliderCaption {
     padding: 14px 10px!important;
