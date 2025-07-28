@@ -1,10 +1,8 @@
-body{
-    background-color: #f4f7fb;
-}
 .courses-page-root {
   min-height: 100vh;
   padding: 110px 0 40px;
   position: relative;
+  background: #f8fcff;
 }
 
 .courses-page-header {
@@ -98,6 +96,7 @@ body{
   transition: box-shadow 0.18s, transform 0.18s;
   min-height: 330px;
   position: relative;
+  
 }
 
 .course-card:hover {
@@ -179,8 +178,7 @@ body{
     background-size: contain;
     background-repeat: no-repeat;
   }
-
-  $card-bg: #232323;
+$card-bg: #232323;
 $card-radius: 24px;
 $card-padding: 24px;
 $card-shadow: 0 2px 32px rgba(0,0,0,0.18);
@@ -257,13 +255,13 @@ $button-font: 17px;
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: $meta-font;
+    font-size: 14px;
     color: $meta-color;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
 
     .star {
       color: #ffd600;
-      font-size: 1.2em;
+      font-size: 14px;
       margin-right: 3px;
       vertical-align: middle;
     }

@@ -1,6 +1,6 @@
 .associate-section {
   background: #fff;
-  padding: 140px 0 100px 0;
+  padding: 70px 0 100px 0;
   max-width: 1150px;
   margin: 0 auto;
   border-radius: 30px;
@@ -37,7 +37,7 @@
 .associate-section-content {
   text-align: center;
   margin-top: 18px;
-  max-width: 730px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -60,11 +60,12 @@
   letter-spacing: 0.2px;
 }
 .associate-section-desc {
-  color: #444;
+  color: #191818;
   font-size: 15px;
   margin-bottom: 30px;
   line-height: 1.7;
   font-weight: 400;
+  text-align: justify;
 }
 .associate-section-contact-btn {
   background: #79c22d;
@@ -90,57 +91,6 @@
   margin-left: 5px;
 }
 
-.grid-container-two {
-  display: grid;
-  grid-template-columns: repeat(9, 100px);
-  gap: 10px;
-  justify-content: center;
-  position: relative;
-  margin-bottom: -90px;
-  z-index: 9;
-}
-
-.grid-item {
-  height: 120px;
-  background-color: orangered;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 0px dashed black;
-  img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-.item-12{
-  grid-column: 8 / 9;
-  grid-row: 2 / 3;
-}
-.item-13{
-  grid-column:9 / 9;
-  grid-row: 2 / 3;
-}
-.top-level1{
-  margin-top: 44px;
-}
-.top-level2{
-  margin-top: 27px;
-}
-.top-level3{
-  margin-top: 23px;
-}
-.top-level4{
-  margin-top: -40px;
-}
-.top-level5{
-  margin-top: 0px;
-}
-.top-level6{
-  margin-top: -80px;
-}
-.top-level7{
-  margin-top: -5px;
-}
 .stats-counter-section {
   display: flex;
   gap: 48px;
@@ -159,8 +109,7 @@
 }
 .stat-box {
   border-radius: 24px;
-  min-width: 200px;
-  min-height: 200px;
+  min-width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -170,7 +119,11 @@
   transition: box-shadow 0.18s;
 
 }
-
+.aboutus-page-root{
+  background-color: #f8fcff !important;
+  padding: 110px 0 50px !important;
+}
+   
 .stat-icon {
   color: #f94c10;
   margin-bottom: 12px;
@@ -185,7 +138,7 @@
 }
 
 .stat-value {
-  font-size: 34px;
+  font-size:28px;
   font-weight: 700;
   color: #222;
   margin-bottom: 2px;
@@ -203,12 +156,11 @@
 }
 
 .stat-label {
-  font-size: 20px;
+  font-size:16px;
   color: #222;
   font-weight: 400;
   margin-top: 5px;
 }
-
 @media (max-width:900px) {
   .stats-counter-section {
     flex-wrap: wrap;

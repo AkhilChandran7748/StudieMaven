@@ -164,6 +164,7 @@ const ServiceSection = () => {
       <Header />
       <div className="bg-vectorSeven"></div>
       <div className="bg-vectorEight"></div>
+      <div className="bgWrapper">
       <Container>
         <div className="service-section-root" ref={sectionRef}>
           {/* Mobile Sidebar Toggle */}
@@ -257,6 +258,7 @@ const ServiceSection = () => {
           </div>
         </div>
       </Container>
+      </div>
       <Footer />
     </>
   );

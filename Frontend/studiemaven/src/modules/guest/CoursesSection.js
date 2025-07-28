@@ -4,6 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import Header from '../home/Header';
 import Footer from '../home/Footer';
 import Container from "react-bootstrap/Container";
+import { motion, AnimatePresence } from "framer-motion"; // <--- Import Framer Motion
 import "./CoursesSection.scss";
 
 import courseImg1 from "../../assets/coursesPic1.jpg";
@@ -173,13 +174,29 @@ const CoursesPage = () => {
     );
   }, [activeTab, search]);
 
+  // Framer Motion animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.97 },
+    visible: idx => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: idx * 0.12 + 0.1,
+        duration: 0.7,
+        ease: [0.23, 1, 0.32, 1],
+      }
+    })
+  };
+
   return (
     <>
       <Header />
       <div className="bg-vectorNine"></div>
       <div className="bg-vectorTen"></div>
+      <div className="courses-page-root"> 
       <Container>
-        <div className="courses-page-root" ref={sectionRef}>
+        <div ref={sectionRef}>
           <div className="courses-page-header">
             <div className="courses-tabs">
               {TABS.map(tab => (
@@ -208,8 +225,18 @@ const CoursesPage = () => {
           </div>
 
           <div className="courses-list">
+            <AnimatePresence>
               {filteredCourses.map((c, idx) => (
-                <div className="course-card" key={idx}>
+                <motion.div
+                  className="course-card"
+                  key={idx}
+                  custom={idx}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  layout
+                >
                   <img className="course-card-img" src={c.image} alt={c.title} />
                   <span className="course-card-label">{c.label}</span>
                   <div className="course-card-title">{c.title}</div>
@@ -228,15 +255,16 @@ const CoursesPage = () => {
                       </span>
                     </button>
                   </div>
-                </div>
+                </motion.div>
               ))}
-           
+            </AnimatePresence>
             {filteredCourses.length === 0 && (
               <div className="no-courses">No courses found.</div>
             )}
           </div>
         </div>
       </Container>
+      </div>
       <Footer />
     </>
   );

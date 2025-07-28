@@ -27,6 +27,7 @@ const WhyUs = lazy(() => import("../modules/guest/WhyUs"))
 const AwardsPage = lazy(() => import("../modules/guest/AwardsPage"))
 const OurTeam = lazy(() => import("../modules/guest/OurTeam"))
 const AssociateWithUsPage = lazy(() => import("../modules/home/AssociateWithUsPage"));
+const FaqPage = lazy(() => import("../modules/guest/FaqPage"));
 const RoutesComponent = ({ history }) => {
     return (
         <DataContextProvider>
@@ -42,6 +43,7 @@ const RoutesComponent = ({ history }) => {
                         <Route path={RENDER_URL.SERVICES} element={<Services />} />
                         <Route path={RENDER_URL.COURSES} element={<Courses />} />
                         <Route path={RENDER_URL.COUNTRIES} element={<Countries />} />
+                        <Route path={RENDER_URL.FAQ} element={<FaqPage />} />
                         <Route path={RENDER_URL.ASSOCIATE_WITH_US} element={<AssociateWithUsPage />} />
                         <Route path={RENDER_URL.REFERAL} element={<ReferalProgram />} />
                         <Route path={RENDER_URL.CONTACT} element={<Contact />} />

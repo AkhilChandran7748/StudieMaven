@@ -116,13 +116,11 @@
 
 .footer-links-wrap {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 120px;
   margin-bottom: 55px;
-  padding: 0 30px;
+  padding: 0 50px;
   .footer-col {
     min-width: 180px;
+    margin-bottom: 40px;
     h4 {
       font-size: 18px;
       font-weight: 700;
@@ -130,7 +128,6 @@
       letter-spacing: 0.5px;
       text-align: left;
       color: #10231b;
-      font-family: "Montserrat", sans-serif;
     }
     ul {
       list-style: none;
@@ -161,7 +158,46 @@
     }
   }
 }
-
+.footer-col {
+    min-width: 180px;
+    h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+      padding-bottom: 4px;
+      text-align: left;
+      color: #10231b;
+      font-family: "Montserrat", sans-serif !important;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 8px;
+        color:#10231b;
+        display: flex;
+        text-align: left;
+        svg {
+           color:#ed2a24;
+          flex-shrink: 0;
+          margin-right: 8px;
+          margin-top: 2px;
+          font-size: 20px;
+        }
+        a {
+          color: #10231b;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
 .footer-bottom {
   position: relative;
   z-index: 2;
@@ -208,7 +244,19 @@
     }
   }
 }
-
+.footerTitle{
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+  font-size: 20px;
+  width: 100%;
+}
+.countries-list li img{
+    display: block;
+    float: left;
+    width: 16px;
+    margin: 3px 10px 0 0;
+}
 /* Responsive */
 @media (max-width: 900px) {
   .footer-links-wrap {

@@ -253,7 +253,7 @@ const Header = () => {
               <DropMenu title="COURSES" items={courses} />
               <Nav.Link as={Link} to={RENDER_URL.CONTACT}>CONTACT US</Nav.Link>
               <Nav.Link as={Link} to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" >ASSOCIATE WITH US</Nav.Link>
-              <Nav.Link as={Link} to={RENDER_URL.FAQS}>FAQs</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.FAQ}>FAQs</Nav.Link>
               <Button variant="" className="ms-3 btn-primary-cta" onClick={() => setShowLogin(true)}>Login <FiLogIn /></Button>
             </Nav>
           </Navbar.Collapse>

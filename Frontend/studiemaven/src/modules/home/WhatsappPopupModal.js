@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import "./WhatsappPopupModal.scss";
 import mobileMockups from "../../assets/mockupOne.png";
@@ -7,9 +8,22 @@ import mobileMockupsTwo from "../../assets/mockupOne-pic2.png";
 import mobileMockupsThree from "../../assets/mockupOne-pic3.png";
 import { FaWhatsapp } from "react-icons/fa";
 
-const WHATSAPP_NUMBER = "YOUR_WHATSAPP_NUMBER"; // e.g. "919876543210"
-const WHATSAPP_MESSAGE = encodeURIComponent("Hi, I need some help!");
+// Animation variants
+const modalBackdrop = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.22 } }
+};
+const modalContent = {
+  hidden: { opacity: 0, scale: 0.8, y: 50 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 16 } },
+  exit: { opacity: 0, scale: 0.7, y: 60, transition: { duration: 0.18 } }
+};
+const whatsappBtnVariants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.07, boxShadow: "0 0 16px #25d36644" }
+};
 
+// Additional icon/phone variants, you may already have these defined above
 const phoneVariants = {
   hidden: { opacity: 0, scale: 0.8, y: 50, rotate: -8 },
   visible: { opacity: 1, scale: 1, y: 0, rotate: 0, transition: { type: 'spring', stiffness: 220, damping: 18, delay: 0.15 } }
@@ -30,28 +44,17 @@ const iconVariants = [
   }
 ];
 
-const modalBackdrop = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.22 } }
-};
-const modalContent = {
-  hidden: { opacity: 0, scale: 0.8, y: 50 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 16 } },
-  exit: { opacity: 0, scale: 0.7, y: 60, transition: { duration: 0.18 } }
-};
-
-const whatsappBtnVariants = {
-  rest: { scale: 1 },
-  hover: { scale: 1.07, boxShadow: "0 0 16px #25d36644" }
-};
-
 const WhatsappPopupModal = ({ open, onClose }) => {
+  useEffect(() => {
+    window.dispatchEvent(new Event('pingme-scroll-update'));
+  }, [open]);
+
   const handleWhatsappClick = () => {
-    const url = `https://wa.me/${+919061379595}?text=${'Hi, I need some help!'}`;
+    const url = `https://wa.me/${918921263070}?text=${encodeURIComponent('Hi, I need some help!')}`;
     window.open(url, "_blank");
   };
 
-  return (
+  const modal = (
     <AnimatePresence>
       {open && (
         <motion.div
@@ -134,6 +137,9 @@ const WhatsappPopupModal = ({ open, onClose }) => {
       )}
     </AnimatePresence>
   );
+
+  // Render in portal to document.body for proper centering
+  return ReactDOM.createPortal(modal, document.body);
 };
 
 export default WhatsappPopupModal;
