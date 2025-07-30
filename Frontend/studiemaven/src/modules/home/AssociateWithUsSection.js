@@ -151,7 +151,7 @@ const AssociateWithUsSection = ({ id }) => {
         <div className="associate-section-content text-center">
           <div className="associate-section-badge">Our Networks</div>
           <h2 className="associate-section-title">Partner With Us</h2>
-          <LogoSlider />
+          {/* <LogoSlider /> */}
           <Row>
             <Col xs={12} className="text-center">
               <p className="associate-section-desc">
