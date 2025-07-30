@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./AwardsPage.scss";
-import { Nav,  Container } from 'react-bootstrap';
+import { Nav,  Container, Row, Col } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import aboutUsImg1 from "../../assets/aboutUsImg1.jpg";
-import aboutUsImg2 from "../../assets/aboutUsImg2.jpg";
-import aboutUsImg3 from "../../assets/aboutUsImg3.jpg";
-import aboutUsImg4 from "../../assets/aboutUsImg4.jpg";
+import certificateOne from "../../assets/certificates1.png";
+import certificateTwo from "../../assets/certificates2.png";
+import certificateThree from "../../assets/certificates3.png";
+import certificateFour from "../../assets/certificates4.png";
+import certificateFive from "../../assets/certificates5.png";
+import certificateSix from "../../assets/certificates6.png";
+import certificateSeven from "../../assets/certificates7.png";
+import certificateEight from "../../assets/certificates8.png";
+import mockupOne from "../../assets/mockup1.png";
+
 import { Link } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import Header from '../home/Header';
@@ -14,35 +20,35 @@ import Footer from '../home/Footer';
 
 const galleryItems = [
   {
-    src: aboutUsImg1,
+    src: certificateOne,
     title: "PSB Academy 50th Anniversary memento"
   },
   {
-    src: aboutUsImg2,
+    src: certificateTwo,
     title: "WITT, New Zealand- Top performing agent India Certification"
   },
   {
-    src: aboutUsImg3,
+    src: certificateThree,
     title: "MSM Certificate of Appreciation"
   },
   {
-    src: aboutUsImg4,
+    src: certificateFour,
     title: "Eastern Institute of Technology, NewZealand- Top Agent 2018 certificate"
   },
   {
-    src: aboutUsImg2,
+    src: certificateFive,
     title: "ASBI Award"
   },
   {
-    src: aboutUsImg3,
+    src: certificateSix,
     title: "MSM Certificate of Appreciation"
   },
   {
-    src: aboutUsImg4,
+    src: certificateSeven,
     title: "Eastern Institute of Technology, NewZealand- Top Agent 2018 certificate"
   },
    {
-    src: aboutUsImg1,
+    src: certificateEight,
     title: "PSB Academy 50th Anniversary memento"
   }
 ];
@@ -78,12 +84,36 @@ const AwardsPage = () => {
       <div className="awards-page-root">
         <Container>
           <div className="pageHeader">
-            <div><h4 className="pageTitle">Our Profile</h4></div>
+            <div><h4 className="pageTitle">Awards and Acheivements</h4></div>
             <div className="breadcrumb-container">
                   <Nav.Link as={Link} to="/"><IoHomeOutline /> Home </Nav.Link>
                   <span className="breadcrumb-separator"> /</span>
-                  <span>Awards and Acheivements</span>
+                  <span>About Us</span>
               </div>
+          </div>
+          <Row>
+            <Col xs={12} md={9}>
+              <div className="awards-left-content">
+                <h1 className="mainTitles">Recognized for <span>Excellence.</span> <br></br>Trusted by <span>Institutions.</span> <br></br> Celebrated by <span>Students.</span></h1>
+          
+                  </div>
+                 </Col>
+                 <Col xs={12} md={3}>
+                  <div className="awards-right-content">
+                    <img src={mockupOne} alt="Awards Mockup" className="awards-mockup" />
+                  </div>
+                 </Col>
+          </Row>
+          <div className="pageTop"> 
+         
+            <p>
+              At Studiemaven Study Abroad, our commitment to integrity, transparency, and student success has not only earned us the trust of thousands of families but also the recognition of leading global institutions.  </p><p>
+
+Over the years, we’ve been honoured with multiple “Best Performer” awards from top international universities for our consistent results, ethical practices, and the quality of student profiles we represent. Our dedication to placing students in the right courses and countries has also led to numerous accolades, including being named one of the “Best Study Abroad Consultants” at various events.  </p><p>
+
+These awards are more than just titles they reflect the passion, precision, and professionalism that drive everything we do. Each recognition strengthens our resolve to serve students better, raise the bar in the study abroad industry, and remain a trusted name in global education consulting.  </p><p>
+As we continue to grow and innovate, these milestones remind us of what matters most, the success stories we help create, the lives we impact, and the dreams we help realize.
+            </p>
           </div>
                         
           <div className="galleryWrapper">

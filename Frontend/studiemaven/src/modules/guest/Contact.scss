@@ -238,6 +238,16 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
+  .mapLocationTitle{
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background: #f8fcff;
+  }
+
 @media (max-width: 1200px) {
    .contactus-main-section{
      padding: 100px 0 0 0;

@@ -10,21 +10,42 @@
 
 .galleryWrapper {
   display: flex;
-  gap: 20px;
+  gap: 20px 0;
   align-items: stretch;
   justify-content: start;
   flex-wrap: wrap;
   margin-top: 22px;
   margin-right: -20px;
 }
-
+.mainTitles{
+  background:linear-gradient(75deg, #df4936 0%, #000000 110%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  color: transparent;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  span{
+      font-weight: 700;
+      font-size: 3rem;
+  }
+}
+.galleryItem:nth-child(1n),.galleryItem:nth-child(2n), .galleryItem:nth-child(3n), .galleryItem:nth-child(4n){
+  .galleryItemTitle{
+    margin-top: -20px;
+  }
+}
+.galleryItem:nth-child(5n),.galleryItem:nth-child(6n), .galleryItem:nth-child(7n), .galleryItem:nth-child(8n){
+  .galleryItemTitle{  
+    margin-top: -34px;
+  }
+}
 .galleryItem{
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 3px 32px 0 rgba(0,0,0,0.2);
-  overflow: hidden;
-  width: calc(25% - 20px);
-  height: 270px;
+  background:transparent !important;
+  box-shadow: none !important;
+  width: calc(25% - 15px);
   display: flex;
   flex-direction: column;
   transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s;
@@ -33,18 +54,25 @@
   will-change: transform, box-shadow;
   img{
     height: 100%;
-    object-fit: cover;
+    object-fit: contain !important;
   }
   .galleryItemTitle{
+    font-family: "Montserrat", sans-serif !important;
     padding: 12px 16px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    color: #fff;
-    position: absolute;
-    width: 100%;
-    height: 85px;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.6);
+    color: #000000;
+    position: relative;
+    width: calc(100% - 34px);
+    margin: 0 auto;
+    height: 110px;
+    display: block;
+    overflow: hidden;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: #e6e7e2;
+    box-shadow:10px 10px 16px 0px rgba(0,0,0,0.15);
+    display: none;
   }
 }
 
@@ -143,8 +171,14 @@
 }
 .galleryModalPrev { left: -53px; }
 .galleryModalNext { right: -53px; }
-
-
+.awards-right-content{
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px;
+  }
+}
 @media (max-width: 991px) {
     .galleryItem{
     width: calc(50% - 20px);

@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "./InstaOne.scss";
 import playBtn from "../../assets/instagram.png";
 import { FcNext , FcPrevious} from "react-icons/fc";
+
 const reels = [
   {
     url: "https://www.instagram.com/reel/DC9ChVsvXrf/?igsh=eHB5eHE2OHp3a3R6",
@@ -45,7 +46,6 @@ const reels = [
     user: "",
     profilePic: "" 
   },
-
 ];
 
 function getEmbedHtml(url) {
@@ -79,19 +79,15 @@ export default function InstagramReelsShowcaseSection() {
           <span className="insta-reel-pill">Instagram</span>
           <span className="insta-reel-title">Catch up with us on <b>Instagram</b> Stories</span>
         </div>
-        </Container>
-        <Container fluid>
+      </Container>
+      <Container fluid>
         <Swiper
           spaceBetween={32}
-          slidesPerView={4}
+          slidesPerView={5}
           breakpoints={{
-            1750: { slidesPerView: 8 },
-            1500: { slidesPerView: 7 },
-            1400: { slidesPerView:6 },
-            1200: { slidesPerView:5 },
-            700: { slidesPerView:3 },
-            500: { slidesPerView: 2 },
-            0: { slidesPerView: 1 }
+            1200: { slidesPerView: 5, spaceBetween: 32 },
+            800: { slidesPerView: 2, spaceBetween: 20 },
+            0: { slidesPerView: 1, spaceBetween: 8 }
           }}
           modules={[Navigation, Autoplay]}
           navigation={{
@@ -99,7 +95,7 @@ export default function InstagramReelsShowcaseSection() {
             prevEl: ".insta-reel-prev"
           }}
           autoplay={{
-            delay: 250000,
+            delay: 2500,
             disableOnInteraction: false
           }}
           className="insta-reel-swiper"
@@ -108,8 +104,7 @@ export default function InstagramReelsShowcaseSection() {
             <SwiperSlide key={idx}>
               <div className="insta-reel-card">
                 <div className="insta-reel-overlay">
-                  <img src={playBtn} className="instaIcon" />
-             
+                  <img src={playBtn} className="instaIcon" alt="Instagram" />
                 </div>
                 <div
                   className="insta-reel-embed"

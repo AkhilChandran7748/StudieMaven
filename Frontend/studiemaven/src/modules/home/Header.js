@@ -55,7 +55,7 @@ const navLinks = [
   { label: 'HOME', to: "/" },
   { label: 'ABOUT US', to: RENDER_URL.ABOUT }, // Updated
   { label: 'CONTACT US', to: RENDER_URL.CONTACT },
-  { label: 'ASSOCIATE WITH US', to: RENDER_URL.ASSOCIATE_WITH_US }, // You can update the path if needed
+  { label: 'PARTNER WITH US', to: RENDER_URL.ASSOCIATE_WITH_US }, // You can update the path if needed
   { label: 'FAQs', to: RENDER_URL.FAQS }, // Added
 ];
 
@@ -147,7 +147,7 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
         <Link to="/" className="drawer-link" onClick={onClose}>HOME</Link>
         <Link to={RENDER_URL.ABOUTUS} className="drawer-link" onClick={onClose}>ABOUT US</Link>
         <Link to={RENDER_URL.CONTACT} className="drawer-link" onClick={onClose}>CONTACT US</Link>
-        <Link to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" onClick={onClose}>ASSOCIATE WITH US</Link>
+        <Link to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" onClick={onClose}>PARTNER WITH US</Link>
         <Link to={RENDER_URL.FAQS} className="drawer-link" onClick={onClose}>FAQs</Link>
         {/* Dropdowns */}
         <div className="drawer-dropdown">
@@ -252,7 +252,7 @@ const Header = () => {
               <DropMenu title="COUNTRIES" items={countries} isCountryMenu />
               <DropMenu title="COURSES" items={courses} />
               <Nav.Link as={Link} to={RENDER_URL.CONTACT}>CONTACT US</Nav.Link>
-              <Nav.Link as={Link} to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" >ASSOCIATE WITH US</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" >PARTNER WITH US</Nav.Link>
               <Nav.Link as={Link} to={RENDER_URL.FAQ}>FAQs</Nav.Link>
               <Button variant="" className="ms-3 btn-primary-cta" onClick={() => setShowLogin(true)}>Login <FiLogIn /></Button>
             </Nav>
