@@ -132,7 +132,7 @@ const FaqPage = () => {
           <div className="mainHeader">
             <h1>Questions? Look here.</h1>
             <div className="subHeader">
-              Can’t find an answer? Call us at <b>+91 9061379595</b> or email <b>admissions@studiemaven.com</b>
+              Can’t find an answer? Call us at <b>+91 8921263070</b> or email <b>admissions@studiemaven.com</b>
             </div>
           </div>
           <div className="contentRow">

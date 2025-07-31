@@ -23,10 +23,12 @@ import flagSweden from '../../assets/flag-Sweden.png';
 const aboutUs = [
   { label: 'Our Profile', to: RENDER_URL.ABOUTUS  },
   { label: 'Why StudieMaven', to: RENDER_URL.WHY_US  },
-  { label: 'Awards and Achievements' },
+  { label: 'Awards and Achievements', to: RENDER_URL.AWARDSPAGE },
   { label: 'Our Team' },
-  { label: 'Events'  },
-  { label: 'Gallery' },
+  { label: 'Our Events'  },
+  { label: 'Careers', to: RENDER_URL.CAREERPAGE  },
+  { label: 'Find Us on Social Media' },
+  
 ];
 
 const services = [

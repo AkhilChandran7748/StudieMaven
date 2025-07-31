@@ -8,6 +8,7 @@ export const RENDER_URL = {
     ABOUTUS: '/AboutUsPage',
     WHY_US: '/why-us',
     AWARDSPAGE: '/AwardsPage',
+    CAREERPAGE: '/CareerPage',
     OURTEAM: '/OurTeam',
     ASSOCIATE_WITH_US: '/AssociateWithUsPage',
     FAQ: '/FaqPage',

@@ -28,6 +28,8 @@ const AwardsPage = lazy(() => import("../modules/guest/AwardsPage"))
 const OurTeam = lazy(() => import("../modules/guest/OurTeam"))
 const AssociateWithUsPage = lazy(() => import("../modules/home/AssociateWithUsPage"));
 const FaqPage = lazy(() => import("../modules/guest/FaqPage"));
+const CareerPage = lazy(() => import("../modules/guest/CareerPage"));
+const JobDetailPage = lazy(() => import("../modules/guest/JobDetailPage"));
 const RoutesComponent = ({ history }) => {
     return (
         <DataContextProvider>
@@ -39,6 +41,8 @@ const RoutesComponent = ({ history }) => {
                         <Route path={RENDER_URL.ABOUTUS} element={<AboutUsPage />} />
                         <Route path={RENDER_URL.WHY_US} element={<WhyUs />} />
                         <Route path={RENDER_URL.AWARDSPAGE} element={<AwardsPage />} />
+                        <Route path={RENDER_URL.CAREERPAGE} element={<CareerPage />} />
+                        <Route path="/careers/:id" element={<JobDetailPage />} />
                         <Route path={RENDER_URL.OURTEAM} element={<OurTeam />} />
                         <Route path={RENDER_URL.SERVICES} element={<Services />} />
                         <Route path={RENDER_URL.COURSES} element={<Courses />} />
