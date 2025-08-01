@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from '../home/Header';
 import Footer from '../home/Footer';
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,6 +19,7 @@ import ukFlag from "../../assets/flag-UK.png";
 import australiaFlag from "../../assets/flag-Australia.png";
 import swedenFlag from "../../assets/flag-Sweden.png";
 
+// Accordion data
 const accordionDataByCountry = {
   DE: [
     {
@@ -111,23 +113,16 @@ const accordionDataByCountry = {
   ]
 };
 
-const triggerScrollUpdate = () => {
-  window.dispatchEvent(new Event('pingme-scroll-update'));
-};
-
+// CustomAccordion component
 const CustomAccordion = ({ items }) => {
   const [openIdx, setOpenIdx] = useState(null);
 
   const handleToggle = (idx) => {
     setOpenIdx(openIdx === idx ? null : idx);
-    setTimeout(triggerScrollUpdate, 350);
   };
 
   return (
-    <div style={{
-      marginTop: "32px",
-      marginBottom: "32px",
-    }}>
+    <div style={{ marginTop: "32px", marginBottom: "32px" }}>
       {items.map((item, idx) => (
         <div
           key={idx}
@@ -182,9 +177,8 @@ const countries = [
   {
     code: "DE",
     name: "Germany",
-    flag: "🇩🇪",
-    image: germanyPic,
     tabsIcon: germanFlag,
+    image: germanyPic,
     description: (
       <>
         <b>Germany</b> comes in the mind of every student when they think about pursuing their higher education in a foreign country. It has several reasons and benefits that attract international students to Germany for various courses in the reputed German universities. The quality of education and international standards are a great gift for students in Germany. When considering the quality of life, Germany keeps its head in the top list of countries.
@@ -195,15 +189,14 @@ const countries = [
     ),
     button: {
       text: "Get Free Consultation",
-      link: "#",
+      link: "#"
     }
   },
   {
     code: "CA",
     name: "Canada",
-    flag: "🇨🇦",
-    image: canadaPic,
     tabsIcon: canadaFlag,
+    image: canadaPic,
     description: (
       <>
         <b>Canada</b> offers an affordable, quality education and a safe, welcoming environment. Students enjoy multicultural cities and outstanding natural beauty.
@@ -214,15 +207,14 @@ const countries = [
     ),
     button: {
       text: "Get Free Consultation",
-      link: "#",
+      link: "#"
     }
   },
   {
     code: "GB",
     name: "UK",
-    flag: "🇬🇧",
-    image: ukPic,
     tabsIcon: ukFlag,
+    image: ukPic,
     description: (
       <>
         <b>United Kingdom</b> is home to world-class universities and a multicultural experience. Students benefit from high academic standards, diverse courses, and rich heritage.
@@ -233,15 +225,14 @@ const countries = [
     ),
     button: {
       text: "Get Free Consultation",
-      link: "#",
+      link: "#"
     }
   },
   {
     code: "AU",
     name: "Australia",
-    flag: "🇦🇺",
-    image: australiaPic,
     tabsIcon: australiaFlag,
+    image: australiaPic,
     description: (
       <>
         <b>Australia</b> is a top destination for international students, offering high-quality education, diverse courses, and a vibrant lifestyle.
@@ -252,15 +243,14 @@ const countries = [
     ),
     button: {
       text: "Get Free Consultation",
-      link: "#",
+      link: "#"
     }
   },
   {
     code: "SE",
     name: "Sweden",
-    flag: "🇸🇪",
-    image: swedenPic,
     tabsIcon: swedenFlag,
+    image: swedenPic,
     description: (
       <>
         <b>Sweden</b> is known for its innovative education system and high standard of living. Study in English-taught programs and join a progressive society.
@@ -271,7 +261,7 @@ const countries = [
     ),
     button: {
       text: "Get Free Consultation",
-      link: "#",
+      link: "#"
     }
   }
 ];
@@ -283,20 +273,22 @@ const tabVariants = {
 };
 
 const CountryTabsPage = () => {
-  const [activeIdx, setActiveIdx] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const params = new URLSearchParams(location.search);
+  const tabCode = params.get("tab");
+  const activeIdx = Math.max(0, countries.findIndex(c => c.code === tabCode));
+  const activeCountry = countries[activeIdx];
+
+  // When tab changes, scroll to the tab
   const tabListRef = useRef(null);
   const tabRefs = useRef([]);
-  const pageRef = useRef(null);
-
-  const prevIdx = (activeIdx - 1 + countries.length) % countries.length;
-  const nextIdx = (activeIdx + 1) % countries.length;
-
   useEffect(() => {
     const tabList = tabListRef.current;
     const activeTab = tabRefs.current[activeIdx];
     if (tabList && activeTab) {
-      const scrollLeft = 
+      const scrollLeft =
         activeTab.offsetLeft - tabList.offsetLeft
         - tabList.clientWidth / 2
         + activeTab.clientWidth / 2;
@@ -304,119 +296,85 @@ const CountryTabsPage = () => {
     }
   }, [activeIdx]);
 
-  const activeCountryCode = countries[activeIdx].code;
-  const accordionItems = accordionDataByCountry[activeCountryCode] || [];
-
+  // When user clicks a tab, update URL param
   const handleTabChange = (idx) => {
-    setActiveIdx(idx);
-    setTimeout(triggerScrollUpdate, 350); 
+    const code = countries[idx].code;
+    navigate({ search: `?tab=${code}` }, { replace: true });
   };
 
-
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setTimeout(triggerScrollUpdate, 100);
-    });
-    if (pageRef.current) {
-      observer.observe(pageRef.current, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        characterData: true,
-      });
-    }
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  // For prev/next arrows
+  const prevIdx = (activeIdx - 1 + countries.length) % countries.length;
+  const nextIdx = (activeIdx + 1) % countries.length;
 
   return (
     <>
-    <Header />
-    <div className="wrapperBg">
-        <div className="bg-map"></div>
-         <div className="bg-vectorThreee"></div>
-          <div className="bg-vectorTwoo"></div>
-         <div className="bg-vectorFourr"></div>
-      <Container>
-        <div className="country-tabs-page" ref={pageRef}>
-          <div className="country-tabs-bar">
-            <button className="tab-arrow arrowLeft" onClick={() => handleTabChange(prevIdx)}>
-              <IoIosArrowBack />
-            </button>
-            <div
-              className="country-tabs-list scrollable-tabs"
-              ref={tabListRef}
-              style={{
-                overflowX: "auto",
-                scrollBehavior: "smooth",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {countries.map((c, idx) => (
-                <button
-                  key={c.code + idx}
-                  className={`country-tab-btn${idx === activeIdx ? " active" : ""}`}
-                  onClick={() => handleTabChange(idx)}
-                  aria-label={c.name}
-                  ref={el => tabRefs.current[idx] = el}
-                >
-                  <img src={c.tabsIcon} alt={c.name + " flag"} className="country-tab-flag" />
-                  {idx === activeIdx && <span className="country-tab-label">{c.name}</span>}
-                </button>
-              ))}
+      <Header />
+      <div className="wrapperBg">
+        <Container>
+          <div className="country-tabs-page">
+            <div className="country-tabs-bar">
+              <button className="tab-arrow arrowLeft" onClick={() => handleTabChange(prevIdx)}>
+                <IoIosArrowBack />
+              </button>
+              <div className="country-tabs-list scrollable-tabs"
+                ref={tabListRef}
+                style={{ overflowX: "auto", scrollBehavior: "smooth", whiteSpace: "nowrap" }}>
+                {countries.map((c, idx) => (
+                  <button
+                    key={c.code + idx}
+                    className={`country-tab-btn${idx === activeIdx ? " active" : ""}`}
+                    onClick={() => handleTabChange(idx)}
+                    aria-label={c.name}
+                    ref={el => tabRefs.current[idx] = el}
+                  >
+                    <img src={c.tabsIcon} alt={c.name + " flag"} className="country-tab-flag" />
+                    {idx === activeIdx && <span className="country-tab-label">{c.name}</span>}
+                  </button>
+                ))}
+              </div>
+              <button className="tab-arrow arrowRight" onClick={() => handleTabChange(nextIdx)}>
+                <IoIosArrowForward />
+              </button>
             </div>
-            <button className="tab-arrow arrowRight" onClick={() => handleTabChange(nextIdx)}>
-              <IoIosArrowForward />
-            </button>
-          </div>
-          <div className="country-tabs-content-wrap">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={countries[activeIdx].code}
-                className="country-tab-content"
-                variants={tabVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                <div className="country-main-card">
-                  <Row>
-                    <Col xs={12} md={10} className="mx-auto">
-                      <div className="country-main-img-wrap">
-                        <img
-                          src={countries[activeIdx].image}
-                          alt={countries[activeIdx].name}
-                          className="country-main-img"
-                          onLoad={triggerScrollUpdate}
-                        />
-                        <div className="country-main-img-overlay">
-                          <div className="country-main-img-title">
-                            Study in <br /> <span>{countries[activeIdx].name.toUpperCase()}</span>
+            <div className="country-tabs-content-wrap">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCountry.code}
+                  className="country-tab-content"
+                  variants={tabVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                >
+                  <div className="country-main-card">
+                    <Row>
+                      <Col xs={12} md={10} className="mx-auto">
+                        <div className="country-main-img-wrap">
+                          <img src={activeCountry.image} alt={activeCountry.name} className="country-main-img" />
+                          <div className="country-main-img-overlay">
+                            <div className="country-main-img-title">
+                              Study in <br /><span>{activeCountry.name.toUpperCase()}</span>
+                            </div>
+                            <a href={activeCountry.button?.link || "#"} className="country-main-btn btn-secondary-cta">
+                              {activeCountry.button?.text}
+                              <span className="secondary-btn-arrow">
+                                <FaArrowRight />
+                              </span>
+                            </a>
                           </div>
-                          <a href={countries[activeIdx].button.link} className="country-main-btn btn-secondary-cta">
-                            {countries[activeIdx].button.text}
-                            <span className="secondary-btn-arrow">
-                              <FaArrowRight />
-                            </span>
-                          </a>
                         </div>
-                      </div>
-                      <div className="country-main-desc">
-                        {countries[activeIdx].description}
-                      </div>
-                      {/* Dynamically render accordion for each country */}
-                      <CustomAccordion items={accordionItems} />
-                    </Col>
-                  </Row>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                        <div className="country-main-desc">{activeCountry.description}</div>
+                        <CustomAccordion items={accordionDataByCountry[activeCountry.code] || []} />
+                      </Col>
+                    </Row>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
-      </Container>
-    </div>
-     <Footer />
+        </Container>
+      </div>
+      <Footer />
     </>
   );
 };

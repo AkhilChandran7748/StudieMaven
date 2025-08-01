@@ -10,6 +10,7 @@ export const RENDER_URL = {
     AWARDSPAGE: '/AwardsPage',
     CAREERPAGE: '/CareerPage',
     OURTEAM: '/OurTeam',
+    EVENTS: '/EventsPage',
     ASSOCIATE_WITH_US: '/AssociateWithUsPage',
     FAQ: '/FaqPage',
     REGISTER_URL: "/register",

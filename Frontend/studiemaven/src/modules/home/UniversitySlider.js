@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { useNavigate } from "react-router-dom";
 import "./UniversitySlider.scss";
 
 import GermanyUniversityPic from '../../assets/university-pic1.jpg';
@@ -15,32 +16,39 @@ const universities = [
   {
     image: GermanyUniversityPic,
     name: "GERMANY",
+    code: "DE",
   },
   {
     image: CanadaUniversityPic,
     name: "CANADA",
+    code: "CA",
   },
   {
     image: UkUniversityPic,
     name: "UK",
+    code: "GB",
   },
   {
     image: LondonUniversityPic,
     name: "ITALY",
+    code: "IT", // If IT is not supported, adjust or remove
   },
   {
     image: UsUniversityPic,
     name: "US",
+    code: "US", // If US is not supported in tabs, adjust or remove
   },
   {
     image: AustraliaUniversityPic,
     name: "AUSTRALIA",
+    code: "AU",
   },
 ];
 
 const UniversitySlider = () => {
   const sliderRef = useRef();
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const navigate = useNavigate();
 
   const settings = {
     slidesToShow: 4,
@@ -64,7 +72,6 @@ const UniversitySlider = () => {
     ]
   };
 
-  // Custom Arrows (same as before)
   const PrevArrow = ({ onClick, currentSlide }) => (
     <button
       className={`uni-arrow uni-arrow-prev${currentSlide === 0 ? " disabled" : ""}`}
@@ -146,6 +153,8 @@ const UniversitySlider = () => {
                 glareColor="#ffffff"
                 glarePosition="all"
                 className="tilt-card"
+                onClick={() => u.code && navigate(`/countrytab?tab=${u.code}`)}
+                style={{ cursor: "pointer" }}
               >
                 <motion.div
                   className="university-card"

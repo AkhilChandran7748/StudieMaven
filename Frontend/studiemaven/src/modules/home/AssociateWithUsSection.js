@@ -1,157 +1,186 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./AssociateWithUsSection.scss";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from "react-bootstrap";
 import { FaArrowRight } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { motion } from "framer-motion";
 
-import universityLogo1 from "../../assets/university-logos/1.jpg";
-import universityLogo2 from "../../assets/university-logos/2.jpg";
-import universityLogo3 from "../../assets/university-logos/3.jpg";
-import universityLogo4 from "../../assets/university-logos/4.jpg";
-import universityLogo5 from "../../assets/university-logos/5.jpg";
-import universityLogo6 from "../../assets/university-logos/6.jpg";
-import universityLogo7 from "../../assets/university-logos/7.jpg";
-import universityLogo8 from "../../assets/university-logos/8.jpg";
-import universityLogo9 from "../../assets/university-logos/9.jpg";
-import universityLogo10 from "../../assets/university-logos/10.jpg";
+// Image imports
+import AnimCharacterOne from '../../assets/anim-character1.png';
+import AnimCharacterTwo from '../../assets/anim-character2.png';
+import AnimCircleFront  from '../../assets/anim-circle1.png'; 
+import AnimCircleMiddle  from '../../assets/anim-circle2.png'; 
+import AnimCircleBack  from '../../assets/anim-circle3.png'; 
+import AnimTextbox1 from '../../assets/anim-textbox1.png';
+import AnimTextbox2 from '../../assets/anim-textbox2.png';
+import AnimTextbox3 from '../../assets/anim-textbox3.png';
+import AnimTextbox4 from '../../assets/anim-textbox4.png';
+import AnimTextbox5 from '../../assets/anim-textbox5.png';
+import AnimTextbox6 from '../../assets/anim-textbox6.png';
+import AnimTextbox7 from '../../assets/anim-textbox7.png';
+import AnimTextbox8 from '../../assets/anim-textbox8.png';
 
-const universityLogos = [
-  universityLogo1, universityLogo2, universityLogo3, universityLogo4, universityLogo5,
-  universityLogo6, universityLogo7, universityLogo8, universityLogo9, universityLogo10
-];
-
-const AUTOPLAY_DELAY = 2800;
-
-const itemVariants = {
-  initial: { opacity: 0, scale: 0.8, y: 30 },
-  animate: (i) => ({
+// Animation variants based on AboutUsPage style
+const circleVariants = {
+  initial: { opacity: 0, scale: 0.88, filter: "blur(14px)" },
+  animate: custom => ({
     opacity: 1,
     scale: 1,
-    y: 0,
-    transition: { delay: i * 0.12, duration: 0.48, ease: [0.22, 1, 0.36, 1] }
-  }),
-  exit: { opacity: 0, scale: 0.8, y: 30, transition: { duration: 0.25 } }
-};
-
-function useResponsiveLogosToShow() {
-  const [logosToShow, setLogosToShow] = useState(getLogosCount(window.innerWidth));
-
-  useEffect(() => {
-    function handleResize() {
-      setLogosToShow(getLogosCount(window.innerWidth));
+    filter: "blur(0px)",
+    transition: {
+      delay: 0.1 + custom * 0.11,
+      duration: 0.9,
+      type: "spring",
+      stiffness: 120,
+      damping: 19
     }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return logosToShow;
-}
-
-function getLogosCount(width) {
-  if (width <= 600) return 1;        // Mobile
-  if (width <= 900) return 3;        // Tablet
-  return 5;                          // Desktop
-}
-
-const LogoSlider = () => {
-  const logosToShow = useResponsiveLogosToShow();
-  const [startIdx, setStartIdx] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const autoplayRef = useRef();
-
-  const total = universityLogos.length;
-  const getIdx = (idx) => (idx + total) % total;
-  const visibleLogos = Array.from({ length: logosToShow }, (_, i) => universityLogos[getIdx(startIdx + i)]);
-
-  const handlePrev = () => {
-    setDirection(-1);
-    setStartIdx((prev) => getIdx(prev - 1));
-    resetAutoplay();
-  };
-
-  const handleNext = () => {
-    setDirection(1);
-    setStartIdx((prev) => getIdx(prev + 1));
-    resetAutoplay();
-  };
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "ArrowRight") handleNext();
-      if (e.key === "ArrowLeft") handlePrev();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line
-  }, []);
-
-
-  const resetAutoplay = () => {
-    if (autoplayRef.current) clearInterval(autoplayRef.current);
-    autoplayRef.current = setInterval(() => {
-      setDirection(1);
-      setStartIdx((prev) => getIdx(prev + 1));
-    }, AUTOPLAY_DELAY);
-  };
-
-  useEffect(() => {
-    resetAutoplay();
-    return () => {
-      if (autoplayRef.current) clearInterval(autoplayRef.current);
-    };
-
-  }, [logosToShow]);
-
-  return (
-    <div className="logo-slider-wrap">
-      <button className="logo-slider-arrow left" onClick={handlePrev} aria-label="Previous universities">
-        <IoIosArrowBack />
-      </button>
-      <div className="logo-slider-track">
-        <div className="logo-slider-items">
-          {visibleLogos.map((logo, i) => (
-            <motion.div
-              className="logo-slider-item"
-              key={logo + startIdx}
-              custom={i}
-              variants={itemVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <img
-                src={logo}
-                alt={`University logo ${i + 1}`}
-                loading="lazy"
-              />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      <button className="logo-slider-arrow right" onClick={handleNext} aria-label="Next universities">
-        <IoIosArrowForward />
-      </button>
-    </div>
-  );
+  })
 };
 
-const AssociateWithUsSection = ({ id }) => {
+const characterVariants = {
+  initial: custom => ({
+    opacity: 0,
+    y: 60 + custom * 10,
+    scale: 0.88,
+    filter: "blur(15px)",
+  }),
+  animate: custom => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      delay: 0.33 + custom * 0.12,
+      duration: 0.9,
+      type: "spring",
+      stiffness: 120,
+      damping: 19
+    }
+  })
+};
 
-  const [statsRef, statsInView] = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
+const textboxVariants = {
+  initial: custom => ({
+    opacity: 0,
+    y: 38 + custom * 5,
+    scale: 0.92,
+    filter: "blur(14px)",
+  }),
+  animate: custom => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      delay: 0.6 + custom * 0.09,
+      duration: 0.7,
+      type: "spring",
+      stiffness: 120,
+      damping: 17
+    }
+  })
+};
+
+export default function AssociateWithUsSection({ id }) {
+  const textboxes = [
+    { src: AnimTextbox1, alt: "Guiding Students In Every Step" },
+    { src: AnimTextbox2, alt: "Welcoming All Partner Types" },
+    { src: AnimTextbox3, alt: "Sub-Agent Program" },
+    { src: AnimTextbox4, alt: "Transparency & Fairness" },
+    { src: AnimTextbox5, alt: "Mutual Growth" },
+    { src: AnimTextbox6, alt: "Access to Global Universities" },
+    { src: AnimTextbox7, alt: "Changing Lives Through Education" },
+    { src: AnimTextbox8, alt: "Support System & Tools" }
+  ];
+
+  // In-view animation trigger
+  const [inView, setInView] = useState(false);
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    if (!inView && wrapperRef.current) {
+      const observer = new window.IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) setInView(true);
+      }, { threshold: 0.18 });
+      observer.observe(wrapperRef.current);
+      return () => observer.disconnect();
+    }
+  }, [inView]);
 
   return (
     <div className="containerWrapper" id={id}>
       <Container className="associate-section">
+        <div className="imageWrapper" ref={wrapperRef}>
+          {/* Animated Circles */}
+          <motion.img
+            src={AnimCircleBack}
+            alt="Circle Back"
+            className="circleBack"
+            custom={0}
+            initial="initial"
+            animate={inView ? "animate" : "initial"}
+            variants={circleVariants}
+            style={{ zIndex: 0 }}
+          />
+          <motion.img
+            src={AnimCircleMiddle}
+            alt="Circle Middle"
+            className="circleMiddle"
+            custom={1}
+            initial="initial"
+            animate={inView ? "animate" : "initial"}
+            variants={circleVariants}
+            style={{ zIndex: 9, position: "absolute" }}
+          />
+          <motion.img
+            src={AnimCircleFront}
+            alt="Circle Front"
+            className="circleFront"
+            custom={2}
+            initial="initial"
+            animate={inView ? "animate" : "initial"}
+            variants={circleVariants}
+            style={{ zIndex: 99, position: "absolute" }}
+          />
+          {/* Animated Characters */}
+          <motion.img
+            src={AnimCharacterOne}
+            alt="Student One"
+            className="characterOne"
+            custom={0}
+            initial="initial"
+            animate={inView ? "animate" : "initial"}
+            variants={characterVariants}
+            style={{ zIndex: 999 }}
+          />
+          <motion.img
+            src={AnimCharacterTwo}
+            alt="Student Two"
+            className="characterTwo"
+            custom={1}
+            initial="initial"
+            animate={inView ? "animate" : "initial"}
+            variants={characterVariants}
+            style={{ zIndex: 999 }}
+          />
+          {/* Animated Textboxes with stagger */}
+          {textboxes.map((tb, i) => (
+            <motion.img
+              key={tb.alt}
+              src={tb.src}
+              alt={tb.alt}
+              className={`textbox${i+1}`}
+              custom={i}
+              initial="initial"
+              animate={inView ? "animate" : "initial"}
+              variants={textboxVariants}
+              style={{ zIndex: i === 0 ? 999 : 9 }}
+            />
+          ))}
+        </div>
         <div className="associate-section-content text-center">
           <div className="associate-section-badge">Our Networks</div>
           <h2 className="associate-section-title">Partner With Us</h2>
-          {/* <LogoSlider /> */}
           <Row>
             <Col xs={12} className="text-center">
               <p className="associate-section-desc">
@@ -173,6 +202,4 @@ const AssociateWithUsSection = ({ id }) => {
       </Container>
     </div>
   );
-};
-
-export default AssociateWithUsSection;
+}

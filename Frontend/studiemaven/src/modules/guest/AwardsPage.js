@@ -118,7 +118,7 @@ const AwardsPage = () => {
             <Col xs={12} >
               <div className="awardsTitle-content">
                 <motion.h1
-                  className="mainTitles"
+                  className="bannerTitle"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.5 }}

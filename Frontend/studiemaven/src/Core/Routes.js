@@ -6,6 +6,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import DataContextProvider from "../modules/common/dataContext";
 import HomePage from '../modules/home/HomePage';
 
+
 const GuestDashboard = lazy(() => import("../modules/guest/GuestDashboard"))
 const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
 const Services = lazy(() => import("../modules/guest/ServiceSection"))
@@ -30,6 +31,7 @@ const AssociateWithUsPage = lazy(() => import("../modules/home/AssociateWithUsPa
 const FaqPage = lazy(() => import("../modules/guest/FaqPage"));
 const CareerPage = lazy(() => import("../modules/guest/CareerPage"));
 const JobDetailPage = lazy(() => import("../modules/guest/JobDetailPage"));
+const EventsPage = lazy(() => import("../modules/home/EventsPage"));
 const RoutesComponent = ({ history }) => {
     return (
         <DataContextProvider>
@@ -45,6 +47,7 @@ const RoutesComponent = ({ history }) => {
                         <Route path="/careers/:id" element={<JobDetailPage />} />
                         <Route path={RENDER_URL.OURTEAM} element={<OurTeam />} />
                         <Route path={RENDER_URL.SERVICES} element={<Services />} />
+                        <Route path={RENDER_URL.EVENTS} element={<EventsPage />} />
                         <Route path={RENDER_URL.COURSES} element={<Courses />} />
                         <Route path={RENDER_URL.COUNTRIES} element={<Countries />} />
                         <Route path={RENDER_URL.FAQ} element={<FaqPage />} />

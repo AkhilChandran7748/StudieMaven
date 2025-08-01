@@ -5,9 +5,11 @@ import { careers } from "./CareersData";
 import Header from '../home/Header';
 import Footer from '../home/Footer';
 import { Container } from 'react-bootstrap';
+import { useLocation } from "react-router-dom";
 import { LocomotiveScrollContext } from '../home/LocomotiveScrollProvider';
 
 const CareerPage = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const locoScrollContext = useContext(LocomotiveScrollContext);
   const locoScroll = locoScrollContext?.locoScroll;
@@ -47,8 +49,8 @@ const CareerPage = () => {
                   role="button"
                 >
                   <div className="career-card-content">
-                    <h3>{job.title}</h3>
-                    <p className='jobDesc'>{job.description}</p>
+                    <h4>{job.title}</h4>
+                    <p className='jobDesc'>{job.details}</p>
                     <div className="career-tags">
                       {job.tags.map((tag, i) => (
                         <span className="career-tag" key={i}>

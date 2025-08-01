@@ -9,7 +9,7 @@ import LoginModal from './LoginModal';
 import brandLogo from '../../assets/brand-logo.png';
 import "./Header.scss";
 import { FiLogIn } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
 
 // --- Country flags imports ---
@@ -19,16 +19,14 @@ import flagAustralia from '../../assets/flag-Australia.png';
 import flagUK from '../../assets/flag-UK.png';
 import flagSweden from '../../assets/flag-Sweden.png';
 
-
 const aboutUs = [
   { label: 'Our Profile', to: RENDER_URL.ABOUTUS  },
   { label: 'Why StudieMaven', to: RENDER_URL.WHY_US  },
   { label: 'Awards and Achievements', to: RENDER_URL.AWARDSPAGE },
   { label: 'Our Team' },
-  { label: 'Our Events'  },
+  { label: 'Our Events', to: RENDER_URL.EVENTS },
   { label: 'Careers', to: RENDER_URL.CAREERPAGE  },
   { label: 'Find Us on Social Media' },
-  
 ];
 
 const services = [
@@ -53,26 +51,21 @@ const countries = [
   { label: 'USA', to: RENDER_URL.COUNTRIES + "#usa", flag: flagSweden },
 ];
 
-const navLinks = [
-  { label: 'HOME', to: "/" },
-  { label: 'ABOUT US', to: RENDER_URL.ABOUT }, // Updated
-  { label: 'CONTACT US', to: RENDER_URL.CONTACT },
-  { label: 'PARTNER WITH US', to: RENDER_URL.ASSOCIATE_WITH_US }, // You can update the path if needed
-  { label: 'FAQs', to: RENDER_URL.FAQS }, // Added
-];
-
 const dropdownMenuVariants = {
   hidden: { opacity: 0, y: 16, scale: 0.98, pointerEvents: 'none' },
   visible: { opacity: 1, y: 0, scale: 1, pointerEvents: 'auto', transition: { type: 'spring', stiffness: 320, damping: 22, duration: 0.38 } },
   exit: { opacity: 0, y: 10, scale: 0.98, pointerEvents: 'none', transition: { duration: 0.15 } }
 };
 
-const DropMenu = ({ title, items, isCountryMenu }) => (
-  <Menu as="div" className="nav-dropdown">
+const isMenuActive = (items, location) =>
+  items.some(item => item.to && location.pathname === item.to.split("#")[0]);
+
+const DropMenu = ({ title, items, isCountryMenu, location }) => (
+  <Menu as="div" className={`nav-dropdown${isMenuActive(items, location) ? ' activeLink' : ''}`}>
     {({ open }) => (
       <>
         <Menu.Button
-          className={`nav-link dropdown-toggle ${open ? 'active' : ''}`}
+          className={`nav-link dropdown-toggle${open || isMenuActive(items, location) ? ' activeLink' : ''}`}
           as="div"
           role="button"
           tabIndex={0}
@@ -96,15 +89,19 @@ const DropMenu = ({ title, items, isCountryMenu }) => (
                 <Menu.Item key={idx} as={Fragment}>
                   {({ active }) => (
                     <li>
-                      <Link
-                        className={`dropdown-item-futuristic${active ? ' active' : ''}`}
-                        to={item.to}
-                      >
-                        {isCountryMenu && item.flag && (
-                          <img src={item.flag} alt={`${item.label} flag`} style={{ width: 18, height: 13, marginRight: 8, verticalAlign: 'middle', borderRadius: 2, display: 'inline-block' }} />
-                        )}
-                        {item.label}
-                      </Link>
+                      {item.to ? (
+                        <Link
+                          className={`dropdown-item-futuristic${(active || (item.to && location.pathname === item.to.split("#")[0])) ? ' activeLink' : ''}`}
+                          to={item.to}
+                        >
+                          {isCountryMenu && item.flag && (
+                            <img src={item.flag} alt={`${item.label} flag`} style={{ width: 18, height: 13, marginRight: 8, verticalAlign: 'middle', borderRadius: 2, display: 'inline-block' }} />
+                          )}
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <span className="dropdown-item-futuristic">{item.label}</span>
+                      )}
                     </li>
                   )}
                 </Menu.Item>
@@ -117,16 +114,15 @@ const DropMenu = ({ title, items, isCountryMenu }) => (
   </Menu>
 );
 
-const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
+const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin, location }) => {
   const [expanded, setExpanded] = useState({});
-
   const handleExpand = (key) => {
     setExpanded((prev) => ({
       ...Object.keys(prev).reduce((acc, k) => ({ ...acc, [k]: false }), {}),
       [key]: !prev[key],
     }));
   };
-
+  const checkActive = (to) => to && location.pathname === to.split("#")[0];
   return (
     <Drawer
       open={isOpen}
@@ -145,15 +141,14 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
         </Button>
       </div>
       <nav className="drawer-nav">
-        {/* Main links */}
-        <Link to="/" className="drawer-link" onClick={onClose}>HOME</Link>
-        <Link to={RENDER_URL.ABOUTUS} className="drawer-link" onClick={onClose}>ABOUT US</Link>
-        <Link to={RENDER_URL.CONTACT} className="drawer-link" onClick={onClose}>CONTACT US</Link>
-        <Link to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" onClick={onClose}>PARTNER WITH US</Link>
-        <Link to={RENDER_URL.FAQS} className="drawer-link" onClick={onClose}>FAQs</Link>
+        <Link to="/" className={`drawer-link${location.pathname === "/" ? " activeLink" : ""}`} onClick={onClose}>HOME</Link>
+        <Link to={RENDER_URL.ABOUTUS} className={`drawer-link${checkActive(RENDER_URL.ABOUTUS) ? " activeLink" : ""}`} onClick={onClose}>ABOUT US</Link>
+        <Link to={RENDER_URL.CONTACT} className={`drawer-link${checkActive(RENDER_URL.CONTACT) ? " activeLink" : ""}`} onClick={onClose}>CONTACT US</Link>
+        <Link to={RENDER_URL.ASSOCIATE_WITH_US} className={`drawer-link${checkActive(RENDER_URL.ASSOCIATE_WITH_US) ? " activeLink" : ""}`} onClick={onClose}>PARTNER WITH US</Link>
+        <Link to={RENDER_URL.FAQ} className={`drawer-link${checkActive(RENDER_URL.FAQ) ? " activeLink" : ""}`} onClick={onClose}>FAQs</Link>
         {/* Dropdowns */}
         <div className="drawer-dropdown">
-          <button className={`drawer-link ${expanded['SERVICES'] ? 'active' : ''}`}
+          <button className={`drawer-link ${expanded['SERVICES'] ? 'activeLink' : ''}`}
             onClick={() => handleExpand('SERVICES')}>
             WHAT WE OFFER
             <FaChevronDown size={13} style={{ marginLeft: 8, transition: 'transform 0.26s', transform: expanded['SERVICES'] ? 'rotate(-180deg)' : undefined }} />
@@ -168,7 +163,7 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
               >
                 {services.map((item) => (
                   <li key={item.label}>
-                    <Link to={item.to} className="drawer-dropdown-item" onClick={onClose}>
+                    <Link to={item.to} className={`drawer-dropdown-item${checkActive(item.to) ? " activeLink" : ""}`} onClick={onClose}>
                       {item.label}
                     </Link>
                   </li>
@@ -178,7 +173,7 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
           </AnimatePresence>
         </div>
         <div className="drawer-dropdown">
-          <button className={`drawer-link ${expanded['COUNTRIES'] ? 'active' : ''}`}
+          <button className={`drawer-link ${expanded['COUNTRIES'] ? 'activeLink' : ''}`}
             onClick={() => handleExpand('COUNTRIES')}>
             COUNTRIES
             <FaChevronDown size={13} style={{ marginLeft: 8, transition: 'transform 0.26s', transform: expanded['COUNTRIES'] ? 'rotate(-180deg)' : undefined }} />
@@ -193,7 +188,7 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
               >
                 {countries.map((item) => (
                   <li key={item.label}>
-                    <Link to={item.to} className="drawer-dropdown-item" onClick={onClose}>
+                    <Link to={item.to} className={`drawer-dropdown-item${checkActive(item.to) ? " activeLink" : ""}`} onClick={onClose}>
                       {item.flag && (
                         <img src={item.flag} alt={`${item.label} flag`} style={{ width: 18, height: 13, marginRight: 8, verticalAlign: 'middle', borderRadius: 2, display: 'inline-block' }} />
                       )}
@@ -206,7 +201,7 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
           </AnimatePresence>
         </div>
         <div className="drawer-dropdown">
-          <button className={`drawer-link ${expanded['COURSES'] ? 'active' : ''}`}
+          <button className={`drawer-link ${expanded['COURSES'] ? 'activeLink' : ''}`}
             onClick={() => handleExpand('COURSES')}>
             COURSES
             <FaChevronDown size={13} style={{ marginLeft: 8, transition: 'transform 0.26s', transform: expanded['COURSES'] ? 'rotate(-180deg)' : undefined }} />
@@ -221,7 +216,7 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
               >
                 {courses.map((item) => (
                   <li key={item.label}>
-                    <Link to={item.to} className="drawer-dropdown-item" onClick={onClose}>
+                    <Link to={item.to} className={`drawer-dropdown-item${checkActive(item.to) ? " activeLink" : ""}`} onClick={onClose}>
                       {item.label}
                     </Link>
                   </li>
@@ -238,6 +233,7 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin }) => {
 const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <>
@@ -248,14 +244,14 @@ const Header = () => {
           <Navbar.Toggle aria-controls="main-navbar" />
           <Navbar.Collapse id="main-navbar">
             <Nav className="ms-auto align-items-center">
-              <Nav.Link as={Link} to="/">HOME</Nav.Link>
-              <DropMenu title="ABOUT US" items={aboutUs} />
-              <DropMenu title="WHAT WE OFFER" items={services} />
-              <DropMenu title="COUNTRIES" items={countries} isCountryMenu />
-              <DropMenu title="COURSES" items={courses} />
-              <Nav.Link as={Link} to={RENDER_URL.CONTACT}>CONTACT US</Nav.Link>
-              <Nav.Link as={Link} to={RENDER_URL.ASSOCIATE_WITH_US} className="drawer-link" >PARTNER WITH US</Nav.Link>
-              <Nav.Link as={Link} to={RENDER_URL.FAQ}>FAQs</Nav.Link>
+              <Nav.Link as={Link} to="/" className={location.pathname === "/" ? "activeLink" : ""}>HOME</Nav.Link>
+              <DropMenu title="ABOUT US" items={aboutUs} location={location} />
+              <DropMenu title="WHAT WE OFFER" items={services} location={location} />
+              <DropMenu title="COUNTRIES" items={countries} isCountryMenu location={location} />
+              <DropMenu title="COURSES" items={courses} location={location} />
+              <Nav.Link as={Link} to={RENDER_URL.CONTACT} className={location.pathname === RENDER_URL.CONTACT ? "activeLink" : ""}>CONTACT US</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.ASSOCIATE_WITH_US} className={`drawer-link${location.pathname === RENDER_URL.ASSOCIATE_WITH_US ? " activeLink" : ""}`}>PARTNER WITH US</Nav.Link>
+              <Nav.Link as={Link} to={RENDER_URL.FAQ} className={location.pathname === RENDER_URL.FAQ ? "activeLink" : ""}>FAQs</Nav.Link>
               <Button variant="" className="ms-3 btn-primary-cta" onClick={() => setShowLogin(true)}>Login <FiLogIn /></Button>
             </Nav>
           </Navbar.Collapse>
@@ -282,6 +278,7 @@ const Header = () => {
         onClose={() => setDrawerOpen(false)}
         showLogin={showLogin}
         setShowLogin={setShowLogin}
+        location={location}
       />
       <LoginModal show={showLogin} onHide={() => setShowLogin(false)} />
     </>
