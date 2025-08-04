@@ -36,7 +36,7 @@ const AssociateWithUsSectionNew = () => {
       <div className="bg-vectorTwoo"></div>
       <div className="aboutus-page-root" ref={pageRef}>
         <Container>
-          <AssociateWithUsSection />
+          <AssociateWithUsSection id="partnerPage"/>
         </Container>
       </div>
       <Footer />

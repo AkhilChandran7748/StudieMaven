@@ -189,6 +189,18 @@
   width:500px;
   height: 540px;
   position: relative;
+  @media (max-width: 576px) {
+    width:440px;
+    height: 480px;
+  }
+  @media (max-width: 480px) {
+    width:340px;
+    height:380px;
+  }
+  @media (max-width: 380px) {
+    width:300px;
+    height:340px;
+  }
   img{
     position: absolute;
     width: 100%;
@@ -397,7 +409,6 @@
   color: #222;
 }
 
-/* Responsive styles */
 @media (max-width: 600px) {
   .mv-card {
     padding: 18px 10px 22px 10px;
@@ -435,7 +446,6 @@
 @media (max-width: 900px) {
   .aboutus-main-card {
     flex-direction: column;
-    padding: 0;
   }
   .aboutus-left-col,
   .aboutus-right-col {

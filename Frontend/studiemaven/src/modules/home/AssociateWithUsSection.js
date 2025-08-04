@@ -19,7 +19,7 @@ import AnimTextbox5 from '../../assets/anim-textbox5.png';
 import AnimTextbox6 from '../../assets/anim-textbox6.png';
 import AnimTextbox7 from '../../assets/anim-textbox7.png';
 import AnimTextbox8 from '../../assets/anim-textbox8.png';
-
+import AnimTextbox9 from '../../assets/anim-textbox9.png';
 // Animation variants based on AboutUsPage style
 const circleVariants = {
   initial: { opacity: 0, scale: 0.88, filter: "blur(14px)" },
@@ -90,7 +90,8 @@ export default function AssociateWithUsSection({ id }) {
     { src: AnimTextbox5, alt: "Mutual Growth" },
     { src: AnimTextbox6, alt: "Access to Global Universities" },
     { src: AnimTextbox7, alt: "Changing Lives Through Education" },
-    { src: AnimTextbox8, alt: "Support System & Tools" }
+    { src: AnimTextbox8, alt: "Support System & Tools" },
+    { src: AnimTextbox9, alt: "Empowering Through Collaboration" }
   ];
 
   // In-view animation trigger

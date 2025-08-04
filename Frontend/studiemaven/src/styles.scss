@@ -483,7 +483,6 @@ html {
   font-size:16px;
   margin-right: 18px;
 }
-
 .breadcrumb-separator {
     font-size: 13px;
     color: #CBCBD4;
@@ -493,7 +492,10 @@ html {
     font-weight: 700;
     margin: 0;
 }
-
+.aboutus-page-root {
+    z-index: 9;
+    position: relative;
+}
 
 @media (max-width: 991px) {
   .grid-container {

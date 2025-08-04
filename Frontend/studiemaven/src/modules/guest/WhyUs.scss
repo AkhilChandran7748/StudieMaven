@@ -285,11 +285,10 @@
 @media (max-width: 900px) {
   .aboutus-main-card {
     flex-direction: column;
-    padding: 0;
   }
   .aboutus-left-col,
   .aboutus-right-col {
-    padding: 22px;
+    padding: 14px;
   }
   .aboutus-quicklinks-bar {
     position: static;
@@ -298,6 +297,9 @@
     height: auto;
     flex-direction: row;
     justify-content: flex-start;
+  }
+   .aboutus-main-card{
+    padding: 20px 30px;
   }
 }
 
@@ -330,5 +332,8 @@
   .aboutus-stat-label {
     font-size: 12px;
     line-height: 16px;
+  }
+  .aboutus-main-card{
+    padding: 20px 20px;
   }
 }

@@ -9,7 +9,7 @@ const SERVICES = [
   { className: 'item4', label: <h5><b>IELTS </b><br />TRAINING</h5> },
   { className: 'item5', label: <h5><b>LANGUAGE </b><br />TRAINING</h5> },
   { className: 'item6', label: <h5><b>FOREIGN </b><br />EXCHANGE</h5> },
-  { className: 'item7', label: <h5><b>EDUCATIONALLOAN </b><br />ASSISTANCE</h5>},
+  { className: 'item7', label: <h5><b>EDUCATIONAL LOAN </b><br />ASSISTANCE</h5>},
   { className: 'item8', label: <h5><b>ACCOMADATION</b></h5> },
   { className: 'item9', label: <h5><b>INTERVIEW </b><br />PREPARATION</h5>},
 ];
