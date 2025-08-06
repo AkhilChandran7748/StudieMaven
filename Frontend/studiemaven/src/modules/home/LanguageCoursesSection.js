@@ -81,8 +81,8 @@ function AnimatedImageWithCircle({ girlSrc, circleClass, girlClass }) {
 const LanguageCoursesSection = () => {
   return (
     <div className="language-courses-section">
-      <div className="bg-vectorThree"></div>
-      <div className="bg-vectorFour"></div>
+       <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos3"></div>
+       <div className="bg-graphics-right bg-graphics-pic-five bg-graphics-pos4"></div>
       <Container>
       <div className="language-courses-header">
         <div className="language-courses-achieve">

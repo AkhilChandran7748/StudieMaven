@@ -287,7 +287,7 @@ const EligibilitySection = () => {
   return (
     <>
       <ConfettiPopper active={popperActive} />
-
+     <div className="wrapperbg-section">
       <Container>
         <div className="eligibility-section-bg">
           <Row className="align-items-center">
@@ -319,7 +319,7 @@ const EligibilitySection = () => {
           </Row>
         </div>
       </Container>
-
+      </div>
  
       <Modal
         open={modalStep === 1}
@@ -430,7 +430,6 @@ const EligibilitySection = () => {
           </div>
         </div>
       </Modal>
-
 
       <Modal
         open={modalStep === 2}

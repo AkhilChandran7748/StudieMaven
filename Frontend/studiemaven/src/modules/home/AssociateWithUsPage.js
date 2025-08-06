@@ -32,8 +32,7 @@ const AssociateWithUsSectionNew = () => {
   return (
     <>
       <Header />
-      <div className="bg-vectorThreee"></div>
-      <div className="bg-vectorTwoo"></div>
+      <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos4"></div>
       <div className="aboutus-page-root" ref={pageRef}>
         <Container>
           <AssociateWithUsSection id="partnerPage"/>

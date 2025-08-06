@@ -50,7 +50,7 @@ const itemVariants = {
 const ServicesGrid = () => {
   return (
     <section className="services-section">
-      <div className="bg-vectorTwo"></div>
+      <div className="bg-graphics-left bg-graphics-pic-three bg-graphics-pos9"></div>
       <div className="container">
         <div className="section-header">
           <h2>Our Services</h2>

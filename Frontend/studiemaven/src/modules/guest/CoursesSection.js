@@ -192,8 +192,8 @@ const CoursesPage = () => {
   return (
     <>
       <Header />
-      <div className="bg-vectorNine"></div>
-      <div className="bg-vectorTen"></div>
+      <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos11"></div>
+      <div className="bg-graphics-right bg-graphics-pic-two bg-graphics-pos7"></div>
       <div className="courses-page-root"> 
       <Container>
         <div ref={sectionRef}>

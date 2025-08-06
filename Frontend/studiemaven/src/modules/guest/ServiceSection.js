@@ -162,8 +162,7 @@ const ServiceSection = () => {
   return (
     <>
       <Header />
-      <div className="bg-vectorSeven"></div>
-      <div className="bg-vectorEight"></div>
+       <div className="bg-graphics-right bg-graphics-pic-two bg-graphics-pos7"></div>
       <div className="bgWrapper">
       <Container>
         <div className="service-section-root" ref={sectionRef}>

@@ -102,8 +102,8 @@ const AwardsPage = () => {
   return (
     <>
       <Header />
-      <div className="bg-vectorThreee"></div>
-      <div className="bg-vectorTwoo"></div>
+       <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos11"></div>
+       <div className="bg-graphics-right bg-graphics-pic-two bg-graphics-pos7"></div>
       <div className="awards-page-root" data-scroll-container="true">
         <Container>
           <div className="pageHeader">

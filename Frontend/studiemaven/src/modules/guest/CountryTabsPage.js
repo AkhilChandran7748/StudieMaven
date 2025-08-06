@@ -310,6 +310,8 @@ const CountryTabsPage = () => {
     <>
       <Header />
       <div className="wrapperBg">
+      <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos11"></div>
+      <div className="bg-graphics-right bg-graphics-pic-two bg-graphics-pos7"></div>
         <Container>
           <div className="country-tabs-page">
             <div className="country-tabs-bar">

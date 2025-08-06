@@ -132,7 +132,7 @@ export default function EventsSection() {
 
   return (
     <div className="events-section">
-      <div className="bg-vectorFive"></div>
+       <div className="bg-graphics-right bg-graphics-pic-six bg-graphics-pos10"></div>
       <Container>
         <div className="events-section-header">
           <div className="events-section-badge">Our EVENTS</div>

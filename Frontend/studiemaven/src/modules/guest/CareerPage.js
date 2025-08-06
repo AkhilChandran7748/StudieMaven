@@ -28,7 +28,7 @@ const CareerPage = () => {
   return (
     <>
       <Header />
-      <div className="bg-vectorThreee"></div>
+       <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos11"></div>
       <div className="page">
         <Container>
           <div className="mainHeader">

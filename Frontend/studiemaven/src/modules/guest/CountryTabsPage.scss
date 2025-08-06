@@ -231,13 +231,6 @@
   }
 }
 
-
-@media (max-width: 1200px) {
-.country-tabs-page {
-  padding: 120px 0 0 0;
-}
-}
-
 @media (max-width: 900px) {
   .country-main-card .country-main-img-wrap { max-width: 98vw; }
 }
@@ -289,9 +282,7 @@
   .country-main-card .country-main-img-title span { font-size: 1.1rem; }
   .country-main-card .country-main-img { height: 360px; }
   .country-main-desc { font-size: 0.95rem; }
-  .country-tabs-page {
-    padding: 140px 0 0 0;
-  }
+
   .country-main-card .country-main-btn{
     font-size: 15px !important;
   }

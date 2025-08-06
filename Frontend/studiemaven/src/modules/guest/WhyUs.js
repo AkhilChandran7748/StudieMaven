@@ -93,8 +93,8 @@ const WhyUsPage = () => {
   return (
     <>
       <Header />
-      <div className="bg-vectorThreee"></div>
-      <div className="bg-vectorTwoo"></div>
+       <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos7"></div>
+       <div className="bg-graphics-right bg-graphics-pic-two bg-graphics-pos11"></div>
       <div className="aboutus-page-root" ref={pageRef}>
         <Container>
           <div className="pageHeader">

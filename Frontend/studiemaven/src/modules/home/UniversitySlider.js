@@ -98,7 +98,7 @@ const UniversitySlider = () => {
 
   return (
     <section className="universities-section">
-      <div className="bg-vectorOne"></div>
+      <div className="bg-graphics-right bg-graphics-pic-two bg-graphics-pos1"></div>
       <div className="container">
         <div className="universities-header">
           <div>

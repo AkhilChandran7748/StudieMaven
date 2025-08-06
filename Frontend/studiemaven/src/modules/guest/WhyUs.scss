@@ -301,6 +301,9 @@
    .aboutus-main-card{
     padding: 20px 30px;
   }
+  .aboutus-right-col {
+    flex: inherit;
+  }
 }
 
 
@@ -335,5 +338,14 @@
   }
   .aboutus-main-card{
     padding: 20px 20px;
+  }
+  .subContents {
+      padding: 10px 20px;
+  }
+}
+@media (max-width: 480px) {
+
+  .itemBox h6{
+    font-size: 14px;
   }
 }

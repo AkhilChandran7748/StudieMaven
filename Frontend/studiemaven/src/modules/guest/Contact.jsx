@@ -93,8 +93,8 @@ const ContactUsPage = () => {
     <>
       <Header />
       <div className="contactus-root" ref={pageRef}>
-        <div className="bg-vectorFivee"></div>
-        <div className="bg-vectorSixx"></div>
+        <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos11"></div>
+        <div className="bg-graphics-right bg-graphics-pic-two bg-graphics-pos7"></div>
         <div className="contactus-main-section">
           <div className="contactus-main-card">
             <motion.img

@@ -110,6 +110,7 @@ export default function AssociateWithUsSection({ id }) {
 
   return (
     <div className="containerWrapper" id={id}>
+      <div className="bg-graphics-left bg-graphics-pic-four bg-graphics-pos6"></div>
       <Container className="associate-section">
         <div className="imageWrapper" ref={wrapperRef}>
           {/* Animated Circles */}

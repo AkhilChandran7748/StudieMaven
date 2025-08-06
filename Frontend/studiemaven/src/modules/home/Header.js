@@ -142,12 +142,32 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin, location }) => {
       </div>
       <nav className="drawer-nav">
         <Link to="/" className={`drawer-link${location.pathname === "/" ? " activeLink" : ""}`} onClick={onClose}>HOME</Link>
-        <Link to={RENDER_URL.ABOUTUS} className={`drawer-link${checkActive(RENDER_URL.ABOUTUS) ? " activeLink" : ""}`} onClick={onClose}>ABOUT US</Link>
-        <Link to={RENDER_URL.CONTACT} className={`drawer-link${checkActive(RENDER_URL.CONTACT) ? " activeLink" : ""}`} onClick={onClose}>CONTACT US</Link>
-        <Link to={RENDER_URL.ASSOCIATE_WITH_US} className={`drawer-link${checkActive(RENDER_URL.ASSOCIATE_WITH_US) ? " activeLink" : ""}`} onClick={onClose}>PARTNER WITH US</Link>
-        <Link to={RENDER_URL.FAQ} className={`drawer-link${checkActive(RENDER_URL.FAQ) ? " activeLink" : ""}`} onClick={onClose}>FAQs</Link>
-        {/* Dropdowns */}
         <div className="drawer-dropdown">
+          <button className={`drawer-link ${expanded['ABOUTUS'] ? 'activeLink' : ''}`}
+            onClick={() => handleExpand('ABOUTUS')}>
+            ABOUT US
+            <FaChevronDown size={13} style={{ marginLeft: 8, transition: 'transform 0.26s', transform: expanded['SERVICES'] ? 'rotate(-180deg)' : undefined }} />
+          </button>
+          <AnimatePresence>
+            {expanded['ABOUTUS'] && (
+              <motion.ul
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="drawer-dropdown-list"
+              >
+                {aboutUs.map((item) => (
+                  <li key={item.label}>
+                    <Link to={item.to} className={`drawer-dropdown-item${checkActive(item.to) ? " activeLink" : ""}`} onClick={onClose}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </div>
+         <div className="drawer-dropdown">
           <button className={`drawer-link ${expanded['SERVICES'] ? 'activeLink' : ''}`}
             onClick={() => handleExpand('SERVICES')}>
             WHAT WE OFFER
@@ -225,6 +245,12 @@ const DrawerMenu = ({ isOpen, onClose, showLogin, setShowLogin, location }) => {
             )}
           </AnimatePresence>
         </div>
+        
+        <Link to={RENDER_URL.CONTACT} className={`drawer-link${checkActive(RENDER_URL.CONTACT) ? " activeLink" : ""}`} onClick={onClose}>CONTACT US</Link>
+        <Link to={RENDER_URL.ASSOCIATE_WITH_US} className={`drawer-link${checkActive(RENDER_URL.ASSOCIATE_WITH_US) ? " activeLink" : ""}`} onClick={onClose}>PARTNER WITH US</Link>
+        <Link to={RENDER_URL.FAQ} className={`drawer-link${checkActive(RENDER_URL.FAQ) ? " activeLink" : ""}`} onClick={onClose}>FAQs</Link>
+      
+       
       </nav>
     </Drawer>
   );
