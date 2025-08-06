@@ -579,7 +579,10 @@ html {
 .wrapperbg-white{
   background-color: #fff;
 }
-
+.pageHeader{
+  position: relative;
+  z-index: 1;
+}
 
 
 @media (max-width: 991px) {
